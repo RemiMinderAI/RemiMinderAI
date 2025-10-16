@@ -10,3 +10,16 @@ function App() {
 }
 
 export default App;
+
+// import './App.css';
+// import RegistrationChoice from './components/PatientRegistration';
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <RegistrationChoice />
+//     </div>
+//   );
+// }
+
+// export default App;

@@ -1,0 +1,138 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f9fafb 0%, #eef2f7 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Header */
+  .header {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+  }
+  
+  .logo {
+    font-weight: 400;
+    font-size: 1.0rem;
+    color: #111827;
+  }
+  
+  /* .signInButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: #374151;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .signInButton:hover {
+    background-color: #f3f4f6;
+  } */
+  
+  /* Main content */
+  .main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .card {
+    /* background-color: white; */
+    padding: 2.5rem 3rem;
+    /* border-radius: 1rem; */
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); */
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .subtitle {
+    color: #6b7280;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .signUpButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-weight: 550;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .emailButton {
+    background-color: white;
+    border: 2px solid #d1d5db;
+  }
+  
+  .emailButton:hover {
+    background-color: #f3f3f5;
+  }
+  
+  .googleButton {
+    background-color: white;
+    border: 2px solid #d1d5db;
+  }
+  
+  .googleButton:hover {
+    background-color: #f3f3f5;
+  }
+  
+  .appleButton {
+    background-color: white;
+    border: 2px solid #d1d5db;
+  }
+  
+  .appleButton:hover {
+    background-color: #f3f3f5;
+  }
+  
+  .footerText {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 1.5rem;
+  }
+  
+  .signInLink {
+    font-size: 1.0rem;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .signInLink:hover {
+    text-decoration: underline;
+  }
+  
