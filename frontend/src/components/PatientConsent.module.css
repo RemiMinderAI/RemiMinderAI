@@ -1,0 +1,267 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f9fafb 0%, #eef2f7 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Header */
+  .header {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+  }
+  
+  .logo {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #111827;
+  }
+  
+  /* Main layout */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centers horizontally */
+    justify-content: flex-start; /* align everything top-down */
+    padding: 2rem;
+  }  
+  
+  /* Page heading & footer */
+  .pageHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* centers horizontally */
+    justify-content: center; /* centers vertically if needed */
+    text-align: center;      /* centers text under the icon */
+    margin-top: 0.5rem;        /* spacing below the header */
+    margin-bottom: 0.5rem;
+  }
+  
+  .iconWrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(58, 123, 213, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .iconMain {
+    color: #2563eb;
+    font-size: 2rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .subtitle {
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+  
+  /* Card */
+  .card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    max-width: 625px;
+    width: 100%;
+  }
+  
+  /* Key Points */
+  .keyPoints {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  
+  .keyPoint {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem; /* space between icon and text stack */
+  }
+  
+  .iconBox {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px; /* rounded square */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .keyHeading {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #111827; /* dark gray */
+    text-align: left;
+  }
+  
+  .keyText {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #374151; /* gray */
+    text-align: left;
+    font-size: 0.875rem;
+  }
+  
+  /* Icon colors */
+  .blueIcon {
+    color: #2563eb;
+    font-size: 1rem;
+  }
+  
+  .purpleIcon {
+    color: #7c3aed;
+    font-size: 1rem;
+  }
+  
+  .greenIcon {
+    color: #10b981;
+    font-size: 1rem;
+  }
+  
+  /* Individual box colors */
+  .blueBox {
+    background-color: rgba(58, 123, 213, 0.1); /* Blue for HIPAA compliance */
+  }
+  
+  .purpleBox {
+    background-color: rgba(151, 58, 213, 0.1); /* Purple for data usage */
+  }
+  
+  .greenBox {
+    background-color: rgba(58, 213, 94, 0.1); /* Green for your rights */
+  }
+  
+  
+  /* Agreement Section */
+  .agreementBox {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    text-align: left;
+  }
+  
+  .agreementHeader {
+    background-color: #f9fafb;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #111827;
+  }
+  
+  .agreementScroll {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 0.275rem 1rem;
+    font-size: 1rem;
+    color: #4b5563;
+    text-align: left;
+  }
+  
+  .agreementScroll h5 {
+    color: #111827;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  
+  .agreementScroll ul {
+    margin-left: -1rem;
+    list-style: disc;
+  }
+  
+  /* Checkbox */
+  .checkboxContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    text-align: left;
+  }
+  
+  .checkboxContainer label {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+  
+  /* Button */
+  .submitButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #3A7BD5;
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .submitButton:hover {
+    background-color: #356dc0;
+  }
+  
+  .submitButton:disabled {
+    background-color: #93c5fd;
+    cursor: not-allowed;
+  }
+  
+  /* Footer Note */
+  .footerNote {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 1.5rem;
+  }
+  
+  .contactLink {
+    font-size: 1.0rem;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .contactLink:hover {
+    text-decoration: underline;
+  }
+  

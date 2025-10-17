@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './PatientRegistration.module.css';
-// import googleLogo from '../assets/google-icon.png';
-// import appleLogo from '../assets/apple-icon.png';
-// import emailIcon from '../assets/email-icon.png';
+import { FcGoogle } from 'react-icons/fc';
+import { AiOutlineMail } from 'react-icons/ai';
+import { FaApple } from 'react-icons/fa';
 
 const RegisterPatientPage = () => {
+  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Add API call or form submission logic here
+  };
+
   return (
     <div className={styles.container}>
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.logo}>MediMinder</div>
-        {/* <a href="/signin" className={styles.signInButton}>Sign In</a> */}
       </header>
 
       {/* Main Content */}
@@ -19,27 +34,76 @@ const RegisterPatientPage = () => {
           <h1 className={styles.title}>Create Patient Account</h1>
           <p className={styles.subtitle}>Choose your preferred sign-up method</p>
 
-          <div className={styles.buttonGroup}>
-            <button className={`${styles.signUpButton} ${styles.emailButton}`}>
-              {/* <img src={emailIcon} alt="" className={styles.icon} /> */}
-              Sign up with Email
-            </button>
-            <button className={`${styles.signUpButton} ${styles.googleButton}`}>
-              {/* <img src={googleLogo} alt="" className={styles.icon} /> */}
-              Sign up with Google
-            </button>
-            <button className={`${styles.signUpButton} ${styles.appleButton}`}>
-              {/* <img src={appleLogo} alt="" className={styles.icon} /> */}
-              Sign up with Apple
-            </button>
-          </div>
+          {!showEmailForm ? (
+            <>
+              <div className={styles.buttonGroup}>
+                <button
+                  className={`${styles.signUpButton} ${styles.emailButton}`}
+                  onClick={() => setShowEmailForm(true)}
+                >
+                  <AiOutlineMail size={18} />
+                  Sign up with Email
+                </button>
+                <button className={`${styles.signUpButton} ${styles.googleButton}`}>
+                  <FcGoogle size={18} />
+                  Sign up with Google
+                </button>
+                <button className={`${styles.signUpButton} ${styles.appleButton}`}>
+                  <FaApple size={18} />
+                  Sign up with Apple
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className={styles.formCard}>
+              <form className={styles.emailForm} onSubmit={handleSubmit}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className={styles.inputField}
+                  />
+                </div>
 
-          <p className={styles.footerText}>
-            Already have an account?{' '}
-            <a href="/signin" className={styles.signInLink}>
-              Sign in
-            </a>
-          </p>
+                <div className={styles.formGroup}>
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a secure password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required
+                    className={styles.inputField}
+                  />
+                </div>
+
+                <div className={styles.buttonColumn}>
+                  <button type="submit" className={`${styles.signUpButton} ${styles.continueButton}`}>
+                    Continue
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.backButton}
+                    onClick={() => setShowEmailForm(false)}
+                  >
+                    Back
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+          <div className={styles.footerNote}>
+          Already have an account?{' '}
+          <a href="#" className={styles.contactLink}>Sign in</a>
+        </div>
         </div>
       </main>
     </div>
