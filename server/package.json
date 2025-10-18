@@ -1,5 +1,18 @@
 {
   "dependencies": {
+    "@supabase/supabase-js": "^2.75.1",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0"
-  }
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
