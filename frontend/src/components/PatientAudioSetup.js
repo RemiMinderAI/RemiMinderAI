@@ -36,7 +36,7 @@ export function PatientAudioSetup() {
         {/* Header (same as registration) */}
         <header className={styles.header}>
             <div className={styles.logo} onClick={goHome}>
-                MediMinder
+                RemeMinderAI
             </div>
         </header>
         <main className={styles.main}>

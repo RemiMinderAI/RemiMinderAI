@@ -22,7 +22,7 @@ const LandingPage = () => {
     <div className={styles.container}>
       {/* Navigation Bar */}
       <header className={styles.header}>
-        <div className={styles.logo}>MediMinder</div>
+        <div className={styles.logo}>RemeMinderAI</div>
         <nav className={styles.nav}>
           <a href="#how-it-works">How It Works</a>
           <a href="#who-its-for">Who It's For</a>
@@ -42,7 +42,7 @@ const LandingPage = () => {
             <span className={styles.highlightReimagined}>reimagined</span>
           </h1>
           <p className={styles.description}>
-            Never miss a detail from your doctor visits. MediMinder records
+            Never miss a detail from your doctor visits. RemeMinder records
             conversations, creates clear summaries, and keeps your health
             journey organized—so you can focus on what matters most.
           </p>

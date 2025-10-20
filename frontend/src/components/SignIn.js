@@ -41,7 +41,7 @@ const SignIn = () => {
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.logo} onClick={goHome}>
-          MediMinder
+          RemeMinderAI
         </div>
       </header>
 
