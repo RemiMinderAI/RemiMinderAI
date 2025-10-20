@@ -1,0 +1,301 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f9fafb 0%, #eef2f7 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Header */
+  .header {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+  }
+  
+  .logo {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #111827;
+    cursor: pointer;
+  }
+  
+  /* Main */
+  .main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .card {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #111827;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .subtitle {
+    color: #6b7280;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Role buttons */
+  .roleButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .roleButton, .roleButton2 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    background: white;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .roleButton h1, .roleButton2 h1 {
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin-bottom: -0.5rem;
+  }
+
+  .roleButton p, .roleButton2 p {
+    color: #6b7280;
+  }
+  
+  .roleButton:hover {
+    background: rgba(151, 58, 213, 0.1);
+    border-color: #7c3aed;
+    color: #7c3aed;
+  }
+
+  .roleButton2:hover {
+    background: rgba(58, 213, 94, 0.1);
+    border-color: #10b981;
+    color: #10b981;
+  }
+
+  /* Icon box styles */
+  .iconBoxPatient,
+  .iconBoxCaregiver {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    }
+
+  .iconBoxPatient {
+    color: #7c3aed;
+  }
+
+  .iconBoxCaregiver {
+    color: #10b981;
+  }
+
+  .iconBoxPatient {
+    background: rgba(151, 58, 213, 0.1); /* violet for patient */
+  }
+
+  .iconBoxCaregiver {
+    background: rgba(58, 213, 94, 0.1); /* emerald for caregiver */
+  }
+
+    /* Icon size */
+  .icon {
+    font-size: 1.5rem;
+  }
+
+  .backButton {
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+    font-family: inherit;
+  }
+  
+  /* .backButton:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+  } */
+
+  .formCard {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  /* Form */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form h1 {
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-align: left;
+    margin-bottom: -0.5rem;
+  }
+
+  /* Validation Styles */
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .inputError {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  }
+  
+  .errorText {
+    font-size: 0.8rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    text-align: left;
+  }
+  
+  
+  .input, .input2 {
+    padding: 0.75rem 1rem;
+    border: 1px solid #f3f3f5;
+    border-radius: 10px;
+    font-size: 0.85rem;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  }
+
+  .input2:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(58, 213, 94, 0.1);
+  }
+  
+  .forgotPassword {
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-align: right;
+    cursor: pointer;
+  }
+  
+  .forgotPassword:hover {
+    text-decoration: underline;
+  }
+  
+  .primaryButton {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+    font-family: inherit;
+  }
+  
+  .primaryButton:hover {
+    background: #6d28d9;
+  }
+
+  .primaryButton2 {
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+    font-family: inherit;
+  }
+  
+  .primaryButton2:hover {
+    background: #059669;
+  }
+  
+  .secondaryButton {
+    background: none;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+    font-family: inherit;
+  }
+  
+  .secondaryButton:hover {
+    background: #f3f4f6;
+  }
+  
+  .link {
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  /* Footer Note */
+  .footerNote {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 1.5rem;
+  }
+  
+  .contactLink {
+    font-size: 1.0rem;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .contactLink:hover {
+    text-decoration: underline;
+  }

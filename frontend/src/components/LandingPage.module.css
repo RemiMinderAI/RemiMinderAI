@@ -49,6 +49,7 @@
     border: 1px solid var(--border-color);
     padding: 8px 16px;
     border-radius: 8px;
+    cursor: pointer;
   }
   
   /* Hero Section - title, description, buttons, and image */
@@ -132,6 +133,7 @@
     justify-content: center;
     border: 1px solid transparent;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
   }
   
   /* blue button (patient) */

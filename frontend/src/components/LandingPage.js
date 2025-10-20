@@ -14,6 +14,10 @@ const LandingPage = () => {
     navigate("/register/caregiver");
   };
 
+  const goToSignIn = () => {
+    navigate("/signin");
+  }
+
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
@@ -24,7 +28,7 @@ const LandingPage = () => {
           <a href="#who-its-for">Who It's For</a>
           <a href="#benefits">Benefits</a>
         </nav>
-        <a href="/signin" className={styles.signInButton}>Sign In</a>
+        <button onClick={goToSignIn} className={styles.signInButton}>Sign In</button>
       </header>
 
       {/* Main Hero Section */}

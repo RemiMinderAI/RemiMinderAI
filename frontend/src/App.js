@@ -1,5 +1,6 @@
 import './App.css';
 import LandingPage from './components/LandingPage';
+import SignIn from './components/SignIn';
 import PatientRegistration from './components/PatientRegistration';
 import PatientConsent from './components/PatientConsent';
 import PatientProfileSetup from './components/PatientProfileSetup';
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/register/patient" element={<PatientRegistration />} />
           <Route path="/consent/patient" element={<PatientConsent />} />
           <Route path="/profile/patient" element={<PatientProfileSetup />} />

@@ -171,7 +171,7 @@ const RegisterPatientPage = () => {
 
           <div className={styles.footerNote}>
             Already have an account?{' '}
-            <a href="#" className={styles.contactLink}>Sign in</a>
+            <a href="/signin" className={styles.contactLink}>Sign in</a>
           </div>
         </div>
       </main>
