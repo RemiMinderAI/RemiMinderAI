@@ -71,6 +71,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 0.85rem;
+  font-family: inherit;
 }
 
 .emailButton,
@@ -196,13 +197,20 @@
 }
 
 .backButton {
-  background-color: white;
-  color: #333;
+  background-color: transparent;
+  color: black;
   padding: 12px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   font-weight: 600;
+  font-family: inherit;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.backButton:hover {
+  background: #f3f4f6;
 }
 
 .iconCircle {

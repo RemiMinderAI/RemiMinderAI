@@ -6,14 +6,6 @@ import { useNavigate } from "react-router-dom";
 const LandingPage = () => {
   const navigate = useNavigate();
 
-  const goToPatientRegister = () => {
-    navigate("/register/patient");
-  };
-
-  const goToCaregiverRegister = () => {
-    navigate("/register/caregiver");
-  };
-
   const goToSignIn = () => {
     navigate("/signin");
   }
@@ -46,11 +38,19 @@ const LandingPage = () => {
             conversations, creates clear summaries, and keeps your health
             journey organized—so you can focus on what matters most.
           </p>
+
+          {/* Registration Buttons */}
           <div className={styles.buttonGroup}>
-            <button onClick={goToPatientRegister} className={styles.primaryButton}>
+            <button 
+              onClick={() => navigate('/register/patient')} 
+              className={styles.primaryButton}
+            >
               Register as Patient <span>&rarr;</span>
             </button>
-            <button onClick={goToCaregiverRegister} className={styles.secondaryButton}>
+            <button 
+              onClick={() => navigate('/register/caregiver')} 
+              className={styles.secondaryButton}
+            >
               Register as Caregiver
             </button>
           </div>
@@ -71,6 +71,7 @@ const LandingPage = () => {
               </div>
           </div>
         </div>
+
         <div className={styles.rightPanel}>
           <img src={heroImage} alt="Healthcare professional holding a glowing icon" className={styles.heroImage} />
         </div>

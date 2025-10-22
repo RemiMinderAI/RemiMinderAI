@@ -23,18 +23,54 @@ export default function PatientRegistration() {
         const user = session.user;
         // Check if the email is verified (depends on provider)
         if (user.email_confirmed_at || user.identities?.length > 0) {
-          navigate("/consent");
+          navigate("/consent/patient");
         }
       }
     };
     checkSession();
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) navigate("/consent");
+      if (session?.user) navigate("/consent/patient");
     });
 
     return () => listener.subscription.unsubscribe();
   }, [navigate]);
+
+  useEffect(() => {
+    let observer;
+  
+    const tryAttachSignInOverride = () => {
+      // Find the "Sign in" link rendered by Supabase
+      const signInLink = Array.from(document.querySelectorAll("a")).find((el) =>
+        el.textContent?.trim().toLowerCase().includes("sign in")
+      );
+  
+      if (signInLink) {
+        // Replace it with a clone so Supabase handlers are removed
+        const newLink = signInLink.cloneNode(true);
+        signInLink.replaceWith(newLink);
+  
+        newLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          navigate("/signin");
+        });
+  
+        console.log("✅ Custom sign-in link override applied!");
+  
+        // Stop observing — job done
+        if (observer) observer.disconnect();
+      }
+    };
+  
+    // Observe DOM mutations for when Supabase UI renders
+    observer = new MutationObserver(() => tryAttachSignInOverride());
+    observer.observe(document.body, { childList: true, subtree: true });
+  
+    // Also try immediately in case it's already rendered
+    tryAttachSignInOverride();
+  
+    return () => observer.disconnect();
+  }, [navigate]);  
 
   // --- Google Sign Up ---
   const handleGoogleSignUp = async () => {
@@ -42,7 +78,7 @@ export default function PatientRegistration() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/consent`,
+          redirectTo: `${window.location.origin}/consent/patient`,
         },
       });
       if (error) throw error;
@@ -92,22 +128,27 @@ export default function PatientRegistration() {
                 <FaApple size={18} />
                 Sign up with Apple
               </button>
+              <button className={styles.backButton} onClick={() => navigate("/")}>
+                Back
+              </button>
             </div>
           ) : (
             <div className={styles.formCard}>
-              <Auth
-                supabaseClient={supabase}
-                appearance={{
-                  theme: ThemeSupa,
-                  style: {
-                    button: { borderRadius: "8px", fontWeight: "600" },
-                    input: { borderRadius: "8px" },
-                  },
-                }}
-                theme="light"
-                providers={[]}
-                view="sign_up"
-              />
+             <Auth
+              supabaseClient={supabase}
+              appearance={{
+                theme: ThemeSupa,
+                style: {
+                  button: { borderRadius: "8px", fontWeight: "600" },
+                  input: { borderRadius: "8px" },
+                },
+              }}
+              theme="light"
+              providers={[]}
+              view="sign_up"
+              // Pass redirectTo here
+              redirectTo={`${window.location.origin}/signup-confirmation`}
+            />
               <button
                 onClick={() => setShowEmailForm(false)}
                 className={styles.backButton}

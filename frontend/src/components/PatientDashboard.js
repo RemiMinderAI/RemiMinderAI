@@ -34,9 +34,21 @@ export default function PatientDashboard() {
   }, [navigate]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/"); // back to landing page
+    try {
+      await supabase.auth.signOut();
+  
+      // Clear persisted role
+      localStorage.removeItem("role");
+  
+      // Optional: clear any other app-specific state if needed
+      // e.g., sessionStorage.clear();
+  
+      navigate("/"); // back to landing page
+    } catch (err) {
+      console.error("Logout failed:", err.message);
+    }
   };
+  
 
   return (
     <div className={styles.container}>
