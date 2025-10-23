@@ -5,7 +5,7 @@ import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineMail } from "react-icons/ai";
-import { FaApple, FaTimes, FaUser, FaUserMd } from "react-icons/fa";
+import { FaApple, FaTimes, FaUser, FaUserFriends } from "react-icons/fa";
 import styles from "./SignIn.module.css";
 
 export default function SignIn() {
@@ -128,7 +128,7 @@ export default function SignIn() {
                 }}
               >
                 <div className={styles.iconBoxCaregiver}>
-                  <FaUserMd className={styles.icon} />
+                  <FaUserFriends className={styles.icon} />
                 </div>
                 <div>
                   <h1>Caregiver</h1>
@@ -186,6 +186,17 @@ export default function SignIn() {
               >
                 <FaApple size={18} />
                 Sign in with Apple
+              </button>
+
+              <button
+                onClick={() => {
+                  setRole(null);       // reset role
+                  setShowEmailForm(false); // hide email form just in case
+                  localStorage.removeItem("role"); // optional: clear persisted role
+                }}
+                className={styles.backButton}
+              >
+                Back
               </button>
             </div>
           ) : (
