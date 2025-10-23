@@ -10,47 +10,36 @@ import styles from "./SignIn.module.css";
 
 export default function SignIn() {
   const navigate = useNavigate();
-
-  // --- Top-level state ---
   const [role, setRole] = useState(null);
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showAppleModal, setShowAppleModal] = useState(false);
-  const [recoveryMode, setRecoveryMode] = useState(false);
 
-  // Recovery form states
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-
-  // --- Detect password recovery link ---
-  useEffect(() => {
-    const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    if (hashParams.get("type") === "recovery") setRecoveryMode(true);
-  }, []);
-
-  // --- Load persisted role ---
+  // --- Load persisted role if any ---
   useEffect(() => {
     const savedRole = localStorage.getItem("role");
     if (savedRole) setRole(savedRole);
   }, []);
 
-  // --- Handle auth state changes + redirects ---
+  // --- Redirect if already signed in ---
   useEffect(() => {
     const currentRole = role || localStorage.getItem("role") || "patient";
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (_event === "PASSWORD_RECOVERY") {
-        setRecoveryMode(true);
-        return;
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        navigate(`/dashboard/${currentRole}`);
       }
-      if (session?.user && !recoveryMode) {
+    };
+    checkSession();
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
         navigate(`/dashboard/${currentRole}`);
       }
     });
 
     return () => listener.subscription.unsubscribe();
-  }, [navigate, role, recoveryMode]);
+  }, [navigate, role]);
 
   // --- Override Supabase "Sign up" link ---
   useEffect(() => {
@@ -64,6 +53,7 @@ export default function SignIn() {
       if (signUpLink) {
         const newLink = signUpLink.cloneNode(true);
         signUpLink.replaceWith(newLink);
+
         newLink.addEventListener("click", (e) => {
           e.preventDefault();
           const currentRole = role || localStorage.getItem("role") || "patient";
@@ -71,6 +61,7 @@ export default function SignIn() {
           else if (currentRole === "caregiver") navigate("/register/caregiver");
           else navigate("/register/patient");
         });
+
         if (observer) observer.disconnect();
       }
     };
@@ -96,108 +87,6 @@ export default function SignIn() {
       alert("Failed to sign in with Google. Please try again.");
     }
   };
-
-  // --- Password reset handler ---
-  const handlePasswordReset = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage("");
-
-    try {
-      const { error: updateError } = await supabase.auth.updateUser({ password });
-      if (updateError) throw updateError;
-
-      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-      if (signInError) throw signInError;
-
-      const currentRole = localStorage.getItem("role") || "patient";
-      navigate(`/dashboard/${currentRole}`);
-    } catch (err) {
-      setMessage(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // --- Recovery mode UI ---
-  if (recoveryMode) {
-    return (
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <div className={styles.logo} onClick={() => navigate("/")}>
-            RemeMinderAI
-          </div>
-        </header>
-
-        <main className={styles.main}>
-          {/* Outer transparent card, centers everything */}
-          <div className={styles.card}>
-            {/* Heading above the white card */}
-            <div className={styles.heading}>
-              <h1 className={styles.title}>Reset Your Password</h1>
-              <p className={styles.subtitle}>Enter a new password to continue</p>
-            </div>
-
-            {/* White card containing the form */}
-            <div className={styles.formCard}>
-              <form onSubmit={handlePasswordReset} className={styles.form}>
-                <label className={styles.label}>Email address</label>
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className={styles.input}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-
-                <label className={styles.label}>New password</label>
-                <input
-                  type="password"
-                  placeholder="Your new password"
-                  className={styles.input}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-
-                <button
-                  type="submit"
-                  className={styles.greenButton}
-                  disabled={loading}
-                >
-                  {loading ? "Resetting..." : "Sign in"}
-                </button>
-
-                {message && <p className={styles.message}>{message}</p>}
-              </form>
-
-              {/* <div className={styles.recoveryFooter}>
-                <button
-                  onClick={() => setRecoveryMode(false)}
-                  className={styles.linkButton}
-                >
-                  Forgot your password?
-                </button>
-                <button
-                  onClick={() =>
-                    navigate(
-                      localStorage.getItem("role") === "caregiver"
-                        ? "/register/caregiver"
-                        : "/register/patient"
-                    )
-                  }
-                  className={`${styles.linkButton} ${styles.full}`}
-                >
-                  Don’t have an account? Sign up
-                </button>
-              </div> */}
-            </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
 
   // --- Step 1: choose role ---
   if (!role) {
@@ -257,7 +146,7 @@ export default function SignIn() {
     );
   }
 
-  // --- Step 2: sign-in options ---
+  // --- Step 2: sign-in form ---
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -301,9 +190,9 @@ export default function SignIn() {
 
               <button
                 onClick={() => {
-                  setRole(null);
-                  setShowEmailForm(false);
-                  localStorage.removeItem("role");
+                  setRole(null);       // reset role
+                  setShowEmailForm(false); // hide email form just in case
+                  localStorage.removeItem("role"); // optional: clear persisted role
                 }}
                 className={styles.backButton}
               >
@@ -324,8 +213,7 @@ export default function SignIn() {
                 theme="light"
                 providers={[]}
                 view="sign_in"
-                showLinks={true}
-                redirectTo={`${window.location.origin}/signin`}
+                showLinks={true} // keeps “Forgot password?”
               />
               <button
                 onClick={() => setShowEmailForm(false)}

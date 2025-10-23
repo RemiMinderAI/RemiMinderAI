@@ -1,3 +1,6 @@
+/* =====================
+   Global container
+===================== */
 .container {
   min-height: 100vh;
   display: flex;
@@ -6,7 +9,9 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Header */
+/* =====================
+   Header
+===================== */
 .header {
   background-color: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -23,7 +28,9 @@
   cursor: pointer;
 }
 
-/* Main layout */
+/* =====================
+   Main layout
+===================== */
 .main {
   flex: 1;
   display: flex;
@@ -49,6 +56,9 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+/* =====================
+   Titles & subtitles
+===================== */
 .title {
   font-size: 1.5rem;
   font-weight: 500;
@@ -63,7 +73,9 @@
   margin-bottom: 2rem;
 }
 
-/* Role buttons */
+/* =====================
+   Role buttons
+===================== */
 .roleButtons {
   display: flex;
   flex-direction: column;
@@ -110,7 +122,9 @@
   color: #10b981;
 }
 
-/* Icon boxes */
+/* =====================
+   Icon boxes
+===================== */
 .iconBoxPatient,
 .iconBoxCaregiver {
   display: flex;
@@ -136,7 +150,9 @@
   font-size: 1.5rem;
 }
 
-/* Auth UI + form */
+/* =====================
+   Auth UI / Sign-in buttons
+===================== */
 .buttonGroup {
   display: flex;
   flex-direction: column;
@@ -156,6 +172,8 @@
   transition: all 0.2s ease;
   font-size: 0.85rem;
   font-family: inherit;
+  width: 100%; /* make all buttons same width */
+  box-sizing: border-box;
 }
 
 .emailButton,
@@ -171,7 +189,9 @@
   background-color: #f3f4f6;
 }
 
-/* Back button */
+/* =====================
+   Back button
+===================== */
 .backButton {
   background-color: transparent;
   color: black;
@@ -189,7 +209,9 @@
   background: #f3f4f6;
 }
 
-/* Apple modal */
+/* =====================
+   Apple modal
+===================== */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -244,4 +266,83 @@
 
 .modalButton:hover {
   background: #6d28d9;
+}
+
+/* =====================
+   Recovery / reset page
+===================== */
+.recoveryHeading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.formCard .form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.label {
+  text-align: left;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db; /* grey outline */
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.greenButton {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 1rem auto 0;
+  width: 100%; /* same width as input fields */
+  text-align: center;
+}
+
+.greenButton:hover {
+  background-color: #059669;
+}
+
+.recoveryFooter {
+  text-align: center;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: #6b7280; /* grey links */
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/* Make entire "Don’t have an account? Sign up" clickable */
+.linkButton.full {
+  display: inline;
+}
+
+.linkButton:hover {
+  color: #4b5563; /* darker grey on hover */
 }

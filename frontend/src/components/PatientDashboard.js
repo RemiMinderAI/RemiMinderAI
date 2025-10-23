@@ -9,10 +9,21 @@ export default function PatientDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // detect password recovery flow in the URL
+    const url = window.location.hash;
+    const isRecovery = url.includes("type=recovery");
+
     const getUser = async () => {
       const { data: { session }, error } = await supabase.auth.getSession();
       if (error) {
         console.error(error);
+        return;
+      }
+
+      // if this is a password recovery link, skip redirects entirely
+      if (isRecovery) {
+        console.log("Password recovery detected — skipping redirects");
+        setLoading(false);
         return;
       }
 
@@ -39,6 +50,9 @@ export default function PatientDashboard() {
 
     // Listen for auth changes
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      // don’t interfere with password recovery sessions
+      if (isRecovery) return;
+
       if (!session) {
         navigate("/");
       } else {
@@ -58,6 +72,7 @@ export default function PatientDashboard() {
     try {
       await supabase.auth.signOut();
       localStorage.removeItem("role");
+      setUser(null); // prevent rendering crash
       navigate("/");
     } catch (err) {
       console.error("Logout failed:", err.message);
