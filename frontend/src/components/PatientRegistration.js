@@ -139,7 +139,7 @@ export default function PatientRegistration() {
               appearance={{
                 theme: ThemeSupa,
                 style: {
-                  button: { borderRadius: "8px", fontWeight: "600" },
+                  button: { backgroundColor: "#7c3aed", borderRadius: "8px", fontWeight: 600 }, // Purple for patients
                   input: { borderRadius: "8px" },
                 },
               }}

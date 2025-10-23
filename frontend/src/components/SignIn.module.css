@@ -346,3 +346,16 @@
 .linkButton:hover {
   color: #4b5563; /* darker grey on hover */
 }
+
+/* unified error message style */
+.errorMessage {
+  background-color: #fee2e2; /* light red background */
+  color: #b91c1c;           /* red text */
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #b91c1c;
+}

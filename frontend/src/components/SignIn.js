@@ -163,35 +163,23 @@ export default function SignIn() {
 
                 <button
                   type="submit"
-                  className={styles.greenButton}
+                  style={{
+                    backgroundColor: role === "patient" ? "#7c3aed" : "#10b981",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "0.75rem 1rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    width: "100%",
+                  }}
                   disabled={loading}
                 >
                   {loading ? "Resetting..." : "Sign in"}
                 </button>
 
-                {message && <p className={styles.message}>{message}</p>}
+                {message && <p className={styles.errorMessage}>{message}</p>}
               </form>
-
-              {/* <div className={styles.recoveryFooter}>
-                <button
-                  onClick={() => setRecoveryMode(false)}
-                  className={styles.linkButton}
-                >
-                  Forgot your password?
-                </button>
-                <button
-                  onClick={() =>
-                    navigate(
-                      localStorage.getItem("role") === "caregiver"
-                        ? "/register/caregiver"
-                        : "/register/patient"
-                    )
-                  }
-                  className={`${styles.linkButton} ${styles.full}`}
-                >
-                  Don’t have an account? Sign up
-                </button>
-              </div> */}
             </div>
           </div>
         </main>
@@ -317,7 +305,15 @@ export default function SignIn() {
                 appearance={{
                   theme: ThemeSupa,
                   style: {
-                    button: { borderRadius: "8px", fontWeight: "600" },
+                    button: {
+                      borderRadius: "8px",
+                      fontWeight: "600",
+                      backgroundColor: role === "patient" ? "#7c3aed" : "#10b981", // purple vs green
+                      color: "white",
+                    },
+                    buttonHover: {
+                      backgroundColor: role === "patient" ? "#6d28d9" : "#059669", // darker on hover
+                    },
                     input: { borderRadius: "8px" },
                   },
                 }}
