@@ -268,8 +268,9 @@
 .userContent h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
 .userContent p { font-size: 0.95rem; color: #6b7280; margin-bottom: 0.5rem; }
 .ctaLink { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 500; color: var(--primary-purple); }
-.ctaLink svg { transition: transform 0.3s ease; }
-.ctaUserCard:hover .ctaLink svg { transform: translateX(4px); }
+.ctaLink2 { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 500; color: var(--secondary-green); }
+.ctaLink svg .ctaLink2 svg{ transition: transform 0.3s ease; }
+.ctaUserCard:hover .ctaLink svg .ctaLink2 svg { transform: translateX(4px); }
 
 /* Patient card icon */
 .ctaUserCard:not(.caregiverCard) .iconBox svg {

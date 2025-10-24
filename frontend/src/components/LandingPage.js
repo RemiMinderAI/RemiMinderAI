@@ -308,7 +308,7 @@ const LandingPage = () => {
                   <div className={styles.userContent}>
                     <h3>I'm a Caregiver</h3>
                     <p>Stay connected with your loved ones' health, manage medications, and coordinate care easily.</p>
-                    <span className={styles.ctaLink}>
+                    <span className={styles.ctaLink2}>
                       Get Started <ArrowRight size={16} />
                     </span>
                   </div>

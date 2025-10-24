@@ -11,6 +11,7 @@ import {
   Calendar,
   TrendingUp,
   MessageSquare,
+  Bell,
 } from "lucide-react";
 import styles from "./PatientDashboard.module.css";
 
@@ -137,6 +138,10 @@ export default function PatientDashboard() {
     navigate("/patient/settings");
   };
 
+  const goToReminders = () => {
+    navigate("/patient/reminders");
+  };  
+
   const visitHistory = [
     {
       id: 1,
@@ -215,11 +220,15 @@ export default function PatientDashboard() {
               </div>
             </div>
 
-            {/* ➕ SETTINGS BUTTON */}
             <div className={styles.headerButtons}>
+              <button className={styles.iconButton} onClick={goToReminders}>
+                <Bell size={20} />
+              </button>
+              
               <button className={styles.iconButton}>
                 <MessageSquare size={20} />
               </button>
+
               <button className={styles.iconButton} onClick={goToSettings}>
                 <SettingsIcon size={20} />
               </button>
