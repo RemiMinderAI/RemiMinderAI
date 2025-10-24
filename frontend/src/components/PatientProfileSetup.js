@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCamera, FaUser} from 'react-icons/fa';
 import styles from './PatientProfileSetup.module.css';
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 const PatientProfileSetup = () => {
   const [fullName, setFullName] = useState('');
@@ -9,6 +10,21 @@ const PatientProfileSetup = () => {
   const [gender, setGender] = useState('');
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+
+  // ✅ Fetch logged-in user's email on mount
+  useEffect(() => {
+    const getUser = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (data?.user) {
+        setUserEmail(data.user.email);
+      }
+      if (error) {
+        console.error("Error fetching user:", error.message);
+      }
+    };
+    getUser();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -108,13 +124,14 @@ const PatientProfileSetup = () => {
               />
             </div>
 
+            {/* ✅ Dynamic Email Field */}
             <div className={styles.formGroup}>
               <label htmlFor="email">Email Address *</label>
               <input
                 id="email"
                 type="email"
                 placeholder="john.doe@example.com"
-                defaultValue="john.doe@example.com"
+                value={userEmail || ''}
                 disabled
               />
               <p className={styles.helperText}>Verified during registration</p>
