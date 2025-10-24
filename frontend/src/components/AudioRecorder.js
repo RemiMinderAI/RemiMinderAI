@@ -74,10 +74,39 @@ const RecordVisitPage = () => {
       alert("No audio recorded to upload!");
       return;
     }
+
     console.log("Uploading audioBlob:", audioBlob);
-    alert("Audio prepared for upload! (Check console for blob details)");
-    // TODO: Add your fetch/axios logic here to send audioBlob to FastAPI
+
+    // Create a FormData object to send the file
+    const formData = new FormData();
+    // 'file' is the name the FastAPI endpoint is expecting
+    formData.append('file', audioBlob, 'visit_recording.wav'); 
+
+    try {
+      // Send the POST request to your FastAPI backend
+      const response = await fetch('http://localhost:8000/upload-audio/', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Transcription successful:', result);
+        alert(`Transcription: ${result.transcription}`);
+         
+        setAudioURL('');
+        setAudioBlob(null);
+      } else {
+        const errorData = await response.json();
+        console.error('Upload failed:', errorData);
+        alert(`Upload failed: ${errorData.detail || response.statusText}`);
+      }
+    } catch (error) {
+      console.error('Error during upload:', error);
+      alert('An error occurred during upload. Is the backend server running?');
+    }
   };
+  
 
   return (
     <div className={styles.container}>
