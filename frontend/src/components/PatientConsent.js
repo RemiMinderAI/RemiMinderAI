@@ -27,7 +27,7 @@ const PatientConsent = () => {
       {/* Header (same as registration) */}
       <header className={styles.header}>
         <div className={styles.logo} onClick={goHome}>
-          RemeMinderAI
+          RemiMinderAI
         </div>
       </header>
 
@@ -81,7 +81,7 @@ const PatientConsent = () => {
             <div className={styles.agreementScroll}>
               <h5>1. Introduction</h5>
               <p>
-                This agreement outlines the terms and conditions for using RemeMinder’s telehealth platform. By accepting
+                This agreement outlines the terms and conditions for using RemiMinder’s telehealth platform. By accepting
                 these terms, you acknowledge that you have read, understood, and agree to be bound by this agreement.
               </p>
 
@@ -121,7 +121,7 @@ const PatientConsent = () => {
 
               <h5>7. Limitation of Liability</h5>
               <p>
-                RemeMinder is designed for health tracking and coordination. It is not intended to replace professional medical advice, diagnosis, or treatment.
+                RemiMinder is designed for health tracking and coordination. It is not intended to replace professional medical advice, diagnosis, or treatment.
                 Always seek the advice of your physician or other qualified health provider.
               </p>
 

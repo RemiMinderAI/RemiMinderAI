@@ -125,7 +125,7 @@ export default function SignIn() {
       <div className={styles.container}>
         <header className={styles.header}>
           <div className={styles.logo} onClick={() => navigate("/")}>
-            RemeMinderAI
+            RemiMinderAI
           </div>
         </header>
 
@@ -193,7 +193,7 @@ export default function SignIn() {
       <div className={styles.container}>
         <header className={styles.header}>
           <div className={styles.logo} onClick={() => navigate("/")}>
-            RemeMinderAI
+            RemiMinderAI
           </div>
         </header>
 
@@ -250,7 +250,7 @@ export default function SignIn() {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.logo} onClick={() => navigate("/")}>
-          RemeMinderAI
+          RemiMinderAI
         </div>
       </header>
 

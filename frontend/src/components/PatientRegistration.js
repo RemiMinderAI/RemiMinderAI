@@ -96,7 +96,7 @@ export default function PatientRegistration() {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          RemeMinderAI
+          RemiMinderAI
         </div>
       </header>
 

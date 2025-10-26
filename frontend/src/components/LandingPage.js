@@ -85,7 +85,7 @@ const LandingPage = () => {
       <header className={styles.header}>
         <div className={styles.logo}>
           <div className={styles.headerLogoIcon}>RM</div> {/* logo box */}
-          RemeMinderAI
+          RemiMinderAI
         </div>
         <nav className={styles.nav}>
           <a href="#how-it-works">How It Works</a>
@@ -106,7 +106,7 @@ const LandingPage = () => {
             <span className={styles.highlightReimagined}>reimagined</span>
           </h1>
           <p className={styles.description}>
-            Never miss a detail from your doctor visits. RemeMinder records
+            Never miss a detail from your doctor visits. RemiMinder records
             conversations, creates clear summaries, and keeps your health
             journey organized—so you can focus on what matters most.
           </p>
@@ -155,7 +155,7 @@ const LandingPage = () => {
       <section id="how-it-works" className={styles.howItWorks}>
         <div className={styles.hiwIntro}>
           <h2>
-            How <span className={styles.gradientText}>RemeMinder</span> Works
+            How <span className={styles.gradientText}>RemiMinder</span> Works
           </h2>
           <p>Four simple steps to transform how you manage your healthcare journey.</p>
         </div>
@@ -163,7 +163,7 @@ const LandingPage = () => {
         <div className={styles.hiwImageWrapper}>
           <img
             src={howItWorksImage}
-            alt="How RemeMinder Works Visual Flow"
+            alt="How RemiMinder Works Visual Flow"
             className={styles.hiwImage}
           />
         </div>
@@ -234,7 +234,7 @@ const LandingPage = () => {
               Real impact on <span className={styles.gradientText}>real lives</span>
             </h2>
             <p>
-              More than just features — RemeMinder transforms how you experience healthcare.
+              More than just features — RemiMinder transforms how you experience healthcare.
             </p>
           </div>
 
@@ -272,7 +272,7 @@ const LandingPage = () => {
               <span className={styles.gradientText}>healthcare experience?</span>
             </h2>
             <p>
-              Join thousands of families already using RemeMinder. Choose your
+              Join thousands of families already using RemiMinder. Choose your
               path to get started.
             </p>
           </div>
@@ -354,7 +354,7 @@ const LandingPage = () => {
             <div className={styles.footerBrand}>
               <div className={styles.brandLogo}>
                 <div className={styles.brandIcon}>RM</div>
-                <span className={styles.brandName}>RemeMinderAI</span>
+                <span className={styles.brandName}>RemiMinderAI</span>
               </div>
               <p className={styles.footerText}>
                 Your healthcare, remembered and reimagined
@@ -392,7 +392,7 @@ const LandingPage = () => {
           </div>
 
           <div className={styles.footerBottom}>
-            <p>© 2025 RemeMinderAI. All rights reserved.</p>
+            <p>© 2025 RemiMinderAI. All rights reserved.</p>
             <div className={styles.socialLinks}>
               <a href="#">Twitter</a>
               <a href="#">LinkedIn</a>
