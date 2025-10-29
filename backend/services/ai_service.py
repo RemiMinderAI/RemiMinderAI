@@ -12,7 +12,7 @@ async def summarize_visit(data: dict) -> Dict:
     api_key = os.getenv("GEMINI_API_KEY")
     genai.configure(api_key=api_key)
 
-    model_name = "gemini-2.5-flash"
+    model_name = os.getenv("MODEL_NAME")
     model = genai.GenerativeModel(model_name)
 
     INPUT_COST_PER_M = float(os.getenv("GEMINI_INPUT_COST_PER_M"))
@@ -69,7 +69,8 @@ async def summarize_visit(data: dict) -> Dict:
         
         print(f"Summary generated in {latency:.2f}s")
         print(f"Tokens: {input_tokens} in, {output_tokens} out")
-        print(f"Cost: ${total_cost:.6f}")
+        print(f"Input Tokens Cost: ${input_cost:.6f}, Output Tokens Cost: ${output_cost:.6f}")
+        print(f"Total Cost: ${total_cost:.6f}")
         
         result = {
             "summary": json_output.get("summary", f"AI Processing error:{transcript}"),

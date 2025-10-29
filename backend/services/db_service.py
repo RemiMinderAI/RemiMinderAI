@@ -98,3 +98,44 @@ async def log_ai_usage(data: Dict):
     supabase = get_supabase_client()
     supabase.table("ai_usage").insert(data).execute()
 
+def get_prompt_text_supabase(category: str, limit: int = 2):
+    supabase = get_supabase_client()
+    examples = []
+    
+    try:
+        prompt_bank_data = (supabase.table("prompt_bank")
+                         .select("prompt_text, example_input, example_output")
+                         .eq("prompt_category", category)
+                         .order("rating", desc=True)
+                         .order("created_at", desc=True)
+                         .limit(1)
+                         .execute()).data
+        
+        base_prompt = ""
+        if prompt_bank_data:
+            base_prompt_entry = prompt_bank_data[0]
+            base_prompt = base_prompt_entry['prompt_text']
+            base_prompt_entry['source_table'] = 'prompt_bank'
+            examples.append(base_prompt_entry)
+
+        if len(examples) < limit:
+            best_examples_data = (supabase.table("best_examples")
+                             .select("example_input, example_output")
+                             .eq("category", category)
+                             .order("created_at", desc=True)
+                             .limit(1)
+                             .execute()).data
+            
+            if best_examples_data:
+                best_example = best_examples_data[0]
+                best_example['source_table'] = 'best_examples'
+                
+                if not examples or best_example['example_input'] != examples[0]['example_input']:
+                    examples.append(best_example)
+
+    except Exception as e:
+        print(f"Warning: Error fetching prompt bank - {e}")
+        base_prompt = ""
+    
+    return base_prompt, examples
+
