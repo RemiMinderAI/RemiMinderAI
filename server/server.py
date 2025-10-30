@@ -1,15 +1,29 @@
 import uvicorn
 import shutil
 import os
+import platform
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from transformers import pipeline
+
+# Detect operating system and set device
+system = platform.system()
+device = -1  # Default to CPU
+
+if system == "Darwin":  # macOS
+    device = "mps" if hasattr(os, 'uname') else -1  # Use MPS if available
+elif system == "Linux":
+    device = -1  # CPU (could add CUDA check)
+elif system == "Windows":
+    device = -1  # CPU
+
+print(f"Running on {system}, using device: {device}")
 
 # Create ASR pipeline using pre-trained Whisper model
 asr_pipeline = pipeline(
     "automatic-speech-recognition",
     model="openai/whisper-base.en",
-    device="mps" if os.uname().sysname == "Darwin" else -1  # Use MPS on Mac, CPU elsewhere
+    device=device
 )
 
 app = FastAPI()

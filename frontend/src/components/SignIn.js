@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -114,6 +112,37 @@ export default function SignIn() {
       navigate(`/dashboard/${currentRole}`);
     } catch (err) {
       setMessage(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // --- Email sign-in handler ---
+  const handleEmailSignIn = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setMessage("Please enter both email and password");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setMessage(error.message);
+        return;
+      }
+
+      // Success - auth listener will handle navigation
+    } catch (err) {
+      console.error("Sign-in error:", err);
+      setMessage("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -300,31 +329,55 @@ export default function SignIn() {
             </div>
           ) : (
             <div className={styles.formCard}>
-              <Auth
-                supabaseClient={supabase}
-                appearance={{
-                  theme: ThemeSupa,
-                  style: {
-                    button: {
-                      borderRadius: "8px",
-                      fontWeight: "600",
-                      backgroundColor: role === "patient" ? "#7c3aed" : "#10b981", // purple vs green
-                      color: "white",
-                    },
-                    buttonHover: {
-                      backgroundColor: role === "patient" ? "#6d28d9" : "#059669", // darker on hover
-                    },
-                    input: { borderRadius: "8px" },
-                  },
-                }}
-                theme="light"
-                providers={[]}
-                view="sign_in"
-                showLinks={true}
-                redirectTo={`${window.location.origin}/signin`}
-              />
+              <form className={styles.form}>
+                <label className={styles.label}>Email address</label>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  className={styles.input}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+
+                <label className={styles.label}>Password</label>
+                <input
+                  type="password"
+                  placeholder="Your password"
+                  className={styles.input}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+
+                <button
+                  type="submit"
+                  style={{
+                    backgroundColor: role === "patient" ? "#7c3aed" : "#10b981",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "0.75rem 1rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    width: "100%",
+                  }}
+                  disabled={loading}
+                  onClick={handleEmailSignIn}
+                >
+                  {loading ? "Signing in..." : "Sign in"}
+                </button>
+
+                {message && <p className={styles.errorMessage}>{message}</p>}
+              </form>
+
               <button
-                onClick={() => setShowEmailForm(false)}
+                onClick={() => {
+                  setShowEmailForm(false);
+                  setEmail("");
+                  setPassword("");
+                  setMessage("");
+                }}
                 className={styles.backButton}
               >
                 Back
