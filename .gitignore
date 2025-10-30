@@ -56,3 +56,11 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+myvenv/
+venv/
