@@ -54,20 +54,33 @@ export default function CaregiverDashboard() {
 
   useEffect(() => {
     const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate("/");
-        return;
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+  
+        // If Supabase is optional, don't hard-fail on missing session
+        const isOnboarded = localStorage.getItem("onboarding_complete");
+  
+        if (!isOnboarded) {
+          navigate("/consent/caregiver");
+          return;
+        }
+  
+        // Only redirect home if you're actually requiring auth
+        if (session === null && !isOnboarded) {
+          navigate("/");
+          return;
+        }
+  
+      } catch (err) {
+        console.error("Session check failed:", err);
       }
-      const currentUser = session.user;
-      const isOnboarded = currentUser.user_metadata?.onboarding_complete;
-      if (!isOnboarded) navigate("/consent/caregiver");
     };
+  
     checkSession();
-  }, [navigate]);
+  }, [navigate]);  
 
   const goToSettings = () => {
-    navigate("/caregiver/settings");
+    navigate("/caregiver-settings");
   };
   const goToReminders = () => {}; // disabled
   const goToMessages = () => {}; // disabled
@@ -142,7 +155,7 @@ export default function CaregiverDashboard() {
                     (user?.email
                       ? user.email.split("@")[0].charAt(0).toUpperCase() +
                         user.email.split("@")[0].slice(1)
-                      : "Caregiver")}
+                      : "John Smith")}
                 </h1>
                 <p className={styles.subTextWhite}>Caregiver Dashboard</p>
               </div>

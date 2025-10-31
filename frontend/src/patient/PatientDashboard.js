@@ -149,6 +149,10 @@ export default function PatientDashboard() {
     navigate("/patient-invitation");
   };  
 
+  const goToVisitHistory = () => {
+    navigate("/visit-history");
+  };  
+
   const visitHistory = [
     {
       id: 1,
@@ -223,7 +227,7 @@ export default function PatientDashboard() {
                     (user?.email
                       ? user.email.split("@")[0].charAt(0).toUpperCase() +
                         user.email.split("@")[0].slice(1)
-                      : "User")
+                      : "Jane Doe")
                   }
                 </h1>
                 <p className={styles.subText}>How are you feeling today?</p>
@@ -289,7 +293,7 @@ export default function PatientDashboard() {
             </div>
             <h3>Visit History</h3>
             <p>View all past visit summaries</p>
-            <button className={styles.purpleButton}>View All</button>
+            <button className={styles.purpleButton} onClick={goToVisitHistory}>View All</button>
           </div>
         </div>
 

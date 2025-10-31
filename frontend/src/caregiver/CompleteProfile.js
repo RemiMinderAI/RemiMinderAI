@@ -25,7 +25,9 @@ const CompleteProfile = () => {
     if (formData.fullName && formData.phoneNumber && formData.relationship) {
       console.log('Profile completed:', formData);
       // Navigate to dashboard or success page
-      alert('Profile completed successfully! Welcome to MediMinder.');
+      localStorage.setItem("onboarding_complete", "true");
+      navigate("/dashboard/caregiver");
+      // alert('Profile completed successfully! Welcome to MediMinder.');
     }
   };
 

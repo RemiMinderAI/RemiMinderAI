@@ -30,6 +30,8 @@ import PatientCompleteProfile from './patient/PatientCompleteProfile';
 import SignIn from './components/SignIn';
 import SignUpConfirmation from './components/SignUpConfirmation';
 
+import VisitHistory from './components/VisitHistory';
+
 function App() {
   return (
     <Router>
@@ -74,6 +76,8 @@ function App() {
 
           {/* OR, if your landing page is the default, use this instead: */}
           {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+
+          <Route path="/visit-history" element={<VisitHistory onBack={() => window.history.back()} role="patient" />} />
 
         </Routes>
       </div>

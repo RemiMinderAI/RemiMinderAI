@@ -49,7 +49,7 @@ const PatientCreateAccount = () => {
       console.log('Google signup successful:', mockGoogleUser);
 
       // Navigate to profile completion with Google user data
-      navigate('/patient-complete-profile');
+      navigate('/patient-consent');
 
     } catch (error) {
       console.error('Google signup failed:', error);
@@ -288,6 +288,19 @@ const PatientCreateAccount = () => {
           >
             Sign in
           </span>
+          <p
+          style={{
+              color: '#000000',
+              fontWeight: '500',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              transition: 'text-decoration 0.2s ease'
+            }}
+            onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+            onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+            onClick={handleBackToLanding}>
+              <br></br>Back
+          </p>
         </div>
       </div>
     </div>

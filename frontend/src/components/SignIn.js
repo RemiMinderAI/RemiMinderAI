@@ -124,21 +124,25 @@ export default function SignIn() {
       setMessage("Please enter both email and password");
       return;
     }
-
+  
     setLoading(true);
     setMessage("");
-
+  
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
-
+  
       if (error) {
-        setMessage(error.message);
+        console.warn("Supabase login failed, demo bypass activated:", error.message);
+        // DEMO: allow navigation anyway
+        const currentRole = role || localStorage.getItem("role") || "patient";
+        navigate(`/dashboard/${currentRole}`);
+        setMessage("Warning: This is a demo login — credentials not verified.");
         return;
       }
-
+  
       // Success - auth listener will handle navigation
     } catch (err) {
       console.error("Sign-in error:", err);
@@ -146,7 +150,7 @@ export default function SignIn() {
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
   // --- Recovery mode UI ---
   if (recoveryMode) {

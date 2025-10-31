@@ -16,11 +16,11 @@ import {
 export default function CaregiverSettings({ onBack, onLogout, role = "caregiver" }) {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState({
-    name: "Jane Doe",
-    email: "jane.doe@email.com",
-    phone: "+1 (555) 123-4567",
+    name: "John Smith",
+    email: "john.smith@email.com",
+    phone: "+1 (555) 987-6543",
     avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
   });
 
   const navigate = useNavigate();

@@ -7,6 +7,11 @@ const CaregiverInvite = () => {
   const handleAcceptInvitation = () => {
     navigate('/create-account');
   };
+
+  const handleCancel = () => {
+    navigate('/');
+  };
+
   return (
     <div style={{ 
       minHeight: '100vh', 
@@ -292,6 +297,7 @@ const CaregiverInvite = () => {
             }}
             onMouseOver={(e) => e.target.style.backgroundColor = '#F5F5F5'}
             onMouseOut={(e) => e.target.style.backgroundColor = 'white'}
+            onClick={handleCancel}
             >
               Decline
             </button>
@@ -303,8 +309,8 @@ const CaregiverInvite = () => {
           textAlign: 'center',
           fontSize: '12px',
           color: '#777',
-          margin: '0',
-          lineHeight: '1.4'
+          margin: '1rem',
+          lineHeight: '1.4',
         }}>
           By accepting, you agree to our Terms of Service and Privacy Policy.
         </p>
