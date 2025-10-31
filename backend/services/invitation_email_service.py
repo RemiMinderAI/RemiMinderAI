@@ -10,7 +10,9 @@ GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
 GMAIL_NAME = os.getenv("GMAIL_NAME")
 
 async def send_invite_email(to_email: str, invite_token: str, patient_name: str):
-    invite_link = f"http://localhost:3000/invitations/?token={invite_token}"
+    invite_link = f"http://localhost:3000/invitation?token={invite_token}"
+
+    #print("DEBUG: Invite link being sent:", invite_link)
 
     # Plain text version
     plain_content = f"""\

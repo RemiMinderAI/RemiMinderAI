@@ -12,7 +12,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# routes
+# routes for caregiver invitation api
 app.include_router(invitations.router)
 
 @app.get("/")

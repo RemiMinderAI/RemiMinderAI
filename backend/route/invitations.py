@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, EmailStr
 from datetime import datetime, timedelta, timezone
 import uuid
@@ -6,15 +6,18 @@ from typing import cast, Dict
 from services.supabase_client import supabase
 from utils.auth import get_current_user
 from services.invitation_email_service import send_invite_email
+from services.invitation_verify_service import verify_invitation_token
 
-router = APIRouter()
+#router = APIRouter()
+router = APIRouter(prefix="/api/invitations", tags=["Invitations"])
 
 # Request model (what frontend sends)
 class InvitationRequest(BaseModel):
     caregiver_email: EmailStr
     caregiver_name: str
 
-@router.post("/api/invitations/send")
+# @router.post("/api/invitations/send")
+@router.post("/send")
 async def send_invitation(
     request_data: InvitationRequest,
     current_user=Depends(get_current_user)
@@ -112,4 +115,23 @@ async def send_invitation(
         "message": f"Invitation sent successfully to {request_data.caregiver_email}.",
         "token": invite_token,
         "expires_at": expires_at
+    }
+
+# Verify invite token
+@router.get("/verify")
+async def verify_invitation(token: str = Query(..., description="Unique invitation token")):
+    """
+    Verify invitation token and return associated patient/caregiver info.
+    """
+    invitation_data = await verify_invitation_token(token)
+    
+    if not invitation_data:
+        raise HTTPException(status_code=404, detail="Invalid or expired invitation token.")
+    
+    return {
+        "valid": True,
+        "patient_name": invitation_data["patient_name"],
+        "patient_id": invitation_data["patient_id"],
+        "caregiver_email": invitation_data["caregiver_email"],
+        "status": invitation_data["status"]
     }
