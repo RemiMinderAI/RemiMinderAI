@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { supabase } from "../supabaseClient";
 import styles from "./VisitHistory.module.css";
 import {
   ArrowLeft,
@@ -14,99 +15,150 @@ import { useNavigate } from "react-router-dom";
 const VisitHistory = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [visits, setVisits] = useState([]); 
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState("9957ecad-f983-4211-a1e1-41a67b0a0621");
 
-const visits = [
-    {
-      id: 1,
-      title: "Annual Checkup",
-      status: "completed",
-      doctor: "Dr. Sarah Johnson",
-      specialty: "Primary Care",
-      date: "Oct 10, 2025",
-      time: "2:30 PM",
-      duration: "45 min",
-      summary:
-        "Routine annual physical examination. All vitals within normal range. Patient reports feeling well with no acute concerns. Blood pressure: 120/80, Heart rate: 72 bpm, Temperature: 98.6°F. Recommended continuing current medication regimen and schedule follow-up in 6 months.",
-      keyPoints: [
-        "All vitals normal",
-        "No new concerns",
-        "Continue current medications",
-        "Follow-up in 6 months",
-      ],
-    },
-    {
-      id: 2,
-      title: "Follow-up Visit",
-      status: "completed",
-      doctor: "Dr. Michael Chen",
-      specialty: "Cardiology",
-      date: "Oct 5, 2025",
-      time: "10:00 AM",
-      duration: "30 min",
-      summary:
-        "Follow-up for previous lab results. Blood pressure under control with current medication. Patient reports no side effects. Cholesterol levels improved since last visit. EKG shows normal sinus rhythm. No changes to treatment plan recommended at this time.",
-      keyPoints: [
-        "Blood pressure controlled",
-        "No medication side effects",
-        "Improved cholesterol levels",
-        "Continue current treatment",
-      ],
-    },
-    {
-      id: 3,
-      title: "Lab Results Review",
-      status: "completed",
-      doctor: "Dr. Sarah Johnson",
-      specialty: "Primary Care",
-      date: "Sep 28, 2025",
-      time: "3:15 PM",
-      duration: "20 min",
-      summary:
-        "Reviewed comprehensive metabolic panel. All values within normal limits. Kidney function excellent. Liver enzymes normal. Blood glucose levels stable. No action required at this time. Patient advised to continue healthy diet and exercise routine.",
-      keyPoints: [
-        "All lab values normal",
-        "Kidney function excellent",
-        "Blood glucose stable",
-        "Continue current lifestyle",
-      ],
-    },
-    {
-      id: 4,
-      title: "Dental Checkup",
-      status: "completed",
-      doctor: "Dr. Emily Williams",
-      specialty: "Dentistry",
-      date: "Sep 15, 2025",
-      time: "11:30 AM",
-      duration: "60 min",
-      summary:
-        "Routine dental examination and cleaning. No cavities detected. Gums healthy with minimal bleeding. Patient maintains good oral hygiene. Recommended continuing twice-daily brushing and daily flossing. Next cleaning scheduled in 6 months.",
-      keyPoints: [
-        "No cavities",
-        "Healthy gums",
-        "Good oral hygiene",
-        "Next visit in 6 months",
-      ],
-    },
-    {
-      id: 5,
-      title: "Eye Examination",
-      status: "completed",
-      doctor: "Dr. Robert Martinez",
-      specialty: "Ophthalmology",
-      date: "Aug 20, 2025",
-      time: "9:00 AM",
-      duration: "40 min",
-      summary:
-        "Comprehensive eye exam. Vision stable since last year. No signs of glaucoma or cataracts. Retinal examination normal. Prescription updated slightly for reading glasses. Patient advised to return in 12 months for routine follow-up.",
-      keyPoints: [
-        "Vision stable",
-        "No eye diseases detected",
-        "Updated reading prescription",
-        "Annual follow-up recommended",
-      ],
-    },
-  ];
+useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+
+      if (error || !user) {
+        console.warn("No user session found:", error?.message);
+        navigate("/sign-in");
+        return;
+      }
+
+      setUserId(user.id);
+    };
+
+    fetchUser();
+  }, [navigate]);
+
+
+useEffect(() => {
+  
+  if (!userId) return;
+  
+  const fetchVisits = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/visit-summaries?user_id=${userId}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      setVisits(data); 
+    } catch (e) {
+      console.error("Failed to fetch visit summaries:", e);
+      setError("Failed to load visit history. Is the backend running?");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchVisits();
+}, [userId]); 
+
+// const visits = [
+//     {
+//       id: 1,
+//       title: "Annual Checkup",
+//       status: "completed",
+//       doctor: "Dr. Sarah Johnson",
+//       specialty: "Primary Care",
+//       date: "Oct 10, 2025",
+//       time: "2:30 PM",
+//       duration: "45 min",
+//       summary:
+//         "Routine annual physical examination. All vitals within normal range. Patient reports feeling well with no acute concerns. Blood pressure: 120/80, Heart rate: 72 bpm, Temperature: 98.6°F. Recommended continuing current medication regimen and schedule follow-up in 6 months.",
+//       keyPoints: [
+//         "All vitals normal",
+//         "No new concerns",
+//         "Continue current medications",
+//         "Follow-up in 6 months",
+//       ],
+//     },
+//     {
+//       id: 2,
+//       title: "Follow-up Visit",
+//       status: "completed",
+//       doctor: "Dr. Michael Chen",
+//       specialty: "Cardiology",
+//       date: "Oct 5, 2025",
+//       time: "10:00 AM",
+//       duration: "30 min",
+//       summary:
+//         "Follow-up for previous lab results. Blood pressure under control with current medication. Patient reports no side effects. Cholesterol levels improved since last visit. EKG shows normal sinus rhythm. No changes to treatment plan recommended at this time.",
+//       keyPoints: [
+//         "Blood pressure controlled",
+//         "No medication side effects",
+//         "Improved cholesterol levels",
+//         "Continue current treatment",
+//       ],
+//     },
+//     {
+//       id: 3,
+//       title: "Lab Results Review",
+//       status: "completed",
+//       doctor: "Dr. Sarah Johnson",
+//       specialty: "Primary Care",
+//       date: "Sep 28, 2025",
+//       time: "3:15 PM",
+//       duration: "20 min",
+//       summary:
+//         "Reviewed comprehensive metabolic panel. All values within normal limits. Kidney function excellent. Liver enzymes normal. Blood glucose levels stable. No action required at this time. Patient advised to continue healthy diet and exercise routine.",
+//       keyPoints: [
+//         "All lab values normal",
+//         "Kidney function excellent",
+//         "Blood glucose stable",
+//         "Continue current lifestyle",
+//       ],
+//     },
+//     {
+//       id: 4,
+//       title: "Dental Checkup",
+//       status: "completed",
+//       doctor: "Dr. Emily Williams",
+//       specialty: "Dentistry",
+//       date: "Sep 15, 2025",
+//       time: "11:30 AM",
+//       duration: "60 min",
+//       summary:
+//         "Routine dental examination and cleaning. No cavities detected. Gums healthy with minimal bleeding. Patient maintains good oral hygiene. Recommended continuing twice-daily brushing and daily flossing. Next cleaning scheduled in 6 months.",
+//       keyPoints: [
+//         "No cavities",
+//         "Healthy gums",
+//         "Good oral hygiene",
+//         "Next visit in 6 months",
+//       ],
+//     },
+//     {
+//       id: 5,
+//       title: "Eye Examination",
+//       status: "completed",
+//       doctor: "Dr. Robert Martinez",
+//       specialty: "Ophthalmology",
+//       date: "Aug 20, 2025",
+//       time: "9:00 AM",
+//       duration: "40 min",
+//       summary:
+//         "Comprehensive eye exam. Vision stable since last year. No signs of glaucoma or cataracts. Retinal examination normal. Prescription updated slightly for reading glasses. Patient advised to return in 12 months for routine follow-up.",
+//       keyPoints: [
+//         "Vision stable",
+//         "No eye diseases detected",
+//         "Updated reading prescription",
+//         "Annual follow-up recommended",
+//       ],
+//     },
+//   ];
 
   const filteredVisits = visits.filter((visit) => {
     const search = searchTerm.toLowerCase();

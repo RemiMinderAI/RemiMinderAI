@@ -96,10 +96,14 @@ const RecordVisitPage = () => {
 
     console.log("Uploading audioBlob:", audioBlob);
 
+    const { data: { session } } = await supabase.auth.getSession();
+    const userId = session?.user?.id;
+
     // Create a FormData object to send the file
     const formData = new FormData();
     // 'file' is the name the FastAPI endpoint is expecting
     formData.append('file', audioBlob, 'visit_recording.wav'); 
+    formData.append('user_id', userId);
 
     try {
       // Send the POST request to your FastAPI backend
