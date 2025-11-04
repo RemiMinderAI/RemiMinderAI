@@ -103,34 +103,59 @@ async def create_upload_file(file: UploadFile = File(...), user_id: Optional[str
             # result = asr_pipeline(local_file_path)
             # transcription = result['text']
 
+            # transcription = """
+            # [Doctor Chen]
+            # Hi Lisa, I understand you've been having some knee pain.
+            # Can you tell me when it started and what makes it worse?
+
+            # [Lisa]
+            # Yes, it started about two weeks ago.
+            # It hurts most when I climb stairs or get up from a chair.
+
+            # [Doctor Chen]
+            # That sounds like mild inflammation, possibly early arthritis or overuse.
+            # Does it swell or feel warm after activity?
+
+            # [Lisa]
+            # A little bit, yes — and it feels stiff in the mornings.
+
+            # [Doctor Chen]
+            # Alright. I recommend taking an anti-inflammatory like ibuprofen,
+            # using a knee brace when you're walking,
+            # and avoiding stairs when possible.
+            # Apply ice twice a day for 15 minutes.
+            # If it doesn't improve in a week, we'll schedule an X-ray.
+
+            # [Lisa]
+            # Okay, thank you doctor — I'll try that.
+
+            # [Doctor Chen]
+            # You're welcome, Lisa. Take care and rest that knee.
+            # """
+
             transcription = """
-            [Doctor Chen]
-            Hi Lisa, I understand you've been having some knee pain.
-            Can you tell me when it started and what makes it worse?
+            [Dr. Libby]
+            Hi Lisa, I see your blood pressure readings from the last two weeks have improved quite a bit — now around 118 over 78.
+            How have you been feeling?
 
-            [Lisa]
-            Yes, it started about two weeks ago.
-            It hurts most when I climb stairs or get up from a chair.
+            [Niall]
+            Pretty good, actually. I've been eating better and walking every morning.
+            I was wondering, do I still need to keep taking my medication?
 
-            [Doctor Chen]
-            That sounds like mild inflammation, possibly early arthritis or overuse.
-            Does it swell or feel warm after activity?
+            [Dr. Libby]
+            That's great to hear, and I'm glad the numbers are down.
+            For now, keep taking your current dose of lisinopril until we review your next lab results.
+            If your pressure stays stable for another month, we can discuss lowering the dose.
 
-            [Lisa]
-            A little bit, yes — and it feels stiff in the mornings.
+            [Niall]
+            Okay, so I'll continue the same tablets for now?
 
-            [Doctor Chen]
-            Alright. I recommend taking an anti-inflammatory like ibuprofen,
-            using a knee brace when you're walking,
-            and avoiding stairs when possible.
-            Apply ice twice a day for 15 minutes.
-            If it doesn't improve in a week, we'll schedule an X-ray.
+            [Dr. Libby]
+            Yes, exactly — one tablet daily, same time each day.
+            Keep tracking your readings twice a week and bring them to our next visit.
 
-            [Lisa]
-            Okay, thank you doctor — I'll try that.
-
-            [Doctor Chen]
-            You're welcome, Lisa. Take care and rest that knee.
+            [Niall]
+            Got it. Thank you, Doctor.
             """
         except Exception as transcribe_error:
             raise Exception(f"Transcription failed: {transcribe_error}")
