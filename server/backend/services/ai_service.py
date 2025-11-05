@@ -3,11 +3,12 @@ import os
 import json
 import time
 import google.generativeai as genai
+import datetime as datetime
 
 from typing import Dict
 from .db_service import log_ai_usage
 
-async def summarize_visit(data: dict) -> Dict:
+async def generate_ai_summary(data: dict) -> Dict:
     
     api_key = os.getenv("GEMINI_API_KEY")
     genai.configure(api_key=api_key)
@@ -20,20 +21,29 @@ async def summarize_visit(data: dict) -> Dict:
 
     transcript = data["transcript"]
     
-    prompt = f"""
-        You are a warm, friendly highly efficient Clinical Documentation Assistant.
-        Your task is to process the doctor–patient visit transcript and structure the information into a single, valid JSON object.
+    current_datetime = datetime.datetime.now().strftime("%A, %B %d, %Y, %I:%M %p %Z")
+
+    prompt = f"""You are a warm, friendly highly efficient Clinical Documentation Assistant.
+        Your task is to process the doctor-patient visit transcript and structure the information into a single, valid JSON object.
+
+        Context:
+        - **Today's Date and Time:** {current_datetime} 
+        (Use this information to calculate and create forward-looking reminders based on the transcript's discussion, such as "Schedule follow-up in 6 months".)
 
         Response Rules:
         - Output ONLY the JSON object (no markdown, commentary, or reasoning).
-        - Keep the tone friendly, natural, and easy to understand — avoid medical jargon or technical terms.
-        - Focus on clarity and comfort, as if explaining to a patient or caregiver.
+        - Keep the tone friendly, natural, and easy to understand — AVOID medical jargon or technical terms.
+        - Focus on clarity and empathy, as if explaining to a patient or caregiver.
         - Use the following keys:
-        "summary": a short, plain-language recap of what was discussed during the visit. The text for the "summary" must be written entirely in the third person (e.g., "The patient presented with...", "The doctor recommended..."
-        "action_items": a clear list of things the doctor asked the patient to do next.
-        "questions_next_visit": at least two simple, caring questions the patient might ask at their next appointment.
-        "key_diagnoses": list of main diagnoses or concerns mentioned (if any).
-        "medications": list of medications mentioned or prescribed.
+        "summary": a short, plain-language recap of what was discussed during the visit including (if mentioned) chief complaint, cause, and the primary plan. The text must be written entirely in the **third person** (e.g., "The patient presented with...", "The doctor recommended...").
+        "action_items": List every specific directive the doctor asked the patient to do next.
+        "questions_next_visit": Generate at least two simple, caring questions a patient might ask at their next appointment. Use 2–3 relevant questions from the following styles: routine, medication, chronic, or caregiver. Keep them short, supportive, and in plain language.
+        "key_diagnoses": **List all main diagnoses, conditions, or primary concerns** mentioned (if any).
+        "medications": **List all medications mentioned** (prescribed, existing, or discontinued).
+        "reminders": **List of all time-based reminders** Generate one sentence concise and clear reminder as an instruction based ONLY on the provided facts. 
+        Analyze for specific routines (e.g., medication times) or follow-up timeframes (e.g., next week). For each reminder, 
+        the text **MUST** include action with detail (e.g., 'Take sugar medication daily at 8 AM' or 'Schedule next check-up in May 2026'). 
+        Use Today's Date and Time to calculate precise future dates when a timeframe is mentioned.
 
         Transcript:
         {transcript}
@@ -81,7 +91,8 @@ async def summarize_visit(data: dict) -> Dict:
             "action_items": json_output.get("action_items", []),
             "questions_next_visit": json_output.get("questions_next_visit", []),
             "key_diagnoses": json_output.get("key_diagnoses", []),
-            "medications": json_output.get("medications", [])
+            "medications": json_output.get("medications", []),
+            "reminders": json_output.get("reminders", []),
         }
         
         # print("\nRESULT:", result)
@@ -94,7 +105,8 @@ async def summarize_visit(data: dict) -> Dict:
             "action_items": ["Review visit recording"],
             "questions_next_visit": ["Could you clarify the diagnosis?"],
             "key_diagnoses": [],
-            "medications": []
+            "medications": [],
+            "reminders": []
         }
     except Exception as e:
         print(f"Gemini API error: {e}")

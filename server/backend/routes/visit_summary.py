@@ -7,7 +7,7 @@ from backend.services.db_service import (
     insert_visit_summary,
     fetch_all_visit_summaries,
 )
-from backend.services.ai_service import summarize_visit
+from backend.services.ai_service import generate_ai_summary
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
 
@@ -20,7 +20,7 @@ async def create_visit_summary(visit_id: str, user_id: str, transcript_id: str):
     if not visit or not visit.get("transcript_text"):
         raise HTTPException(status_code=404, detail="Transcript not found")
     
-    ai_output = await summarize_visit({"transcript": visit["transcript_text"], "visit_id": visit_id, 
+    ai_output = await generate_ai_summary({"transcript": visit["transcript_text"], "visit_id": visit_id, 
                                        "user_id": user_id, "transcript_id": visit["transcript_id"]})
     
     await insert_visit_summary(visit_id, user_id, visit["transcript_id"], ai_output)

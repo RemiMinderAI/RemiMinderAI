@@ -16,6 +16,7 @@ from transformers import pipeline
 
 from backend.services.db_service import insert_visit_transcript, insert_initial_visit, update_transcript_visit_id
 from backend.routes import visit_summary
+from backend.routes.product_demo import demo_router
 from backend.routes.visit_summary import create_visit_summary
 
 load_dotenv()
@@ -179,7 +180,7 @@ async def create_upload_file(file: UploadFile = File(...), user_id: Optional[str
         await update_transcript_visit_id(transcript_id, visit_id, user_id)
 
         summary_result = await create_visit_summary(
-            visit_id=visit_record['id'], 
+            visit_id=visit_record['id'],
             user_id=user_id,
             transcript_id=transcript_record["transcript_id"]
         ) 
@@ -211,6 +212,7 @@ async def health():
     return {"status":"healthy"}
 
 app.include_router(visit_summary.router)
+app.include_router(demo_router)
 # app.include_router(reminders.router)
 
 if __name__ == "__main__":

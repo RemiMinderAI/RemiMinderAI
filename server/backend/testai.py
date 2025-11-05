@@ -6,13 +6,13 @@ import asyncio
 load_dotenv()
 
 async def main(): 
-    sample_transcript = """Doctor: Good morning, Ms. Smith. How are you feeling today?
-        Patient: I’m feeling congested and sneezing a lot.
-        Doctor: When did these symptoms start?
-        Patient: About a week ago after moving into a new apartment.
-        Doctor: Any medications?
-        Patient: Claritin and Zyrtec, not helping much.
-        Doctor: I recommend continue Zyrtec, start Nasonex nasal spray, monitor symptoms."""
+    sample_transcript = """
+        Doctor: Hi, good morning! How have you been feeling since your last visit?
+        Patient:Pretty good overall. I've been keeping up with my medication and walking most days.
+        Doctor:That's great. Your lab results look normal, blood pressure is steady, and everything seems in good shape. Let’s continue with your current regimen.
+        Patient:Sounds good. Should I book another check-up soon?
+        Doctor:Yes, let's plan for next month from now unless anything changes.
+    """
 
     result = await summarize_visit({"transcript": sample_transcript})
 
@@ -28,6 +28,7 @@ async def main():
         print(f"   - {q}")
     print(f"\nDiagnoses: {result['key_diagnoses']}")
     print(f"\nMedications: {result['medications']}")
+    print(f"\nReminders: {result['reminders']}")
     print("="*60)
 
 if __name__ == "__main__":
