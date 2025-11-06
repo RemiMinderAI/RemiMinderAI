@@ -10,6 +10,9 @@ export default function ProductDemo() {
   const handleTryNow = () => setStage("ready");
   const navigate = useNavigate();
   const audioRef = useRef(null);
+  const [aiSummary, setAiSummary] = useState("");
+  const [fullTranscript, setFullTranscript] = useState([]);
+  const [reminders, setReminders] = useState([]);
 
   useEffect(() => {
     let interval;
@@ -40,17 +43,15 @@ export default function ProductDemo() {
     audioRef.current = audioInstance;
   };
 
-  const handleStop = () => {
-    // Stop playback immediately
+  const handleStop = async () => {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       audioRef.current = null;
     }
-
-    setStage("processing");
-    setTimeout(() => setStage("summary"), 3000);
-  };
+  
+    await fetchDemoSummary(); // fetches AI summary from backend
+  };  
 
   const handleSignup = () => {
     navigate("/patient-registration");
@@ -58,6 +59,33 @@ export default function ProductDemo() {
 
   const formatTime = (t) =>
     `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
+
+  const demoTranscript = "Patient has been feeling better recently."; // from your sample audio
+
+  const fetchDemoSummary = async () => {
+    try {
+      setStage("processing");
+  
+      const response = await fetch("http://localhost:8001/api/demo-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ transcript_text: demoTranscript }),
+      });
+  
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  
+      const data = await response.json();
+      console.log("Demo summary:", data);
+  
+      setAiSummary(data.ai_summary || "");
+      setFullTranscript(data.full_transcription ? [data.full_transcription] : []);
+      setReminders(data.reminders || []);
+      setStage("summary");
+    } catch (error) {
+      console.error("Demo summary fetch failed:", error);
+      setStage("summary"); // fallback
+    }
+  };
     
   return (
     <div className={styles.container}>
