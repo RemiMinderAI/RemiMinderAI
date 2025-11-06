@@ -1,4 +1,4 @@
-# backend/services/ai_service.py
+# backend/services/ai_service_productdemo.py
 import os
 import json
 import time
@@ -8,7 +8,7 @@ import datetime as datetime
 from typing import Dict
 from .db_service import log_ai_usage
 
-async def generate_ai_summary(data: dict) -> Dict:
+async def generate_ai_summary(data: str) -> Dict:
     
     api_key = os.getenv("GEMINI_API_KEY")
     genai.configure(api_key=api_key)
@@ -19,7 +19,7 @@ async def generate_ai_summary(data: dict) -> Dict:
     INPUT_COST_PER_M = float(os.getenv("GEMINI_INPUT_COST_PER_M"))
     OUTPUT_COST_PER_M = float(os.getenv("GEMINI_OUTPUT_COST_PER_M"))
 
-    transcript = data["transcript"]
+    transcript = data
     
     current_datetime = datetime.datetime.now().strftime("%A, %B %d, %Y, %I:%M %p %Z")
 
@@ -64,13 +64,10 @@ async def generate_ai_summary(data: dict) -> Dict:
         total_cost = input_cost + output_cost
 
         log_data = {
-                "visit_id": data.get("visit_id"),
-                "user_id":data.get("user_id"),
-                "transcript_id": data.get("transcript_id"),
-                "input_tokens": input_tokens,
-                "output_tokens": output_tokens,
-                "total_cost": total_cost,
-            }
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+            "total_cost": total_cost,
+        }
     
         await log_ai_usage(log_data)
 
@@ -111,3 +108,5 @@ async def generate_ai_summary(data: dict) -> Dict:
     except Exception as e:
         print(f"Gemini API error: {e}")
         raise Exception(f"AI service failed: {str(e)}")
+
+#Analyze for specific routines (e.g., medication times) or follow-up timeframes (e.g., next week). 

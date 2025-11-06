@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from backend.services.ai_service import generate_ai_summary 
+from backend.services.ai_service_productdemo import generate_ai_summary 
 
 class DemoTranscript(BaseModel):
     transcript_text: str
