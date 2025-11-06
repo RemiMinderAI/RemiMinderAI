@@ -1,309 +1,191 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  ArrowLeft,
-  Pill,
-  ClipboardCheck,
-  CalendarDays,
-  CheckCircle2,
-  Clock4,
-  XCircle,
-  BellRing,
-  Plus,
-  X,
-} from "lucide-react";
-import styles from "./PatientReminders.module.css";
+import React, { useState } from 'react';
+import { Plus, Trash2, Calendar, Activity, Pill, Link as LinkIcon, FileText, ArrowLeft } from 'lucide-react';
+import styles from './PatientReminders.module.css';
+import CreateReminderModal from './PatientReminderModal';
 
-export default function PatientReminders() {
-  const navigate = useNavigate();
-  const [showForm, setShowForm] = useState(false);
-  const goBack = () => navigate(-1);
+const mockActiveReminders = [
+  { id: 2, type: 'Exercise', title: 'Morning Walk', time: '6:30 AM', frequency: 'Daily', details: '30 minutes', next: 'Tomorrow at 6:30 AM', enabled: true },
+  { id: 3, type: 'Lab', title: 'Fasting Lab Work', time: '8:00 AM', frequency: 'Once', details: 'No food 12 hours prior', next: 'Nov 2, 2025 at 8:00 AM', enabled: true },
+];
+const mockDisabledReminders = [
+  { id: 4, type: 'Medication', title: 'Take Blood Pressure Medication', time: '8:00 AM', frequency: 'Daily', enabled: false },
+  { id: 1, type: 'Appointment', title: 'Annual Physical Exam', time: '10:00 AM', frequency: 'Once', details: 'Dr. Sarah Johnson', enabled: false },
+  { id: 5, type: 'Medication', title: 'Take Vitamin D', time: '12:00 PM', frequency: 'Daily', enabled: false },
+];
 
-  const openForm = () => setShowForm(true);
-  const closeForm = () => setShowForm(false);
+const RemindersListPage = () => {
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [activeReminders, setActiveReminders] = useState(mockActiveReminders);
+  const [disabledReminders, setDisabledReminders] = useState(mockDisabledReminders);
 
-  const reminders = [
-    // {
-    //   id: 1,
-    //   type: "Medication",
-    //   title: "Take Metoprolol (50mg)",
-    //   time: "8:00 PM",
-    //   status: "upcoming",
-    //   persona: "Elderly Patient",
-    //   message:
-    //     "It’s time for your evening medication — Metoprolol 50mg. Take it with a sip of water and unwind for the night 🌙",
-    // },
-    // {
-    //   id: 2,
-    //   type: "Task",
-    //   title: "Check blood pressure",
-    //   time: "8:15 PM",
-    //   status: "active",
-    //   persona: "Elderly Patient",
-    //   message:
-    //     "Please measure your blood pressure and log it in the app when ready. You’re doing great — steady progress every day 💗",
-    // },
-    // {
-    //   id: 3,
-    //   type: "Appointment",
-    //   title: "Doctor Visit: Dr. Kim (Cardiology)",
-    //   time: "10:30 AM",
-    //   status: "past",
-    //   outcome: "completed",
-    //   persona: "Elderly Patient",
-    //   message:
-    //     "Hope your appointment with Dr. Kim went well! You can record your visit notes or upload your summary anytime 🩺",
-    // },
-    // {
-    //   id: 4,
-    //   type: "Medication",
-    //   title: "Take Atorvastatin (20mg)",
-    //   time: "7:30 AM",
-    //   status: "past",
-    //   outcome: "snoozed",
-    //   persona: "Elderly Patient",
-    //   message:
-    //     "Don’t forget your morning medication — Atorvastatin 20mg. You’ve snoozed this one before, so be sure to take it soon 💊",
-    // },
-  ];  
+  const totalReminders = activeReminders.length + disabledReminders.length;
+  const activeCount = activeReminders.length;
+  const disabledCount = disabledReminders.length;
 
-  const renderIcon = (type) => {
-    switch (type) {
-      case "Medication":
-        return (
-          <div className={styles.iconCirclePurple}>
-            <Pill size={18} />
-          </div>
-        );
-      case "Task":
-        return (
-          <div className={styles.iconCircleBlue}>
-            <ClipboardCheck size={18} />
-          </div>
-        );
-      case "Appointment":
-        return (
-          <div className={styles.iconCircleGreen}>
-            <CalendarDays size={18} />
-          </div>
-        );
-      default:
-        return (
-          <div className={styles.iconCirclePurple}>
-            <BellRing size={18} />
-          </div>
-        );
+  // Handler for creating a new reminder (User Story 1)
+  const handleCreateReminder = (formData) => {
+    console.log('New reminder to be created (call API here):', formData);
+    const newReminder = {
+      id: Math.random(),
+      ...formData,
+      enabled: true,
+      next: `Today at ${formData.time}`
+    };
+    setActiveReminders([newReminder, ...activeReminders]);
+  };
+
+  // Handler for editing (toggling) a reminder (User Story 2)
+  const handleToggle = (id, listType) => {
+    console.log(`Toggle reminder ${id} from ${listType}`);
+    
+    if (listType === 'active') {
+      const reminderToMove = activeReminders.find(r => r.id === id);
+      if (reminderToMove) {
+        setActiveReminders(activeReminders.filter(r => r.id !== id));
+        setDisabledReminders([{ ...reminderToMove, enabled: false }, ...disabledReminders]);
+      }
+    } else {
+      const reminderToMove = disabledReminders.find(r => r.id === id);
+      if (reminderToMove) {
+        setDisabledReminders(disabledReminders.filter(r => r.id !== id));
+        setActiveReminders([{ ...reminderToMove, enabled: true }, ...activeReminders]);
+      }
     }
   };
 
-  const renderStatus = (reminder) => {
-    const outcome = reminder.outcome || reminder.status;
-    switch (outcome) {
-      case "completed":
-        return (
-          <span className={styles.statusCompleted}>
-            <CheckCircle2 size={16} /> Completed
-          </span>
-        );
-      case "snoozed":
-        return (
-          <span className={styles.statusSnoozed}>
-            <Clock4 size={16} /> Snoozed
-          </span>
-        );
-      case "missed":
-      case "skipped":
-        return (
-          <span className={styles.statusMissed}>
-            <XCircle size={16} /> Skipped
-          </span>
-        );
-      case "active":
-        return (
-          <span className={styles.statusActive}>
-            <BellRing size={16} /> Due Now
-          </span>
-        );
-      case "upcoming":
-        return (
-          <span className={styles.statusUpcoming}>
-            <Clock4 size={16} /> Upcoming
-          </span>
-        );
-      default:
-        return null;
+  const handleDelete = (id, listType) => {
+     console.log(`Delete reminder ${id} from ${listType}`);
+
+     if (listType === 'active') {
+        setActiveReminders(activeReminders.filter(r => r.id !== id));
+     } else {
+        setDisabledReminders(disabledReminders.filter(r => r.id !== id));
+     }
+  };
+
+  // Helper functions for UI
+  const getIcon = (type) => {
+    switch(type) {
+      case 'Appointment': return <Calendar size={18} className={styles.iconAppointment} />;
+      case 'Exercise': return <Activity size={18} className={styles.iconExercise} />;
+      case 'Medication': return <Pill size={18} className={styles.iconMedication} />;
+      case 'Lab': return <FileText size={18} className={styles.iconLab} />;
+      default: return <LinkIcon size={18} className={styles.iconDisabled} />;
     }
   };
 
-  const sections = {
-    Active: reminders.filter((r) => r.status === "active"),
-    Upcoming: reminders.filter((r) => r.status === "upcoming"),
-    Past: reminders.filter((r) => r.status === "past"),
-  };
-
-  const STATUS_LABELS = {
-    active: "Today",
-    upcoming: "Upcoming",
-    past: "Past",
-  };  
+  const getTagColor = (type) => {
+    switch(type) {
+      case 'Appointment': return styles.tagPurple;
+      case 'Exercise': return styles.tagGreen;
+      case 'Medication': return styles.tagBlue;
+      case 'Lab': return styles.tagOrange;
+      default: return styles.tagGray;
+    }
+  }
 
   return (
-    <div className={`${styles.container} ${styles.purpleGradient}`}>
+    <div className={styles.pageContainer}>
       {/* Header */}
       <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <button className={styles.backButton} onClick={goBack}>
+        <div className={styles.headerLeft}>
+          <button className={styles.backButton}>
             <ArrowLeft size={20} />
           </button>
-          <div className={styles.headerText}>
+          <div>
             <h1 className={styles.headerTitle}>Reminders</h1>
-            <p className={styles.headerSubtitle}>
-              View and track your upcoming medications, tasks, and appointments.
-            </p>
+            <p className={styles.headerSubtitle}>Manage your health reminders and notifications</p>
           </div>
-          <button className={styles.newReminderButton} onClick={openForm}>
-            <Plus size={16} />
-            New Reminder
-          </button>
         </div>
+        <button className={styles.newReminderButton} onClick={() => setShowCreateModal(true)}>
+          <Plus size={16} /> New Reminder
+        </button>
       </header>
 
-      {/* Content */}
-      <div className={styles.content}>
-        {/* Overview Section */}
-        <div className={styles.overviewCard}>
-          <div className={styles.overviewHeader}>
-            <h2>Reminders Overview</h2>
-            <p>Quick snapshot of your reminders</p>
+      {/* Overview */}
+      <section className={styles.overviewSection}>
+        <h2 className={styles.sectionTitle}>Overview</h2>
+        <p className={styles.sectionSubtitle}>Quick snapshot of your reminders</p>
+        <div className={styles.overviewBox}>
+          <div className={styles.statItem}>
+            <span className={styles.statValue}>{totalReminders}</span>
+            <span className={styles.statLabel}>Total Reminders</span>
           </div>
-
-          <div className={styles.overviewGrid}>
-            <div className={styles.overviewStat}>
-              <span className={styles.statNumber}>{reminders.length}</span>
-              <span className={styles.statLabel}>Total</span>
-            </div>
-            <div className={styles.overviewStat}>
-              <span className={styles.statNumber}>{sections.Active.length}</span>
-              <span className={styles.statLabel}>Active Today</span>
-            </div>
-            <div className={styles.overviewStat}>
-              <span className={styles.statNumber}>{sections.Upcoming.length}</span>
-              <span className={styles.statLabel}>Upcoming</span>
-            </div>
-            <div className={styles.overviewStat}>
-              <span className={styles.statNumber}>{sections.Past.length}</span>
-              <span className={styles.statLabel}>Past</span>
-            </div>
+          <div className={styles.statItem}>
+            <span className={styles.statValue}>{activeCount}</span>
+            <span className={styles.statLabel}>Active</span>
+          </div>
+          <div className={styles.statItem}>
+            <span className={styles.statValue}>{disabledCount}</span>
+            <span className={styles.statLabel}>Disabled</span>
           </div>
         </div>
+      </section>
 
-        {Object.entries(sections).map(([label, group]) => (
-          <div key={label} className={styles.card}>
-            <div className={styles.cardHeader}>
-              <h2>{STATUS_LABELS[label.toLowerCase()] || label}</h2>
-            </div>
-            {group.length === 0 ? (
-              <p className={styles.subtext}>No {label.toLowerCase()} reminders.</p>
-            ) : (
-              <div className={styles.reminderList}>
-                {group.map((reminder) => (
-                  <div key={reminder.id} className={styles.reminderItem}>
-                    <div className={styles.reminderHeader}>
-                      {renderIcon(reminder.type)}
-                      <div>
-                        <h3>{reminder.title}</h3>
-                        <p className={styles.personaTag}>{reminder.type} Reminder</p>
-                        <p className={styles.reminderMessage}>{reminder.message}</p>
-                      </div>
-                    </div>
-                    <div className={styles.reminderMeta}>
-                        <span className={styles.time}>{reminder.time}</span>
-                        {renderStatus(reminder)}
-
-                        {reminder.status === "active" && (
-                            <div className={styles.reminderActions}>
-                            <button className={styles.snoozeButton}>Snooze</button>
-                            <button className={styles.stopButton}>Mark as Completed</button>
-                            </div>
-                        )}
-                    </div>
-                  </div>
-                ))}
+      {/* Active Reminders */}
+      <section className={styles.remindersSection}>
+        <h2 className={styles.sectionTitle}>Active Reminders</h2>
+        {activeReminders.map(reminder => (
+          <div key={reminder.id} className={styles.reminderCard}>
+            <div className={styles.reminderIcon}>{getIcon(reminder.type)}</div>
+            <div className={styles.reminderContent}>
+              <div className={styles.reminderHeader}>
+                <span className={styles.reminderTitle}>{reminder.title}</span>
+                <span className={`${styles.reminderTag} ${getTagColor(reminder.type)}`}>{reminder.type}</span>
               </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Overlay Form */}
-      {showForm && (
-        <div className={styles.overlay}>
-          <div className={styles.formModal}>
-            <div className={styles.formHeader}>
-              <h2>Create New Reminder</h2>
-              <button className={styles.closeButton} onClick={closeForm}>
-                <X size={18} />
+              <p className={styles.reminderDetails}>{reminder.time} • {reminder.frequency}</p>
+              {reminder.details && <p className={styles.reminderDetails}>{reminder.details}</p>}
+              <p className={styles.reminderNext}>Next: {reminder.next}</p>
+            </div>
+            <div className={styles.reminderActions}>
+              <label className={styles.toggleSwitch}>
+                <input type="checkbox" checked={reminder.enabled} onChange={() => handleToggle(reminder.id, 'active')} />
+                <span className={styles.slider}></span>
+              </label>
+              <button className={styles.deleteButton} onClick={() => handleDelete(reminder.id, 'active')}>
+                <Trash2 size={16} />
               </button>
             </div>
-            <p className={styles.formSubtitle}>
-              Set up a reminder for medications, appointments, or health activities.
-            </p>
-
-            <form className={styles.formBody}>
-              <label>
-                Title
-                <input
-                  type="text"
-                  placeholder="e.g., Take morning medication"
-                />
-              </label>
-
-              <label>
-                Select type
-                <select>
-                  <option value="">Choose a type</option>
-                  <option value="Medication">Medication Reminder</option>
-                  <option value="Task">Task Reminder</option>
-                  <option value="Appointment">Appointment Reminder</option>
-                </select>
-              </label>
-
-              <label>
-                Select time
-                <input type="time" />
-              </label>
-
-              <label>
-                Select frequency
-                <select>
-                  <option>Once</option>
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                  <option>Monthly</option>
-                </select>
-              </label>
-
-              <label>
-                Additional notes...
-                <textarea placeholder="Add any special instructions or context" />
-              </label>
-
-              <div className={styles.formActions}>
-                <button
-                  type="button"
-                  className={styles.cancelButton}
-                  onClick={closeForm}
-                >
-                  Cancel
-                </button>
-                <button type="button" className={styles.createButton}>
-                  Create Reminder
-                </button>
-              </div>
-            </form>
           </div>
-        </div>
-      )}
+        ))}
+      </section>
+
+      {/* Disabled Reminders */}
+      <section className={styles.remindersSection}>
+        <h2 className={styles.sectionTitle}>Disabled Reminders</h2>
+         {disabledReminders.map(reminder => (
+          <div key={reminder.id} className={`${styles.reminderCard} ${styles.disabledCard}`}>
+             <div className={styles.reminderIcon}>{getIcon(reminder.type)}</div>
+            <div className={styles.reminderContent}>
+              <div className={styles.reminderHeader}>
+                <span className={styles.reminderTitle}>{reminder.title}</span>
+                <span className={`${styles.reminderTag} ${getTagColor(reminder.type)}`}>{reminder.type}</span>
+              </div>
+              <p className={styles.reminderDetails}>{reminder.time} • {reminder.frequency}</p>
+               <p className={styles.reminderNext}>Disabled</p>
+            </div>
+            <div className={styles.reminderActions}>
+              <label className={styles.toggleSwitch}>
+                <input type="checkbox" checked={reminder.enabled} onChange={() => handleToggle(reminder.id, 'disabled')} />
+                <span className={styles.slider}></span>
+              </label>
+              <button className={styles.deleteButton} onClick={() => handleDelete(reminder.id, 'disabled')}>
+                <Trash2 size={16} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Modal is rendered here */}
+      {showCreateModal && 
+        <CreateReminderModal 
+          onClose={() => setShowCreateModal(false)}
+          onCreate={handleCreateReminder}
+        />
+      }
     </div>
   );
-}
+};
+
+export default RemindersListPage;

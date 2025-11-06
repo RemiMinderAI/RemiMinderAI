@@ -1,11 +1,12 @@
-// 1. Import React and routing components from BOTH branches
+// 1. Import React and routing components
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
-// 2. Import pages from BOTH branches
+// 2. Import pages and components
 import LandingPage from './components/LandingPage';
-import RecordVisitPage from './components/AudioRecorder.js';
+// Corrected path based on your file structure screenshot
+import RecordVisitPage from './components/AudioRecorder';
 import CaregiverInvite from './caregiver/Invitation';
 import CreateCaregiverAccount from './caregiver/CreateAccount';
 import EmailSignupForm from './caregiver/EmailSignupForm';
@@ -13,7 +14,6 @@ import EmailVerification from './caregiver/EmailVerification';
 import CompleteProfile from './caregiver/CompleteProfile';
 import CaregiverDashboard from './caregiver/CaregiverDashboard';
 import CaregiverSettings from './caregiver/CaregiverSettings';
-
 import Consent from './caregiver/Consent';
 import PendingInvitations from './caregiver/PendingInvitations';
 
@@ -33,18 +33,21 @@ import PatientCompleteProfile from './patient/PatientCompleteProfile';
 import SignIn from './components/SignIn';
 import SignUpConfirmation from './components/SignUpConfirmation';
 
+
+import PatientReminderModal from './patient/PatientReminderModal';
+
 import VisitHistory from './patient/VisitHistory';
 
 function App() {
   return (
     <Router>
-      <div className="App"> {/* Use the <div> from the 'main' branch */}
+      <div className="App">
         <Routes>
-          {/* 3. Add the routes from your 'feature/record-visit' branch */}
+          {/* Main Routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/record" element={<RecordVisitPage />} />
 
-          {/* 4. Add all the routes from the 'main' branch */}
+          {/* Caregiver Flow Routes */}
           <Route path="/invitation" element={<CaregiverInvite />} />
           <Route path="/create-account" element={<CreateCaregiverAccount />} />
           <Route path="/email-signup" element={<EmailSignupForm />} />
@@ -53,10 +56,9 @@ function App() {
           <Route path="/dashboard/caregiver" element={<CaregiverDashboard />} />
           <Route path="/caregiver-dashboard" element={<CaregiverDashboard />} />
           <Route path="/caregiver-settings" element={<CaregiverSettings />} />
-
           <Route path="/consent" element={<Consent />} />
 
-          {/* Patient routes */}
+          {/* Patient Routes */}
           <Route path="/dashboard/patient" element={<PatientDashboard />} />
           <Route path="/patient-invitation" element={<PatientInvitation />} />
           <Route path="/patient-create-account" element={<PatientCreateAccount />} />
@@ -71,19 +73,10 @@ function App() {
           <Route path="/patient-reminders" element={<PatientReminders />} />
           <Route path="/patient-settings" element={<PatientSettings />} />
 
-          {/* Shared routes */}
+          {/* Shared Routes */}
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up-confirmation" element={<SignUpConfirmation />} />
-
-          {/* You may need to decide on a default/catch-all route */}
-          {/* This one from 'main' redirects unknown paths to /invitation */}
-          {/* <Route path="*" element={<Navigate to="/invitation" replace />} /> */}
-
-          {/* OR, if your landing page is the default, use this instead: */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-
           <Route path="/visit-history" element={<VisitHistory onBack={() => window.history.back()} role="patient" />} />
-          <Route path="/caregiver/invitations" element={<PendingInvitations />} />
 
         </Routes>
       </div>

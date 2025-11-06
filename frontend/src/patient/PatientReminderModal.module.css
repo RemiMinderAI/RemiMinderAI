@@ -1,0 +1,139 @@
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .modalContent {
+    background-color: white;
+    border-radius: 1rem; /* 16px */
+    padding: 1.5rem 2rem 2rem;
+    width: 90%;
+    max-width: 480px;
+    position: relative;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0;
+  }
+  .closeButton:hover {
+    color: #111827;
+  }
+  
+  .modalTitle {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .modalSubtitle {
+    font-size: 0.875rem; /* text-sm */
+    color: #6b7280;
+    margin: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .formBody {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    display: block;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .textInput,
+  .selectInput,
+  .textAreaInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.5rem; /* rounded-md */
+    font-size: 1rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-sizing: border-box; 
+    font-family: inherit;
+  }
+  
+  .textInput:focus,
+  .selectInput:focus,
+  .textAreaInput:focus {
+    outline: none;
+    border-color: #7c3aed; /* focus:border-purple-600 */
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2); /* focus:ring */
+  }
+  
+  .textAreaInput {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .formActions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+  
+  .cancelButton,
+  .createButton {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .cancelButton {
+    background-color: white;
+    border: 1px solid #d1d5db;
+    color: #374151;
+  }
+  .cancelButton:hover {
+    background-color: #f9fafb; /* bg-gray-50 */
+  }
+  
+  .createButton {
+    background-color: #8b5cf6; /* bg-purple-600 */
+    border: 1px solid #8b5cf6;
+    color: white;
+  }
+  .createButton:hover {
+    background-color: #7c3aed; /* hover:bg-purple-700 */
+  }
+  
+  /* --- Animation --- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modalOverlay {
+    animation: fadeIn 0.15s ease-out;
+  }
