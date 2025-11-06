@@ -64,6 +64,29 @@ export default function ProductDemo() {
   // Split into sentences (regex keeps punctuation at the end)
   const transcriptionSentences = fullTranscription.match(/[^.!?]+[.!?]+/g) || [];
 
+  // Get today's date
+  const today = new Date();
+
+  // Format date nicely (e.g. "Thursday, November 6, 2025")
+  const formattedToday = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  // Add 7 days
+  const xrayDate = new Date(today);
+  xrayDate.setDate(today.getDate() + 7);
+
+  // Format that one too
+  const formattedXrayDate = xrayDate.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <div className={styles.container}>
       {stage === "cover" && (
@@ -141,12 +164,12 @@ export default function ProductDemo() {
       {stage === "summary" && (
         <div className={styles.section}>
           <h3>Visit Summary</h3>
-          <p className={styles.date}>Saturday, November 1, 2025</p>
+          <p className={styles.date}>{formattedToday}</p>
 
           <div className={styles.summaryBlock}>
             <h4><FiCheck /> AI Summary</h4>
             <p>
-              The patient reported feeling generally well, consistently taking their medication, and maintaining regular walks. The doctor confirmed positive lab results and stable blood pressure, recommending the patient continue their current health plan. A follow-up visit was suggested for six months.
+              The patient presented with knee pain that started about two weeks ago, experiencing discomfort when climbing stairs, getting up from a chair, and noting morning stiffness with occasional swelling. The doctor suggested these symptoms might be due to mild inflammation, possibly early arthritis or overuse. The doctor recommended taking an anti-inflammatory medication like ibuprofen, using a knee brace when walking, avoiding stairs when possible, and applying ice to the knee twice daily.
             </p>
 
             <h4><FiFileText /> Full Transcription</h4>
@@ -158,7 +181,7 @@ export default function ProductDemo() {
 
             <h4><FiClock /> Auto-Generated Reminders</h4>
             <div className={styles.remindersList}>
-              <p>Schedule your next routine check-up for May 2026.</p>
+              <p>Schedule an X-ray on or after {formattedXrayDate}</p>
             </div>
           </div>
 
