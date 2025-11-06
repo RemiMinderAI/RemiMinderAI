@@ -1,4 +1,4 @@
-# backend/services/ai_service.py
+# backend/services/ai_service_productdemo.py
 import os
 import json
 import time
@@ -8,7 +8,7 @@ import datetime as datetime
 from typing import Dict
 from .db_service import log_ai_usage
 
-async def generate_ai_summary(data: dict) -> Dict:
+async def generate_ai_summary(data: str) -> Dict:
     
     api_key = os.getenv("GEMINI_API_KEY")
     genai.configure(api_key=api_key)
@@ -19,7 +19,7 @@ async def generate_ai_summary(data: dict) -> Dict:
     INPUT_COST_PER_M = float(os.getenv("GEMINI_INPUT_COST_PER_M"))
     OUTPUT_COST_PER_M = float(os.getenv("GEMINI_OUTPUT_COST_PER_M"))
 
-    transcript = data["transcript"]
+    transcript = data
     
     current_datetime = datetime.datetime.now().strftime("%A, %B %d, %Y, %I:%M %p %Z")
 
@@ -38,12 +38,12 @@ async def generate_ai_summary(data: dict) -> Dict:
         "summary": a short, plain-language recap of what was discussed during the visit including (if mentioned) chief complaint, cause, and the primary plan. The text must be written entirely in the **third person** (e.g., "The patient presented with...", "The doctor recommended...").
         "action_items": List **every** specific directive the doctor asked the patient to do next.
         "questions_next_visit": Generate at least two simple, caring questions a patient might ask at their next appointment. Use 2–3 relevant questions from the following styles: routine, medication, chronic, or caregiver. Keep them short, supportive, and in plain language.
-        "key_diagnoses": List **all** main diagnoses, conditions, or primary concerns mentioned (if any).
+        "key_diagnoses": List **all** main diagnoses, conditions, or primary concerns** mentioned (if any).
         "medications": List **all** medications mentioned (prescribed, existing, or discontinued).
-        "reminders": List of **all** time-based reminders Generate one sentence concise and clear reminder as an **instruction** based ONLY on the provided facts. 
-        Analyze for specific routines (e.g., medication times) or follow-up timeframes (e.g., next week). For each reminder, 
-        the text **MUST** include action with detail (e.g., 'Take sugar medication daily at 8 AM' or 'Schedule next check-up in December 2025'). 
-        Use Today's Date and Time to calculate precise future dates when a timeframe is mentioned.
+        "reminders": List **all** reminders that are STRICTLY TIME-BASED (must contain a date, time, or specific duration like "in next month").
+        Generate one sentence concise and clear reminder as an **instruction** based ONLY on the provided facts. Do not personalize like 'your check-up'.
+        For each reminder, the text **MUST** include action with detail (e.g., 'Take sugar medication daily at 8 AM' or 'Schedule next check-up in December 2025'). 
+        Use Today's Date and Time to calculate precise future dates when a timeframe is mentioned. 
 
         Transcript:
         {transcript}
@@ -64,13 +64,10 @@ async def generate_ai_summary(data: dict) -> Dict:
         total_cost = input_cost + output_cost
 
         log_data = {
-                "visit_id": data.get("visit_id"),
-                "user_id":data.get("user_id"),
-                "transcript_id": data.get("transcript_id"),
-                "input_tokens": input_tokens,
-                "output_tokens": output_tokens,
-                "total_cost": total_cost,
-            }
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+            "total_cost": total_cost,
+        }
     
         await log_ai_usage(log_data)
 
@@ -111,3 +108,5 @@ async def generate_ai_summary(data: dict) -> Dict:
     except Exception as e:
         print(f"Gemini API error: {e}")
         raise Exception(f"AI service failed: {str(e)}")
+
+#Analyze for specific routines (e.g., medication times) or follow-up timeframes (e.g., next week). 
