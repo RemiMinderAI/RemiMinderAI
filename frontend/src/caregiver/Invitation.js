@@ -44,10 +44,15 @@ const CaregiverInvite = () => {
       });
       const data = await res.json();
 
+      localStorage.setItem("invitationToken", token);
+      localStorage.setItem("caregiverEmail", data.caregiver_email);
+  
       if (res.ok) {
         if (data.status === "accepted") {
-          navigate("/caregiver-dashboard");
+          // Existing caregiver → go to signin
+          navigate("/sign-in");
         } else if (data.status === "new_user") {
+          // New caregiver → go to signup, pass token & email
           navigate(`/create-account?token=${token}&email=${data.caregiver_email}`);
         }
       } else {
@@ -57,7 +62,7 @@ const CaregiverInvite = () => {
       console.error(err);
       alert("Failed to accept invitation.");
     }
-  };
+  };  
 
   const handleCancel = () => navigate("/");
 
@@ -287,7 +292,7 @@ const CaregiverInvite = () => {
             onMouseOver={(e) => (e.target.style.backgroundColor = "#009A6B")}
             onMouseOut={(e) => (e.target.style.backgroundColor = "#00B881")}
           >
-            Accept Invitation & Create Account
+            Accept Invitation & Continue
           </button>
           <button
             onClick={handleCancel}

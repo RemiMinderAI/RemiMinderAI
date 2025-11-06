@@ -40,17 +40,62 @@ const CompleteProfile = () => {
     }));
   };
 
-  const handleComplete = () => {
-    if (formData.fullName && formData.phoneNumber && formData.relationship) {
-      console.log("Profile completed:", formData);
+  const handleComplete = async () => {
+    if (!formData.fullName || !formData.phoneNumber || !formData.relationship) {
+      alert("Please fill in all required fields before continuing.");
+      return;
+    }
+  
+    try {
+      // Get the token — try URL first, then localStorage fallback
+      const params = new URLSearchParams(window.location.search);
+      let token = params.get("token");
+  
+      if (!token) {
+        token = localStorage.getItem("invitationToken");
+      }
+  
+      if (!token) {
+        alert("Missing invitation token. Please return to your invitation link.");
+        return;
+      }
   
       // Save caregiver profile data locally
       localStorage.setItem("caregiverProfile", JSON.stringify(formData));
       localStorage.setItem("onboarding_complete", "true");
   
+      // Call backend to complete the invitation
+      const invitationToken = localStorage.getItem("invitationToken"); // retrieve stored token
+      const email = localStorage.getItem("caregiverEmail"); // retrieve stored email (if stored earlier)
+
+      const response = await fetch("http://localhost:8000/api/invitations/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token: invitationToken, // ✅ must match backend model field name
+          email: email, // ✅ new addition required by backend
+          full_name: formData.fullName,
+          phone_number: formData.phoneNumber,
+          relationship: formData.relationship,
+          notes: formData.additionalNotes,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        console.error("Error completing invitation:", data);
+        alert(data.detail || "Error completing invitation.");
+        return;
+      }
+  
+      console.log("Invitation completed successfully:", data);
+  
+      // Navigate to caregiver dashboard
       navigate("/dashboard/caregiver");
-    } else {
-      alert("Please fill in all required fields before continuing.");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while completing your profile. Please try again.");
     }
   };  
 
