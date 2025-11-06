@@ -162,7 +162,7 @@ const PatientEmailVerification = () => {
           </button>
 
           {/* Resend code */}
-          <button
+          {/* <button
             style={{
               background: 'none',
               border: 'none',
@@ -180,7 +180,7 @@ const PatientEmailVerification = () => {
             onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
           >
             Resend code
-          </button>
+          </button> */}
         </div>
 
         {/* Footer */}

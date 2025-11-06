@@ -28,40 +28,34 @@ const PatientEmailSignupForm = () => {
   };
 
   const handleContinue = async () => {
-    if (formData.email && formData.password) {
-      try {
-        console.log('Creating account for:', formData.email);
-  
-        const { data, error } = await supabase.auth.signUp({
-          email: formData.email,
-          password: formData.password,
-          options: {
-            data: {
-              role: 'patient',
-            },
-            emailRedirectTo: `${window.location.origin}/sign-up-confirmation`
-          },
-        });
-  
-        if (error) {
-          console.error('Signup error:', error);
-          if (error.message.includes('already registered')) {
-            alert('This email is already registered. Please use a different email.');
-          } else {
-            alert('Error creating account: ' + error.message);
-          }
-          return;
+    if (!formData.email || !formData.password) return;
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: { role: 'patient' },
+          emailRedirectTo: `${window.location.origin}/sign-up-confirmation`,
+        },
+      });
+
+      if (error) {
+        if (error.message.includes('already registered')) {
+          alert('This email is already registered. Please use a different email.');
+        } else {
+          alert('Error creating account: ' + error.message);
         }
-  
-        console.log('Account created successfully:', data);
-        navigate('/patient-email-verification'); // show "check your email" screen
-  
-      } catch (err) {
-        console.error('Unexpected error:', err);
-        alert('An unexpected error occurred. Please try again.');
+        return;
       }
+
+      console.log('✅ Account created successfully:', data);
+      navigate('/patient-email-verification');
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      alert('An unexpected error occurred. Please try again.');
     }
-  };  
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

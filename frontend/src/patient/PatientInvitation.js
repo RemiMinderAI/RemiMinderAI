@@ -1,24 +1,70 @@
 import React, { useState } from "react";
-import { ArrowLeft, Mail, Send, Check, Phone } from "lucide-react";
+import { ArrowLeft, Mail, Send, Check, Phone, User } from "lucide-react";
 import styles from "./PatientInvitation.module.css";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 export default function PatientInvitation({ onBack }) {
+  const [caregiverName, setCaregiverName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
+  const [personalMessage, setPersonalMessage] = useState(""); // for textarea
+  const [apiMessage, setApiMessage] = useState(""); // for success/error messages
   const [sent, setSent] = useState(false);
   const navigate = useNavigate();
 
-  const handleSendInvite = () => {
-    if (!email && !phone) {
-    //   window.alert("Please provide an email or phone number.");
+  const handleSendInvite = async () => {
+    if (!email) {
+      alert("Please provide the caregiver's email.");
       return;
     }
-
-    setSent(true);
-    // window.alert("Invitation sent successfully!");
-  };
+  
+    setSent(false); // ensure confirmation screen is hidden while loading
+    setApiMessage(""); // reset message
+  
+    try {
+      // Get JWT token from Supabase
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData?.session?.access_token;
+  
+      if (!token) {
+        alert("You must be logged in to send an invitation.");
+        return;
+      }
+  
+      // Build request body
+      const body = {
+        caregiver_email: email,
+        caregiver_name: caregiverName || "Your Caregiver",
+      };
+  
+      const res = await fetch("http://localhost:8000/api/invitations/send", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+  
+      const result = await res.json();
+  
+      if (res.ok) {
+        // Invitation sent successfully or re-sent
+        setApiMessage(result.message);
+        setSent(true);
+        // alert(result.message)
+      } else {
+        // Handle errors (400, 403)
+        setApiMessage(result.detail || "Something went wrong. Please try again.");
+        alert(result.detail)
+      }
+    } catch (err) {
+      console.error(err);
+      setApiMessage("Network error. Please try again.");
+      alert(apiMessage)
+    }
+  };  
 
   const handleBack = () => {
     navigate("/dashboard/patient");
@@ -46,7 +92,7 @@ export default function PatientInvitation({ onBack }) {
                 <Check size={48} className={styles.checkIcon} />
               </div>
               <h2>Invitation Sent!</h2>
-              <p>We’ve sent a secure invitation to {email || phone}.</p>
+              <p>{`We’ve sent a secure invitation to ${email}.`}</p>
 
               <div className={styles.infoBox}>
                 <p>
@@ -90,6 +136,17 @@ export default function PatientInvitation({ onBack }) {
 
       <main className={styles.main}>
         <div className={styles.card}>
+          <label>Caregiver Name *</label>
+            <div className={styles.inputGroup}>
+              <User size={18} className={styles.inputIcon} />
+              <input
+                type="text"
+                placeholder="Jane Doe"
+                value={caregiverName}
+                onChange={(e) => setCaregiverName(e.target.value)}
+                required
+              />
+            </div>
           <label>Email Address *</label>
           <div className={styles.inputGroup}>
             <Mail size={18} className={styles.inputIcon} />
@@ -119,8 +176,8 @@ export default function PatientInvitation({ onBack }) {
           <textarea
             rows="4"
             placeholder="I'd like to share my health information with you..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={personalMessage}
+            onChange={(e) => setPersonalMessage(e.target.value)}
           />
         </div>
 

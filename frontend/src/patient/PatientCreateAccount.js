@@ -29,21 +29,19 @@ const PatientCreateAccount = () => {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: window.location.origin + '/patient-consent'
-        }
+          redirectTo: `${window.location.origin}/patient-consent`, // after OAuth verification
+        },
       });
   
       if (error) throw error;
-  
-      console.log('Google signup started:', data);
+      console.log('Google signup initiated:', data);
     } catch (error) {
       console.error('Google signup failed:', error.message);
-      alert(error.message);
+      alert('Failed to sign up with Google: ' + error.message);
     } finally {
       setIsLoading(false);
     }
   };
-  
 
   const handleAppleSignup = () => {
     alert('Apple Sign In is coming soon!');

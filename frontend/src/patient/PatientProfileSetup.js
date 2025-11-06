@@ -33,33 +33,65 @@ const PatientProfileSetup = () => {
     navigate("/");
   };
 
-  const handleContinue = () => {
-    // Required validation: fullName, dob, phone must be filled
+  const handleContinue = async () => {
     if (!fullName || !dob || !phone) {
       alert("Please fill in all required fields: Full Name, Date of Birth, and Phone Number.");
       return;
     }
-
-    console.log("Validation passed, saving profile...");
-
-    // Save profile locally
-    const profileData = {
-      fullName,
-      dob,
-      gender,
-      phone,
-      notes,
-      email: userEmail,
-    };
-
-    localStorage.setItem("patientProfile", JSON.stringify(profileData));
-    localStorage.setItem("display_name", fullName);
-
-    console.log("Profile saved, navigating to /patient-audio-setup");
-
-    navigate("/patient-audio-setup");
+  
+    console.log("Validation passed, sending register request...");
+  
+    try {
+      // Get Supabase session (JWT) for auth header
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError || !session) {
+        console.error("No active session found:", sessionError);
+        alert("Session expired. Please log in again.");
+        return;
+      }
+  
+      const token = session.access_token;
+  
+      // Prepare payload
+      const payload = {
+        full_name: fullName,
+        date_of_birth: dob,
+        gender,
+        phone_number: phone,
+        notes,
+        email: userEmail,
+        role: "patient"
+      };
+  
+      // Call register API
+      const response = await fetch("http://localhost:8000/api/patient/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Register API failed: ${errorText}`);
+      }
+  
+      const data = await response.json();
+      console.log("✅ Register success:", data);
+  
+      // Save locally for convenience (optional)
+      localStorage.setItem("patientProfile", JSON.stringify(payload));
+      localStorage.setItem("display_name", fullName);
+  
+      navigate("/patient-audio-setup");
+    } catch (err) {
+      console.error("Register error:", err);
+      alert("Error saving profile. Please try again.");
+    }
   };
-
+  
   return (
     <div className={styles.container}>
       {/* Header */}

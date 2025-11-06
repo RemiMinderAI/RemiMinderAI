@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./ProductDemo.module.css";
 import { useNavigate } from "react-router-dom";
 import { FiMic, FiStopCircle, FiDownload, FiShare2, FiCheck, FiClock, FiFileText } from "react-icons/fi";
+import demoAudio from "../assets/sample.mp3";
 
 export default function ProductDemo() {
   const [stage, setStage] = useState("cover");
   const [timer, setTimer] = useState(0);
   const handleTryNow = () => setStage("ready");
   const navigate = useNavigate();
+  const audioRef = useRef(null);
 
   useEffect(() => {
     let interval;
@@ -20,9 +22,32 @@ export default function ProductDemo() {
   const handleStart = () => {
     setStage("recording");
     setTimer(0);
+
+    // Stop any previous audio first
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+
+    // Create a new instance and save it
+    const audioInstance = new Audio(demoAudio);
+    audioInstance.volume = 0.5;
+    audioInstance.play().catch((err) => {
+      console.warn("Playback blocked:", err);
+    });
+
+    // Store it for cleanup
+    audioRef.current = audioInstance;
   };
 
   const handleStop = () => {
+    // Stop playback immediately
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current = null;
+    }
+
     setStage("processing");
     setTimeout(() => setStage("summary"), 3000);
   };
@@ -49,7 +74,10 @@ export default function ProductDemo() {
       {stage !== "cover" && (
       <div className={styles.header}>
         <h2>RemiMinder Demo</h2>
-        <p className={styles.demoNote}>This is a demo simulation only; your audio is not actually recorded</p>
+        <p className={styles.demoNote}>
+          This demo uses a sample audio recording to protect privacy and remain HIPAA-compliant. 
+          Your voice is not recorded — this simulation is for demonstration purposes only.
+        </p>
       </div>
       )}
 

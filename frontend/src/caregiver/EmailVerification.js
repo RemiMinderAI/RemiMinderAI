@@ -151,7 +151,7 @@ const EmailVerification = () => {
           </button>
 
           {/* Resend Email */}
-          <button
+          {/* <button
             onClick={handleResend}
             style={{
               background: "none",
@@ -169,7 +169,7 @@ const EmailVerification = () => {
             onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
           >
             Resend email
-          </button>
+          </button> */}
         </div>
 
         {/* Footer */}

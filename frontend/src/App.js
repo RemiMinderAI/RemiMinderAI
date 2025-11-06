@@ -33,7 +33,7 @@ import PatientCompleteProfile from './patient/PatientCompleteProfile';
 import SignIn from './components/SignIn';
 import SignUpConfirmation from './components/SignUpConfirmation';
 
-import VisitHistory from './components/VisitHistory';
+import VisitHistory from './patient/VisitHistory';
 
 function App() {
   return (

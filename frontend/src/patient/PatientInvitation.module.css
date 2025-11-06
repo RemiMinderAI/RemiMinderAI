@@ -82,6 +82,10 @@
     transform: translateY(-50%);
     color: #9ca3af;
   }
+
+  .inputGroup input {
+    text-indent: 1.5rem;
+  }
   
   input,
   textarea {
@@ -93,7 +97,6 @@
   }
 
   input {
-    text-indent: 1.5rem;
   }
   
   textarea {

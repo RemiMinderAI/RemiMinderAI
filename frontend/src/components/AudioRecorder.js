@@ -103,7 +103,7 @@ const RecordVisitPage = () => {
 
     try {
       // Send the POST request to your FastAPI backend
-      const response = await fetch('http://localhost:8000/upload-audio/', {
+      const response = await fetch('http://localhost:8001/upload-audio/', {
         method: 'POST',
         body: formData,
       });
