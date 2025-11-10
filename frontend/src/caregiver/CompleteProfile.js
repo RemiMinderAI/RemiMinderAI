@@ -41,7 +41,7 @@ const CompleteProfile = () => {
   };
 
   const handleComplete = async () => {
-    if (!formData.fullName || !formData.phoneNumber || !formData.relationship) {
+    if (!formData.fullName || !formData.phoneNumber ) {
       alert("Please fill in all required fields before continuing.");
       return;
     }
@@ -71,7 +71,7 @@ const CompleteProfile = () => {
           email,
           full_name: formData.fullName,
           phone_number: formData.phoneNumber,
-          relationship: formData.relationship,
+          relationship: formData.relationship || "Other",
           notes: formData.additionalNotes || "",
         }),
       });
@@ -302,7 +302,8 @@ const CompleteProfile = () => {
               <p style={{
                 fontSize: '12px',
                 color: '#9CA3AF',
-                margin: '4px 0 0 0'
+                margin: '10px 0 0 0',
+                textAlign: "left"
               }}>
                 Verified during registration
               </p>
@@ -347,6 +348,14 @@ const CompleteProfile = () => {
                 <option value="friend">Friend</option>
                 <option value="other">Other</option>
               </select>
+              <p style={{
+                fontSize: '13px',
+                color: '#9CA3AF',
+                margin: '10px 0 0 0',
+                textAlign: "left"
+              }}>
+                Select "Other" if you have not yet received an invitation from a patient
+              </p>
             </div>
 
             {/* Additional Notes */}
@@ -386,7 +395,8 @@ const CompleteProfile = () => {
               <p style={{
                 fontSize: '13px',
                 color: '#9CA3AF',
-                margin: '4px 0 0 0'
+                margin: '4px 0 0 0',
+                textAlign: "left"
               }}>
                 This is visible only to you and the patients you care for
               </p>
