@@ -57,6 +57,7 @@ function App() {
           <Route path="/caregiver-dashboard" element={<CaregiverDashboard />} />
           <Route path="/caregiver-settings" element={<CaregiverSettings />} />
           <Route path="/consent" element={<Consent />} />
+          <Route path="/caregiver/invitations" element={<PendingInvitations />} />
 
           {/* Patient Routes */}
           <Route path="/dashboard/patient" element={<PatientDashboard />} />
