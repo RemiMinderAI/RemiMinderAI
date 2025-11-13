@@ -41,7 +41,7 @@ const CompleteProfile = () => {
   };
 
   const handleComplete = async () => {
-    if (!formData.fullName || !formData.phoneNumber ) {
+    if (!formData.fullName || !formData.phoneNumber) {
       alert("Please fill in all required fields before continuing.");
       return;
     }
@@ -51,34 +51,44 @@ const CompleteProfile = () => {
       const token = params.get("token") || localStorage.getItem("invitationToken");
       const email = localStorage.getItem("caregiverEmail") || formData.email;
   
-      // Save locally regardless of token (mock login)
+      // Save locally
       localStorage.setItem("caregiverProfile", JSON.stringify(formData));
       localStorage.setItem("onboarding_complete", "true");
   
-      // If no token, skip API call — this is just a mock signup
-      if (!token) {
-        console.log("No invitation token — mock signup only");
-        navigate("/dashboard/caregiver");
-        return;
+      let res, data;
+  
+      if (token) {
+        // ✅ Scenario 1: Caregiver accepts invitation
+        res = await fetch("http://localhost:8000/api/invitations/complete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            token,
+            email,
+            full_name: formData.fullName,
+            phone_number: formData.phoneNumber,
+            relationship: formData.relationship || "Other",
+            notes: formData.additionalNotes || "",
+          }),
+        });
+      } else {
+        // ✅ Scenario 2: Direct registration (no invitation)
+        res = await fetch("http://localhost:8000/api/caregiver/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            full_name: formData.fullName,
+            phone_number: formData.phoneNumber,
+            email,
+            notes: formData.additionalNotes || "",
+          }),
+        });
       }
   
-      // Otherwise: complete the real invitation + create caregiver row
-      const res = await fetch("http://localhost:8000/api/invitations/complete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          token,
-          email,
-          full_name: formData.fullName,
-          phone_number: formData.phoneNumber,
-          relationship: formData.relationship || "Other",
-          notes: formData.additionalNotes || "",
-        }),
-      });
+      data = await res.json();
   
-      const data = await res.json();
       if (!res.ok) {
-        console.error("Error completing invitation:", data);
+        console.error("Error saving profile:", data);
         alert(data.detail || "Error saving profile. Please try again.");
         return;
       }
