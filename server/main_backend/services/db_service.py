@@ -149,9 +149,28 @@ async def update_transcript_visit_id(transcript_id: str, visit_id: str, user_id:
 #-------------------------------------------------------------#
 # AI
 #-------------------------------------------------------------#
-async def log_ai_usage(data: Dict):    
+async def log_ai_usage(data: Dict):
     supabase = get_supabase_client()
     supabase.table("ai_usage").insert(data).execute()
+
+async def delete_visit(visit_id: str, user_id: str) -> bool:
+    """Delete a visit and all associated data (summary and transcript)."""
+    supabase = get_supabase_client()
+
+    try:
+        # First delete the visit summary
+        supabase.table("visit_summaries").delete().eq("visit_id", visit_id).eq("user_id", user_id).execute()
+
+        # Then delete the transcript
+        supabase.table("visit_transcripts").delete().eq("visit_id", visit_id).eq("user_id", user_id).execute()
+
+        # Finally delete the visit
+        supabase.table("visits").delete().eq("id", visit_id).eq("user_id", user_id).execute()
+
+        return True
+    except Exception as e:
+        print(f"Error deleting visit: {e}")
+        return False
 
 
 

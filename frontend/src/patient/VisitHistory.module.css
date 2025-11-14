@@ -312,6 +312,30 @@
   .downloadButton:hover {
     background: #e5e7eb;
   }
+
+  .actionButtons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .deleteButton {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #dc2626;
+    font-weight: 600;
+    font-family: inherit;
+  }
+
+  .deleteButton:hover {
+    background: #fecaca;
+  }
   
   /* ===== Summary & Key Points ===== */
   .summaryBox,
@@ -350,4 +374,3 @@
     padding: 40px 0;
     font-size: 15px;
   }
-  

@@ -8,6 +8,7 @@ import {
   FileText,
   Calendar,
   Clock,
+  Trash2,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
@@ -57,6 +58,39 @@ const VisitHistory = () => {
       visit.specialty.toLowerCase().includes(search)
     );
   });
+
+  const handleDeleteVisit = async (visitId) => {
+    if (!window.confirm('Are you sure you want to delete this visit? This action cannot be undone.')) {
+      return;
+    }
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.user?.id) {
+        alert('You must be logged in to delete visits');
+        return;
+      }
+
+      const response = await fetch(`http://127.0.0.1:8000/api/visit-summaries/${visitId}?user_id=${session.user.id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Remove the visit from the local state
+        setVisits(visits.filter(visit => visit.id !== visitId));
+        alert('Visit deleted successfully');
+      } else {
+        const error = await response.json();
+        alert(`Failed to delete visit: ${error.detail || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error deleting visit:', error);
+      alert('Error deleting visit. Please try again.');
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -180,10 +214,19 @@ const VisitHistory = () => {
                     </div>
                   </div>
               
-                  <button className={styles.downloadButton}>
-                    <Download size={14} />
-                    Download
-                  </button>
+                  <div className={styles.actionButtons}>
+                    <button className={styles.downloadButton}>
+                      <Download size={14} />
+                      Download
+                    </button>
+                    <button
+                      className={styles.deleteButton}
+                      onClick={() => handleDeleteVisit(visit.id)}
+                    >
+                      <Trash2 size={14} />
+                      Delete
+                    </button>
+                  </div>
                 </div>
               
                 <div className={styles.summaryBox}>
