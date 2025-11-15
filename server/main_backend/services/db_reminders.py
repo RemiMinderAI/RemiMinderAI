@@ -4,6 +4,7 @@ from supabase import create_client, Client
 from typing import List, Optional, Dict, Any
 from datetime import datetime, timedelta, timezone
 from dateutil import parser
+import pytz
 import uuid
 
 from dotenv import load_dotenv
@@ -49,8 +50,7 @@ async def insert_ai_reminders(
     and inserts them into the 'reminders' table using the existing create_reminder function.
     """
     
-    DEFAULT_TIMEZONE_STRING: str = 'America/New_York'
-    now_utc = datetime.now(timezone.utc)
+    USER_TIMEZONE: str = 'America/New_York'
     
     reminders_to_insert = ai_summary_result.get("reminders", [])
     inserted_reminders = []
@@ -73,12 +73,15 @@ async def insert_ai_reminders(
         # Case A: Specific date provided
         if scheduled_date_str:
             try:
-                # Combine date and time, default to '00:00' if no time is provided
                 datetime_str = f"{scheduled_date_str} {scheduled_time_str or '00:00'}"
-                
-                # Parse as naive, then explicitly replace the timezone with UTC.
-                dt_naive = parser.parse(datetime_str) 
-                scheduled_datetime_utc = dt_naive.replace(tzinfo=timezone.utc)
+                dt_naive = parser.parse(datetime_str)
+
+                # Interpret as NY time (not UTC!)
+                ny_tz = pytz.timezone('America/New_York')
+                dt_ny_aware = ny_tz.localize(dt_naive)  # Now it's 00:00 in NY
+
+                # Convert to UTC for storage
+                scheduled_datetime_utc = dt_ny_aware.astimezone(timezone.utc)
 
             except Exception as e:
                 # If date string is unparseable, skip this reminder item.
@@ -88,11 +91,14 @@ async def insert_ai_reminders(
         # Case B: Recurring task (e.g., 'daily') with NO specific date/time 
         elif recurrence != 'once':
             # Set the first instance for tomorrow at 8 AM UTC.
-            scheduled_datetime_utc = now_utc + timedelta(days=1)
-            scheduled_datetime_utc = scheduled_datetime_utc.replace(
-                hour=8, minute=0, second=0, microsecond=0
-            )
-        
+            ny_tz = pytz.timezone('America/New_York')
+            now_ny = datetime.now(ny_tz)
+            tomorrow_ny = now_ny + timedelta(days=1)
+            tomorrow_8am_ny = tomorrow_ny.replace(hour=8, minute=0, second=0, microsecond=0)
+            
+            # Convert to UTC
+            scheduled_datetime_utc = tomorrow_8am_ny.astimezone(timezone.utc)        
+            
         # 4. Insertion Guard
         if scheduled_datetime_utc is not None:
 
@@ -103,7 +109,7 @@ async def insert_ai_reminders(
                 "title": title,
                 "message": message,
                 "scheduled_time": scheduled_datetime_utc, # This is the UTC datetime object
-                "timezone": DEFAULT_TIMEZONE_STRING, 
+                "timezone": USER_TIMEZONE, 
                 "recurrence": recurrence,
             }
 
@@ -199,7 +205,16 @@ async def mark_reminder_complete(reminder_id: str, user_id: str, notes: Optional
             "completed_at": now.isoformat()
         }
     )
-    
+
+    await update_reminder(
+        reminder_id, user_id,
+        {"consecutive_skips": 0}
+    )
+
+    # If recurring, create next instance
+    if reminder.get("recurrence") and reminder["recurrence"] != "once":
+        await create_recurring_reminder(reminder)
+
     if reminder:
         # Log the action
         await log_reminder_action(reminder_id, user_id, "completed", notes)
@@ -221,19 +236,17 @@ async def snooze_reminder(reminder_id: str, user_id: str, snooze_minutes: int = 
         return None  # Already snoozed once
     
     now = datetime.now(timezone.utc)
-    snooze_until = now + timedelta(minutes=snooze_minutes)
-    
-    # Update reminder
+    new_scheduled_time = now + timedelta(minutes=snooze_minutes)
     updated = await update_reminder(
-        reminder_id,
-        user_id,
+        reminder_id, user_id,
         {
             "status": "snoozed",
             "snoozed_count": reminder.get("snoozed_count", 0) + 1,
-            "snooze_until": snooze_until.isoformat()
+            "scheduled_time": new_scheduled_time.isoformat(),
+            "snooze_until": None  # Clear it
         }
-    )
-    
+    )    
+
     if updated:
         # Log the action
         await log_reminder_action(reminder_id, user_id, "snoozed", f"Snoozed for {snooze_minutes} minutes")
@@ -251,7 +264,17 @@ async def skip_reminder(reminder_id: str, user_id: str, reason: Optional[str] = 
         user_id,
         {"status": "skipped"}
     )
-    
+
+    current_skips = reminder.get("consecutive_skips", 0)
+    await update_reminder(
+        reminder_id, user_id,
+        {"consecutive_skips": current_skips + 1}
+    )
+
+    # If recurring, create next instance
+    if reminder.get("recurrence") and reminder["recurrence"] != "once":
+        await create_recurring_reminder(reminder)    
+
     if reminder:
         # Log the action with reason
         await log_reminder_action(reminder_id, user_id, "skipped", reason)
@@ -312,28 +335,49 @@ async def get_pending_reminders() -> List[Dict[str, Any]]:
     supabase = get_supabase_client()
     
     now = datetime.now(timezone.utc).isoformat()
-    
+
     response = (
         supabase.table("reminders")
         .select("*")
         .eq("status", "pending")
         .lte("scheduled_time", now)
+        .lt("retry_count", 2)  # Only retry up to 2 times
         .is_("snooze_until", "null")  # Not snoozed
         .execute()
-    )
-    
+    )    
     # Also check snoozed reminders that are ready
     snoozed_response = (
         supabase.table("reminders")
         .select("*")
         .eq("status", "snoozed")
-        .lte("snooze_until", now)
+        .lte("scheduled_time", now)  # Use scheduled_time now, not snooze_until
+        .lt("retry_count", 2)
         .execute()
     )
-    
+
     all_reminders = (response.data or []) + (snoozed_response.data or [])
     return all_reminders
 
+
+async def get_missed_reminders_for_auto_skip() -> List[Dict[str, Any]]:
+    """
+    Fetch reminders that are 1+ days overdue and still pending.
+    These will be auto-skipped by the scheduler.
+    """
+    supabase = get_supabase_client()
+    
+    # Calculate cutoff: 24 hours ago
+    cutoff_time = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()
+    
+    response = (
+        supabase.table("reminders")
+        .select("*")
+        .eq("status", "pending")
+        .lte("scheduled_time", cutoff_time)
+        .execute()
+    )
+    
+    return response.data or []
 
 async def create_recurring_reminder(original_reminder: dict) -> Optional[Dict[str, Any]]:
     """Create a new reminder for recurring schedule (used by scheduler)."""

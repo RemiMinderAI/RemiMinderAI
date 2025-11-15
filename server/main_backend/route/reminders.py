@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Body
 from typing import List, Optional
 import logging
 
@@ -54,7 +54,7 @@ async def create_reminder(data: ReminderCreate):
             detail=f"Failed to create reminder: {str(e)}"
         )
 
-
+# Get user_id from JWT token instead of query param
 @router.get("/reminders", response_model=ReminderListResponse)
 async def get_patient_reminders(user_id: Optional[str]=None):
     """
@@ -72,7 +72,7 @@ async def get_patient_reminders(user_id: Optional[str]=None):
         )
 
 @router.get("/reminders/{reminder_id}", response_model=ReminderResponse)
-async def get_reminder(reminder_id: str, user_id: str):
+async def get_reminder(reminder_id: str, user_id: Optional[str]=None):
     """
     Get a single reminder by ID.
     """
@@ -148,8 +148,13 @@ async def delete_reminder(reminder_id: str, user_id: str):
             detail=f"Failed to delete reminder: {str(e)}"
         )
 
+
 @router.post("/reminders/{reminder_id}/complete", response_model=ReminderResponse)
-async def mark_complete(reminder_id: str, user_id: str, action: ReminderAction = ReminderAction()):
+async def mark_complete(
+    reminder_id: str, 
+    user_id: str, 
+    action: ReminderAction = Body(default=ReminderAction())
+):
     """
     Mark a reminder as completed.
     """
@@ -203,7 +208,12 @@ async def snooze_reminder_post(
 )
 
 @router.post("/reminders/{reminder_id}/skip", response_model=ReminderResponse)
-async def skip_reminder_post(reminder_id: str, user_id: str, action: ReminderAction = ReminderAction()):
+async def skip_reminder_post(
+    reminder_id: str, 
+    user_id: str, 
+    action: ReminderAction = Body(default=ReminderAction())
+):
+    
     """
     Skip a reminder with optional reason.
     """

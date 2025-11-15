@@ -16,6 +16,7 @@ from .db_reminders import (
     get_alerts_summary,
     get_patient_info
 )
+
 from .message_generator import generate_reminder_message
 from .alert_service import check_and_send_caregiver_alerts
 import asyncio
@@ -263,11 +264,26 @@ async def complete_reminder(
     user_id: str,
     action_data: ReminderAction
 ) -> Optional[Dict[str, Any]]:
-    """Mark a reminder as completed."""
+    """Mark a reminder as completed and create next recurring instance."""
+    
+    # Get the reminder first to check recurrence
+    reminder_data = await get_reminder(reminder_id, user_id)
+    if not reminder_data:
+        return None
+    
+    # Mark as complete (this already resets consecutive_skips in db_reminders.py)
     reminder = await mark_reminder_complete(reminder_id, user_id, action_data.notes)
     
     if reminder:
-        logger.info(f"✅ Completed reminder {reminder_id}")
+        logger.info(f"Completed reminder {reminder_id}")
+        
+        # If recurring, create next instance immediately
+        if reminder_data.get('recurrence') and reminder_data['recurrence'] != 'once':
+            from .db_reminders import create_recurring_reminder
+            new_reminder = await create_recurring_reminder(reminder_data)
+            if new_reminder:
+                logger.info(f"Created next recurring reminder {new_reminder['id']} from {reminder_id}")
+        
         return _enrich_reminder_response(reminder)
     
     return None
@@ -278,7 +294,8 @@ async def snooze_reminder(
     user_id: str,
     snooze_minutes: int = 30
 ) -> Optional[Dict[str, Any]]:
-    """Snooze a reminder (only once in MVP)."""
+    """Snooze a reminder by updating scheduled_time. Status changes to 'snoozed'."""
+    
     reminder = await db_snooze_reminder(reminder_id, user_id, snooze_minutes)
     
     if reminder:
@@ -299,11 +316,25 @@ async def skip_reminder(
     user_id: str,
     action_data: ReminderAction
 ) -> Optional[Dict[str, Any]]:
-    """Skip a reminder with optional reason."""
+    """Skip a reminder with optional reason and create next recurring instance."""
+    
+    # Get the reminder first to check recurrence
+    reminder_data = await get_reminder(reminder_id, user_id)
+    if not reminder_data:
+        return None
+    
+    # Skip the reminder (this already increments consecutive_skips in db_reminders.py)
     reminder = await db_skip_reminder(reminder_id, user_id, action_data.notes)
     
     if reminder:
-        logger.info(f"✅ Skipped reminder {reminder_id}")
+        logger.info(f"Skipped reminder {reminder_id}")
+        
+        # If recurring, create next instance immediately
+        if reminder_data.get('recurrence') and reminder_data['recurrence'] != 'once':
+            from .db_reminders import create_recurring_reminder
+            new_reminder = await create_recurring_reminder(reminder_data)
+            if new_reminder:
+                logger.info(f"Created next recurring reminder {new_reminder['id']} from {reminder_id}")
         
         # Trigger caregiver alert asynchronously (non-blocking)
         asyncio.create_task(

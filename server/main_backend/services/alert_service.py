@@ -2,6 +2,7 @@ import logging
 from typing import Optional, Dict, Any
 from .db_reminders import (
     create_caregiver_alert,
+    get_reminder_logs,
     get_reminder,
     get_patient_info
 )
@@ -14,151 +15,123 @@ logger = logging.getLogger(__name__)
 # CAREGIVER ALERT LOGIC
 # ============================================================================
 
+async def get_patient_caregiver(user_id: str) -> Optional[dict]:
+    """
+    Get caregiver info for a patient from patient_caregiver relationship.
+    Returns caregiver_id and email, or None if no caregiver assigned.
+    """
+    from .db_reminders import get_supabase_client
+    
+    supabase = get_supabase_client()
+    
+    try:
+        # Query patient_caregiver join caregivers table
+        response = (
+            supabase.table("patient_caregiver")
+            .select("caregiver_id, caregivers(id, email, full_name)")
+            .eq("patient_id", user_id)
+            .single()
+            .execute()
+        )
+        
+        if response.data:
+            caregiver_data = response.data.get('caregivers')
+            return {
+                'caregiver_id': response.data['caregiver_id'],
+                'email': caregiver_data.get('email'),
+                'full_name': caregiver_data.get('full_name')
+            }
+        
+        return None
+        
+    except Exception as e:
+        logger.warning(f"No caregiver found for patient {user_id}: {str(e)}")
+        return None
+
 async def check_and_send_caregiver_alerts(
     reminder_id: str,
     user_id: str,
     action: str
 ) -> None:
     """
-    Check if a caregiver alert should be triggered based on patient action.
-    This runs asynchronously in the background.
-    
-    Args:
-        reminder_id: The reminder that was interacted with
-        user_id: The patient who performed the action
-        action: 'completed', 'snoozed', 'skipped'
+    Check if caregiver should be alerted based on reminder action.
+    Currently alerts on: consecutive skips > 1
     """
-    
-    # Only send alerts for skipped or multiple snoozes
-    if action not in ['skipped', 'snoozed']:
-        return
-    
     try:
+        # Get the reminder to check consecutive_skips
+        reminder = await get_reminder(reminder_id, user_id)
+        if not reminder:
+            return
+        
+        consecutive_skips = reminder.get('consecutive_skips', 0)
+        
+        # Alert caregiver if skipped more than once
+        if action == 'skipped' and consecutive_skips > 1:
+            await send_skip_alert_to_caregiver(reminder_id, user_id, consecutive_skips)
+        
+    except Exception as e:
+        logger.error(f"Error checking caregiver alerts for reminder {reminder_id}: {str(e)}")
+
+async def send_skip_alert_to_caregiver(
+    reminder_id: str,
+    user_id: str,
+    skip_count: int
+) -> None:
+    """
+    Send alert to caregiver when patient skips reminder multiple times.
+    """
+    try:
+        # Get patient info
+        patient = await get_patient_info(user_id)
+        if not patient:
+            logger.error(f"Patient {user_id} not found for caregiver alert")
+            return
+        
+        patient_name = patient.get('full_name', 'Your patient')
+        
         # Get reminder details
         reminder = await get_reminder(reminder_id, user_id)
         if not reminder:
-            logger.warning(f"Reminder {reminder_id} not found for alert check")
             return
         
-        # Determine alert type
-        alert_type = None
-        
-        if action == 'skipped':
-            alert_type = 'skipped'
-        
-        elif action == 'snoozed':
-            # Only alert if snoozed multiple times (we allow 1 snooze in MVP)
-            # Since we only allow 1 snooze, this will trigger on the first snooze
-            # In future, you can check reminder['snoozed_count'] > 1
-            if reminder.get('snoozed_count', 0) >= 1:
-                alert_type = 'multiple_snoozes'
-        
-        if not alert_type:
-            return
-        
-        # Get patient info
-        patient_info = await get_patient_info(user_id)
-        if not patient_info:
-            logger.warning(f"Patient {user_id} not found")
-            return
-        
-        patient_name = patient_info.get('full_name', 'Your loved one')
-        
-        # Get caregiver(s) for this patient
-        caregivers = await _get_caregivers_for_patient(user_id)
-        
-        if not caregivers:
-            logger.info(f"No caregivers found for patient {user_id}, skipping alert")
-            return
-        
-        # Generate alert message
-        alert_message = await generate_caregiver_alert_message(
-            alert_type=alert_type,
-            reminder_title=reminder['title'],
-            reminder_type=reminder['reminder_type'],
-            patient_name=patient_name
-        )
-        
-        # Send alerts to all caregivers
-        for caregiver in caregivers:
-            try:
-                # Save alert to database
-                alert = await create_caregiver_alert(
-                    caregiver_id=caregiver['id'],
-                    user_id=user_id,
-                    reminder_id=reminder_id,
-                    alert_type=alert_type,
-                    message=alert_message
-                )
+        reminder_title = reminder.get('title', 'A reminder')
                 
-                if alert:
-                    # Send email notification (async, non-blocking)
-                    email_sent = await send_caregiver_alert_email(
-                        to_email=caregiver['email'],
-                        patient_name=patient_name,
-                        alert_message=alert_message,
-                        alert_id=alert['id']
-                    )
-                    
-                    if email_sent:
-                        logger.info(f"Alert sent to caregiver {caregiver['email']} for {alert_type}")
-                    else:
-                        logger.error(f"Failed to email caregiver {caregiver['email']}")
-                        
-            except Exception as e:
-                logger.error(f"Failed to send alert to caregiver {caregiver.get('id')}: {str(e)}")
-                # Continue with other caregivers
-                continue
-        
-    except Exception as e:
-        logger.error(f"Error in check_and_send_caregiver_alerts: {str(e)}")
-        # Don't re-raise - alerts are non-critical
+        caregiver_info = await get_patient_caregiver(user_id)
+        if not caregiver_info:
+            logger.info(f"No caregiver assigned to patient {user_id}, skipping alert")
+            return
 
+        caregiver_id = caregiver_info['caregiver_id']
+        caregiver_email = caregiver_info['email']
+        caregiver_name = caregiver_info.get('full_name', 'Caregiver')
 
-async def _get_caregivers_for_patient(user_id: str) -> list:
-    """
-    Get all caregivers linked to a patient.
-    Note: This assumes you have a relationship table or field.
-    """
-    from .db_service import get_supabase_client
-    
-    supabase = get_supabase_client()
-    
-    try:
-        # Assuming caregivers table has a way to link to patients
-        # You may need to adjust this query based on your schema
-        
-        # Option 1: If there's a user_id field in caregivers table
-        response = (
-            supabase.table("caregivers")
-            .select("id, email, full_name")
-            .eq("user_id", user_id)  # Adjust based on your schema
-            .execute()
+        # Create alert message
+        alert_message = (
+            f"{patient_name} has skipped '{reminder_title}' {skip_count} times in a row. "
+            f"Please check in with them to ensure they're staying on track with their health routine."
         )
         
-        # Option 2: If there's a separate caregiver_patients junction table
-        # response = (
-        #     supabase.table("caregiver_patients")
-        #     .select("caregiver:caregivers(id, email, full_name)")
-        #     .eq("user_id", user_id)
-        #     .execute()
-        # )
+        # Save alert to database
+        await create_caregiver_alert(
+            caregiver_id=caregiver_id,
+            user_id=user_id,
+            reminder_id=reminder_id,
+            alert_type="multiple_skips",
+            message=alert_message
+        )
         
-        return response.data or []
+        # Send email notification
+        email_sent = await send_caregiver_alert_email(
+            to_email=caregiver_email,
+            patient_name=patient_name,
+            alert_message=alert_message,
+            alert_id=reminder_id
+        )
+        
+        if email_sent:
+            logger.info(f"Caregiver alert sent for reminder {reminder_id} (skip count: {skip_count})")
+        else:
+            logger.error(f"Failed to send caregiver alert for reminder {reminder_id}")
         
     except Exception as e:
-        logger.error(f"Error fetching caregivers for patient {user_id}: {str(e)}")
-        return []
-
-
-async def trigger_alert_for_missed_reminder(reminder_id: str, user_id: str) -> None:
-    """
-    Manually trigger an alert for a missed reminder.
-    Called by the scheduler when a reminder is overdue.
-    """
-    await check_and_send_caregiver_alerts(
-        reminder_id=reminder_id,
-        user_id=user_id,
-        action='skipped'  # Treat missed as skipped
-    )
-    
+        logger.error(f"Error sending caregiver alert: {str(e)}")
