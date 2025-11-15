@@ -7,6 +7,7 @@ import datetime as datetime
 
 from typing import Dict
 from .db_service import log_ai_usage
+from .db_reminders import insert_ai_reminders
 
 async def generate_ai_summary(data: dict) -> Dict:
     
@@ -35,20 +36,40 @@ async def generate_ai_summary(data: dict) -> Dict:
         - Keep the tone friendly, natural, and easy to understand — AVOID medical jargon or technical terms.
         - Focus on clarity and empathy, as if explaining to a patient or caregiver.
         - Use the following keys:
-        "summary": a short, plain-language recap of what was discussed during the visit including (if mentioned) chief complaint, cause, and the primary plan. The text must be written entirely in the **third person** (e.g., "The patient presented with...", "The doctor recommended...").
-        "action_items": List **every** specific directive the doctor asked the patient to do next.
-        "questions_next_visit": Generate at least two simple, caring questions a patient might ask at their next appointment. Use 2–3 relevant questions from the following styles: routine, medication, chronic, or caregiver. Keep them short, supportive, and in plain language.
+        "summary": a short, plain-language recap of what was discussed during the visit including (if mentioned) chief complaint, cause, and the primary plan. The text must be written entirely in the **third person** (e.g., 'The patient presented with...', 'The doctor recommended...').
+        "action_items": List **every** specific directive the doctor asked the patient to do next. Do not personalize using you/your for example do not say 'Continue your blood-pressure check-up daily', Say 'Continue blood-pressure check-up daily'.
+        "questions_next_visit": Generate at least two simple, caring questions a patient might ask at their next appointment. Use 2-3 relevant questions from the following styles: routine, medication, chronic, or caregiver. Keep them short, supportive, and in plain language.
         "key_diagnoses": List **all** main diagnoses, conditions, or primary concerns mentioned (if any).
         "medications": List **all** medications mentioned (prescribed, existing, or discontinued).
-        "reminders": List of **all** time-based reminders Generate one sentence concise and clear reminder as an **instruction** based ONLY on the provided facts. 
-        Analyze for specific routines (e.g., medication times) or follow-up timeframes (e.g., next week). For each reminder, 
-        the text **MUST** include action with detail (e.g., 'Take sugar medication daily at 8 AM' or 'Schedule next check-up in December 2025'). 
+        "title": Generate a brief, descriptive title (3-5 words) for the visit based on the **type of visit** (Example Annual Checkup, Follow-up Visit, Lab Results Review). Do not use the chief complaint for title. If a title cannot be clearly determined from the transcript, return Doctor Office Visit.
+        "reminders": List **all** reminders and only those that are STRICTLY TIME-BASED (MUST contain a date, time, or specific duration like "in next month").
         Use Today's Date and Time to calculate precise future dates when a timeframe is mentioned.
 
+        The reminder text **MUST** be a COMPLETE instruction, that answers:
+        - WHAT needs to be done (specific action)
+        - WHO/WHAT it involves (doctor name, medication name, appointment type)
+        - WHEN it should be done (exact date/time or clear timeframe)
+        - Example: 'Take sugar medication daily at 8 AM' or 'Schedule next check-up in December 2025'.
+        - Do not personalize like 'your check-up'
+        - Do not be vague like 'Visit again next week' or 'Visit again after one week', instead say 'Schedule follow-up appointment on November 20, 2025' (**include WHEN**).
+        
+        Return in this format:
+        [{{
+                "text": "Take Lisinopril 10mg daily at 8 AM",
+                "type": "medication",
+                "scheduled_date": "2025-11-04",
+                "scheduled_time": "08:00",
+                "recurrence": "daily"
+        }}, {{..}}]
+        The 'type' field can be one of these only: **medication**, **appointment**, or **task**.
+        The 'recurrence' field can be one of these only: **daily**, **weekly**, **fortnightly**, **monthly**, **annually**, or **once**. Use 'once' for all single-event reminders, and 'fortnightly' for every two weeks.
+        Extract the date, time, and recurrence details from the instruction to populate the corresponding 'scheduled_date' (YYYY-MM-DD), 'scheduled_time' (HH:MM), and 'recurrence' fields.
+        If the transcript does not contain details like date or time, the value for the field MUST be an empty string. For example, do not fill dates/times/recurrence on assumptions.
+        
         Transcript:
         {transcript}
         """
-    
+
     try:
         start_time = time.time()
         response = model.generate_content(prompt)
@@ -75,7 +96,7 @@ async def generate_ai_summary(data: dict) -> Dict:
         await log_ai_usage(log_data)
 
         text_output = response.text.strip()
-
+        print("\n TEXT OUTPUT", text_output)
         start_json = text_output.find("{")
         end_json = text_output.rfind("}")
         json_string = text_output[start_json:end_json + 1]        
@@ -93,8 +114,20 @@ async def generate_ai_summary(data: dict) -> Dict:
             "key_diagnoses": json_output.get("key_diagnoses", []),
             "medications": json_output.get("medications", []),
             "reminders": json_output.get("reminders", []),
+            "title": json_output.get("title", "Doctor Office Visit"),
         }
+
+        user_id = data.get("user_id")
+        visit_id = data.get("visit_id")
         
+        if user_id and visit_id:
+            inserted_db_reminders = await insert_ai_reminders(
+                ai_summary_result=result, 
+                user_id=user_id, 
+                visit_id=visit_id,
+            )
+            print(f"Inserted {len(inserted_db_reminders)} reminders into the database.")
+
         # print("\nRESULT:", result)
         return result
         
@@ -106,7 +139,7 @@ async def generate_ai_summary(data: dict) -> Dict:
             "questions_next_visit": ["Could you clarify the diagnosis?"],
             "key_diagnoses": [],
             "medications": [],
-            "reminders": []
+            "reminders": [], "title": ""
         }
     except Exception as e:
         print(f"Gemini API error: {e}")

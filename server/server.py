@@ -14,11 +14,10 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from transformers import pipeline
 
-from backend.services.db_service import insert_visit_transcript, insert_initial_visit, update_transcript_visit_id, insert_visit_summary
-from backend.services.ai_service import generate_ai_summary
-from backend.routes import visit_summary
-from backend.routes.product_demo import demo_router
-from backend.routes.visit_summary import create_visit_summary
+from main_backend.services.db_service import insert_visit_transcript, insert_initial_visit, update_transcript_visit_id, insert_visit_summary
+from main_backend.services.ai_service import generate_ai_summary
+from main_backend.route import visit_summary, reminders
+from main_backend.route.product_demo import demo_router
 from utils import get_current_user
 from fastapi import Depends
 
@@ -188,7 +187,7 @@ async def health():
 
 app.include_router(visit_summary.router)
 app.include_router(demo_router)
-# app.include_router(reminders.router)
+app.include_router(reminders.router)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001)

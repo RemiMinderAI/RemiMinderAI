@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 async def check_and_send_caregiver_alerts(
     reminder_id: str,
-    patient_id: str,
+    user_id: str,
     action: str
 ) -> None:
     """
@@ -25,7 +25,7 @@ async def check_and_send_caregiver_alerts(
     
     Args:
         reminder_id: The reminder that was interacted with
-        patient_id: The patient who performed the action
+        user_id: The patient who performed the action
         action: 'completed', 'snoozed', 'skipped'
     """
     
@@ -35,7 +35,7 @@ async def check_and_send_caregiver_alerts(
     
     try:
         # Get reminder details
-        reminder = await get_reminder(reminder_id, patient_id)
+        reminder = await get_reminder(reminder_id, user_id)
         if not reminder:
             logger.warning(f"Reminder {reminder_id} not found for alert check")
             return
@@ -57,18 +57,18 @@ async def check_and_send_caregiver_alerts(
             return
         
         # Get patient info
-        patient_info = await get_patient_info(patient_id)
+        patient_info = await get_patient_info(user_id)
         if not patient_info:
-            logger.warning(f"Patient {patient_id} not found")
+            logger.warning(f"Patient {user_id} not found")
             return
         
         patient_name = patient_info.get('full_name', 'Your loved one')
         
         # Get caregiver(s) for this patient
-        caregivers = await _get_caregivers_for_patient(patient_id)
+        caregivers = await _get_caregivers_for_patient(user_id)
         
         if not caregivers:
-            logger.info(f"No caregivers found for patient {patient_id}, skipping alert")
+            logger.info(f"No caregivers found for patient {user_id}, skipping alert")
             return
         
         # Generate alert message
@@ -85,7 +85,7 @@ async def check_and_send_caregiver_alerts(
                 # Save alert to database
                 alert = await create_caregiver_alert(
                     caregiver_id=caregiver['id'],
-                    patient_id=patient_id,
+                    user_id=user_id,
                     reminder_id=reminder_id,
                     alert_type=alert_type,
                     message=alert_message
@@ -115,7 +115,7 @@ async def check_and_send_caregiver_alerts(
         # Don't re-raise - alerts are non-critical
 
 
-async def _get_caregivers_for_patient(patient_id: str) -> list:
+async def _get_caregivers_for_patient(user_id: str) -> list:
     """
     Get all caregivers linked to a patient.
     Note: This assumes you have a relationship table or field.
@@ -128,11 +128,11 @@ async def _get_caregivers_for_patient(patient_id: str) -> list:
         # Assuming caregivers table has a way to link to patients
         # You may need to adjust this query based on your schema
         
-        # Option 1: If there's a patient_id field in caregivers table
+        # Option 1: If there's a user_id field in caregivers table
         response = (
             supabase.table("caregivers")
             .select("id, email, full_name")
-            .eq("patient_id", patient_id)  # Adjust based on your schema
+            .eq("user_id", user_id)  # Adjust based on your schema
             .execute()
         )
         
@@ -140,25 +140,25 @@ async def _get_caregivers_for_patient(patient_id: str) -> list:
         # response = (
         #     supabase.table("caregiver_patients")
         #     .select("caregiver:caregivers(id, email, full_name)")
-        #     .eq("patient_id", patient_id)
+        #     .eq("user_id", user_id)
         #     .execute()
         # )
         
         return response.data or []
         
     except Exception as e:
-        logger.error(f"Error fetching caregivers for patient {patient_id}: {str(e)}")
+        logger.error(f"Error fetching caregivers for patient {user_id}: {str(e)}")
         return []
 
 
-async def trigger_alert_for_missed_reminder(reminder_id: str, patient_id: str) -> None:
+async def trigger_alert_for_missed_reminder(reminder_id: str, user_id: str) -> None:
     """
     Manually trigger an alert for a missed reminder.
     Called by the scheduler when a reminder is overdue.
     """
     await check_and_send_caregiver_alerts(
         reminder_id=reminder_id,
-        patient_id=patient_id,
+        user_id=user_id,
         action='skipped'  # Treat missed as skipped
     )
     

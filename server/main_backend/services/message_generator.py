@@ -5,8 +5,8 @@ import logging
 import google.generativeai as genai
 from typing import Dict, Optional, Any
 
-from services.db_reminders import get_templates_by_type
-from services.db_service import get_prompt_text_supabase, log_ai_usage
+from main_backend.services.db_reminders import get_templates_by_type
+from main_backend.services.db_service import get_prompt_text_supabase, log_ai_usage
 
 logger = logging.getLogger(__name__)
 

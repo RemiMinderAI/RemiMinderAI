@@ -1,14 +1,13 @@
-#backend\routes\visit_summary.py
+#backend\route\visit_summary.py
 from fastapi import APIRouter, HTTPException
-from schemas.schemas import VisitSummary, VisitSummaryPayload
-from services.db_service import (
+from main_backend.schemas.schemas import VisitSummary, VisitSummaryPayload
+from main_backend.services.db_service import (
     fetch_visit_transcript,
     fetch_visit_summary,
     insert_visit_summary,
     fetch_all_visit_summaries,
-    delete_visit,
 )
-from services.ai_service import generate_ai_summary
+from main_backend.services.ai_service import generate_ai_summary
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
 
@@ -73,20 +72,3 @@ async def get_all_summaries(user_id: str):
         })
     
     return formatted_summaries
-
-@router.delete("/visit-summaries/{visit_id}")
-async def delete_visit_summary(visit_id: str, user_id: str):
-    """Delete a visit and all associated data"""
-    # First get the user_id from auth_uid
-    from services.db_service import get_supabase_client
-    supabase = get_supabase_client()
-    user_res = supabase.table("users").select("id").eq("auth_uid", user_id).execute()
-    if not user_res.data:
-        raise HTTPException(status_code=404, detail="User not found")
-    actual_user_id = user_res.data[0]["id"]
-
-    success = await delete_visit(visit_id, actual_user_id)
-    if not success:
-        raise HTTPException(status_code=500, detail="Failed to delete visit")
-
-    return {"message": "Visit deleted successfully"}

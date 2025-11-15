@@ -7,7 +7,7 @@ from uuid import UUID
 # REQUEST SCHEMAS
 # ============================================================================
 class ReminderCreate(BaseModel):
-    patient_id: UUID
+    user_id: UUID
     visit_id: Optional[UUID] = None
     reminder_type: Literal["medication", "task", "appointment"]
     title: str
@@ -32,7 +32,7 @@ class ReminderAction(BaseModel):
 
 class ReminderResponse(BaseModel):
     id: UUID
-    patient_id: UUID
+    user_id: UUID
     visit_id: Optional[UUID]
     
     title: str
@@ -80,7 +80,7 @@ class ReminderListResponse(BaseModel):
 class ReminderLogResponse(BaseModel):
     id: str
     reminder_id: str
-    patient_id: str
+    user_id: str
     action: str
     timestamp: datetime
     notes: Optional[str]
@@ -96,7 +96,7 @@ class ReminderLogResponse(BaseModel):
 class CaregiverAlertResponse(BaseModel):
     id: str
     caregiver_id: str
-    patient_id: str
+    user_id: str
     reminder_id: str
     alert_type: str
     message: str
@@ -127,7 +127,7 @@ class AlertsSummary(BaseModel):
     unread_alerts: int
 
 class CaregiverDashboardResponse(BaseModel):
-    patient_id: str
+    user_id: str
     patient_name: str
     next_reminders: List[NextReminderSummary]
     recent_activity: List[RecentActivitySummary]
