@@ -2,10 +2,17 @@
 
 echo "Starting MediMinder servers..."
 
+# Activate virtual environment if it exists
+if [ -f "venv/Scripts/activate" ]; then
+    source venv/Scripts/activate  # Windows Git Bash
+elif [ -f "venv/bin/activate" ]; then
+    source venv/bin/activate  # Linux/Mac
+fi
+
 # Start main backend on port 8000
 echo "Starting main backend..."
 cd server/main_backend
-uvicorn main:app --reload --host 0.0.0.0 --port 8000 &
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000 &
 MAIN_BACKEND_PID=$!
 cd - > /dev/null
 
