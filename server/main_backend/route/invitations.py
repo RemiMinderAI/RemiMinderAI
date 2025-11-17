@@ -77,11 +77,14 @@ async def send_invitation(
             }).eq("id", invite["id"]).execute()
 
             # send email with new token
-            await send_invite_email(
-                to_email=request_data.caregiver_email,
-                invite_token=invite_token,
-                patient_name=patient_name
-            )
+            try:
+                await send_invite_email(
+                    to_email=request_data.caregiver_email,
+                    invite_token=invite_token,
+                    patient_name=patient_name
+                )
+            except Exception as e:
+                print(f"Failed to send invitation email to {request_data.caregiver_email}: {e}")
 
             return {
                 "message": f"Invitation re-sent successfully to {request_data.caregiver_email}.",
@@ -105,12 +108,16 @@ async def send_invitation(
     }).execute()
 
     # 5️ Send email with token link
-    await send_invite_email(
-        to_email=request_data.caregiver_email,
-        invite_token=invite_token,
-        patient_name=patient_name
+    try:
+        await send_invite_email(
+            to_email=request_data.caregiver_email,
+            invite_token=invite_token,
+            patient_name=patient_name
         )
-    
+    except Exception as e:
+        print(f"Failed to send invitation email to {request_data.caregiver_email}: {e}")
+        # Continue anyway, as the invitation is created in DB
+
     return {
         "message": f"Invitation sent successfully to {request_data.caregiver_email}.",
         "token": invite_token,
