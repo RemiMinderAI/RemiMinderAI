@@ -23,6 +23,13 @@ python server.py &
 TRANSCRIPTION_BACKEND_PID=$!
 cd - > /dev/null
 
+# Start reminder scheduler
+echo "Starting reminder scheduler..."
+cd server/main_backend
+python reminder_scheduler.py &
+REMINDER_SCHEDULER_PID=$!
+cd - > /dev/null
+
 # Start frontend on port 3000
 echo "Starting frontend..."
 cd frontend
@@ -38,5 +45,5 @@ echo ""
 echo "Press Ctrl+C to stop all servers"
 
 # Wait for Ctrl+C
-trap "echo 'Stopping servers...'; kill $MAIN_BACKEND_PID $TRANSCRIPTION_BACKEND_PID $FRONTEND_PID 2>/dev/null; exit" INT
+trap "echo 'Stopping servers...'; kill $MAIN_BACKEND_PID $TRANSCRIPTION_BACKEND_PID $REMINDER_SCHEDULER_PID $FRONTEND_PID 2>/dev/null; exit" INT
 wait
