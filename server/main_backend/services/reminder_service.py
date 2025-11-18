@@ -1,7 +1,7 @@
 import logging
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone, timedelta
-from models.reminder_schemas import ReminderCreate, ReminderUpdate, ReminderAction
+from main_backend.schemas.reminder_schemas import ReminderCreate, ReminderUpdate, ReminderAction
 from .db_reminders import (
     create_reminder as db_create_reminder,
     get_reminder,
@@ -16,6 +16,7 @@ from .db_reminders import (
     get_alerts_summary,
     get_patient_info
 )
+
 from .message_generator import generate_reminder_message
 from .alert_service import check_and_send_caregiver_alerts
 import asyncio
@@ -133,7 +134,7 @@ async def create_new_reminder(data: ReminderCreate) -> Optional[Dict[str, Any]]:
         
         # Prepare data for database
         reminder_data = {
-            "patient_id": data.patient_id,
+            "user_id": data.user_id,
             "visit_id": data.visit_id,
             "reminder_type": data.reminder_type,
             "title": data.title,
@@ -147,7 +148,7 @@ async def create_new_reminder(data: ReminderCreate) -> Optional[Dict[str, Any]]:
         reminder = await db_create_reminder(reminder_data)
         
         if reminder:
-            logger.info(f"✅ Created reminder {reminder['id']} for patient {data.patient_id}")
+            logger.info(f"✅ Created reminder {reminder['id']} for patient {data.user_id}")
             return _enrich_reminder_response(reminder)
         
         return None
@@ -157,9 +158,9 @@ async def create_new_reminder(data: ReminderCreate) -> Optional[Dict[str, Any]]:
         raise
 
 
-async def get_reminder_by_id(reminder_id: str, patient_id: str) -> Optional[Dict[str, Any]]:
+async def get_reminder_by_id(reminder_id: str, user_id: str) -> Optional[Dict[str, Any]]:
     """Get a single reminder with display fields."""
-    reminder = await get_reminder(reminder_id, patient_id)
+    reminder = await get_reminder(reminder_id, user_id)
     
     if reminder:
         return _enrich_reminder_response(reminder)
@@ -167,12 +168,12 @@ async def get_reminder_by_id(reminder_id: str, patient_id: str) -> Optional[Dict
     return None
 
 
-async def list_patient_reminders(patient_id: str) -> Dict[str, Any]:
+async def list_patient_reminders(user_id: str) -> Dict[str, Any]:
     """
     Get all reminders for a patient, organized by category.
     Returns data matching frontend UI structure.
     """
-    all_reminders = await get_all_reminders(patient_id)
+    all_reminders = await get_all_reminders(user_id)
     
     # Enrich all reminders
     enriched = [_enrich_reminder_response(r) for r in all_reminders]
@@ -228,16 +229,16 @@ async def list_patient_reminders(patient_id: str) -> Dict[str, Any]:
 
 async def update_reminder_details(
     reminder_id: str,
-    patient_id: str,
+    user_id: str,
     updates: ReminderUpdate
 ) -> Optional[Dict[str, Any]]:
     """Update reminder details."""
-    update_dict = updates.dict(exclude_unset=True)
+    update_dict = updates.model_dump(exclude_unset=True)
     
     if not update_dict:
-        return await get_reminder_by_id(reminder_id, patient_id)
+        return await get_reminder_by_id(reminder_id, user_id)
     
-    reminder = await db_update_reminder(reminder_id, patient_id, update_dict)
+    reminder = await db_update_reminder(reminder_id, user_id, update_dict)
     
     if reminder:
         logger.info(f"✅ Updated reminder {reminder_id}")
@@ -246,9 +247,9 @@ async def update_reminder_details(
     return None
 
 
-async def cancel_reminder(reminder_id: str, patient_id: str) -> bool:
+async def cancel_reminder(reminder_id: str, user_id: str) -> bool:
     """Delete/cancel a reminder."""
-    success = await db_delete_reminder(reminder_id, patient_id)
+    success = await db_delete_reminder(reminder_id, user_id)
     
     if success:
         logger.info(f"✅ Deleted reminder {reminder_id}")
@@ -260,14 +261,29 @@ async def cancel_reminder(reminder_id: str, patient_id: str) -> bool:
 # ============================================================================
 async def complete_reminder(
     reminder_id: str,
-    patient_id: str,
+    user_id: str,
     action_data: ReminderAction
 ) -> Optional[Dict[str, Any]]:
-    """Mark a reminder as completed."""
-    reminder = await mark_reminder_complete(reminder_id, patient_id, action_data.notes)
+    """Mark a reminder as completed and create next recurring instance."""
+    
+    # Get the reminder first to check recurrence
+    reminder_data = await get_reminder(reminder_id, user_id)
+    if not reminder_data:
+        return None
+    
+    # Mark as complete (this already resets consecutive_skips in db_reminders.py)
+    reminder = await mark_reminder_complete(reminder_id, user_id, action_data.notes)
     
     if reminder:
-        logger.info(f"✅ Completed reminder {reminder_id}")
+        logger.info(f"Completed reminder {reminder_id}")
+        
+        # If recurring, create next instance immediately
+        if reminder_data.get('recurrence') and reminder_data['recurrence'] != 'once':
+            from .db_reminders import create_recurring_reminder
+            new_reminder = await create_recurring_reminder(reminder_data)
+            if new_reminder:
+                logger.info(f"Created next recurring reminder {new_reminder['id']} from {reminder_id}")
+        
         return _enrich_reminder_response(reminder)
     
     return None
@@ -275,18 +291,19 @@ async def complete_reminder(
 
 async def snooze_reminder(
     reminder_id: str,
-    patient_id: str,
+    user_id: str,
     snooze_minutes: int = 30
 ) -> Optional[Dict[str, Any]]:
-    """Snooze a reminder (only once in MVP)."""
-    reminder = await db_snooze_reminder(reminder_id, patient_id, snooze_minutes)
+    """Snooze a reminder by updating scheduled_time. Status changes to 'snoozed'."""
+    
+    reminder = await db_snooze_reminder(reminder_id, user_id, snooze_minutes)
     
     if reminder:
         logger.info(f"Snoozed reminder {reminder_id} for {snooze_minutes} minutes")
         
         # Trigger caregiver alert asynchronously
         asyncio.create_task(
-            check_and_send_caregiver_alerts(reminder_id, patient_id, 'snoozed')
+            check_and_send_caregiver_alerts(reminder_id, user_id, 'snoozed')
         )
         
         return _enrich_reminder_response(reminder)
@@ -296,18 +313,32 @@ async def snooze_reminder(
 
 async def skip_reminder(
     reminder_id: str,
-    patient_id: str,
+    user_id: str,
     action_data: ReminderAction
 ) -> Optional[Dict[str, Any]]:
-    """Skip a reminder with optional reason."""
-    reminder = await db_skip_reminder(reminder_id, patient_id, action_data.notes)
+    """Skip a reminder with optional reason and create next recurring instance."""
+    
+    # Get the reminder first to check recurrence
+    reminder_data = await get_reminder(reminder_id, user_id)
+    if not reminder_data:
+        return None
+    
+    # Skip the reminder (this already increments consecutive_skips in db_reminders.py)
+    reminder = await db_skip_reminder(reminder_id, user_id, action_data.notes)
     
     if reminder:
-        logger.info(f"✅ Skipped reminder {reminder_id}")
+        logger.info(f"Skipped reminder {reminder_id}")
+        
+        # If recurring, create next instance immediately
+        if reminder_data.get('recurrence') and reminder_data['recurrence'] != 'once':
+            from .db_reminders import create_recurring_reminder
+            new_reminder = await create_recurring_reminder(reminder_data)
+            if new_reminder:
+                logger.info(f"Created next recurring reminder {new_reminder['id']} from {reminder_id}")
         
         # Trigger caregiver alert asynchronously (non-blocking)
         asyncio.create_task(
-            check_and_send_caregiver_alerts(reminder_id, patient_id, 'skipped')
+            check_and_send_caregiver_alerts(reminder_id, user_id, 'skipped')
         )
         
         return _enrich_reminder_response(reminder)
@@ -319,17 +350,17 @@ async def skip_reminder(
 # CAREGIVER DASHBOARD
 # ============================================================================
 
-async def get_caregiver_dashboard_data(caregiver_id: str, patient_id: str) -> Dict[str, Any]:
+async def get_caregiver_dashboard_data(caregiver_id: str, user_id: str) -> Dict[str, Any]:
     """
     Get aggregated data for caregiver dashboard.
     """
     try:
         # Get patient info
-        patient_info = await get_patient_info(patient_id)
+        patient_info = await get_patient_info(user_id)
         patient_name = patient_info.get('full_name', 'Patient') if patient_info else 'Patient'
         
         # Get next upcoming reminders
-        next_reminders_raw = await get_next_reminders_for_patient(patient_id, limit=5)
+        next_reminders_raw = await get_next_reminders_for_patient(user_id, limit=5)
         next_reminders = [
             {
                 "id": r['id'],
@@ -342,7 +373,7 @@ async def get_caregiver_dashboard_data(caregiver_id: str, patient_id: str) -> Di
         ]
         
         # Get recent activity (last 24 hours)
-        recent_activity_raw = await get_recent_activity_for_patient(patient_id, hours=24)
+        recent_activity_raw = await get_recent_activity_for_patient(user_id, hours=24)
         recent_activity = [
             {
                 "reminder_id": a['reminder_id'],
@@ -353,10 +384,10 @@ async def get_caregiver_dashboard_data(caregiver_id: str, patient_id: str) -> Di
             for a in recent_activity_raw
         ]
         
-        alerts_summary = await get_alerts_summary(caregiver_id, patient_id)
+        alerts_summary = await get_alerts_summary(caregiver_id, user_id)
         
         return {
-            "patient_id": patient_id,
+            "user_id": user_id,
             "patient_name": patient_name,
             "next_reminders": next_reminders,
             "recent_activity": recent_activity,

@@ -1,24 +1,35 @@
 import os
 from supabase import create_client, Client
 from typing import List, Optional, Dict, Any
-
+import random
 def get_supabase_client() -> Client:
     SUPABASE_URL=os.getenv("SUPABASE_URL")
     SUPABASE_SERVICE_ROLE_KEY=os.getenv("SUPABASE_SERVICE_ROLE_KEY")
     return create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
-async def fetch_visit_transcript(visit_id: str, user_id: str) -> Optional[Dict[str, Any]]:
+async def get_doctor() -> Optional[Dict[str, Any]]:
+    supabase = get_supabase_client()
+    response = supabase.table("doctors").select("name, specialty").execute()
+    
+    if not response.data:
+        print("Error fetching doctor details.", response)
+        return None
+
+    return random.choice(response.data)
+
+async def fetch_visit_transcript(visit_id: str, user_id: str, transcript_id: str) -> Optional[Dict[str, Any]]:
     """Fetch transcript text for a specific visit."""
     supabase = get_supabase_client()
 
     response = (
         supabase.table("visits")
         .select(
-            "doctor, transcript_id,title, status, specialty, "
+            "doctor, title, status, specialty, "
             "visit_transcripts(transcript_text, audio_url)"
         )
         .eq("id", visit_id)
         .eq("user_id", user_id)
+        .eq("transcript_id", transcript_id)
         .single()
         .execute()
     )
@@ -36,38 +47,49 @@ async def fetch_visit_transcript(visit_id: str, user_id: str) -> Optional[Dict[s
 
     return None
 
-
 async def fetch_visit_summary(visit_id: str, user_id: str) -> Optional[Dict[str, Any]]:
-    """Fetch a single visit summary with its transcript."""
+    """Fetch a single visit summary with related visit details."""
     supabase = get_supabase_client()
 
     response = (
         supabase.table("visit_summaries")
-        .select(
-            "*, visit_transcripts(transcript_text, audio_url)"
-        )
-        .eq("visit_id", visit_id)
+        .select("*, visits(title, status, doctor, specialty, duration, created_at)")
+        .eq("id", visit_id)
         .eq("user_id", user_id)
         .single()
         .execute()
     )
 
-    return response.data if response.data else None
+    data = response.data
+    if not data:
+        return None
+
+    visit_info = data.get("visits", {}) or {}
+
+    action_items = data.get("action_items", [])
+    if isinstance(action_items, str):
+        action_items = [a.strip() for a in action_items.split(",") if a.strip()]
+
+    return {
+        "id": data.get("id"),
+        "title": visit_info.get("title"),
+        "status": visit_info.get("status"),
+        "doctor": visit_info.get("doctor"),
+        "specialty": visit_info.get("specialty"),
+        "duration": visit_info.get("duration"),
+        "created_at": visit_info.get("created_at"),
+        "summary": data.get("summary"),
+        "keyPoints": action_items,
+    }
 
 
-async def fetch_all_visit_summaries(auth_uid: str) -> List[Dict[str, Any]]:
+async def fetch_all_visit_summaries(user_id: str) -> List[Dict[str, Any]]:
     """Fetch all summaries for a patient (no transcript)."""
     supabase = get_supabase_client()
 
-    # First get the user_id from users table
-    user_res = supabase.table("users").select("id").eq("auth_uid", auth_uid).execute()
-    if not user_res.data:
-        return []
-    user_id = user_res.data[0]["id"]
-
     response = (
         supabase.table("visit_summaries")
-        .select("*, visits(title, status, doctor, specialty, duration)")
+        .select("*, visits(title, status, doctor, specialty, duration, created_at)")
         .eq("user_id", user_id)
         .order("created_at", desc=True)
         .execute()
@@ -92,7 +114,7 @@ async def insert_visit_summary(
 ) -> Optional[Dict[str, Any]]:
 
     supabase = get_supabase_client()
-
+    print("SUMMARY DATA", summary_data)
     data = {
         "visit_id": visit_id,
         "user_id": user_id,
@@ -102,7 +124,11 @@ async def insert_visit_summary(
         "questions_next_visit": _list_to_comma_separated(summary_data.get("questions_next_visit", [])),
         "key_diagnoses": _list_to_comma_separated(summary_data.get("key_diagnoses", [])),
         "medications": _list_to_comma_separated(summary_data.get("medications", [])),
+        "reminders": _list_to_comma_separated(summary_data.get("reminders", [])),
     }
+
+    title = summary_data.get("title", "New Recorded Visit")
+    await update_visit_title(visit_id, user_id, title)
 
     response = supabase.table("visit_summaries").insert(data).execute()
     return response.data if response.data else None
@@ -117,16 +143,44 @@ async def insert_visit_transcript(transcript_text: str) -> Optional[Dict[str, An
 async def insert_initial_visit(user_id: str, transcript_id: str) -> Optional[Dict[str, Any]]:
     """Creates the initial visit record."""
     supabase = get_supabase_client()
+
+    random_doctor = await get_doctor()
+
+    if not random_doctor:
+        doctor_name = "General Physician"
+        doctor_specialty = "General Practice"
+    else:
+        doctor_name = random_doctor['name']
+        doctor_specialty = random_doctor['specialty']
+
     data = {
         "user_id": user_id,
         "transcript_id": transcript_id,
         "title": "New Recorded Visit",
         "status": "pending",
-        "doctor": "TBD",
-        "specialty": "TBD",
+        "doctor": doctor_name,
+        "specialty": doctor_specialty,
     }
     response = supabase.table("visits").insert(data).execute()
     return response.data[0] if response.data else None
+
+async def update_visit_title(visit_id: str, user_id: str, new_title: str) -> Optional[Dict[str, Any]]:
+    supabase = get_supabase_client()
+
+    response = (
+        supabase.table("visits")
+        .update({"title": new_title})
+        .eq("id", visit_id)
+        .eq("user_id", user_id)
+        .execute()
+    )
+
+    if response.data:
+        print(f"Updated visit {visit_id} title to: {new_title}")
+        return response.data[0]
+
+    print(f"No visit found with id {visit_id}")
+    return None
 
 async def update_transcript_visit_id(transcript_id: str, visit_id: str, user_id: str) -> Optional[Dict[str, Any]]:
     """
@@ -149,28 +203,9 @@ async def update_transcript_visit_id(transcript_id: str, visit_id: str, user_id:
 #-------------------------------------------------------------#
 # AI
 #-------------------------------------------------------------#
-async def log_ai_usage(data: Dict):
+async def log_ai_usage(data: Dict):    
     supabase = get_supabase_client()
     supabase.table("ai_usage").insert(data).execute()
-
-async def delete_visit(visit_id: str, user_id: str) -> bool:
-    """Delete a visit and all associated data (summary and transcript)."""
-    supabase = get_supabase_client()
-
-    try:
-        # First delete the visit summary
-        supabase.table("visit_summaries").delete().eq("visit_id", visit_id).eq("user_id", user_id).execute()
-
-        # Then delete the transcript
-        supabase.table("visit_transcripts").delete().eq("visit_id", visit_id).eq("user_id", user_id).execute()
-
-        # Finally delete the visit
-        supabase.table("visits").delete().eq("id", visit_id).eq("user_id", user_id).execute()
-
-        return True
-    except Exception as e:
-        print(f"Error deleting visit: {e}")
-        return False
 
 
 
@@ -217,3 +252,4 @@ def get_prompt_text_supabase(category: str, limit: int = 2):
         base_prompt = ""
     
     return base_prompt, examples
+
