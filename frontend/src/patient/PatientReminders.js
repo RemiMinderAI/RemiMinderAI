@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Trash2, Calendar, Activity, Pill, Link as LinkIcon, FileText, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import styles from './PatientReminders.module.css';
 import CreateReminderModal from './PatientReminderModal';
 
@@ -14,6 +15,7 @@ const mockDisabledReminders = [
 ];
 
 const RemindersListPage = () => {
+  const navigate = useNavigate();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [activeReminders, setActiveReminders] = useState(mockActiveReminders);
   const [disabledReminders, setDisabledReminders] = useState(mockDisabledReminders);
@@ -89,7 +91,7 @@ const RemindersListPage = () => {
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.headerLeft}>
-          <button className={styles.backButton}>
+          <button className={styles.backButton} onClick={() => navigate('/patient-dashboard')}>
             <ArrowLeft size={20} />
           </button>
           <div>
