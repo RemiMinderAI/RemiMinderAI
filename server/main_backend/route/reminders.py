@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, status, Body
+from fastapi import APIRouter, HTTPException, status, Body, Depends
 from typing import List, Optional
 import logging
 
-from ..schemas.reminder_schemas import (
+from schemas.reminder_schemas import (
     ReminderCreate,
     ReminderUpdate,
     ReminderAction,
@@ -11,7 +11,7 @@ from ..schemas.reminder_schemas import (
     CaregiverAlertResponse,
     CaregiverDashboardResponse
 )
-from ..services.reminder_service import (
+from services.reminder_service import (
     create_new_reminder,
     get_reminder_by_id,
     list_patient_reminders,
@@ -22,21 +22,24 @@ from ..services.reminder_service import (
     skip_reminder,
     get_caregiver_dashboard_data
 )
-from ..services.db_reminders import (
+from services.db_reminders import (
     get_caregiver_alerts,
     mark_alert_as_read
 )
+from services.auth import get_current_user
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api", tags=["reminders"])
 
 @router.post("/reminders", response_model=ReminderResponse, status_code=status.HTTP_201_CREATED)
-async def create_reminder(data: ReminderCreate):
+async def create_reminder(data: ReminderCreate, user_id: str = Depends(get_current_user)):
     """
     Create a new reminder with AI-generated personalized message.
     """
     try:
+        # associate with authenticated user
+        data.user_id = user_id
         reminder = await create_new_reminder(data)
         
         if not reminder:
@@ -56,7 +59,7 @@ async def create_reminder(data: ReminderCreate):
 
 # Get user_id from JWT token instead of query param
 @router.get("/reminders", response_model=ReminderListResponse)
-async def get_patient_reminders(user_id: Optional[str]=None):
+async def get_patient_reminders(user_id: str = Depends(get_current_user)):
     """
     Get all reminders for a patient, organized by category (today, upcoming, past).
     """
@@ -72,13 +75,13 @@ async def get_patient_reminders(user_id: Optional[str]=None):
         )
 
 @router.get("/reminders/{reminder_id}", response_model=ReminderResponse)
-async def get_reminder(reminder_id: str, user_id: Optional[str]=None):
+async def get_reminder(reminder_id: str, user_id: str = Depends(get_current_user)):
     """
     Get a single reminder by ID.
     """
     try:
         reminder = await get_reminder_by_id(reminder_id, user_id)
-        
+
         if not reminder:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -86,9 +89,7 @@ async def get_reminder(reminder_id: str, user_id: Optional[str]=None):
             )
         
         return reminder
-        
-    except HTTPException:
-        raise
+
     except Exception as e:
         logger.error(f"Error in get_reminder: {str(e)}")
         raise HTTPException(
@@ -98,13 +99,13 @@ async def get_reminder(reminder_id: str, user_id: Optional[str]=None):
 
 
 @router.put("/reminders/{reminder_id}", response_model=ReminderResponse)
-async def update_reminder(reminder_id: str, user_id: str, updates: ReminderUpdate):
+async def update_reminder(reminder_id: str, user_id: str = Depends(get_current_user), updates: ReminderUpdate = Body(...)):
     """
     Update a reminder (time, title, status, etc.).
     """
     try:
         reminder = await update_reminder_details(reminder_id, user_id, updates)
-        
+
         if not reminder:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -112,9 +113,7 @@ async def update_reminder(reminder_id: str, user_id: str, updates: ReminderUpdat
             )
         
         return reminder
-        
-    except HTTPException:
-        raise
+    
     except Exception as e:
         logger.error(f"Error in update_reminder: {str(e)}")
         raise HTTPException(
@@ -124,13 +123,13 @@ async def update_reminder(reminder_id: str, user_id: str, updates: ReminderUpdat
 
 
 @router.delete("/reminders/{reminder_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_reminder(reminder_id: str, user_id: str):
+async def delete_reminder(reminder_id: str, user_id: str = Depends(get_current_user)):
     """
     Cancel/delete a reminder.
     """
     try:
         success = await cancel_reminder(reminder_id, user_id)
-        
+
         if not success:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -138,9 +137,7 @@ async def delete_reminder(reminder_id: str, user_id: str):
             )
         
         return None
-        
-    except HTTPException:
-        raise
+    
     except Exception as e:
         logger.error(f"Error in delete_reminder: {str(e)}")
         raise HTTPException(
@@ -152,7 +149,7 @@ async def delete_reminder(reminder_id: str, user_id: str):
 @router.post("/reminders/{reminder_id}/complete", response_model=ReminderResponse)
 async def mark_complete(
     reminder_id: str, 
-    user_id: str, 
+    user_id: str = Depends(get_current_user),
     action: ReminderAction = Body(default=ReminderAction())
 ):
     """
@@ -168,9 +165,7 @@ async def mark_complete(
             )
         
         return reminder
-        
-    except HTTPException:
-        raise
+    
     except Exception as e:
         logger.error(f"Error in mark_complete: {str(e)}")
         raise HTTPException(
@@ -181,7 +176,7 @@ async def mark_complete(
 @router.post("/reminders/{reminder_id}/snooze", response_model=ReminderResponse)
 async def snooze_reminder_post(
     reminder_id: str,
-    user_id: str,
+    user_id: str = Depends(get_current_user),
     snooze_minutes: int = 30
 ):
     """
@@ -197,9 +192,7 @@ async def snooze_reminder_post(
             )
         
         return reminder
-        
-    except HTTPException:
-        raise
+    
     except Exception as e:
         logger.error(f"Error in snooze_reminder: {str(e)}")
         raise HTTPException(
@@ -210,7 +203,7 @@ async def snooze_reminder_post(
 @router.post("/reminders/{reminder_id}/skip", response_model=ReminderResponse)
 async def skip_reminder_post(
     reminder_id: str, 
-    user_id: str, 
+    user_id: str = Depends(get_current_user),
     action: ReminderAction = Body(default=ReminderAction())
 ):
     
@@ -219,7 +212,7 @@ async def skip_reminder_post(
     """
     try:
         reminder = await skip_reminder(reminder_id, user_id, action)
-        
+
         if not reminder:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -227,9 +220,7 @@ async def skip_reminder_post(
             )
         
         return reminder
-        
-    except HTTPException:
-        raise
+
     except Exception as e:
         logger.error(f"Error in skip_reminder: {str(e)}")
         raise HTTPException(
@@ -243,7 +234,7 @@ async def skip_reminder_post(
 # ============================================================================
 
 @router.get("/caregivers/{caregiver_id}/activity", response_model=CaregiverDashboardResponse)
-async def get_caregiver_activity(caregiver_id: str, user_id: str):
+async def get_caregiver_activity(caregiver_id: str, user_id: str = Depends(get_current_user)):
     """
     Get aggregated activity data for caregiver dashboard.
     Shows next reminders, recent activity, and alert summary.
@@ -251,7 +242,7 @@ async def get_caregiver_activity(caregiver_id: str, user_id: str):
     try:
         dashboard_data = await get_caregiver_dashboard_data(caregiver_id, user_id)
         return dashboard_data
-        
+    
     except Exception as e:
         logger.error(f"Error in get_caregiver_activity: {str(e)}")
         raise HTTPException(
@@ -283,7 +274,7 @@ async def mark_alert_read(alert_id: str, caregiver_id: str):
     """
     try:
         alert = await mark_alert_as_read(alert_id, caregiver_id)
-        
+
         if not alert:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -291,9 +282,7 @@ async def mark_alert_read(alert_id: str, caregiver_id: str):
             )
         
         return alert
-        
-    except HTTPException:
-        raise
+    
     except Exception as e:
         logger.error(f"Error in mark_alert_read: {str(e)}")
         raise HTTPException(

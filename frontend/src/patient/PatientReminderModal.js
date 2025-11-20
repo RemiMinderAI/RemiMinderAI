@@ -60,9 +60,7 @@ const CreateReminderModal = ({ onClose, onCreate }) => {
               <option value="" disabled>Choose a type</option>
               <option value="Medication">Medication</option>
               <option value="Appointment">Appointment</option>
-              <option value="Exercise">Exercise</option>
-              <option value="Lab">Lab Work</option>
-              <option value="Other">Other Activity</option>
+              <option value="Task">Task</option>
             </select>
           </div>
 

@@ -15,18 +15,96 @@ import {
 } from "lucide-react";
 import styles from "./PatientDashboard.module.css";
 
+const API_URL = process.env.REACT_APP_MAIN_BACKEND_URL || "http://localhost:8000";
+
 export default function PatientDashboard() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState("");
-  const reminders = JSON.parse(localStorage.getItem('mockReminders') || '[]');
-  const [hasTodayReminder, setHasTodayReminder] = useState(false);
+  const [reminders, setReminders] = useState([]);
+  const [todayReminders, setTodayReminders] = useState([]);
   const audioRef = useRef(null);
+
+  // helper to get auth header
+  async function getAuthHeaders() {
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const token = session?.access_token;
+      return token ? { Authorization: `Bearer ${token}` } : {};
+    } catch (err) {
+      console.warn("Could not get supabase session:", err);
+      return {};
+    }
+  }
+
+  useEffect(() => {
+    async function fetchNowReminders() {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session?.user) return;
   
-  const todayReminders = reminders.filter(r =>
-    r.status === 'Active' || (r.status === 'Snoozed' && new Date() - new Date(r.snoozeAt) >= 5 * 1000)
-  );  
+        const headers = await getAuthHeaders();
+  
+        const url = new URL(`${API_URL}/api/reminders`);
+        url.searchParams.set("user_id", session.user.id);
+  
+        const res = await fetch(url.toString(), {
+          method: "GET",
+          headers: { "Content-Type": "application/json", ...headers },
+        });
+  
+        if (!res.ok) {
+          console.error("Failed to fetch reminders");
+          return;
+        }
+  
+        const data = await res.json();
+        console.log("Dashboard fetch - full server response:", data);
+  
+        // Combine everything like Reminders page does
+        const all = [
+          ...(data.today || []),
+          ...(data.upcoming || []),
+          ...(data.past || []),
+        ];
+  
+        const now = new Date();
+        const seen = new Set();
+        const nowList = [];
+  
+        all.forEach(rem => {
+          if (seen.has(rem.id)) return;
+          seen.add(rem.id);
+  
+          let status = (rem.status || "").toLowerCase();
+          const sched = rem.scheduled_time ? new Date(rem.scheduled_time) : null;
+  
+          // pending but time has come → active
+          if (status === "pending" && sched && sched <= now) {
+            status = "active";
+          }
+  
+          // Now = active OR snoozed, and scheduled_time <= now
+          if ((status === "active" || status === "snoozed") && sched && sched <= now) {
+            nowList.push(rem);
+          }
+        });
+  
+        console.log("Dashboard NOW reminders:", nowList);
+  
+        setTodayReminders(nowList);
+        setReminders(all); // optional if you need full list
+  
+      } catch (err) {
+        console.error("Dashboard reminder fetch error:", err);
+      }
+    }
+  
+    fetchNowReminders();
+  }, []);  
 
   // Create the audio once
   useEffect(() => {
@@ -34,18 +112,14 @@ export default function PatientDashboard() {
     audioRef.current.volume = 0.5; // optional
   }, []);
 
-  // Watch the reminders
+  // 🔔 Play sound when new active/snoozed reminders appear
   useEffect(() => {
-    const activeToday = todayReminders.length > 0;
-
-    // Only play sound when changing from false → true
-    if (activeToday && !hasTodayReminder) {
-      audioRef.current?.play().catch(err => console.log("Audio play error:", err));
+    if (todayReminders.length > 0 && audioRef.current) {
+      audioRef.current.play().catch((err) => {
+        console.warn("Audio autoplay prevented:", err);
+      });
     }
-
-    // Update state for next check
-    setHasTodayReminder(activeToday);
-  }, [todayReminders, hasTodayReminder]);
+  }, [todayReminders]);
 
   useEffect(() => {
     async function loadUser() {
