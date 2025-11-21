@@ -8,6 +8,8 @@ import os
 import platform
 import logging
 
+from openai import OpenAI
+
 from typing import List, Optional, Dict, Any
 
 from contextlib import asynccontextmanager
@@ -15,7 +17,6 @@ from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from transformers import pipeline
 
 from main_backend.services.db_service import insert_visit_transcript, insert_initial_visit, update_transcript_visit_id, insert_visit_summary
 from main_backend.services.ai_service import generate_ai_summary
@@ -29,25 +30,39 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Detect operating system and set device
-system = platform.system()
-device = -1  # Default to CPU
+OPEN_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPEN_API_KEY)
 
-if system == "Darwin":  # macOS
-    device = "mps" if hasattr(os, 'uname') else -1  # Use MPS if available
-elif system == "Linux":
-    device = -1  # CPU (could add CUDA check)
-elif system == "Windows":
-    device = -1  # CPU
+def convert_audio_to_mp3(input_path: str, output_path: str = None) -> str:
+    """
+    Converts an audio file to MP3 format using FFmpeg.
 
-print(f"Running on {system}, using device: {device}")
+    Args:
+        input_path (str): Path to the input audio file (e.g., .webm, .wav, .m4a).
+        output_path (str, optional): Desired output path. If None, same directory with .mp3 extension.
 
-# Create ASR pipeline using pre-trained Whisper model
-asr_pipeline = pipeline(
-    "automatic-speech-recognition",
-    model="openai/whisper-base.en",
-    device=device
-)
+    Returns:
+        str: Path to the converted MP3 file.
+
+    Raises:
+        RuntimeError: If conversion fails.
+    """
+    if not output_path:
+        base, _ = os.path.splitext(input_path)
+        output_path = f"{base}.mp3"
+
+    try:
+        subprocess.run(
+            ['ffmpeg', '-y', '-i', input_path, '-vn', '-acodec', 'libmp3lame', '-q:a', '2', output_path],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        print(f"[Audio Conversion] Successfully converted {input_path} → {output_path}")
+        return output_path
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"Audio conversion failed: {e.stderr.decode()}") from e
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -73,7 +88,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="RemeMinder Unified API",
+    title="RemiMinder Unified API",
     description="Backend for recording, visit summaries, reminders, and AI processing",
     version="1.0.0",
     lifespan=lifespan # Attach the startup/shutdown logic
@@ -114,13 +129,19 @@ async def create_upload_file(file: UploadFile = File(...), current_user=Depends(
             shutil.copyfileobj(file.file, buffer)
 
         # --- TRANSCRIPTION STEP using local Whisper pipeline ---
+        mp3_file_path = convert_audio_to_mp3(local_file_path)
         try:
-            # Transcribe the audio file using the local pipeline
-            result = asr_pipeline(local_file_path)
-            transcription = result['text']
-
+            with open(mp3_file_path, "rb") as audio_file:
+                transcription = client.audio.transcriptions.create(
+                    model="gpt-4o-transcribe",
+                    file=audio_file,
+                    response_format="text"
+                )
+                
         except Exception as transcribe_error:
             raise Exception(f"Transcription failed: {transcribe_error}")
+
+        print("\nTRANSCRIPT:", transcription)
         # ----------------------------------------------------
 
         # --- STORE TRANSCRIPT IN SUPABASE ---
