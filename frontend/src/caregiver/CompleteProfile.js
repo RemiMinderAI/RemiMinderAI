@@ -60,7 +60,7 @@ const CompleteProfile = () => {
   
       if (token) {
         // ✅ Scenario 1: Caregiver accepts invitation
-        res = await fetch("http://localhost:8000/api/invitations/complete", {
+        res = await fetch("/api/invitations/complete", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -74,7 +74,7 @@ const CompleteProfile = () => {
         });
       } else {
         // ✅ Scenario 2: Direct registration (no invitation)
-        res = await fetch("http://localhost:8000/api/caregiver/register", {
+        res = await fetch("/api/caregiver/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -15,8 +15,6 @@ import { supabase } from "../supabaseClient"; // make sure this path is correct
 import styles from "./PatientReminders.module.css";
 import CreateReminderModal from "./PatientReminderModal";
 
-const API_URL = process.env.REACT_APP_MAIN_BACKEND_URL || "http://localhost:8000";
-
 export default function PatientReminders() {
   const navigate = useNavigate();
 
@@ -63,7 +61,7 @@ export default function PatientReminders() {
       const userId = session?.user?.id;
       if (!userId) throw new Error("Cannot fetch reminders: user not authenticated");
   
-      const url = new URL(`${API_URL}/api/reminders`);
+      const url = new URL(`/api/reminders`);
       url.searchParams.set("user_id", userId);
   
       const res = await fetch(url.toString(), {

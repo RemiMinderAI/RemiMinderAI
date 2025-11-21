@@ -92,7 +92,7 @@ export default function ProductDemo() {
     try {
       setStage("processing");
   
-      const response = await fetch("http://localhost:8001/api/demo-summary", {
+      const response = await fetch("/api/demo-summary", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ transcript_text: fullTranscription }),

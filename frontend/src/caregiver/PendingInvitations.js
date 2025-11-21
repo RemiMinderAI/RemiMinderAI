@@ -78,7 +78,7 @@ const PendingInvitations = () => {
 
   const handleAccept = async (inv) => {
     try {
-      const res = await fetch("http://localhost:8000/api/invitations/accept", {
+      const res = await fetch("/api/invitations/accept", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: inv.token }),
@@ -98,7 +98,7 @@ const PendingInvitations = () => {
   
   const handleReject = async (inv) => {
     try {
-      const res = await fetch("http://localhost:8000/api/invitations/complete", {
+      const res = await fetch("/api/invitations/complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: inv.token, status: "declined" }),

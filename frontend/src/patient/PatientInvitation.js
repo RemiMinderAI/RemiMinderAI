@@ -38,7 +38,7 @@ export default function PatientInvitation({ onBack }) {
         caregiver_name: caregiverName || "Your Caregiver",
       };
   
-      const res = await fetch("http://localhost:8000/api/invitations/send", {
+      const res = await fetch("/api/invitations/send", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,

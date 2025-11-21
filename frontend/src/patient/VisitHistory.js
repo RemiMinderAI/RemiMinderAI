@@ -30,7 +30,7 @@ const VisitHistory = () => {
           return;
         }
 
-        const response = await fetch(`${process.env.REACT_APP_MAIN_BACKEND_URL || 'http://localhost:8000'}/api/visit-summaries`, {
+        const response = await fetch(`/api/visit-summaries`, {
           headers: {
             Authorization: `Bearer ${session.access_token}`,
           },
@@ -89,7 +89,7 @@ const VisitHistory = () => {
         return;
       }
 
-      const response = await fetch(`${process.env.REACT_APP_MAIN_BACKEND_URL || 'http://localhost:8000'}/api/visit-summaries/${visitId}?user_id=${session.user.id}`, {
+      const response = await fetch(`/api/visit-summaries/${visitId}?user_id=${session.user.id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${session.access_token}`,

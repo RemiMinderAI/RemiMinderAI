@@ -64,7 +64,7 @@ const PatientProfileSetup = () => {
       };
   
       // Call register API
-      const response = await fetch("http://localhost:8000/api/patient/register", {
+      const response = await fetch("/api/patient/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

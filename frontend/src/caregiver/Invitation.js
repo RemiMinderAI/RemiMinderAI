@@ -21,7 +21,7 @@ const CaregiverInvite = () => {
     const verifyInvitation = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/invitations/verify?token=${inviteToken}`
+          `/api/invitations/verify?token=${inviteToken}`
         );
         if (!res.ok) throw new Error("Invalid or expired");
         const data = await res.json();
@@ -37,7 +37,7 @@ const CaregiverInvite = () => {
 
   const handleAcceptInvitation = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/invitations/accept", {
+      const res = await fetch("/api/invitations/accept", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
