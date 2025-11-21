@@ -23,7 +23,7 @@ from main_backend.services.db_service import insert_visit_transcript, insert_ini
 from main_backend.services.ai_service import generate_ai_summary
 from main_backend.route import visit_summary, reminders
 from main_backend.route.product_demo import demo_router
-from utils import get_current_user
+from main_backend.utils.auth import get_current_user
 from fastapi import Depends
 
 load_dotenv()

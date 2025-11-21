@@ -1,7 +1,7 @@
 import logging
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone, timedelta
-from schemas.reminder_schemas import ReminderCreate, ReminderUpdate, ReminderAction
+from main_backend.schemas.reminder_schemas import ReminderCreate, ReminderUpdate, ReminderAction
 from .db_reminders import (
     create_reminder as db_create_reminder,
     get_reminder,
