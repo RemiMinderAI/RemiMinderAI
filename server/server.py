@@ -7,6 +7,7 @@ import shutil
 import os
 import platform
 import logging
+import subprocess
 
 from openai import OpenAI
 
