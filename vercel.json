@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "builds": [
+    {
+      "src": "server/server.py",
+      "use": "@vercel/python"
+    }
+  ],
+
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server/server.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ],
+
+  "functions": {
+
+    "server/server.py": {
+      "memory": 1024,
+      "maxDuration": 10 
+    }
+  },
+
+  "installCommand": "pip install -r server/requirements.txt --target=server/serverless_modules"
+}
