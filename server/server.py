@@ -75,7 +75,7 @@ origins = [
     "https://www.remiminderai.com/", 
     "https://remiminderai.com/",
     "https://*.vercel.app",   
-    DYNAMIC_VERCEL_ORIGIN,,
+    DYNAMIC_VERCEL_ORIGIN,
 ]
 
 origins = [o for o in origins if o is not None] 
@@ -99,7 +99,7 @@ async def create_upload_file(file: UploadFile = File(...), current_user=Depends(
         auth_uid = current_user["sub"]
 
         # Get actual user_id from users table
-        from backend.services.db_service import get_supabase_client
+        from main_backend.services.db_service import get_supabase_client
         supabase = get_supabase_client()
         user_res = supabase.table("users").select("id").eq("auth_uid", auth_uid).execute()
         if not user_res.data:
@@ -113,7 +113,7 @@ async def create_upload_file(file: UploadFile = File(...), current_user=Depends(
         # --- TRANSCRIPTION STEP using local Whisper pipeline ---
         
         try:
-            with open(mp3_file_path, "rb") as audio_file:
+            with open(local_file_path, "rb") as audio_file:
                 transcription = client.audio.transcriptions.create(
                     model="gpt-4o-transcribe",
                     file=audio_file,
