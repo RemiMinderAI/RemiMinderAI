@@ -59,9 +59,6 @@ app = FastAPI(
     lifespan=lifespan # Attach the startup/shutdown logic
 )
 
-VERCEL_URL = os.getenv("VERCEL_URL")
-DYNAMIC_VERCEL_ORIGIN = f"https://{VERCEL_URL}/" if VERCEL_URL else None
-
 # Allow Frontend URLs (Localhost + Vercel)
 FRONTEND_URL = os.getenv("FRONTEND_URL", "") # e.g., https://remiminderai.vercel.app
 
@@ -222,6 +219,6 @@ app.include_router(visit_summary.router)
 app.include_router(demo_router)
 app.include_router(reminders.router)
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="0.0.0.0", port=8001)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8001)
 
