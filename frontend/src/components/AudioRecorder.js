@@ -58,7 +58,7 @@ const RecordVisitPage = () => {
       setAudioBlob(null);
 
       mediaRecorder.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);av
+        audioChunksRef.current.push(event.data);
       };
 
       mediaRecorder.onstop = () => {
