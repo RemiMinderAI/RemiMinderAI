@@ -123,7 +123,7 @@ export default function CaregiverDashboard() {
         if (!user?.email) return;
   
         const response = await fetch(
-          `http://127.0.0.1:8000/api/linked/patients?email=${encodeURIComponent(user.email)}`
+          `{API_BASE_URL}/api/linked/patients?email=${encodeURIComponent(user.email)}`
         );        
         if (!response.ok) throw new Error("Failed to fetch linked patients");
   
