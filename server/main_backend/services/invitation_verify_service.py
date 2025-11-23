@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from services.supabase_client import supabase
+from supabase_client import supabase
 
 async def verify_invitation_token(token: str):
     """
