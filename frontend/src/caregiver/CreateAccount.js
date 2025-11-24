@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { FRONTEND_URL } from "../config";
 
 const CreateAccount = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const CreateAccount = () => {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: `${window.location.origin}/consent`,
+          redirectTo: `${FRONTEND_URL}/consent`,
         },
       });
       if (error) throw error;

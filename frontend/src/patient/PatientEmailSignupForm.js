@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { FRONTEND_URL } from "../config";
 
 const PatientEmailSignupForm = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const PatientEmailSignupForm = () => {
         password: formData.password,
         options: {
           data: { role: 'patient' },
-          emailRedirectTo: `${window.location.origin}/sign-up-confirmation`,
+          emailRedirectTo: `${FRONTEND_URL}/sign-up-confirmation`,
         },
       });
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from '../supabaseClient';
+import { FRONTEND_URL } from "../config";
 
 const PatientCreateAccount = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const PatientCreateAccount = () => {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/patient-consent`, // after OAuth verification
+          redirectTo: `${FRONTEND_URL}/patient-consent`, // after OAuth verification
         },
       });
   

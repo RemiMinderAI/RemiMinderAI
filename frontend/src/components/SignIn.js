@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaApple, FaTimes, FaUser, FaUserFriends } from "react-icons/fa";
 import styles from "./SignIn.module.css";
+import FRONTEND_URL from "../config";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ export default function SignIn() {
       const currentRole = role || localStorage.getItem("role") || "patient";
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `${window.location.origin}/dashboard/${currentRole}` },
+        options: { redirectTo: `${FRONTEND_URL}/dashboard/${currentRole}` },
       });
       if (error) throw error;
     } catch (err) {
@@ -111,7 +112,7 @@ export default function SignIn() {
     }
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/sign-in`, // 👈 redirect after email link
+      redirectTo: `${FRONTEND_URL}/sign-in`, // 👈 redirect after email link
     });
 
     if (error) {

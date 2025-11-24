@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { FRONTEND_URL } from "../config";
 
 const EmailSignupForm = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const EmailSignupForm = () => {
         password,
         options: {
           data: { role: "caregiver" },
-          emailRedirectTo: `${window.location.origin}/sign-up-confirmation` 
+          emailRedirectTo: `${FRONTEND_URL}/sign-up-confirmation` 
           // 👆 This ensures the email verification link goes to your confirmation page
         },
       });
