@@ -13,7 +13,7 @@ const PatientProfileSetup = () => {
   const [notes, setNotes] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
-  // ✅ Fetch logged-in user's email on mount
+  // ✅ Fetch logged-in user's email on mount and listen for auth changes
   useEffect(() => {
     const getUser = async () => {
       const { data, error } = await supabase.auth.getUser();
@@ -25,6 +25,16 @@ const PatientProfileSetup = () => {
       }
     };
     getUser();
+
+    // Listen for auth state changes (e.g., after email verification)
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Auth state change in profile setup:", event, session?.user?.email);
+      if (session?.user) {
+        setUserEmail(session.user.email);
+      }
+    });
+
+    return () => authListener.subscription.unsubscribe();
   }, []);
 
   const navigate = useNavigate();
