@@ -63,12 +63,14 @@ app = FastAPI(
 
 # Allow Frontend URLs (Localhost + Vercel)
 FRONTEND_URL = os.getenv("FRONTEND_URL", "") # e.g., https://remiminderai.vercel.app
+REACT_APP_FRONTEND_URL = os.getenv("REACT_APP_FRONTEND_URL", "") # e.g., https://remiminderai.vercel.app
 
 origins = [
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:5173", # Vite default
     FRONTEND_URL,
+    REACT_APP_FRONTEND_URL,
     "https://www.remiminderai.com", 
     "https://remiminderai.com"
 ]
