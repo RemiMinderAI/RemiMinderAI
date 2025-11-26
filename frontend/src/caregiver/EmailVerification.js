@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 const EmailVerification = () => {
   const navigate = useNavigate();
@@ -14,6 +15,22 @@ const EmailVerification = () => {
   const handleResend = () => {
     alert("Verification email resent!");
   };
+
+  const [isVerified, setIsVerified] = React.useState(false);
+
+  React.useEffect(() => {
+    const interval = setInterval(async () => {
+      const { data } = await supabase.auth.getUser();
+  
+      if (data?.user?.email_confirmed_at) {
+        setIsVerified(true);
+        clearInterval(interval);
+      }
+    }, 4000);
+  
+    return () => clearInterval(interval);
+  }, []);
+  
 
   return (
     <div
@@ -131,23 +148,24 @@ const EmailVerification = () => {
           {/* Review Consent Button */}
           <button
             onClick={() => navigate("/consent")}
+            disabled={!isVerified}
             style={{
               width: "100%",
               height: "48px",
-              backgroundColor: "#00B881",
+              backgroundColor: isVerified ? "#00B881" : "#9BDDC8",
+              cursor: isVerified ? "pointer" : "not-allowed",
               border: "none",
               borderRadius: "8px",
               color: "white",
               fontSize: "16px",
               fontWeight: "500",
-              cursor: "pointer",
               marginTop: "24px",
               transition: "background-color 0.2s ease",
             }}
             onMouseEnter={(e) => (e.target.style.backgroundColor = "#00a06f")}
             onMouseLeave={(e) => (e.target.style.backgroundColor = "#00B881")}
           >
-            Review Consent Agreement
+            {isVerified ? "Review Consent Agreement" : "Verify Email First"}
           </button>
 
           {/* Resend Email */}

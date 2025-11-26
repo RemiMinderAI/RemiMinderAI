@@ -6,6 +6,20 @@ const PatientEmailVerification = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
   const [emailSent, setEmailSent] = useState(true);
+  const [isVerified, setIsVerified] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user?.email_confirmed_at) {
+        setIsVerified(true);
+        clearInterval(interval);
+      }
+    }, 3000);
+  
+    return () => clearInterval(interval);
+  }, []);
+  
 
   useEffect(() => {
     const getUserEmail = async () => {
@@ -143,22 +157,23 @@ const PatientEmailVerification = () => {
 
           {/* Continue Button */}
           <button
+            disabled={!isVerified}
+            onClick={handleContinue}
             style={{
               width: '100%',
               height: '48px',
-              backgroundColor: '#7c3aed',
               border: 'none',
               borderRadius: '8px',
-              color: 'white',
               fontSize: '16px',
               fontWeight: '500',
-              cursor: 'pointer',
+              cursor: isVerified ? 'pointer' : 'not-allowed',
+              backgroundColor: isVerified ? '#7c3aed' : '#d1c4f3',
+              color: isVerified ? 'white' : '#ffffffcc',
               marginTop: '24px',
               transition: 'all 0.2s ease'
             }}
-            onClick={handleContinue}
           >
-            Review Consent Agreement
+            {isVerified ? "Review Consent Agreement" : "Please verify your email first"}
           </button>
 
           {/* Resend code */}

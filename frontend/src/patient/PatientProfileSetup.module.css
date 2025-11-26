@@ -258,6 +258,11 @@
     background-color: #8b5cf6;
   }
 
+  .disabledButton {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }  
+
   .divider {
     all: unset;
     display: block;

@@ -8,6 +8,7 @@ import API_BASE_URL from '../config';
 const RecordVisitPage = () => {
   const navigate = useNavigate();
   const [isRecording, setIsRecording] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     const checkAccess = async () => {
@@ -90,8 +91,12 @@ const RecordVisitPage = () => {
   };
 
   const uploadAudio = async () => {
+    if (uploading) return; // prevent double-clicks
+    setUploading(true);
+
     if (!audioBlob) {
       alert("No audio recorded to upload!");
+      setUploading(false);
       return;
     }
 
@@ -129,10 +134,12 @@ const RecordVisitPage = () => {
         const errorData = await response.json();
         console.error('Upload failed:', errorData);
         alert(`Upload failed: ${errorData.detail || response.statusText}`);
+        setUploading(false); // re-enable button on error
       }
     } catch (error) {
       console.error('Error during upload:', error);
       alert('An error occurred during upload. Is the backend server running?');
+      setUploading(false);
     }
   };
   
@@ -178,9 +185,26 @@ const RecordVisitPage = () => {
           {audioURL && !isRecording && (
             <div className={styles.playbackContainer}>
               <audio controls src={audioURL} className={styles.audioPlayer} />
-              <button onClick={uploadAudio} className={styles.uploadButton}>
-                <Upload size={20} />
-                Upload Recording
+              <button
+                onClick={uploadAudio}
+                className={styles.uploadButton}
+                disabled={uploading}
+                style={{
+                  opacity: uploading ? 0.6 : 1,
+                  cursor: uploading ? "not-allowed" : "pointer",
+                }}
+              >
+                {uploading ? (
+                  <>
+                    <Upload size={20} />
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <Upload size={20} />
+                    Upload Recording
+                  </>
+                )}
               </button>
             </div>
           )}

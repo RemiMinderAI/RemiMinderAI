@@ -14,6 +14,7 @@ const CompleteProfile = () => {
     relationship: '',
     additionalNotes: ''
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // If no local email, fetch from Supabase
@@ -43,8 +44,12 @@ const CompleteProfile = () => {
   };
 
   const handleComplete = async () => {
+    if (loading) return;     // prevent double-clicks
+    setLoading(true);
+
     if (!formData.fullName || !formData.phoneNumber) {
       alert("Please fill in all required fields before continuing.");
+      setLoading(false);
       return;
     }
   
@@ -101,6 +106,8 @@ const CompleteProfile = () => {
     } catch (error) {
       console.error("Error:", error);
       alert("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };  
 
@@ -471,21 +478,22 @@ const CompleteProfile = () => {
               style={{
                 width: '100%',
                 height: '48px',
-                backgroundColor: '#00B881',
+                backgroundColor: loading ? '#00B88199' : '#00B881',
                 border: 'none',
                 borderRadius: '8px',
                 color: 'white',
                 fontSize: '16px',
                 fontWeight: '500',
-                cursor: 'pointer',
+                cursor: loading ? 'not-allowed' : 'pointer',
                 marginTop: '24px',
                 transition: 'background-color 0.2s ease'
               }}
-              onMouseEnter={() => setHoveredButton('complete')}
+              disabled={loading}
+              onMouseEnter={() => !loading && setHoveredButton('complete')}
               onMouseLeave={() => setHoveredButton(null)}
               onClick={handleComplete}
             >
-              Confirm & Continue
+              {loading ? "Saving..." : "Confirm & Continue"}
             </button>
           </div>
         </div>

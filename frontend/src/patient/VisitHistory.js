@@ -208,65 +208,74 @@ const VisitHistory = () => {
           <p>Complete history of healthcare visits</p>
         </div>
 
-        <div className={styles.visitList}>
-          {filteredVisits.length > 0 ? (
-            filteredVisits.map((visit) => (
+        {loading ? (
+          <div className={styles.loadingState}>
+            <div className={styles.spinner}></div>
+            <p>Loading visit history...</p>
+          </div>
+        ) : (
+          <div className={styles.visitList}>
+            {filteredVisits.length > 0 ? (
+              filteredVisits.map((visit) => (
                 <div key={visit.id} className={styles.visitCard}>
-                <div className={styles.visitHeader}>
-                  <div className={styles.visitInfoWrapper}>
-                    {/* Purple file icon on the left */}
-                    <div className={styles.visitIcon}>
-                      <FileText size={20} />
+                  <div className={styles.visitHeader}>
+                    <div className={styles.visitInfoWrapper}>
+                      <div className={styles.visitIcon}>
+                        <FileText size={20} />
+                      </div>
+
+                      <div className={styles.visitInfo}>
+                        <h3 className={styles.titleRow}>
+                          {visit.title}{" "}
+                          <span className={styles.statusBadge}>Completed</span>
+                        </h3>
+
+                        <p className={styles.doctor}>
+                          {visit.doctor} • {visit.specialty}
+                        </p>
+
+                        <p className={styles.date}>
+                          <Calendar size={13} /> {visit.date} • <Clock size={13} /> {visit.time} • {visit.duration}
+                        </p>
+                      </div>
                     </div>
-              
-                    <div className={styles.visitInfo}>
-                    <h3 className={styles.titleRow}>
-                      {visit.title}{" "}
-                      <span className={styles.statusBadge}>Completed</span>
-                    </h3>
-                      <p className={styles.doctor}>
-                        {visit.doctor} • {visit.specialty}
-                      </p>
-                      <p className={styles.date}>
-                        <Calendar size={13} /> {visit.date} • <Clock size={13} /> {visit.time} • {visit.duration}
-                      </p>
+
+                    <div className={styles.actionButtons}>
+                      <button className={styles.downloadButton}>
+                        <Download size={14} />
+                        Download
+                      </button>
+
+                      <button
+                        className={styles.deleteButton}
+                        onClick={() => handleDeleteVisit(visit.id)}
+                      >
+                        <Trash2 size={14} />
+                        Delete
+                      </button>
                     </div>
                   </div>
-              
-                  <div className={styles.actionButtons}>
-                    <button className={styles.downloadButton}>
-                      <Download size={14} />
-                      Download
-                    </button>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() => handleDeleteVisit(visit.id)}
-                    >
-                      <Trash2 size={14} />
-                      Delete
-                    </button>
+
+                  <div className={styles.summaryBox}>
+                    <h4>Visit Summary</h4>
+                    <p>{visit.summary}</p>
+                  </div>
+
+                  <div className={styles.keyPointsBox}>
+                    <h4>Key Points</h4>
+                    <ul>
+                      {visit.keyPoints.map((point, idx) => (
+                        <li key={idx}>{point}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              
-                <div className={styles.summaryBox}>
-                  <h4>Visit Summary</h4>
-                  <p>{visit.summary}</p>
-                </div>
-              
-                <div className={styles.keyPointsBox}>
-                  <h4>Key Points</h4>
-                  <ul>
-                    {visit.keyPoints.map((point, idx) => (
-                      <li key={idx}>{point}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>              
-            ))
-          ) : (
-            <div className={styles.noResults}>No visits found.</div>
-          )}
-        </div>
+              ))
+            ) : (
+              <div className={styles.noResults}>No visits found.</div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

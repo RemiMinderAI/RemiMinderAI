@@ -12,6 +12,7 @@ const PatientProfileSetup = () => {
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // ✅ Fetch logged-in user's email on mount and listen for auth changes
   useEffect(() => {
@@ -45,8 +46,13 @@ const PatientProfileSetup = () => {
   };
 
   const handleContinue = async () => {
+    // Prevent double-clicks
+    if (loading) return;
+    setLoading(true);
+
     if (!fullName || !dob || !phone) {
       alert("Please fill in all required fields: Full Name, Date of Birth, and Phone Number.");
+      setLoading(false);
       return;
     }
   
@@ -100,6 +106,8 @@ const PatientProfileSetup = () => {
     } catch (err) {
       console.error("Register error:", err);
       alert("Error saving profile. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -244,7 +252,13 @@ const PatientProfileSetup = () => {
             </div>
           </div>
 
-          <button className={styles.confirmButton} onClick={handleContinue}>Confirm & Continue</button>
+          <button
+            className={`${styles.confirmButton} ${loading ? styles.disabledButton : ""}`}
+            onClick={handleContinue}
+            disabled={loading}
+          >
+            {loading ? "Saving..." : "Confirm & Continue"}
+          </button>
         </div>
       </main>
     </div>
