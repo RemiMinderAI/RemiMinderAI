@@ -58,6 +58,8 @@ h4 {
 
 .buttonPrimary,
 .buttonSecondary,
+.buttonPrimaryNOT,
+.buttonSecondaryNOT,
 .buttonDanger,
 .signupButton,
 .restartButton {
@@ -79,10 +81,23 @@ h4 {
   background: #a78bfa;
 }
 
+.buttonPrimaryNOT {
+  background: #7b5cf6;
+  color: #fff;
+  cursor: not-allowed;
+}
+
 .buttonSecondary {
   background: transparent;
   color: #7b5cf6;
   border: 1px solid #7b5cf6;
+}
+
+.buttonSecondaryNOT {
+  background: transparent;
+  color: #7b5cf6;
+  border: 1px solid #7b5cf6;
+  cursor: not-allowed;
 }
 
 .buttonSecondary:hover {
@@ -219,4 +234,35 @@ h4 {
 .coverScreen p {
   color: #4b5563;
   margin-bottom: 2rem;
+}
+
+/* ProductDemo.module.css */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
