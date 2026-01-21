@@ -393,7 +393,7 @@ const LandingPage = () => {
 
       {/* --- FOOTER --- */}
       <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
+        {/* <div className={styles.footerContainer}>
           <div className={styles.footerGrid}>
             <div className={styles.footerBrand}>
               <div className={styles.brandLogo}>
@@ -443,6 +443,9 @@ const LandingPage = () => {
               <a href="#">GitHub</a>
             </div>
           </div>
+        </div> */}
+        <div className={styles.footerContainer}>
+            <p>© 2025 RemiMinderAI. All rights reserved.</p>
         </div>
       </footer>
 

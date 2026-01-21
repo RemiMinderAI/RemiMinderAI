@@ -161,46 +161,150 @@
     color: var(--dark-text);
   }
 
-  /* Grid wrapper */
+  /* Hero */
+.heroSection {
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, var(--primary-purple), var(--secondary-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  color: var(--light-text);
+}
+
+/* Sections */
+
+.sectionCard {
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.businessSection,
+.teamSection,
+.companyInfoSection {
+  margin-bottom: 5rem;
+}
+
+.businessSection {
+  text-align: left;
+}
+
+.companyInfoSection h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
 .sectionGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columns on desktop */
-    gap: 2rem;
-  }
-  
-  .featureGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .featureCard, .teamCard, .valueCard, .milestoneCard {
-    background: rgba(255, 255, 255, 0.1); /* glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-  }
-  
-  .featureCard:hover, .teamCard:hover, .valueCard:hover {
-    border-color: #4f46e5; /* primary highlight on hover */
-  }
-  
-  .avatar {
-    width: 6rem;
-    height: 6rem;
-    border-radius: 50%;
-    background: linear-gradient(to bottom right, #4f46e5, #f472b6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-    margin: 0 auto 1rem auto;
-  }
-  
-  .valuesGrid, .teamGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.problemList {
+  padding-left: 1.25rem;
+  color: var(--light-text);
+  text-align: left;
+}
+
+.problemList li {
+  padding: 0 0 1rem 0;
+}
+
+/* Team */
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.teamCard {
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.avatar {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7b5cf6, #22c55e); /* purple → green gradient */
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.teamName {
+  color: var(--darktext);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.teamRole {
+  color: var(--primary-purple);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.teamBio {
+  color: var(--light-text);
+}
+
+.linkedinLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.linkedinIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+
+.companyInfoList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.companyInfoList li {
+  font-size: 0.95rem;
+  color: var(--light-text);
+  line-height: 1.6;
+  text-align: left;
+}
+
+.companyInfoList strong {
+  color: var(--dark-text);
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
