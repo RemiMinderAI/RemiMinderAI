@@ -1,4 +1,4 @@
-# MediMinder
+# RemiMinder
 
 RemiMinderAI is a React-based application that helps healthcare providers record and manage patient visits using audio recording technology. The app features a clean, intuitive interface for recording patient interactions and integrates with a backend API for data storage and processing.
 
