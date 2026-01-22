@@ -8,6 +8,36 @@ const AboutPage = () => {
   
     const goToSignIn = () => navigate("/sign-in");
 
+    const techStack = [
+      {
+        name: "Mobile Interface",
+        bio: "Built with Flutter for a high-performance, cross-platform experience (iOS/Android) ensuring rapid feature parity.",
+      },
+      {
+        name: "Mobile Interface",
+        bio: "We utilize Google ML Kit for on-device OCR and Google Document AI for high-accuracy extraction of complex medical transcripts.",
+      },
+      {
+        name: "Generative AI",
+        bio: "Powered by Google Gemini via Vertex AI to provide real-time visit transcriptions and personalized health action plans.",
+      },
+    ]
+
+    const cloudInfrastructure = [
+      {
+        name: "Backend",
+        bio: "High-speed FastAPI (Python) services hosted on Google Cloud Run for serverless, auto-scaling performance.",
+      },
+      {
+        name: "Database",
+        bio: "Google Cloud SQL (PostgreSQL) for robust, relational storage of patient records.",
+      },
+      {
+        name: "Security & Compliance",
+        bio: "Firebase Auth for secure identity management and Google Cloud Storage for encrypted PHI (Protected Health Information).",
+      },
+    ]
+
     const teamMembers = [
       {
         name: "Paramita Malakar",
@@ -63,8 +93,10 @@ const AboutPage = () => {
             About <span className={styles.gradientText}>RemiMinderAI</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            RemiMinder is a digital health platform that empowers patients and caregivers to manage
-            health information effectively using AI-powered tools. We're building the future of personal health management.
+            Reminderai is an AI-native health management platform built to simplify healthcare for families. 
+            By automating the digitization of medical records and intelligently coordinating care schedules, 
+            we ensure that critical health milestones are never missed. Our platform transforms fragmented 
+            medical data into actionable, low-latency insights for patients and caregivers globally.
           </p>
         </div>
       </section>
@@ -98,6 +130,34 @@ const AboutPage = () => {
               <li>Families waste hours coordinating care through phone calls and texts</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* --- TECH STACK --- */}
+      <section className={styles.teamSection}>
+        <h2 className={styles.sectionTitle}>Our Core Tech Stack</h2>
+
+        <div className={styles.teamGrid}>
+          {techStack.map((member) => (
+            <div key={member.name} className={styles.teamCard2}>
+              <h3 className={styles.teamName}>{member.name}</h3>
+              <p className={styles.teamBio}>{member.bio}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- CLOUD INFRASTRUCTURE --- */}
+      <section className={styles.teamSection}>
+        <h2 className={styles.sectionTitle}>Cloud Infrastructure</h2>
+
+        <div className={styles.teamGrid}>
+          {cloudInfrastructure.map((member) => (
+            <div key={member.name} className={styles.teamCard2}>
+              <h3 className={styles.teamName}>{member.name}</h3>
+              <p className={styles.teamBio}>{member.bio}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -138,13 +198,16 @@ const AboutPage = () => {
               <strong>Company Name:</strong> RemiMinderAI
             </li>
             <li>
+              <strong>Industry:</strong> Wellness and Fitness Services
+            </li>
+            <li>
+              <strong>Company Size:</strong> 2-10 employees
+            </li>
+            <li>
+              <strong>Headquarters:</strong> San Jose, California
+            </li>
+            <li>
               <strong>Founded:</strong> 2025
-            </li>
-            <li>
-              <strong>Industry:</strong> Digital Health / HealthTech
-            </li>
-            <li>
-              <strong>Stage:</strong> Seed / Early Growth
             </li>
             <li>
               <strong>Contact:</strong> remiminderai@gmail.com

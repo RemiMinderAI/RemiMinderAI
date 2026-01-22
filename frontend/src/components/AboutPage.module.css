@@ -168,7 +168,7 @@
 }
 
 .heroContent {
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -195,6 +195,8 @@
   border-radius: 1rem;
   padding: 2rem;
 }
+
+.sectionCard:hover { border-color: var(--primary-purple); box-shadow: 0 8px 24px rgba(123,92,246,0.3); }
 
 .sectionTitle {
   font-size: 2rem;
@@ -245,6 +247,15 @@
   padding: 2rem;
   text-align: center;
 }
+
+.teamCard2 {
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: left;
+}
+
+.teamCard:hover, .teamCard2:hover { border-color: var(--primary-purple); box-shadow: 0 8px 24px rgba(123,92,246,0.3); }
 
 .avatar {
   width: 5rem;
