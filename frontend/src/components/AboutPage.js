@@ -2,6 +2,11 @@ import React from "react";
 import styles from "./AboutPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { Linkedin } from 'lucide-react';
+import logo from '../assets/RemiMinder_logo_512.png';
+import profilephoto1 from '../assets/profilephotos/tina.jfif';
+import profilephoto2 from '../assets/profilephotos/jibin.jfif';
+import profilephoto3 from '../assets/profilephotos/sri.jfif';
+import profilephoto4 from '../assets/profilephotos/cromwell.jfif';
 
 const AboutPage = () => {
     const navigate = useNavigate();
@@ -45,6 +50,7 @@ const AboutPage = () => {
         bio: "Product & Quality Assurance Leader focused on transforming ideas into impactful AI and enterprise solutions.",
         linkedin: "https://www.linkedin.com/in/paramitam/",
         initials: "PM",
+        photo: profilephoto1,
       },
       {
         name: "Jibin Kunjumon",
@@ -52,6 +58,7 @@ const AboutPage = () => {
         bio: "Backend Engineer & AI Developer specializing in intelligent systems powered by Large Language Models, multi-agent workflows, and production-grade backend architectures.",
         linkedin: "https://www.linkedin.com/in/jibin-kunjumon-9bbb3542/",
         initials: "JK",
+        photo: profilephoto2,
       },
       {
         name: "Sridevi T",
@@ -59,13 +66,15 @@ const AboutPage = () => {
         bio: "Full-Stack AI Engineer with 6 years of software engineering experience, specializing in designing and delivering production-ready Generative AI systems.",
         linkedin: "https://www.linkedin.com/in/sridevipt/",
         initials: "ST",
+        photo: profilephoto3,
       },
       {
         name: "Cromwell De Guzman",
         role: "AI Designer",
-        bio: "Front-end and game developer with AI UI/UX experience.",
+        bio: "Front-end developer and game designer with AI UI/UX experience.",
         linkedin: "https://www.linkedin.com/in/cromwell-de-guzman-a19482218/",
         initials: "CD",
+        photo: profilephoto4,
       },
     ];
 
@@ -74,7 +83,13 @@ const AboutPage = () => {
       {/* --- HEADER --- */}
       <header className={styles.header}>
       <div className={styles.logo} onClick={() => navigate("/")}>
-          <div className={styles.headerLogoIcon}>RM</div> {/* logo box */}
+        <div className={styles.logoImg}>
+          <img
+            src={logo}
+            alt="RemiMinder Logo"
+            className={styles.logoImg}
+          />
+          </div>
           RemiMinderAI
         </div>
         <nav className={styles.nav}>
@@ -93,7 +108,7 @@ const AboutPage = () => {
             About <span className={styles.gradientText}>RemiMinderAI</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Reminderai is an AI-native health management platform built to simplify healthcare for families. 
+            RemiMinder is an AI-native health management platform built to simplify healthcare for families. 
             By automating the digitization of medical records and intelligently coordinating care schedules, 
             we ensure that critical health milestones are never missed. Our platform transforms fragmented 
             medical data into actionable, low-latency insights for patients and caregivers globally.
@@ -168,7 +183,17 @@ const AboutPage = () => {
         <div className={styles.teamGrid}>
           {teamMembers.map((member) => (
             <div key={member.name} className={styles.teamCard}>
-              <div className={styles.avatar}>{member.initials}</div>
+              <div className={styles.avatar}>
+                {member.photo ? (
+                  <img
+                    src={member.photo}
+                    alt={`${member.name} profile`}
+                    className={styles.avatarImg}
+                  />
+                ) : (
+                  <span>{member.initials}</span>
+                )}
+              </div>
 
               <h3 className={styles.teamName}>{member.name}</h3>
               <p className={styles.teamRole}>{member.role}</p>
@@ -181,7 +206,7 @@ const AboutPage = () => {
                 className={styles.linkedinLink}
               >
                 <Linkedin size={16} strokeWidth={1.75} />
-                <span>LinkedIn →</span>
+                <span>LinkedIn</span>
               </a>
             </div>
           ))}
@@ -210,7 +235,10 @@ const AboutPage = () => {
               <strong>Founded:</strong> 2025
             </li>
             <li>
-              <strong>Contact:</strong> remiminderai@gmail.com
+              <strong>Email:</strong> Team@remiminderai.com
+            </li>
+            <li>
+              <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/remiminderai/" target="_blank">linkedin.com/company/remiminderai</a>
             </li>
           </ul>
         </div>

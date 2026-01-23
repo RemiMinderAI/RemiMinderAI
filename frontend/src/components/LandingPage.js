@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './LandingPage.module.css';
 import heroImage from '../assets/hero-ai-orb.jpg'; 
-import howItWorksImage from '../assets/how-it-works-visual.jpg';
+import howItWorksImage from '../assets/image0.png';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import ProductDemo from "./ProductDemo";
 import { Maximize2 } from "lucide-react";
+import logo from '../assets/RemiMinder_logo_512.png';
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
@@ -101,7 +102,13 @@ const LandingPage = () => {
       {/* Navigation */}
       <header className={styles.header}>
         <div className={styles.logo} onClick={() => navigate("/")}>
-          <div className={styles.headerLogoIcon}>RM</div> {/* logo box */}
+          <div className={styles.logoImg}>
+            <img
+              src={logo}
+              alt="RemiMinder Logo"
+              className={styles.logoImg}
+            />
+          </div>
           RemiMinderAI
         </div>
         <nav className={styles.nav}>
