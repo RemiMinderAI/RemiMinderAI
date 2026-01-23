@@ -27,10 +27,24 @@
   padding: 20px 0;
 }
 .logo {
+  display: flex;
+  align-items: center;      /* vertical centering */
+  gap: 0.5rem;              /* spacing between image and text */
   font-weight: bold;
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+.logoImg {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;           /* prevents image from squishing */
+}
+
 .headerLogoIcon {
   width: 2rem;
   height: 2rem;

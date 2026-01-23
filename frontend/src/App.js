@@ -5,6 +5,7 @@ import './App.css';
 
 // 2. Import pages and components
 import LandingPage from './components/LandingPage';
+import AboutPage from "./components/AboutPage";
 // Corrected path based on your file structure screenshot
 import RecordVisitPage from './components/AudioRecorder';
 import CaregiverInvite from './caregiver/Invitation';
@@ -45,6 +46,7 @@ function App() {
         <Routes>
           {/* Main Routes */}
           <Route path="/" element={<LandingPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/record" element={<RecordVisitPage />} />
 
           {/* Caregiver Flow Routes */}

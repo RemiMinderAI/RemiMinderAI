@@ -1,22 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './LandingPage.module.css';
 import heroImage from '../assets/hero-ai-orb.jpg'; 
-import howItWorksImage from '../assets/how-it-works-visual.jpg';
+import howItWorksImage from '../assets/image0.png';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
   User, ArrowRight, CheckCircle2 
 } from "lucide-react";
 import ProductDemo from "./ProductDemo";
 import { Maximize2 } from "lucide-react";
+import logo from '../assets/RemiMinder_logo_512.png';
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
   
+  const location = useLocation();
   const [isFullScreen, setIsFullScreen] = useState(false);
 
+  useEffect(() => {
+    if (location.hash === "#how-it-works") {
+      const el = document.getElementById("how-it-works");
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+    if (location.search.includes("fullscreen=true")) {
+      setIsFullScreen(true);
+    }
+  }, [location]);
+  
   const navigate = useNavigate();
 
   const goToSignIn = () => {
@@ -89,14 +101,40 @@ const LandingPage = () => {
     <div className={styles.container}>
       {/* Navigation */}
       <header className={styles.header}>
-        <div className={styles.logo}>
-          <div className={styles.headerLogoIcon}>RM</div> {/* logo box */}
+        <div className={styles.logo} onClick={() => navigate("/")}>
+          <div className={styles.logoImg}>
+            <img
+              src={logo}
+              alt="RemiMinder Logo"
+              className={styles.logoImg}
+            />
+          </div>
           RemiMinderAI
         </div>
         <nav className={styles.nav}>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#who-its-for">Who It's For</a>
-          <a href="#benefits">Benefits</a>
+          <a href="/" className={styles.navLink}>Home</a>
+          <a
+            href="#"
+            className={styles.navLink}
+            onClick={(e) => {
+              e.preventDefault();
+              setIsFullScreen(true);
+            }}
+          >
+            Product Demo
+          </a>
+          <a
+            href="#how-it-works"
+            className={styles.navLink}
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("how-it-works");
+              el?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            How It Works
+          </a>
+          <a href="/about" className={styles.navLink}>About</a>
         </nav>
         <button onClick={goToSignIn} className={styles.signInButton}>Sign In</button>
       </header>
@@ -150,7 +188,7 @@ const LandingPage = () => {
 
         <div className={styles.rightPanel}>
           <div className={styles.demoWrapper}>
-            <div className={`${styles.demoFrame} ${isFullScreen ? styles.fullScreen : ""}`}>
+            <section id="product" className={`${styles.demoFrame} ${isFullScreen ? styles.fullScreen : ""}`}>
               <ProductDemo />
               <button
                 className={styles.fullscreenButton}
@@ -159,7 +197,7 @@ const LandingPage = () => {
               >
                 <Maximize2 size={20} />
               </button>
-            </div>
+            </section>
           </div>
         </div>
       </main>
@@ -362,7 +400,7 @@ const LandingPage = () => {
 
       {/* --- FOOTER --- */}
       <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
+        {/* <div className={styles.footerContainer}>
           <div className={styles.footerGrid}>
             <div className={styles.footerBrand}>
               <div className={styles.brandLogo}>
@@ -412,6 +450,9 @@ const LandingPage = () => {
               <a href="#">GitHub</a>
             </div>
           </div>
+        </div> */}
+        <div className={styles.footerContainer}>
+            <p>© 2025 RemiMinderAI. All rights reserved.</p>
         </div>
       </footer>
 

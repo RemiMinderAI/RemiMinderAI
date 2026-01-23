@@ -7,6 +7,7 @@ import API_BASE_URL from '../config';
 
 export default function ProductDemo() {
   const [stage, setStage] = useState("cover");
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [timer, setTimer] = useState(0);
   const handleTryNow = () => setStage("ready");
   const navigate = useNavigate();
@@ -51,7 +52,11 @@ export default function ProductDemo() {
       audioRef.current = null;
     }
   
-    await fetchDemoSummary(); // fetches AI summary from backend
+    // await fetchDemoSummary(); // fetches AI summary from backend
+    setStage("processing");
+    setTimeout(() => {
+      setStage("summary");
+    }, 2000); // 2000ms = 2 seconds
   };  
 
   const handleSignup = () => {
@@ -116,13 +121,43 @@ export default function ProductDemo() {
     
   return (
     <div className={styles.container}>
+      {isVideoOpen && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <button
+              className={styles.closeButton}
+              onClick={() => setIsVideoOpen(false)}
+            >
+              ✕
+            </button>
+            <iframe
+              width="100%"
+              height="400"
+              src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
+              title="Demo Video"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
+
       {stage === "cover" && (
         <div className={styles.coverScreen}>
           <h2>RemiMinder Demo</h2>
           <p>See how easy it is to record and summarize your visits.</p>
-          <button className={styles.buttonPrimary} onClick={handleTryNow}>
-          Try Now
-          </button>
+          <div className={styles.actions}>
+            <button
+              className={styles.buttonSecondary}
+              onClick={() => setIsVideoOpen(true)}
+            >
+              Demo Video
+            </button>
+            <button className={styles.buttonPrimary} onClick={handleTryNow}>
+            Try Now
+            </button>
+          </div>
         </div>
       )}
 
@@ -213,14 +248,14 @@ export default function ProductDemo() {
           </div>
 
           <div className={styles.actions}>
-            <button className={styles.buttonSecondary}><FiDownload /> Download</button>
-            <button className={styles.buttonSecondary}><FiShare2 /> Share</button>
-            <button className={styles.buttonPrimary}><FiCheck /> Confirm Summary</button>
+            <button className={styles.buttonSecondaryNOT}><FiDownload /> Download</button>
+            <button className={styles.buttonSecondaryNOT}><FiShare2 /> Share</button>
+            <button className={styles.buttonPrimaryNOT}><FiCheck /> Confirm Summary</button>
           </div>
 
           <div className={styles.demoFooter}>
             <button
-                onClick={() => setStage("ready")}
+                onClick={() => setStage("cover")}
                 className={styles.restartButton}
             >
                 Restart Demo
