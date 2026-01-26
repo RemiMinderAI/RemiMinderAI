@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './LandingPage.module.css';
 import heroImage from '../assets/hero-ai-orb.jpg'; 
-import howItWorksImage from '../assets/image0.png';
+import howItWorksImage from '../assets/coverpage.png';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
