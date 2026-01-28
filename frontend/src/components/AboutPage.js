@@ -52,14 +52,14 @@ const AboutPage = () => {
         initials: "PM",
         photo: profilephoto1,
       },
-      {
-        name: "Jibin Kunjumon",
-        role: "Backend Engineer & AI/ML Developer",
-        bio: "Backend Engineer & AI Developer specializing in intelligent systems powered by Large Language Models, multi-agent workflows, and production-grade backend architectures.",
-        linkedin: "https://www.linkedin.com/in/jibin-kunjumon-9bbb3542/",
-        initials: "JK",
-        photo: profilephoto2,
-      },
+      // {
+      //   name: "Jibin Kunjumon",
+      //   role: "Backend Engineer & AI/ML Developer",
+      //   bio: "Backend Engineer & AI Developer specializing in intelligent systems powered by Large Language Models, multi-agent workflows, and production-grade backend architectures.",
+      //   linkedin: "https://www.linkedin.com/in/jibin-kunjumon-9bbb3542/",
+      //   initials: "JK",
+      //   photo: profilephoto2,
+      // },
       {
         name: "Sridevi T",
         role: "AI Engineer",
