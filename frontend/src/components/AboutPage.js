@@ -62,7 +62,7 @@ const AboutPage = () => {
       // },
       {
         name: "Sridevi T",
-        role: "AI Engineer",
+        role: "Lead AI Engineer",
         bio: "Full-Stack AI Engineer with 6 years of software engineering experience, specializing in designing and delivering production-ready Generative AI systems.",
         linkedin: "https://www.linkedin.com/in/sridevipt/",
         initials: "ST",
@@ -70,8 +70,8 @@ const AboutPage = () => {
       },
       {
         name: "Cromwell De Guzman",
-        role: "AI Designer",
-        bio: "Front-end developer and game designer with AI UI/UX experience.",
+        role: "Lead UI/UX Designer & Frontend Developer",
+        bio: "Frontend developer and game designer with AI UI/UX experience, focused on crafting digital products that feel intuitive, engaging, and performance-driven.",
         linkedin: "https://www.linkedin.com/in/cromwell-de-guzman-a19482218/",
         initials: "CD",
         photo: profilephoto4,
