@@ -1,0 +1,528 @@
+.dashboardContainer {
+    min-height: 100vh;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.5s ease-in-out both;
+}
+
+/* === HEADER === */
+.headerGradientGreen {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 2rem 1rem 3rem;
+}
+
+.headerContent {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.profileSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+.logoRow {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.logoIconWhite {
+    color: #fff;
+}
+
+.logoTextWhite {
+    font-size: 0.9rem;
+    color: #d1fae5;
+    text-align: left;
+}
+
+.welcomeTextWhite {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0.25rem 0 0;
+    text-align: left;
+}
+
+.subTextWhite {
+    font-size: 0.9rem;
+    color: #d1fae5;
+    margin-top: 0.2rem;
+    text-align: left;
+}
+
+.headerButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.iconButtonWhite {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.iconButtonWhite:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* === TIP CARD === */
+.tipCardGreen {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    border-radius: 0.75rem;
+}
+
+.tipIconGreen {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tipTitleWhite {
+    font-weight: 600;
+    margin: 0;
+    text-align: left;
+}
+
+.tipTextWhite {
+    color: #d1fae5;
+    font-size: 0.85rem;
+    margin: 0.2rem 0 0;
+    text-align: left;
+}
+
+/* === MAIN === */
+.mainContent {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 2rem 0;
+}
+
+/* === ACTION CARDS === */
+.primaryActions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.actionCard {
+    background: white;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+.actionCard:hover {
+    border-color: #10b981;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.actionIconGreenLight {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.actionCard h3 {
+    font-weight: 600;
+    color: #111827;
+    text-align: left;
+}
+
+.actionCard p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+    text-align: left;
+}
+
+/* === BUTTONS === */
+.greenButton,
+.greenButtonOutline {
+    margin-top: 1rem;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.greenButton {
+    background: #10b981;
+    color: white;
+    border: none;
+    font-family: inherit;
+}
+.greenButton:hover {
+    background: #059669;
+}
+
+.greenButtonOutline {
+    background: white;
+    border: 1px solid #a7f3d0;
+    color: #059669;
+}
+.greenButtonOutline:hover {
+    background: #ecfdf5;
+}
+
+/* === SECTION CARDS === */
+.sectionCard {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.sectionHeader {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1.5rem 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1rem;
+}
+
+.sectionHeader h3 {
+    color: #111827;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    text-align: left;
+}
+
+.sectionHeader p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0.25rem 0 0;
+    text-align: left;
+}
+
+.textButton {
+    color: #059669;
+    background: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-family: inherit;
+}
+.textButton:hover {
+    text-decoration: underline;
+    color: #047857;
+}
+
+/* === LIST CONTAINER === */
+.listContainer {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* === LIST ITEMS === */
+.listItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    /* border-radius: 10px; */
+    padding: 1rem;
+    transition: background 0.2s ease;
+}
+.listItem:hover {
+    background: #f9fafb;
+}
+
+.visitInfo {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 0.75rem;
+    text-align: left;
+    padding: 1rem;
+}
+
+.visitInfo > div h4 {
+    margin: 0;            /* remove default top/bottom margin */
+  }
+  
+  .visitInfo > div p {
+    margin: 0;            /* remove default top/bottom margin */
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem; /* optional: space below p if needed */
+  }
+  
+
+.listAvatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: auto;
+}
+
+.listIconGreen {
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 0.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.visitMeta {
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-align: left;
+}
+
+.badgeGreen {
+    background: #dcfce7;
+    color: #166534;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    text-align: left;
+    margin-right: 1rem;
+}
+
+.badgePurple {
+    background: #ede9fe;
+    color: #5b21b6;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    text-align: left;
+    margin-right: 1rem;
+}
+
+/* === NOTICE CARD === */
+.noticeCardBlue {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.noticeIconBlue {
+    background: #dbeafe;
+    color: #2563eb;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+}
+
+.noticeCardBlue h4 {
+    color: #1e3a8a;
+    font-weight: 600;
+    margin: 0;
+    text-align: left;
+}
+
+.noticeCardBlue p {
+    color: #374151;
+    font-size: 0.9rem;
+    margin: 0.25rem 0 0;
+    text-align: left;
+}
+
+/* === ANIMATION === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+    .primaryActions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .primaryActions {
+        grid-template-columns: 1fr;
+    }
+
+    .headerTop {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .sectionHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .listItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
+
+/* Header text */
+.welcomeTextWhite {
+    color: #ffffff; /* white for welcome text */
+  }
+  
+  .subTextWhite {
+    color: #f3f4f6; /* lighter gray/white for subtitles */
+  }
+  
+  /* Info card headers */
+  .tipTitleWhite {
+    color: #ffffff; /* white for “Your Role” */
+  }
+  
+  .tipTextWhite {
+    color: #e5e7eb; /* light gray for description */
+  }
+  
+  /* Patient/visit names */
+  .listItem h4 {
+    color: #111827; /* dark gray for visit titles and patient names */
+  }
+  
+  .listItem p,
+  .visitMeta {
+    color: #374151; /* medium gray for details like doctor names and dates */
+  }
+
+  /* orange variant - keep shapes identical to green, only swap palette */
+.actionCardOrange {
+    /* copy of .actionCard but with light orange border */
+    background: white;
+    border: 1px solid #fcd34d; /* subtle light orange border */
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    text-align: left;
+  }
+  
+  /* use same icon size/shape as green, but orange tint */
+  .actionIconOrangeLight {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  
+    /* match green's soft bg with orange tint */
+    background: rgba(251, 191, 36, 0.10); /* light orange wash */
+    color: #f59e0b; /* orange icon color */
+  }
+  
+  /* orange button mirrors green button but orange */
+  .orangeButton {
+    margin-top: 1rem;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #f59e0b; /* primary orange */
+    color: white;
+    border: none;
+    font-family: inherit;
+  }
+  .orangeButton:hover {
+    background: #d97706;
+  }
+  
+  /* badge color (small orange pill) */
+  .badgeBubble {
+    background-color: #f97316;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 999px;
+    margin-left: 8px;
+  }
+  
+  /* keep inviteButtonWrapper as-is; ensures inline layout between text and badge */
+  .inviteButtonWrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center; /* centers label + badge inside button (same as green) */
+  }
+  
+  .actionCardOrange h3 {
+    font-weight: 600;
+    color: #111827;
+    text-align: left;
+  }
+
+  .actionCardOrange p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+    text-align: left;
+  }

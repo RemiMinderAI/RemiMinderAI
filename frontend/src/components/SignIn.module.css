@@ -1,0 +1,361 @@
+/* =====================
+   Global container
+===================== */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f9fafb 0%, #eef2f7 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* =====================
+   Header
+===================== */
+.header {
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+
+.logo {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #111827;
+  cursor: pointer;
+}
+
+/* =====================
+   Main layout
+===================== */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  background: transparent;
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.formCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* =====================
+   Titles & subtitles
+===================== */
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #111827;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* =====================
+   Role buttons
+===================== */
+.roleButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.roleButton,
+.roleButton2 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.roleButton h1,
+.roleButton2 h1 {
+  font-weight: 500;
+  font-size: 1.15rem;
+  margin-bottom: -0.5rem;
+}
+
+.roleButton p,
+.roleButton2 p {
+  color: #6b7280;
+}
+
+.roleButton:hover {
+  background: rgba(151, 58, 213, 0.1);
+  border-color: #7c3aed;
+  color: #7c3aed;
+}
+
+.roleButton2:hover {
+  background: rgba(58, 213, 94, 0.1);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+/* =====================
+   Icon boxes
+===================== */
+.iconBoxPatient,
+.iconBoxCaregiver {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.iconBoxPatient {
+  background: rgba(151, 58, 213, 0.1);
+  color: #7c3aed;
+}
+
+.iconBoxCaregiver {
+  background: rgba(58, 213, 94, 0.1);
+  color: #10b981;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+/* =====================
+   Auth UI / Sign-in buttons
+===================== */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.signInButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  font-family: inherit;
+  width: 100%; /* make all buttons same width */
+  box-sizing: border-box;
+}
+
+.emailButton,
+.googleButton,
+.appleButton {
+  background-color: white;
+  border: 2px solid #e5e7eb;
+}
+
+.emailButton:hover,
+.googleButton:hover,
+.appleButton:hover {
+  background-color: #f3f4f6;
+}
+
+/* =====================
+   Back button
+===================== */
+.backButton {
+  background-color: transparent;
+  color: black;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.backButton:hover {
+  background: #f3f4f6;
+}
+
+/* =====================
+   Apple modal
+===================== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalCard {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.modalClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.modalText {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.modalButton {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.modalButton:hover {
+  background: #6d28d9;
+}
+
+/* =====================
+   Recovery / reset page
+===================== */
+.recoveryHeading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.formCard .form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.label {
+  text-align: left;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db; /* grey outline */
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.greenButton {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 1rem auto 0;
+  width: 100%; /* same width as input fields */
+  text-align: center;
+}
+
+.greenButton:hover {
+  background-color: #059669;
+}
+
+.recoveryFooter {
+  text-align: center;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: #6b7280; /* grey links */
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/* Make entire "Don’t have an account? Sign up" clickable */
+.linkButton.full {
+  display: inline;
+}
+
+.linkButton:hover {
+  color: #4b5563; /* darker grey on hover */
+}
+
+/* unified error message style */
+.errorMessage {
+  background-color: #fee2e2; /* light red background */
+  color: #b91c1c;           /* red text */
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #b91c1c;
+}

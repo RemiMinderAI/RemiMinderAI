@@ -1,0 +1,255 @@
+/* --- Page Layout --- */
+.pageContainer {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* --- Header --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 19.5rem;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  border-bottom: none;
+  /* border-radius: 0 0 1rem 1rem; */
+}
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.backButton {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.headerTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: left;
+}
+.headerSubtitle {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin-top: 0.25rem;
+  text-align: left;
+}
+.newReminderButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  color: #7c3aed;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.newReminderButton:hover {
+  background-color: #f3f0ff;
+  transform: translateY(-1px);
+}
+
+/* --- Section Styles --- */
+.overviewSection, .remindersSection {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 2rem 0.5rem 2rem;
+}
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+.sectionSubtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  text-align: left;
+  margin-top: 0rem;
+}
+
+/* --- Overview Box --- */
+.overviewBox {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.statValue {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4c1d95;
+}
+.statLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* --- Reminder Sections (Today/Upcoming/Past) --- */
+.sectionGroup {
+  margin-bottom: 2rem;
+}
+.sectionEmpty {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-align: center;
+  padding: 0.75rem 0;
+}
+
+/* --- Reminder Card --- */
+.reminderCard {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: transform 0.2s;
+  text-align: left;
+}
+.reminderCard:hover {
+  transform: translateY(-2px);
+}
+.disabledCard {
+  background-color: #f9fafb;
+}
+.disabledCard .reminderTitle,
+.disabledCard .reminderDetails,
+.disabledCard .reminderNext {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+.reminderIcon {
+  margin-top: 0.25rem;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconAppointment { color: #a855f7; }
+.iconExercise { color: #22c55e; }
+.iconMedication { color: #3b82f6; }
+.iconLab { color: #f97316; }
+.iconDisabled { color: #9ca3af; }
+
+.reminderContent {
+  flex-grow: 1;
+}
+.reminderHeader {
+  display: flex;
+  justify-content: space-between; /* title/tag left, actions right */
+  align-items: center;
+  gap: 1rem;
+}
+.titleTag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space between title and tag */
+}
+.reminderTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+.reminderTag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+}
+.tagPurple { color: #a855f7; border-color: #e9d5ff; background-color: #faebff; }
+.tagGreen { color: #22c55e; border-color: #bbf7d0; background-color: #f0fdf4; }
+.tagBlue { color: #3b82f6; border-color: #bfdbfe; background-color: #eff6ff; }
+.tagOrange { color: #f97316; border-color: #fed7aa; background-color: #fff7ed; }
+.tagGray { color: #6b7280; border-color: #e5e7eb; background-color: #f9fafb; }
+
+.reminderDetails, .reminderNext {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+.reminderNext {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* --- Reminder Actions --- */
+.reminderActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+.deleteButton {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+.deleteButton:hover {
+  color: #ef4444;
+}
+
+/* Snooze / Complete buttons */
+.snoozeButton, .completeButton {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.1s;
+}
+.snoozeButton {
+  background-color: #fef9c3;
+  color: #a16207;
+}
+.snoozeButton:hover {
+  background-color: #fde047;
+}
+.completeButton {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.completeButton:hover {
+  background-color: #86efac;
+}

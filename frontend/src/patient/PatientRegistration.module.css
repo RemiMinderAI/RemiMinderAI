@@ -1,0 +1,370 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f9fafb 0%, #eef2f7 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Header */
+.header {
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+
+.logo {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #111827;
+  cursor: pointer;
+}
+
+/* Main content */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  padding: 2.5rem 3rem;
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #111827;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.signUpButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.emailButton,
+.googleButton,
+.appleButton {
+  background-color: white;
+  border: 2px solid #e5e7eb;
+}
+
+.emailButton:hover,
+.googleButton:hover,
+.appleButton:hover {
+  background-color: #f3f4f6;
+}
+
+/* Footer Note */
+.footerNote {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 1.5rem;
+}
+
+.contactLink {
+  font-size: 1.0rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+}
+
+.signInLink {
+  font-size: 1rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signInLink:hover {
+  text-decoration: underline;
+}
+
+/* Email form card */
+.formCard {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 20px;
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); */
+  text-align: left;
+}
+
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px 1px;
+  font-size: 0.85rem;
+  border: 1px solid #f3f3f5;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: #f3f3f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-indent: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.verificationInputField {
+  width: 100%;
+  padding: 10px 1px;
+  font-size: 0.95rem;
+  border: 1px solid #f3f3f5;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: #f3f3f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.inputField:focus {
+  border-color: #2563eb;
+}
+
+.buttonColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.continueButton {
+  background-color: #3A7BD5;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
+.backButton {
+  background-color: transparent;
+  color: black;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.backButton:hover {
+  background: #f3f4f6;
+}
+
+.iconCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #eef2ff;
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
+}
+
+.footerNote {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 24px;
+}
+
+.contactLink {
+  color: #4f46e5;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+}
+
+.verifyTitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: -0.5rem;
+}
+
+.verifySubtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+  font-size: 14px;
+}
+
+/* .mailIconCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  color: #333;
+} */
+
+.resendWrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.25rem;
+}
+
+.resendButton {
+  background: none;
+  border: none;
+  color: #3A7BD5;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.resendButton:hover {
+  text-decoration: underline;
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 24, 39, 0.5); /* semi-transparent dark */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+
+/* Modal Card */
+.modalCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.modalText {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.modalButton {
+  background-color: #3A7BD5;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modalButton:hover {
+  background-color: #2563eb;
+}
+
+.modalClose {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.modalClose:hover {
+  color: #111827;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
