@@ -1,0 +1,34 @@
+/* Center the whole card like your PatientRegistration card */
+.supabase-auth-container {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 450px;
+    margin: 3rem auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Make inputs match your custom ones */
+  .sbui-input {
+    background-color: #f3f3f5 !important;
+    border-radius: 8px !important;
+    border: 1px solid #f3f3f5 !important;
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+  
+  /* Buttons */
+  .sbui-btn {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    background-color: #3A7BD5 !important;
+    color: #fff !important;
+    border: none !important;
+    transition: background-color 0.2s;
+  }
+  
+  .sbui-btn:hover {
+    background-color: #2C5CA9 !important;
+  }
+  

@@ -1,0 +1,5 @@
+# Note: this is for web crawler stuff (not needed currently as we are in local)
+
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:

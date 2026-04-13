@@ -1,0 +1,284 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f9fafb 0%, #eef2f7 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .page {
+    /* padding: 2.5rem 3rem; */
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  .card {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+
+  /* Header */
+  .header {
+      background-color: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+  }
+      
+    .logo {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #111827;
+      cursor: pointer;
+  }
+  
+  .heading {
+    text-align: center;
+  }
+  
+  .iconWrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background-color: #f3e8ff;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  .headingIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #7c3aed;
+  }
+  
+  .title {
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  
+  .subtitle {
+    color: #4B5563;
+    margin-top: 0.5rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .illustration {
+    background: linear-gradient(to bottom right, rgba(166, 58, 213, 0.1), #f3e8ff);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .micWrapper {
+    position: relative;
+  }
+  
+  .micCircle {
+    width: 8rem;
+    height: 8rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .micIcon {
+    width: 4rem;
+    height: 4rem;
+    color: #7c3aed;
+  }
+  
+  .checkBadge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #22c55e;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: zoomIn 0.3s ease;
+  }
+  
+  .checkIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: white;
+  }
+  
+  .spinner {
+    position: absolute;
+    inset: 0;
+    border: 0.25rem solid #7c3aed;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes zoomIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+  
+  .benefitsTitle {
+    text-align: center;
+    color: #111827;
+    font-weight: 400;
+  }
+  
+  .benefitList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .benefitItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #4B5563;
+  }
+  
+  .benefitIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #22c55e;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+  
+  .privacy {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(to bottom right, rgba(166, 58, 213, 0.1), #f3e8ff);
+    border: 1px solid #f3e8ff;
+    align-items: flex-start;
+  }
+  
+  .privacyIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #7c3aed;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+  
+  .privacyTitle {
+    margin: 0;
+    font-weight: 400;
+    color: #7c3aed;
+    text-align: left;
+  }
+  
+  .privacyText {
+    margin: 0;
+    color: #7c3aed;
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+  
+  .grantBtn {
+    background-color: #7c3aed;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+  }
+  
+  .grantBtn:hover {
+    background-color: #8b5cf6;
+  }
+  
+  .grantBtnIcon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .grantedSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .grantedMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #22c55e;
+    padding: 0.5rem 0;
+  }
+  
+  .deniedMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #dc2626;
+    padding: 0.5rem 0;
+  }
+  
+  .checkIconSmall {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .skipBtn {
+    width: 100%;
+    text-align: left;
+    font-size: 0.875rem;
+    color: #6B7280;
+    background: transparent;
+    border: none;
+    margin-top: 2rem;
+  }
+  
+  .skipBtn:hover {
+    color: #374151;
+    cursor: pointer;
+  }
+  
