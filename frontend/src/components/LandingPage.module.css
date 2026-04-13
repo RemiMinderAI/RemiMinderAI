@@ -28,8 +28,8 @@
 }
 .logo {
   display: flex;
-  align-items: center;      /* vertical centering */
-  gap: 0.5rem;              /* spacing between image and text */
+  align-items: center;
+  gap: 0.5rem;
   font-weight: bold;
   font-size: 1.5rem;
   cursor: pointer;
@@ -42,20 +42,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;           /* prevents image from squishing */
+  flex-shrink: 0;
 }
 
 .headerLogoIcon {
   width: 2rem;
   height: 2rem;
   border-radius: 0.5rem;
-  background: linear-gradient(135deg, #7b5cf6, #22c55e); /* purple → green gradient */
+  background: linear-gradient(135deg, #7b5cf6, #22c55e);
   color: white;
   font-weight: bold;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.5rem; /* spacing between box and text */
+  margin-right: 0.5rem;
   font-size: 1rem;
 }
 .nav a {
@@ -64,20 +64,25 @@
   color: var(--light-text);
   font-weight: 500;
 }
-.signInButton {
+
+/* Mailing list button (top-right nav) */
+.mailingListButton {
   text-decoration: none;
-  color: var(--dark-text);
-  background-color: white;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-purple), var(--secondary-green));
   font-weight: 600;
-  border: 1px solid var(--border-color);
-  padding: 8px 16px;
+  border: none;
+  padding: 9px 18px;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
 }
-
-.signInButton:hover {
-  color: white;
-  background-color: var(--primary-purple);
+.mailingListButton:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(123, 92, 246, 0.35);
 }
 
 /* Hero Section */
@@ -85,10 +90,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 0; /* already adds spacing */
+  padding: 60px 0;
   gap: 80px;
   max-width: 1600px;
-  margin: -1.5rem auto 0 ; /* changed from 200px auto 0 */
+  margin: -1.5rem auto 0;
 }
 .leftPanel {
   flex: 1;
@@ -130,42 +135,79 @@
   line-height: 1.6;
   text-align: left;
 }
+
+/* Hero button group */
 .buttonGroup {
   margin-top: 10px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-.primaryButton, .secondaryButton {
-  padding: 8px 28px;
+
+/* Shared base for hero buttons */
+.primaryButton,
+.androidButton,
+.iosButton {
+  padding: 10px 22px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   border: 1px solid transparent;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
 }
+
+/* Sign Up — purple */
 .primaryButton {
   background-color: var(--primary-purple);
   color: white;
 }
 .primaryButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(123,92,246,0.3);
+  box-shadow: 0 4px 12px rgba(123,92,246,0.35);
 }
-.secondaryButton {
-  background-color: #f0f0f0;
-  color: var(--dark-text);
-}
-.secondaryButton:hover {
+
+/* Download Android — green */
+.androidButton {
   background-color: var(--secondary-green);
   color: white;
-  transform: translateY(-2px);
 }
+.androidButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16,185,129,0.35);
+}
+
+/* Download iOS — disabled/muted */
+.iosButton {
+  background-color: #f0f0f0;
+  color: #999;
+  cursor: not-allowed;
+  border: 1px solid #ddd;
+}
+.iosButton:disabled {
+  opacity: 0.75;
+}
+
+/* Coming Soon badge */
+.comingSoonBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #e0e0e0;
+  color: #888;
+  padding: 2px 7px;
+  border-radius: 10px;
+  margin-left: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
 .rightPanel {
   flex: 1;
   max-width: 700px;
@@ -204,7 +246,7 @@
 @media (min-width: 1400px) {
   .title { font-size: 4rem; }
   .description { font-size: 1.3rem; }
-  .primaryButton, .secondaryButton { padding: 16px 32px; }
+  .primaryButton, .androidButton, .iosButton { padding: 12px 28px; }
   .statsSection { gap: 80px; }
   .statValue { font-size: 2rem; }
   .statLabel { font-size: 1rem; }
@@ -274,44 +316,95 @@
 .ctaHeader h2 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
 .ctaHeader p { font-size: 1.25rem; color: #6b7280; }
 .ctaCardWrapper { display: flex; justify-content: center; margin: 3rem 0; }
-.ctaCard { background: rgba(255,255,255,0.5); backdrop-filter: blur(12px); border-radius: 2rem; border: 2px solid #e5e7eb; padding: 2rem; max-width: 900px; width: 100%; display: flex; flex-direction: column; gap: 2rem; transition: all 0.3s ease; }
-.userOptions { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.ctaUserCard { display: flex; gap: 1rem; padding: 1.5rem; border-radius: 1.5rem; border: 2px solid #e5e7eb; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s ease; text-align: left; align-items: flex-start; }
-.ctaUserCard:hover { border-color: var(--primary-purple); background: rgba(255,255,255,0.55); }
-.caregiverCard:hover { border-color: var(--secondary-green); background: rgba(16,185,129,0.2); }
-.iconBox { width: 3rem; height: 3rem; border-radius: 0.75rem; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: rgba(123,92,246,0.1); }
-.caregiverCard .iconBox { background: rgba(16,185,129,0.1); }
-.userContent h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; margin-top: auto; }
-.userContentGreen h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--secondary-green); margin-top: auto; }
-.userContent p { font-size: 0.95rem; color: #6b7280; margin-bottom: 0.5rem; }
-.userContentGreen p { font-size: 0.95rem; color: #6b7280; margin-bottom: 0.5rem; }
-.ctaLink { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 500; color: var(--primary-purple); }
-.ctaLink2 { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 500; color: var(--secondary-green); }
-.ctaLink svg .ctaLink2 svg{ transition: transform 0.3s ease; }
-.ctaUserCard:hover .ctaLink svg .ctaLink2 svg { transform: translateX(4px); }
-
-/* Patient card icon */
-.ctaUserCard:not(.caregiverCard) .iconBox svg {
-  color: var(--primary-purple);
+.ctaCard {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 2rem;
+  border: 2px solid #e5e7eb;
+  padding: 2.5rem;
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
 }
 
-/* Caregiver card icon */
-.caregiverCard .iconBox svg {
-  color: var(--secondary-green);
+/* CTA 3-button group */
+.ctaButtonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
-/* ADD THIS: patient-only hover override */
-.ctaUserCard:hover:not(.caregiverCard) {
-  border-color: var(--primary-purple);
-  background: rgba(123,92,246,0.2); /* light purple highlight */
+/* CTA Sign Up */
+.ctaPrimaryButton {
+  padding: 14px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-purple);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+.ctaPrimaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(123,92,246,0.35);
+}
+
+/* CTA Download Android */
+.ctaAndroidButton {
+  padding: 14px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--secondary-green);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+.ctaAndroidButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.35);
+}
+
+/* CTA Download iOS — disabled */
+.ctaIosButton {
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f0f0;
+  color: #999;
+  border: 1px solid #ddd;
+  cursor: not-allowed;
+  white-space: nowrap;
+  opacity: 0.75;
 }
 
 /* Features list */
 .featureList {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* two columns */
-  gap: 0.75rem 2rem; /* row gap, column gap */
-  margin-top: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 2rem;
+  width: 100%;
 }
 .featureItem {
   display: flex;
@@ -322,8 +415,14 @@
 }
 .featureIcon {
   flex-shrink: 0;
-  color: var(--primary-purple); /* checkmark color */
+  color: var(--primary-purple);
 }
+
+/* Trust section */
+.trustSection { text-align: center; margin-top: 1rem; }
+.trustSection p { color: #6b7280; margin-bottom: 0.5rem; }
+.trustBadges { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.875rem; color: #6b7280; }
+.statusDot { width: 8px; height: 8px; border-radius: 50%; background: var(--secondary-green); }
 
 /* --- Footer --- */
 .footer {
@@ -335,89 +434,9 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-.footerGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-  text-align: left; /* ensure left alignment for all columns */
-}
-.footerBrand {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.brandLogo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.brandIcon {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(135deg, var(--primary-purple), var(--secondary-green));
-  color: white;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.brandName {
-  font-weight: 600;
-}
-.footerHeading {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-.footerList {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: left; /* force left-aligned links */
-}
-.footerList a {
-  color: var(--light-text);
-  font-size: 0.875rem;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.footerList a:hover {
-  color: var(--dark-text);
-}
 .footerText {
   font-size: 0.875rem;
   color: var(--light-text);
-}
-.footerBottom {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* left align the text on small screens */
-  justify-content: space-between;
-  gap: 1rem;
-  border-top: 1px solid var(--border-color);
-  padding-top: 1.5rem;
-}
-@media (min-width: 768px) {
-  .footerBottom {
-    flex-direction: row;
-    align-items: center; /* keep left-aligned on large screens */
-  }
-}
-.socialLinks {
-  display: flex;
-  gap: 1rem;
-}
-.socialLinks a {
-  color: var(--light-text);
-  font-size: 0.875rem;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.socialLinks a:hover {
-  color: var(--dark-text);
 }
 
 .demoWrapper {
@@ -427,30 +446,31 @@
   margin: 3rem 0;
 }
 
-/* Fixed-size preview with 16:9 aspect ratio */
 .demoFrame {
   position: relative;
   width: 700px;
   height: 450px;
   border-radius: 16px;
   overflow-y: auto;
-  background: #1f1b2e;
+  background: #fff;
+  color: #1a1a1a;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
   scrollbar-width: thin;
-  scrollbar-color: #a78bfa #1f1b2e;
+  scrollbar-color: #a78bfa #f3f4f6;
 }
 
-/* Scrollbar styling */
 .demoFrame::-webkit-scrollbar {
   width: 6px;
+}
+.demoFrame::-webkit-scrollbar-track {
+  background: #f3f4f6;
 }
 .demoFrame::-webkit-scrollbar-thumb {
   background-color: #a78bfa;
   border-radius: 10px;
 }
 
-/* Fullscreen mode */
 .fullScreen {
   position: fixed;
   top: 50%;
@@ -460,11 +480,10 @@
   transform: translate(-50%, -50%);
   z-index: 9999;
   border-radius: 12px;
-  background: #fff; /* light mode background */
-  color: #1a1a1a; /* dark text */
+  background: #fff;
+  color: #1a1a1a;
 }
 
-/* Fullscreen toggle (four-arrows icon) */
 .fullscreenButton {
   position: absolute;
   top: 10px;
@@ -477,27 +496,13 @@
   color: rgba(0, 0, 0, 0.4);
   transition: background 0.2s;
 }
-
 .fullscreenButton:hover {
   color: white;
   background: rgba(0, 0, 0, 0.4);
 }
 
-.demoFrame {
-  background: #fff; /* light mode background */
-  color: #1a1a1a;
-}
-
-.demoFrame::-webkit-scrollbar-track {
-  background: #f3f4f6;
-}
-
-.demoFrame::-webkit-scrollbar-thumb {
-  background-color: #a78bfa;
-}
-
 .stepCard h3,
 .personaCard h3,
 .benefitContent h3 {
-  color: var(--dark-text)
+  color: var(--dark-text);
 }

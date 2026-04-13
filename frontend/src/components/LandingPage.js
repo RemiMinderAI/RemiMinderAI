@@ -7,11 +7,14 @@ import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
-  User, ArrowRight, CheckCircle2 
+  User, ArrowRight, CheckCircle2, Smartphone, Apple
 } from "lucide-react";
 import ProductDemo from "./ProductDemo";
 import { Maximize2 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
+
+const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
+const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
@@ -30,10 +33,6 @@ const LandingPage = () => {
   }, [location]);
   
   const navigate = useNavigate();
-
-  const goToSignIn = () => {
-    navigate("/sign-in");
-  };
 
   const steps = [
     {
@@ -136,7 +135,14 @@ const LandingPage = () => {
           </a>
           <a href="/about" className={styles.navLink}>About</a>
         </nav>
-        <button onClick={goToSignIn} className={styles.signInButton}>Sign In</button>
+        <a
+          href={MAILING_LIST_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.mailingListButton}
+        >
+          Join Our Mailing List
+        </a>
       </header>
 
       {/* Hero Section */}
@@ -156,17 +162,28 @@ const LandingPage = () => {
           </p>
 
           <div className={styles.buttonGroup}>
-            <button
-              onClick={() => navigate('/patient-registration')}
+            <a
+              href={MAILING_LIST_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.primaryButton}
             >
-              Register as Patient&nbsp;<ArrowRight size={16} />
-            </button>
-            <button
-              onClick={() => navigate('/create-account')}
-              className={styles.secondaryButton}
+              Sign Up&nbsp;<ArrowRight size={16} />
+            </a>
+            <a
+              href={ANDROID_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.androidButton}
             >
-              Register as Caregiver&nbsp;<ArrowRight size={16} />
+              <Smartphone size={16} />&nbsp;Download Android
+            </a>
+            <button
+              className={styles.iosButton}
+              disabled
+            >
+              <Apple size={16} />&nbsp;Download iOS&nbsp;
+              <span className={styles.comingSoonBadge}>Coming Soon</span>
             </button>
           </div>
 
@@ -323,46 +340,32 @@ const LandingPage = () => {
               <span className={styles.gradientText}>healthcare experience?</span>
             </h2>
             <p>
-              Join thousands of families already using RemiMinder. Choose your
-              path to get started.
+              Join thousands of families already using RemiMinder. Sign up or download the app to get started.
             </p>
           </div>
 
           <div className={styles.ctaCardWrapper}>
             <div className={styles.ctaCard}>
-              <div className={styles.userOptions}>
-                {/* Patient Card */}
-                <button
-                  onClick={() => navigate("/patient-registration")}
-                  className={styles.ctaUserCard}
+              <div className={styles.ctaButtonGroup}>
+                <a
+                  href={MAILING_LIST_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.ctaPrimaryButton}
                 >
-                  <div className={styles.iconBox}>
-                    <User size={24} />
-                  </div>
-                  <div className={styles.userContent}>
-                    <h3>I'm a Patient</h3>
-                    <p>Record your doctor visits, track your health journey, and never forget important details.</p>
-                    <span className={styles.ctaLink}>
-                      Get Started <ArrowRight size={16} />
-                    </span>
-                  </div>
-                </button>
-
-                {/* Caregiver Card */}
-                <button
-                  onClick={() => navigate("/create-account")}
-                  className={`${styles.ctaUserCard} ${styles.caregiverCard}`}
+                  Sign Up&nbsp;<ArrowRight size={18} />
+                </a>
+                <a
+                  href={ANDROID_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.ctaAndroidButton}
                 >
-                  <div className={styles.iconBox}>
-                    <Users size={24} />
-                  </div>
-                  <div className={styles.userContentGreen}>
-                    <h3>I'm a Caregiver</h3>
-                    <p>Stay connected with your loved ones' health, manage medications, and coordinate care easily.</p>
-                    <span className={styles.ctaLink2}>
-                      Get Started <ArrowRight size={16} />
-                    </span>
-                  </div>
+                  <Smartphone size={18} />&nbsp;Download Android
+                </a>
+                <button className={styles.ctaIosButton} disabled>
+                  <Apple size={18} />&nbsp;Download iOS&nbsp;
+                  <span className={styles.comingSoonBadge}>Coming Soon</span>
                 </button>
               </div>
 
@@ -400,57 +403,6 @@ const LandingPage = () => {
 
       {/* --- FOOTER --- */}
       <footer className={styles.footer}>
-        {/* <div className={styles.footerContainer}>
-          <div className={styles.footerGrid}>
-            <div className={styles.footerBrand}>
-              <div className={styles.brandLogo}>
-                <div className={styles.brandIcon}>RM</div>
-                <span className={styles.brandName}>RemiMinderAI</span>
-              </div>
-              <p className={styles.footerText}>
-                Your healthcare, remembered and reimagined
-              </p>
-            </div>
-
-            <div>
-              <h4 className={styles.footerHeading}>Product</h4>
-              <ul className={styles.footerList}>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Security</a></li>
-                <li><a href="#">Pricing</a></li>
-                <li><a href="#">FAQ</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className={styles.footerHeading}>Company</h4>
-              <ul className={styles.footerList}>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className={styles.footerHeading}>Legal</h4>
-              <ul className={styles.footerList}>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">HIPAA Compliance</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className={styles.footerBottom}>
-            <p>© 2025 RemiMinderAI. All rights reserved.</p>
-            <div className={styles.socialLinks}>
-              <a href="#">Twitter</a>
-              <a href="#">LinkedIn</a>
-              <a href="#">GitHub</a>
-            </div>
-          </div>
-        </div> */}
         <div className={styles.footerContainer}>
             <p>© 2025 RemiMinderAI. All rights reserved.</p>
         </div>
