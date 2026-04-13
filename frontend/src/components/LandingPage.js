@@ -1,415 +1,985 @@
-import React, { useState, useEffect } from 'react';
-import styles from './LandingPage.module.css';
-import heroImage from '../assets/hero-ai-orb.jpg'; 
-import howItWorksImage from '../assets/coverpage.png';
-import elderlyImage from '../assets/user-elderly-caregiver.jpg';
-import familyImage from '../assets/user-family.jpg';
-import { useNavigate, useLocation } from "react-router-dom";
-import { 
-  Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
-  User, ArrowRight, CheckCircle2, Smartphone, Apple
-} from "lucide-react";
-import ProductDemo from "./ProductDemo";
-import { Maximize2 } from "lucide-react";
-import logo from '../assets/RemiMinder_logo_512.png';
+/* ============================================
+   REMIMINDER.AI — ENTERPRISE DESIGN SYSTEM
+   Brand: Teal (#1a9e9e) + Cream (#f7f3ec) + Gold (#c9a84c)
+   Font: Georgia (serif display) + system sans body
+   ============================================ */
 
-const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
-const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-const LandingPage = () => {
-  localStorage.setItem("onboarding_complete", true);
-  
-  const location = useLocation();
-  const [isFullScreen, setIsFullScreen] = useState(false);
+:root {
+  --teal:        #1a9e9e;
+  --teal-dark:   #137a7a;
+  --teal-light:  #e8f7f7;
+  --teal-mid:    #2ab5b5;
+  --gold:        #c9a84c;
+  --gold-light:  #f5e9c8;
+  --cream:       #f7f3ec;
+  --cream-dark:  #ede8df;
+  --ink:         #1a2332;
+  --ink-mid:     #2d3f52;
+  --ink-light:   #5a6a7a;
+  --white:       #ffffff;
+  --border:      rgba(26,158,158,0.15);
+  --shadow-sm:   0 2px 8px rgba(26,158,158,0.08);
+  --shadow-md:   0 8px 32px rgba(26,158,158,0.12);
+  --shadow-lg:   0 20px 60px rgba(26,50,50,0.15);
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+}
 
-  useEffect(() => {
-    if (location.hash === "#how-it-works") {
-      const el = document.getElementById("how-it-works");
-      el?.scrollIntoView({ behavior: "smooth" });
-    }
-    if (location.search.includes("fullscreen=true")) {
-      setIsFullScreen(true);
-    }
-  }, [location]);
-  
-  const navigate = useNavigate();
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  const steps = [
-    {
-      icon: <Mic className={styles.stepIcon} />,
-      title: "Record & Capture",
-      description:
-        "Easily record doctor visits and medical conversations with one tap. Your AI companion listens and captures every important detail.",
-    },
-    {
-      icon: <FileText className={styles.stepIcon} />,
-      title: "Summarize & Organize",
-      description:
-        "Get clear, structured summaries of your visits. All your health information organized in one secure place.",
-    },
-    {
-      icon: <Bell className={styles.stepIcon} />,
-      title: "Remind & Support",
-      description:
-        "Never miss medications or follow-ups. Smart reminders keep you and your loved ones on track.",
-    },
-    {
-      icon: <Shield className={styles.stepIcon} />,
-      title: "Privacy First",
-      description:
-        "Your health data is encrypted and secure. Built with privacy at the core, you're always in control.",
-    },
-  ];
+/* ---- CONTAINER ---- */
+.container {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background-color: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  const benefits = [
-    {
-      icon: Heart,
-      title: "Peace of Mind",
-      description:
-        "Know that every important detail from your healthcare visits is captured and organized, giving you confidence in your care decisions.",
-      stat: "95%",
-      statLabel: "feel more in control",
-    },
-    {
-      icon: Brain,
-      title: "Better Health Outcomes",
-      description:
-        "With clear summaries and reminders, you're more likely to follow treatment plans and catch important health changes early.",
-      stat: "3x",
-      statLabel: "better medication adherence",
-    },
-    {
-      icon: Clock,
-      title: "Time Saved",
-      description:
-        "Stop trying to remember what the doctor said or searching for that note. Everything you need is right at your fingertips.",
-      stat: "10hrs",
-      statLabel: "saved per month",
-    },
-    {
-      icon: Users,
-      title: "Family Connection",
-      description:
-        "Keep your family in the loop automatically. Share updates and coordinate care effortlessly with the people who matter most.",
-      stat: "100%",
-      statLabel: "family satisfaction",
-    },
-  ];
+/* ---- HEADER ---- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 5%;
+  background: rgba(247,243,236,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+.headerScrolled {
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.logoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+.logoText {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.logoAi {
+  color: var(--teal);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navLink {
+  text-decoration: none;
+  color: var(--ink-light);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+.navLink:hover {
+  color: var(--teal);
+  background: var(--teal-light);
+}
+.mailingListButton {
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--white);
+  background: var(--teal);
+  padding: 9px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.mailingListButton:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26,158,158,0.3);
+}
 
-  return (
-    <div className={styles.container}>
-      {/* Navigation */}
-      <header className={styles.header}>
-        <div className={styles.logo} onClick={() => navigate("/")}>
-          <div className={styles.logoImg}>
-            <img
-              src={logo}
-              alt="RemiMinder Logo"
-              className={styles.logoImg}
-            />
-          </div>
-          RemiMinderAI
-        </div>
-        <nav className={styles.nav}>
-          <a href="/" className={styles.navLink}>Home</a>
-          <a
-            href="#"
-            className={styles.navLink}
-            onClick={(e) => {
-              e.preventDefault();
-              setIsFullScreen(true);
-            }}
-          >
-            Product Demo
-          </a>
-          <a
-            href="#how-it-works"
-            className={styles.navLink}
-            onClick={(e) => {
-              e.preventDefault();
-              const el = document.getElementById("how-it-works");
-              el?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            How It Works
-          </a>
-          <a href="/about" className={styles.navLink}>About</a>
-        </nav>
-        <a
-          href={MAILING_LIST_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.mailingListButton}
-        >
-          Join Our Mailing List
-        </a>
-      </header>
+/* ---- HERO ---- */
+.heroSection {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 5% 60px;
+  min-height: 90vh;
+  overflow: hidden;
+  gap: 60px;
+}
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.heroBgOrb1 {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(26,158,158,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.heroBgOrb2 {
+  position: absolute;
+  bottom: -150px;
+  left: -50px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.heroBgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,158,158,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,158,158,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.leftPanel {
+  flex: 1;
+  max-width: 580px;
+  position: relative;
+  z-index: 1;
+}
+.aiTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--teal-dark);
+  padding: 6px 14px 6px 10px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.aiTagDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.highlightText {
+  color: var(--teal);
+  position: relative;
+  display: inline-block;
+}
+.highlightText::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+.description {
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+  align-items: center;
+}
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.primaryButton:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26,158,158,0.35);
+}
+.androidButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: var(--white);
+  color: var(--teal-dark);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: 2px solid var(--teal);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.androidButton:hover {
+  background: var(--teal-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(26,158,158,0.2);
+}
+.iosButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 18px;
+  background: transparent;
+  color: var(--ink-light);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--cream-dark);
+  cursor: not-allowed;
+  opacity: 0.65;
+  white-space: nowrap;
+}
+.comingSoonBadge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: var(--gold-light);
+  color: var(--gold);
+  padding: 2px 7px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.trustRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  font-weight: 500;
+}
+.trustItem svg { color: var(--teal); }
+.trustDivider {
+  width: 1px;
+  height: 14px;
+  background: var(--cream-dark);
+}
 
-      {/* Hero Section */}
-      <main className={styles.heroSection}>
-        <div className={styles.leftPanel}>
-          <div className={styles.aiTag}>✨ AI-Powered Healthcare Companion</div>
-          <h1 className={styles.title}>
-            Your healthcare,
-            <br />
-            <span className={styles.highlightRemembered}>remembered</span> and{' '}
-            <span className={styles.highlightReimagined}>reimagined</span>
-          </h1>
-          <p className={styles.description}>
-            Never miss a detail from your doctor visits. RemiMinder records
-            conversations, creates clear summaries, and keeps your health
-            journey organized—so you can focus on what matters most.
-          </p>
+/* Hero phone */
+.rightPanel {
+  flex: 1;
+  max-width: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.phoneHeroWrapper {
+  position: relative;
+  display: inline-block;
+}
+.phoneGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(26,158,158,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.phoneHeroImage {
+  width: 420px;
+  max-width: 100%;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 1;
+  animation: floatPhone 5s ease-in-out infinite;
+}
+@keyframes floatPhone {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.floatingBadge1,
+.floatingBadge2 {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  animation: fadeInBadge 0.6s ease forwards;
+}
+.floatingBadge1 { top: 18%; left: -60px; animation-delay: 0.8s; opacity: 0; }
+.floatingBadge2 { bottom: 22%; right: -50px; animation-delay: 1.2s; opacity: 0; }
+@keyframes fadeInBadge {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.floatingBadgeIcon { color: var(--teal); }
 
-          <div className={styles.buttonGroup}>
-            <a
-              href={MAILING_LIST_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.primaryButton}
-            >
-              Sign Up&nbsp;<ArrowRight size={16} />
-            </a>
-            <a
-              href={ANDROID_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.androidButton}
-            >
-              <Smartphone size={16} />&nbsp;Download Android
-            </a>
-            <button
-              className={styles.iosButton}
-              disabled
-            >
-              <Apple size={16} />&nbsp;Download iOS&nbsp;
-              <span className={styles.comingSoonBadge}>Coming Soon</span>
-            </button>
-          </div>
+/* ---- SOCIAL PROOF BAR ---- */
+.socialProofBar {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 5%;
+}
+.socialProofInner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.proofItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-light);
+}
+.proofItem svg { color: var(--teal); }
+.stars { display: flex; gap: 2px; color: var(--gold); }
+.proofDivider { width: 1px; height: 20px; background: var(--cream-dark); }
 
-          <div className={styles.statsSection}>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>50K+</div>
-              <div className={styles.statLabel}>Families Supported</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>98%</div>
-              <div className={styles.statLabel}>User Satisfaction</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>24/7</div>
-              <div className={styles.statLabel}>AI Support</div>
-            </div>
-          </div>
-        </div>
+/* ---- SHARED SECTION STYLES ---- */
+.sectionLabel {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.sectionLabelLight {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+}
+.sectionTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.sectionSubtitle {
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.tealText {
+  color: var(--teal);
+}
 
-        <div className={styles.rightPanel}>
-          <div className={styles.demoWrapper}>
-            <section id="product" className={`${styles.demoFrame} ${isFullScreen ? styles.fullScreen : ""}`}>
-              <ProductDemo />
-              <button
-                className={styles.fullscreenButton}
-                onClick={() => setIsFullScreen(!isFullScreen)}
-                aria-label="Toggle fullscreen"
-              >
-                <Maximize2 size={20} />
-              </button>
-            </section>
-          </div>
-        </div>
-      </main>
+/* ---- HOW IT WORKS ---- */
+.howItWorks {
+  padding: 80px 5%;
+  background: var(--white);
+  text-align: center;
+}
+.howItWorks .sectionSubtitle { margin: 0 auto 48px; }
+.hiwImageWrapper {
+  max-width: 740px;
+  margin: 0 auto 56px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+.hiwImage { width: 100%; display: block; }
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.stepCard {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  text-align: left;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.stepCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.stepCard:hover {
+  border-color: var(--teal);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.stepCard:hover::before { opacity: 1; }
+.stepNumber {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--teal-light);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.stepIconWrapper {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  color: var(--white);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.stepIcon { width: 22px; height: 22px; }
+.stepCard h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.stepCard p {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
 
-      {/* --- HOW IT WORKS SECTION --- */}
-      <section id="how-it-works" className={styles.howItWorks}>
-        <div className={styles.hiwIntro}>
-          <h2>
-            How <span className={styles.gradientText}>RemiMinder</span> Works
-          </h2>
-          <p>Four simple steps to transform how you manage your healthcare journey.</p>
-        </div>
+/* ---- WHO IT'S FOR ---- */
+.whoItsFor {
+  padding: 80px 5%;
+  background: var(--cream);
+  text-align: center;
+}
+.whoItsFor .sectionSubtitle { margin: 0 auto 48px; }
+.personaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.personaCard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  text-align: left;
+}
+.personaCard:hover {
+  border-color: var(--teal);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+.personaImageWrapper {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.personaImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.personaCard:hover .personaImage { transform: scale(1.05); }
+.personaImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(26,35,50,0.3));
+}
+.personaContent { padding: 24px 28px; }
+.personaTag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.personaContent h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.personaContent p {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.personaCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+.personaCta:hover { gap: 10px; }
 
-        <div className={styles.hiwImageWrapper}>
-          <img
-            src={howItWorksImage}
-            alt="How RemiMinder Works Visual Flow"
-            className={styles.hiwImage}
-          />
-        </div>
+/* ---- BENEFITS ---- */
+.benefitsSection {
+  padding: 80px 5%;
+  background: var(--white);
+  text-align: center;
+}
+.benefitsSection .sectionSubtitle { margin: 0 auto 48px; }
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.benefitCard {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  text-align: left;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+.benefitCard:hover {
+  border-color: var(--teal);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.benefitTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.benefitIconWrapper {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  color: var(--white);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.benefitStat { text-align: right; }
+.benefitStatValue {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+.benefitStatLabel {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  margin-top: 2px;
+}
+.benefitTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.benefitDesc {
+  font-size: 0.88rem;
+  color: var(--ink-light);
+  line-height: 1.65;
+}
 
-        <div className={styles.stepsGrid}>
-          {steps.map((step, index) => (
-            <div key={index} className={styles.stepCard}>
-              <div className={styles.stepIconWrapper}>{step.icon}</div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+/* ---- CTA SECTION ---- */
+.ctaSection {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 5%;
+  background: var(--ink);
+}
+.ctaBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ctaBgOrb1 {
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(26,158,158,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.ctaBgOrb2 {
+  position: absolute;
+  bottom: -100px;
+  right: -50px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.ctaContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
+}
+.ctaContent { flex: 1; }
+.ctaTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.ctaSubtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+.ctaButtonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.ctaPrimaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.ctaPrimaryButton:hover {
+  background: var(--teal-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(26,158,158,0.4);
+}
+.ctaAndroidButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: rgba(255,255,255,0.1);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.ctaAndroidButton:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+.ctaIosButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: transparent;
+  color: rgba(255,255,255,0.4);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: not-allowed;
+  white-space: nowrap;
+  opacity: 0.6;
+}
+.ctaFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.ctaFeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+.ctaFeatureItem svg { color: var(--teal-mid); }
 
-      {/* --- WHO IT'S FOR SECTION --- */}
-      <section id="who-its-for" className={styles.whoItsFor}>
-        <div className={styles.whoIntro}>
-          <h2>
-            Built for <span className={styles.gradientText}>everyone</span> who cares<br />about health
-          </h2>
-          <p>
-            From patients navigating complex conditions to families supporting loved ones.
-          </p>
-        </div>
+/* CTA Phone */
+.ctaPhone {
+  flex-shrink: 0;
+  width: 320px;
+  position: relative;
+}
+.ctaPhoneGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(26,158,158,0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.ctaPhoneImage {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 1;
+  animation: floatPhone 5s ease-in-out infinite;
+}
 
-        <div className={styles.personaGrid}>
-          <div className={styles.personaCard}>
-            <div className={styles.personaImageWrapper}>
-              <img
-                src={elderlyImage}
-                alt="For Seniors and Patients"
-                className={styles.personaImage}
-              />
-            </div>
-            <div className={styles.personaContent}>
-              <h3>For Seniors & Patients</h3>
-              <p>
-                Stay on top of your health with clear visit summaries, medication reminders, and easy access to your medical history.
-              </p>
-            </div>
-          </div>
+/* ---- FOOTER ---- */
+.footer {
+  background: var(--ink-mid);
+  padding: 40px 5%;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footerInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.footerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footerLogo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+.footerBrandName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.footerTagline {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+}
+.footerLinks {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footerLink {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footerLink:hover { color: var(--teal-mid); }
+.footerCopy {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+}
 
-          <div className={styles.personaCard}>
-            <div className={styles.personaImageWrapper}>
-              <img
-                src={familyImage}
-                alt="For Families and Caregivers"
-                className={styles.personaImage}
-              />
-            </div>
-            <div className={styles.personaContent}>
-              <h3>For Families & Caregivers</h3>
-              <p>
-                Support your loved ones with shared health insights, appointment tracking, and real-time updates on their care journey.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+/* ---- FULLSCREEN OVERLAY ---- */
+.fullScreenOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,35,50,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fullScreen {
+  position: relative;
+  width: 90vw;
+  height: 88vh;
+  max-width: 1200px;
+  border-radius: var(--radius-lg);
+  overflow-y: auto;
+  background: var(--white);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  z-index: 9999;
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) #f3f4f6;
+}
+.fullScreen::-webkit-scrollbar { width: 6px; }
+.fullScreen::-webkit-scrollbar-track { background: #f3f4f6; }
+.fullScreen::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 10px; }
+.fullscreenButton {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  background: var(--cream);
+  color: var(--ink-light);
+  transition: all 0.2s ease;
+  z-index: 10000;
+}
+.fullscreenButton:hover {
+  background: var(--teal);
+  color: var(--white);
+}
 
-      {/* --- BENEFITS SECTION --- */}
-      <section id="benefits" className={styles.benefitsSection}>
-        <div className={styles.benefitsDivider} />
-        <div className={styles.benefitsContainer}>
-          <div className={styles.benefitsIntro}>
-            <h2>
-              Real impact on <span className={styles.gradientText}>real lives</span>
-            </h2>
-            <p>
-              More than just features — RemiMinder transforms how you experience healthcare.
-            </p>
-          </div>
-
-          <div className={styles.benefitsGrid}>
-            {benefits.map((benefit, index) => (
-              <div key={index} className={styles.benefitCard} style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className={styles.benefitGlow} />
-                <div className={styles.benefitInner}>
-                  <div className={styles.benefitTop}>
-                    <div className={styles.benefitIconWrapper}>
-                      <benefit.icon size={32} />
-                    </div>
-                    <div className={styles.benefitStat}>
-                      <div className={styles.benefitStatValue}>{benefit.stat}</div>
-                      <div className={styles.benefitStatLabel}>{benefit.statLabel}</div>
-                    </div>
-                  </div>
-                  <div className={styles.benefitContent}>
-                    <h3>{benefit.title}</h3>
-                    <p>{benefit.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- CALL TO ACTION SECTION --- */}
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaContainer}>
-          <div className={styles.ctaHeader}>
-            <h2>
-              Ready to transform your{" "}
-              <span className={styles.gradientText}>healthcare experience?</span>
-            </h2>
-            <p>
-              Join thousands of families already using RemiMinder. Sign up or download the app to get started.
-            </p>
-          </div>
-
-          <div className={styles.ctaCardWrapper}>
-            <div className={styles.ctaCard}>
-              <div className={styles.ctaButtonGroup}>
-                <a
-                  href={MAILING_LIST_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.ctaPrimaryButton}
-                >
-                  Sign Up&nbsp;<ArrowRight size={18} />
-                </a>
-                <a
-                  href={ANDROID_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.ctaAndroidButton}
-                >
-                  <Smartphone size={18} />&nbsp;Download Android
-                </a>
-                <button className={styles.ctaIosButton} disabled>
-                  <Apple size={18} />&nbsp;Download iOS&nbsp;
-                  <span className={styles.comingSoonBadge}>Coming Soon</span>
-                </button>
-              </div>
-
-              {/* Features list */}
-              <div className={styles.featureList}>
-                <div className={styles.featureItem}>
-                  <CheckCircle2 size={16} className={styles.featureIcon} />
-                  <span>Early access to all features</span>
-                </div>
-                <div className={styles.featureItem}>
-                  <CheckCircle2 size={16} className={styles.featureIcon} />
-                  <span>Exclusive onboarding support</span>
-                </div>
-                <div className={styles.featureItem}>
-                  <CheckCircle2 size={16} className={styles.featureIcon} />
-                  <span>Founding member pricing</span>
-                </div>
-                <div className={styles.featureItem}>
-                  <CheckCircle2 size={16} className={styles.featureIcon} />
-                  <span>Privacy-first, secure by design</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.trustSection}>
-            <p>Trusted by healthcare professionals and families worldwide</p>
-            <div className={styles.trustBadges}>
-              <div className={styles.statusDot}></div>
-              <span>HIPAA Compliant • SOC 2 Certified • End-to-End Encrypted</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- FOOTER --- */}
-      <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
-            <p>© 2025 RemiMinderAI. All rights reserved.</p>
-        </div>
-      </footer>
-
-    </div>
-  );
-};
-
-export default LandingPage;
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .heroSection { flex-direction: column; padding: 60px 5%; min-height: unset; }
+  .rightPanel { max-width: 100%; }
+  .phoneHeroImage { width: 280px; }
+  .floatingBadge1 { left: 0; }
+  .floatingBadge2 { right: 0; }
+  .ctaContainer { flex-direction: column; }
+  .ctaPhone { width: 240px; }
+}
+@media (max-width: 640px) {
+  .nav { display: none; }
+  .buttonGroup { flex-direction: column; align-items: flex-start; }
+  .stepsGrid { grid-template-columns: 1fr; }
+  .personaGrid { grid-template-columns: 1fr; }
+  .benefitsGrid { grid-template-columns: 1fr; }
+  .ctaButtonGroup { flex-direction: column; }
+  .socialProofInner { flex-direction: column; gap: 16px; }
+  .proofDivider { display: none; }
+}
