@@ -119,7 +119,7 @@
   padding: 80px 5% 60px;
   min-height: 90vh;
   overflow: hidden;
-  gap: 60px;
+  gap: 32px;
 }
 .heroBackground { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .heroBgOrb1 {
@@ -141,7 +141,7 @@
 }
 .leftPanel {
   flex: 1;
-  max-width: 580px;
+  max-width: 480px;
   position: relative;
   z-index: 1;
 }
@@ -252,12 +252,14 @@
 
 /* Hero Phone */
 .rightPanel {
-  flex: 1; max-width: 560px;
+  flex: 1.2;
+  max-width: 680px;
   display: flex; justify-content: center; align-items: center;
   position: relative; z-index: 1;
 }
 .rightPanel .hiwImageWrapper {
   max-width: 100%;
+  width: 100%;
   margin: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
