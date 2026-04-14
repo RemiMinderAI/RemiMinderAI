@@ -257,6 +257,24 @@ h4 {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.recordingPulse {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: #ef4444;
+  animation: recordPulse 1.2s ease-in-out infinite;
+  border: 2px solid rgba(239, 68, 68, 0.4);
+}
+@keyframes recordPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(239,68,68,0); }
+}
+
 .summarySection {
   margin-bottom: 16px;
   padding: 14px 16px;
