@@ -169,32 +169,36 @@ const LandingPage = () => {
         </div>
 
         <div className={styles.rightPanel}>
-          <div className={styles.phoneHeroWrapper}>
-            <div className={styles.phoneGlow} />
-            {/* CSS Phone Mockup */}
-            <div className={styles.phoneMockup}>
-              <div className={styles.phoneMockupInner}>
-                <div className={styles.phoneNotch} />
-                <div className={styles.phoneScreen}>
-                  <div className={styles.appSplash}>
-                    <img src={logo} alt="RemiMinder" className={styles.splashLogo} />
-                    <div className={styles.splashTitle}>RemiMinder<span style={{color:'var(--teal)'}}>.ai</span></div>
-                    <div className={styles.splashSubtitle}>Smart AI for Health &amp; Care Coordination</div>
-                    <div className={styles.splashDots}>
-                      <span /><span /><span />
-                    </div>
-                  </div>
-                </div>
+          <div className={styles.heroCareCard}>
+            <div className={styles.heroCareCardLabel}>
+              <span className={styles.aiTagDot} />
+              Live Care Plan Preview
+            </div>
+            <p className={styles.heroCareCardSubtitle}>
+              See how RemiMinder turns a doctor conversation into a structured care plan instantly.
+            </p>
+            <div className={styles.heroCarePreviewBox}>
+              <div className={styles.heroCareRow}>
+                <CheckCircle2 size={15} className={styles.heroCareIcon} />
+                <span><strong>Medication:</strong> Metformin — 8:00 AM daily</span>
+              </div>
+              <div className={styles.heroCareRow}>
+                <CheckCircle2 size={15} className={styles.heroCareIcon} />
+                <span><strong>Follow-up:</strong> Tuesday 10:30 AM with Dr. Patel</span>
+              </div>
+              <div className={styles.heroCareRow}>
+                <CheckCircle2 size={15} className={styles.heroCareIcon} />
+                <span><strong>Summary:</strong> 3 key care instructions captured</span>
+              </div>
+              <div className={styles.heroCareRow}>
+                <CheckCircle2 size={15} className={styles.heroCareIcon} />
+                <span><strong>Shared with:</strong> Caregiver notified automatically</span>
               </div>
             </div>
-            <div className={styles.floatingBadge1}>
-              <CheckCircle2 size={14} className={styles.floatingBadgeIcon} />
-              <span>Visit Summarized</span>
-            </div>
-            <div className={styles.floatingBadge2}>
-              <Bell size={14} className={styles.floatingBadgeIcon} />
-              <span>Reminder Set</span>
-            </div>
+            <button className={styles.heroDemoButton} onClick={() => setIsFullScreen(true)}>
+              <Play size={15} />
+              Try the Demo
+            </button>
           </div>
         </div>
       </main>
@@ -256,28 +260,16 @@ const LandingPage = () => {
           {/* RIGHT: CTA Stack */}
           <div className={styles.ctaContent}>
             <div className={styles.sectionLabelLight}>GET STARTED TODAY</div>
-            <h2 className={styles.ctaTitle}>
+            <h2 className={styles.ctaTitleDark}>
               Start experiencing RemiMinder today
             </h2>
-            <p className={styles.ctaSubtitle}>
-              Turn doctor visits into structured, stress-free care plans in seconds. 
-              Download the Android app or sign up for early access.
-            </p>
-
-            <div className={styles.ctaButtonGroup}>
-              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaPrimaryButton}>
-                <span>Get Early Access</span>
-                <ArrowRight size={18} />
-              </a>
-              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaAndroidButton}>
-                <Smartphone size={18} />
-                <span>Download Android</span>
-              </a>
-              <button className={styles.ctaIosButton} disabled>
-                <Apple size={18} />
-                <span>iOS Coming Soon</span>
-              </button>
-            </div>
+            <button
+              className={styles.tryMeButton}
+              onClick={() => setIsFullScreen(true)}
+            >
+              <Play size={16} />
+              Try Me
+            </button>
 
             <div className={styles.ctaFeatures}>
               {["No missed medications", "Clear visit summaries", "Caregiver alignment", "HIPAA compliant"].map((f, i) => (
@@ -392,46 +384,28 @@ const LandingPage = () => {
           <div className={styles.ctaBgOrb2} />
         </div>
         <div className={styles.ctaFinalContainer}>
-          <div className={styles.ctaFinalContent}>
-            <div className={styles.sectionLabelLight}>READY TO START?</div>
-            <h2 className={styles.ctaTitle}>Take control of your healthcare today</h2>
-            <p className={styles.ctaSubtitle}>
-              Join our early access program. Download the Android app or sign up with your email to stay updated.
-            </p>
-            <div className={styles.ctaButtonGroup}>
-              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaPrimaryButton}>
-                <span>Sign Up Free</span><ArrowRight size={18} />
-              </a>
-              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaAndroidButton}>
-                <Smartphone size={18} /><span>Download Android</span>
-              </a>
-              <button className={styles.ctaIosButton} disabled>
-                <Apple size={18} /><span>iOS Coming Soon</span>
-              </button>
-            </div>
-            <div className={styles.ctaFeatures}>
-              {["Free early access", "No credit card needed", "HIPAA compliant", "Cancel anytime"].map((f, i) => (
-                <div key={i} className={styles.ctaFeatureItem}>
-                  <CheckCircle2 size={14} /><span>{f}</span>
-                </div>
-              ))}
-            </div>
+          <div className={styles.sectionLabelLight}>READY TO START?</div>
+          <h2 className={styles.ctaTitle}>Take control of your healthcare today</h2>
+          <p className={styles.ctaFinalSubtitle}>
+            Join our early access program. Download the Android app or sign up with your email to stay updated.
+          </p>
+          <div className={styles.ctaFinalButtonGroup}>
+            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaFinalButton}>
+              <span>Sign Up Free</span><ArrowRight size={18} />
+            </a>
+            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaFinalButton}>
+              <Smartphone size={18} /><span>Download Android</span>
+            </a>
+            <button className={styles.ctaFinalButtonDisabled} disabled>
+              <Apple size={18} /><span>iOS Coming Soon</span>
+            </button>
           </div>
-          <div className={styles.ctaPhone}>
-            <div className={styles.ctaPhoneGlow} />
-            <div className={styles.phoneMockupDark}>
-              <div className={styles.phoneMockupInner}>
-                <div className={styles.phoneNotch} />
-                <div className={styles.phoneScreen}>
-                  <div className={styles.appSplash}>
-                    <img src={logo} alt="RemiMinder" className={styles.splashLogo} />
-                    <div className={styles.splashTitle}>RemiMinder<span style={{color:'var(--teal)'}}>​.ai</span></div>
-                    <div className={styles.splashSubtitle}>Smart AI for Health &amp; Care Coordination</div>
-                    <div className={styles.splashDots}><span /><span /><span /></div>
-                  </div>
-                </div>
+          <div className={styles.ctaFinalFeatures}>
+            {["Free early access", "No credit card needed", "HIPAA compliant", "Cancel anytime"].map((f, i) => (
+              <div key={i} className={styles.ctaFinalFeatureItem}>
+                <CheckCircle2 size={14} /><span>{f}</span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -473,4 +447,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
