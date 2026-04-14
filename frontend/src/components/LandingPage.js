@@ -248,11 +248,16 @@ const LandingPage = () => {
               Try Now
             </button>
 
-            <div className={styles.ctaFeatures}>
-              {["No missed medications", "Clear visit summaries", "Caregiver alignment", "HIPAA compliant"].map((f, i) => (
-                <div key={i} className={styles.ctaFeatureItem}>
-                  <CheckCircle2 size={14} />
-                  <span>{f}</span>
+            <div className={styles.ctaFeaturesCard}>
+              {[
+                { text: "No missed medications", icon: <CheckCircle2 size={18} /> },
+                { text: "Clear visit summaries", icon: <CheckCircle2 size={18} /> },
+                { text: "Caregiver alignment", icon: <CheckCircle2 size={18} /> },
+                { text: "HIPAA compliant", icon: <CheckCircle2 size={18} /> },
+              ].map((f, i) => (
+                <div key={i} className={styles.ctaFeaturesCardItem}>
+                  <span className={styles.ctaFeaturesCardIcon}>{f.icon}</span>
+                  <span>{f.text}</span>
                 </div>
               ))}
             </div>
