@@ -11,6 +11,7 @@ import {
   Lock, Zap, Globe, Play
 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
+import ProductDemo from "./ProductDemo";
 
 
 const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
@@ -21,6 +22,7 @@ const LandingPage = () => {
   
   const location = useLocation();
   const [showVideo, setShowVideo] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef(null);
 
@@ -238,13 +240,21 @@ const LandingPage = () => {
             <h2 className={styles.ctaTitleDark}>
               Start experiencing RemiMinder today
             </h2>
-            <button
-              className={styles.tryMeButton}
-              onClick={() => setShowVideo(true)}
-            >
-              <Play size={16} />
-              Watch Demo
-            </button>
+            <div className={styles.demoBtnGroup}>
+              <button
+                className={styles.tryMeButton}
+                onClick={() => setShowVideo(true)}
+              >
+                <Play size={16} />
+                Watch Demo
+              </button>
+              <button
+                className={styles.tryLiveButton}
+                onClick={() => setShowDemo(true)}
+              >
+                Try It Live
+              </button>
+            </div>
 
             <div className={styles.ctaFeatures}>
               {["No missed medications", "Clear visit summaries", "Caregiver alignment", "HIPAA compliant"].map((f, i) => (
@@ -451,7 +461,6 @@ const LandingPage = () => {
           <div className={styles.videoModal} onClick={e => e.stopPropagation()}>
             <button className={styles.videoCloseBtn} onClick={() => setShowVideo(false)}>✕</button>
             <div className={styles.videoWrapper}>
-              {/* Replace the src URL below with your actual YouTube or Vimeo embed URL */}
               <iframe
                 src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
                 title="RemiMinder Demo"
@@ -462,6 +471,18 @@ const LandingPage = () => {
               />
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ── INTERACTIVE DEMO OVERLAY ── */}
+      {showDemo && (
+        <div className={styles.fullScreenOverlay} onClick={() => setShowDemo(false)}>
+          <section className={styles.fullScreen} onClick={e => e.stopPropagation()}>
+            <ProductDemo />
+            <button className={styles.fullscreenButton} onClick={() => setShowDemo(false)} aria-label="Close">
+              ✕
+            </button>
+          </section>
         </div>
       )}
 
