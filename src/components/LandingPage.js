@@ -12,7 +12,7 @@ import {
 import ProductDemo from "./ProductDemo";
 import { Maximize2 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
-import homeScreenImg from '../assets/Home_Screen.png';
+
 
 const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
 const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
@@ -171,11 +171,22 @@ const LandingPage = () => {
         <div className={styles.rightPanel}>
           <div className={styles.phoneHeroWrapper}>
             <div className={styles.phoneGlow} />
-            <img
-              src={homeScreenImg}
-              alt="RemiMinder App on Android"
-              className={styles.phoneHeroImage}
-            />
+            {/* CSS Phone Mockup */}
+            <div className={styles.phoneMockup}>
+              <div className={styles.phoneMockupInner}>
+                <div className={styles.phoneNotch} />
+                <div className={styles.phoneScreen}>
+                  <div className={styles.appSplash}>
+                    <img src={logo} alt="RemiMinder" className={styles.splashLogo} />
+                    <div className={styles.splashTitle}>RemiMinder<span style={{color:'var(--teal)'}}>.ai</span></div>
+                    <div className={styles.splashSubtitle}>Smart AI for Health &amp; Care Coordination</div>
+                    <div className={styles.splashDots}>
+                      <span /><span /><span />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className={styles.floatingBadge1}>
               <CheckCircle2 size={14} className={styles.floatingBadgeIcon} />
               <span>Visit Summarized</span>
@@ -408,7 +419,19 @@ const LandingPage = () => {
           </div>
           <div className={styles.ctaPhone}>
             <div className={styles.ctaPhoneGlow} />
-            <img src={homeScreenImg} alt="RemiMinder App" className={styles.ctaPhoneImage} />
+            <div className={styles.phoneMockupDark}>
+              <div className={styles.phoneMockupInner}>
+                <div className={styles.phoneNotch} />
+                <div className={styles.phoneScreen}>
+                  <div className={styles.appSplash}>
+                    <img src={logo} alt="RemiMinder" className={styles.splashLogo} />
+                    <div className={styles.splashTitle}>RemiMinder<span style={{color:'var(--teal)'}}>​.ai</span></div>
+                    <div className={styles.splashSubtitle}>Smart AI for Health &amp; Care Coordination</div>
+                    <div className={styles.splashDots}><span /><span /><span /></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

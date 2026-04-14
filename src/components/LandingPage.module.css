@@ -288,6 +288,50 @@
 }
 .floatingBadgeIcon { color: var(--teal); }
 
+/* ── PHONE MOCKUP ── */
+.phoneMockup, .phoneMockupDark {
+  width: 260px; height: 520px;
+  border-radius: 40px;
+  background: #1a1a2e;
+  border: 8px solid #2d2d44;
+  box-shadow: 0 0 0 2px #3a3a5c, var(--shadow-lg), inset 0 0 20px rgba(0,0,0,0.3);
+  position: relative; z-index: 1;
+  animation: floatPhone 5s ease-in-out infinite;
+  overflow: hidden;
+}
+.phoneMockupDark { width: 220px; height: 440px; border-radius: 34px; }
+.phoneMockupInner { width: 100%; height: 100%; border-radius: 32px; overflow: hidden; position: relative; }
+.phoneNotch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 90px; height: 22px; background: #1a1a2e;
+  border-radius: 0 0 16px 16px; z-index: 10;
+}
+.phoneScreen {
+  width: 100%; height: 100%; background: #f7f3ec;
+  display: flex; align-items: center; justify-content: center;
+}
+.appSplash {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 32px 20px; text-align: center;
+}
+.splashLogo { width: 64px; height: 64px; border-radius: 16px; object-fit: contain; }
+.splashTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+}
+.splashSubtitle { font-size: 0.7rem; color: var(--ink-light); line-height: 1.4; max-width: 140px; }
+.splashDots { display: flex; gap: 6px; margin-top: 8px; }
+.splashDots span {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--teal);
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+.splashDots span:nth-child(2) { animation-delay: 0.2s; opacity: 0.6; }
+.splashDots span:nth-child(3) { animation-delay: 0.4s; opacity: 0.35; }
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
 /* ── SOCIAL PROOF BAR ── */
 .socialProofBar {
   background: var(--white);
