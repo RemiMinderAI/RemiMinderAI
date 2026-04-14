@@ -177,36 +177,8 @@ const LandingPage = () => {
         </div>
 
         <div className={styles.rightPanel}>
-          <div className={styles.heroCareCard}>
-            <div className={styles.heroCareCardLabel}>
-              <span className={styles.aiTagDot} />
-              Live Care Plan Preview
-            </div>
-            <p className={styles.heroCareCardSubtitle}>
-              See how RemiMinder turns a doctor conversation into a structured care plan instantly.
-            </p>
-            <div className={styles.heroCarePreviewBox}>
-              <div className={styles.heroCareRow}>
-                <CheckCircle2 size={15} className={styles.heroCareIcon} />
-                <span><strong>Medication:</strong> Metformin — 8:00 AM daily</span>
-              </div>
-              <div className={styles.heroCareRow}>
-                <CheckCircle2 size={15} className={styles.heroCareIcon} />
-                <span><strong>Follow-up:</strong> Tuesday 10:30 AM with Dr. Patel</span>
-              </div>
-              <div className={styles.heroCareRow}>
-                <CheckCircle2 size={15} className={styles.heroCareIcon} />
-                <span><strong>Summary:</strong> 3 key care instructions captured</span>
-              </div>
-              <div className={styles.heroCareRow}>
-                <CheckCircle2 size={15} className={styles.heroCareIcon} />
-                <span><strong>Shared with:</strong> Caregiver notified automatically</span>
-              </div>
-            </div>
-            <button className={styles.heroDemoButton} onClick={() => setIsFullScreen(true)}>
-              <Play size={15} />
-              Try the Demo
-            </button>
+          <div className={styles.hiwImageWrapper}>
+            <img src={howItWorksImage} alt="How RemiMinder Works" className={styles.hiwImage} />
           </div>
         </div>
       </main>
@@ -332,11 +304,6 @@ const LandingPage = () => {
               </ul>
             </div>
           </div>
-        </div>
-
-        {/* Cover image */}
-        <div className={styles.hiwImageWrapper}>
-          <img src={howItWorksImage} alt="How RemiMinder Works" className={styles.hiwImage} />
         </div>
 
         {/* Steps */}
