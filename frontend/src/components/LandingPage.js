@@ -240,13 +240,6 @@ const LandingPage = () => {
             <h2 className={styles.ctaTitleDark}>
               Start experiencing RemiMinder today
             </h2>
-            <button
-              className={styles.tryMeButton}
-              onClick={() => setShowDemo(true)}
-            >
-              <Play size={16} />
-              Try Now
-            </button>
 
             <div className={styles.ctaFeaturesCard}>
               {[
@@ -261,6 +254,14 @@ const LandingPage = () => {
                 </div>
               ))}
             </div>
+
+            <button
+              className={styles.tryMeButton}
+              onClick={() => setShowDemo(true)}
+            >
+              <Play size={16} />
+              Try Now
+            </button>
           </div>
 
         </div>
