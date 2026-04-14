@@ -12,6 +12,7 @@ import {
 import ProductDemo from "./ProductDemo";
 import { Maximize2 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
+import homeScreenImg from '../assets/Home_Screen.png';
 
 const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
 const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
@@ -171,7 +172,7 @@ const LandingPage = () => {
           <div className={styles.phoneHeroWrapper}>
             <div className={styles.phoneGlow} />
             <img
-              src={require('../assets/Home_Screen.png')}
+              src={homeScreenImg}
               alt="RemiMinder App on Android"
               className={styles.phoneHeroImage}
             />
@@ -407,7 +408,7 @@ const LandingPage = () => {
           </div>
           <div className={styles.ctaPhone}>
             <div className={styles.ctaPhoneGlow} />
-            <img src={require('../assets/Home_Screen.png')} alt="RemiMinder App" className={styles.ctaPhoneImage} />
+            <img src={homeScreenImg} alt="RemiMinder App" className={styles.ctaPhoneImage} />
           </div>
         </div>
       </section>
