@@ -47,25 +47,33 @@ const LandingPage = () => {
       icon: <Mic className={styles.stepIcon} />,
       title: "Capture",
       description: "Record or upload doctor–patient conversations with one tap.",
-      number: "01"
+      emotion: "No note-taking. No stress. Nothing gets lost.",
+      number: "01",
+      highlight: false
     },
     {
       icon: <FileText className={styles.stepIcon} />,
       title: "Understand",
       description: "AI extracts medications, instructions, and follow-ups automatically.",
-      number: "02"
+      emotion: "Turns confusing medical conversations into clear, structured meaning in seconds.",
+      number: "02",
+      highlight: true
     },
     {
       icon: <Bell className={styles.stepIcon} />,
       title: "Organize",
       description: "Everything becomes a structured, shareable care plan.",
-      number: "03"
+      emotion: "Keeps families and caregivers aligned without confusion or repeated calls.",
+      number: "03",
+      highlight: false
     },
     {
       icon: <Shield className={styles.stepIcon} />,
       title: "Remind",
       description: "Caregivers and patients get timely, smart reminders.",
-      number: "04"
+      emotion: "Ensures nothing important is missed — ever.",
+      number: "04",
+      highlight: false
     },
   ];
 
@@ -290,19 +298,64 @@ const LandingPage = () => {
         <h2 className={styles.sectionTitle}>
           From conversation to care <span className={styles.tealText}>in seconds</span>
         </h2>
-        <p className={styles.sectionSubtitle}>Simple, intuitive, and powerful — designed for patients and caregivers alike.</p>
+        <p className={styles.sectionSubtitle}>
+          Turn doctor conversations into clear, actionable care plans for patients and caregivers.
+        </p>
 
+        {/* Before / After Transformation Block */}
+        <div className={styles.transformBlock}>
+          <div className={styles.transformTitle}>What changes with RemiMinder</div>
+          <div className={styles.transformGrid}>
+            <div className={styles.transformBefore}>
+              <div className={styles.transformLabel}>
+                <span className={styles.transformLabelDot} style={{background:'#e05c5c'}} />
+                Before
+              </div>
+              <ul className={styles.transformList}>
+                <li>"Did the doctor say twice a day or once daily?"</li>
+                <li>Confusing notes and missed instructions</li>
+                <li>Scattered information across texts and memory</li>
+                <li>Caregiver stress and repeated phone calls</li>
+              </ul>
+            </div>
+            <div className={styles.transformArrow}>→</div>
+            <div className={styles.transformAfter}>
+              <div className={styles.transformLabel}>
+                <span className={styles.transformLabelDot} style={{background:'var(--teal)'}} />
+                After
+              </div>
+              <ul className={styles.transformList}>
+                <li>Clear medication schedule, every time</li>
+                <li>Structured care plan ready instantly</li>
+                <li>Shared understanding across all caregivers</li>
+                <li>Peace of mind for the whole family</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Cover image */}
         <div className={styles.hiwImageWrapper}>
           <img src={howItWorksImage} alt="How RemiMinder Works" className={styles.hiwImage} />
         </div>
 
+        {/* Steps */}
         <div className={styles.stepsGrid}>
           {steps.map((step, index) => (
-            <div key={index} className={styles.stepCard}>
+            <div
+              key={index}
+              className={`${styles.stepCard} ${step.highlight ? styles.stepCardHighlight : ''}`}
+            >
+              {step.highlight && (
+                <div className={styles.stepHighlightBadge}>✦ AI Magic Moment</div>
+              )}
               <div className={styles.stepNumber}>{step.number}</div>
-              <div className={styles.stepIconWrapper}>{step.icon}</div>
+              <div className={`${styles.stepIconWrapper} ${step.highlight ? styles.stepIconHighlight : ''}`}>
+                {step.icon}
+              </div>
               <h3>{step.title}</h3>
-              <p>{step.description}</p>
+              <p className={styles.stepDescription}>{step.description}</p>
+              <p className={styles.stepEmotion}>{step.emotion}</p>
             </div>
           ))}
         </div>
