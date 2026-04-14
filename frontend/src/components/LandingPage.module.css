@@ -114,9 +114,9 @@
 .heroSection {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  padding: 80px 5% 60px;
+  padding: 40px 5%;
   min-height: 90vh;
   overflow: hidden;
   gap: 32px;
@@ -144,6 +144,9 @@
   max-width: 480px;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .aiTag {
   display: inline-flex;
@@ -252,13 +255,13 @@
 
 /* Hero Phone */
 .rightPanel {
-  flex: 1.2;
-  max-width: 680px;
-  display: flex; justify-content: center; align-items: center;
+  flex: 1.4;
+  max-width: 750px;
+  display: flex; justify-content: center; align-items: stretch;
   position: relative; z-index: 1;
+  align-self: stretch;
 }
 .rightPanel .hiwImageWrapper {
-  max-width: 100%;
   width: 100%;
   margin: 0;
   border-radius: var(--radius-lg);
@@ -266,11 +269,16 @@
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border);
   animation: floatPhone 6s ease-in-out infinite;
+  display: flex;
+  align-items: stretch;
 }
 .rightPanel .hiwImage {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   border-radius: var(--radius-lg);
+  min-height: 520px;
 }
 .phoneHeroWrapper { position: relative; display: inline-block; }
 .phoneGlow {
