@@ -46,17 +46,21 @@ export default function ProductDemo() {
   };
 
   const handleStop = () => {
+    // Stop the media recorder
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
       mediaRecorderRef.current.stop();
+      mediaRecorderRef.current = null;
     }
+    // Stop ALL audio tracks immediately
     if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current.getTracks().forEach(track => {
+        track.stop();
+        track.enabled = false;
+      });
       streamRef.current = null;
     }
     setStage("processing");
-    setTimeout(() => {
-      setStage("summary");
-    }, 2500);
+    setTimeout(() => setStage("summary"), 2500);
   };
 
   const handleSignup = () => {
