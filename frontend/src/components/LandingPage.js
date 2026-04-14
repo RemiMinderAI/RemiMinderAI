@@ -158,8 +158,7 @@ const LandingPage = () => {
             </a>
             <button className={styles.iosButton} disabled>
               <Apple size={16} />
-              <span>iOS</span>
-              <span className={styles.comingSoonBadge}>Soon</span>
+              <span>iOS — Soon</span>
             </button>
           </div>
 
