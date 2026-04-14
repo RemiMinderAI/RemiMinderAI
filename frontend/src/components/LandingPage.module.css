@@ -232,10 +232,10 @@
 }
 .iosButton {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 13px 18px; background: transparent; color: var(--ink-light);
+  padding: 13px 18px; background: #1a1a1a; color: var(--cream);
   font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
-  border-radius: var(--radius-sm); border: 1px solid var(--cream-dark);
-  cursor: not-allowed; opacity: 0.65; white-space: nowrap;
+  border-radius: var(--radius-sm); border: 1px solid #1a1a1a;
+  cursor: not-allowed; white-space: nowrap;
 }
 .comingSoonBadge {
   font-size: 0.68rem; font-weight: 700;
@@ -614,10 +614,10 @@
 }
 .ctaIosButton {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 14px 20px; background: transparent; color: rgba(255,255,255,0.35);
+  padding: 14px 20px; background: #1a1a1a; color: var(--cream);
   font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
-  border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1);
-  cursor: not-allowed; opacity: 0.6; white-space: nowrap;
+  border-radius: var(--radius-sm); border: 1px solid #1a1a1a;
+  cursor: not-allowed; white-space: nowrap;
 }
 .ctaFeatures {
   display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
@@ -1001,16 +1001,15 @@
   align-items: center;
   gap: 8px;
   padding: 13px 22px;
-  background: transparent;
-  color: rgba(255,255,255,0.35);
+  background: #1a1a1a;
+  color: var(--cream);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid #1a1a1a;
   cursor: not-allowed;
   white-space: nowrap;
-  opacity: 0.6;
 }
 .ctaFinalFeatures {
   display: flex;
