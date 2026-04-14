@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './LandingPage.module.css';
 import howItWorksImage from '../assets/coverpage.png';
+import heroAppImage from '../assets/IMG_0427.jpeg';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
@@ -22,6 +23,7 @@ const LandingPage = () => {
   
   const location = useLocation();
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef(null);
 
@@ -178,7 +180,7 @@ const LandingPage = () => {
 
         <div className={styles.rightPanel}>
           <div className={styles.hiwImageWrapper}>
-            <img src={howItWorksImage} alt="How RemiMinder Works" className={styles.hiwImage} />
+            <img src={heroAppImage} alt="RemiMinder App Beta" className={styles.hiwImage} />
           </div>
         </div>
       </main>
@@ -230,10 +232,10 @@ const LandingPage = () => {
 
             <button
               className={styles.demoButton}
-              onClick={() => setIsFullScreen(true)}
+              onClick={() => setShowVideo(true)}
             >
               <Play size={16} />
-              Try the Demo
+              Watch Demo
             </button>
           </div>
 
@@ -245,10 +247,10 @@ const LandingPage = () => {
             </h2>
             <button
               className={styles.tryMeButton}
-              onClick={() => setIsFullScreen(true)}
+              onClick={() => setShowVideo(true)}
             >
               <Play size={16} />
-              Try Me
+              Watch Demo
             </button>
 
             <div className={styles.ctaFeatures}>
@@ -450,15 +452,23 @@ const LandingPage = () => {
         </div>
       </footer>
 
-      {/* ── FULLSCREEN DEMO OVERLAY ── */}
-      {isFullScreen && (
-        <div className={styles.fullScreenOverlay} onClick={() => setIsFullScreen(false)}>
-          <section className={styles.fullScreen} onClick={e => e.stopPropagation()}>
-            <ProductDemo />
-            <button className={styles.fullscreenButton} onClick={() => setIsFullScreen(false)} aria-label="Close">
-              <Maximize2 size={20} />
-            </button>
-          </section>
+      {/* ── VIDEO MODAL ── */}
+      {showVideo && (
+        <div className={styles.videoOverlay} onClick={() => setShowVideo(false)}>
+          <div className={styles.videoModal} onClick={e => e.stopPropagation()}>
+            <button className={styles.videoCloseBtn} onClick={() => setShowVideo(false)}>✕</button>
+            <div className={styles.videoWrapper}>
+              {/* Replace the src URL below with your actual YouTube or Vimeo embed URL */}
+              <iframe
+                src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
+                title="RemiMinder Demo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={styles.videoIframe}
+              />
+            </div>
+          </div>
         </div>
       )}
 
