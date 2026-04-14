@@ -21,6 +21,7 @@ const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
   
   const location = useLocation();
+  const [showVideo, setShowVideo] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef(null);
@@ -226,10 +227,10 @@ const LandingPage = () => {
 
             <button
               className={styles.demoButton}
-              onClick={() => setShowDemo(true)}
+              onClick={() => setShowVideo(true)}
             >
               <Play size={16} />
-              Try Now
+              Watch Demo
             </button>
           </div>
 
@@ -445,6 +446,25 @@ const LandingPage = () => {
           <p className={styles.footerCopy}>© 2025 RemiMinderAI. All rights reserved. &nbsp;•&nbsp; HIPAA Compliant &nbsp;•&nbsp; End-to-End Encrypted</p>
         </div>
       </footer>
+
+      {/* ── VIDEO MODAL ── */}
+      {showVideo && (
+        <div className={styles.videoOverlay} onClick={() => setShowVideo(false)}>
+          <div className={styles.videoModal} onClick={e => e.stopPropagation()}>
+            <button className={styles.videoCloseBtn} onClick={() => setShowVideo(false)}>✕</button>
+            <div className={styles.videoWrapper}>
+              <iframe
+                src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
+                title="RemiMinder Demo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={styles.videoIframe}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── INTERACTIVE DEMO OVERLAY ── */}
       {showDemo && (
