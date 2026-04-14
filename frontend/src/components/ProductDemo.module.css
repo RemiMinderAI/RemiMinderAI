@@ -257,6 +257,45 @@ h4 {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.summarySection {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  background: rgba(26, 158, 158, 0.08);
+  border-radius: 10px;
+  border-left: 3px solid #1a9e9e;
+  text-align: left;
+}
+.summarySectionTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a9e9e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px !important;
+}
+.summarySection p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin: 0;
+}
+.summarySection ul {
+  margin: 0;
+  padding-left: 18px;
+  list-style-type: disc;
+}
+.summarySection ul li {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+}
+.summarySection:last-child {
+  border-left-color: rgba(201, 168, 76, 0.8);
+  background: rgba(201, 168, 76, 0.06);
+}
+.summarySection:last-child .summarySectionTitle {
+  color: #c9a84c;
+}
 .closeButton {
   position: absolute;
   top: 10px;
