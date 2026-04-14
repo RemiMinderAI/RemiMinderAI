@@ -7,9 +7,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
   ArrowRight, CheckCircle2, Smartphone, Apple, Star,
-  Lock, Zap, Globe, Maximize2
+  Lock, Zap, Globe, Play
 } from "lucide-react";
 import ProductDemo from "./ProductDemo";
+import { Maximize2 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
 
 const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
@@ -17,7 +18,7 @@ const ANDROID_URL = "https://play.google.com/apps/internaltest/47010945251270455
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
-
+  
   const location = useLocation();
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -25,8 +26,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (location.hash === "#how-it-works") {
-      const el = document.getElementById("how-it-works");
-      el?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
     }
     if (location.search.includes("fullscreen=true")) {
       setIsFullScreen(true);
@@ -38,32 +38,32 @@ const LandingPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
+  
   const navigate = useNavigate();
 
   const steps = [
     {
       icon: <Mic className={styles.stepIcon} />,
-      title: "Record & Capture",
-      description: "Easily record doctor visits and medical conversations with one tap.",
+      title: "Capture",
+      description: "Record or upload doctor–patient conversations with one tap.",
       number: "01"
     },
     {
       icon: <FileText className={styles.stepIcon} />,
-      title: "Summarize & Organize",
-      description: "Get structured AI summaries of your visits.",
+      title: "Understand",
+      description: "AI extracts medications, instructions, and follow-ups automatically.",
       number: "02"
     },
     {
       icon: <Bell className={styles.stepIcon} />,
-      title: "Remind & Support",
-      description: "Smart reminders for medications and follow-ups.",
+      title: "Organize",
+      description: "Everything becomes a structured, shareable care plan.",
       number: "03"
     },
     {
       icon: <Shield className={styles.stepIcon} />,
-      title: "Privacy First",
-      description: "Encrypted, secure, and always under your control.",
+      title: "Remind",
+      description: "Caregivers and patients get timely, smart reminders.",
       number: "04"
     },
   ];
@@ -72,179 +72,375 @@ const LandingPage = () => {
     {
       icon: Heart,
       title: "Peace of Mind",
-      description: "Everything from your healthcare visits is captured and organized.",
+      description: "Every important detail from your healthcare visits is captured and organized, giving you confidence in your care decisions.",
       stat: "95%",
       statLabel: "feel more in control",
     },
     {
       icon: Brain,
       title: "Better Health Outcomes",
-      description: "Improved adherence through clear guidance.",
+      description: "With clear summaries and reminders, you're more likely to follow treatment plans and catch important health changes early.",
       stat: "3x",
-      statLabel: "better adherence",
+      statLabel: "better medication adherence",
     },
     {
       icon: Clock,
       title: "Time Saved",
-      description: "No more re-reading notes or missing instructions.",
+      description: "Stop trying to remember what the doctor said. Everything you need is right at your fingertips, organized and searchable.",
       stat: "10hrs",
       statLabel: "saved per month",
     },
     {
       icon: Users,
       title: "Family Connection",
-      description: "Keep caregivers aligned in real time.",
+      description: "Keep your family in the loop automatically. Share updates and coordinate care effortlessly with the people who matter most.",
       stat: "100%",
-      statLabel: "family alignment",
+      statLabel: "family satisfaction",
     },
   ];
 
   return (
     <div className={styles.container}>
 
-      {/* HERO (REBUILT FOR INVESTOR CLARITY) */}
-      <main className={styles.heroSection} ref={heroRef}>
+      {/* ── HEADER ── */}
+      <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}>
+        <div className={styles.logo} onClick={() => navigate("/")}>
+          <img src={logo} alt="RemiMinder Logo" className={styles.logoImg} />
+          <span className={styles.logoText}>RemiMinder<span className={styles.logoAi}>.ai</span></span>
+        </div>
+        <nav className={styles.nav}>
+          <a href="/" className={styles.navLink}>Home</a>
+          <a href="#demo" className={styles.navLink} onClick={(e) => { e.preventDefault(); document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" }); }}>Demo</a>
+          <a href="#how-it-works" className={styles.navLink} onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}>How It Works</a>
+          <a href="/about" className={styles.navLink}>About</a>
+        </nav>
+        <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.mailingListButton}>
+          Join Mailing List
+        </a>
+      </header>
+
+      {/* ── HERO ── */}
+      <main className={styles.heroSection} ref={heroRef} id="home">
+        <div className={styles.heroBackground}>
+          <div className={styles.heroBgOrb1} />
+          <div className={styles.heroBgOrb2} />
+          <div className={styles.heroBgGrid} />
+        </div>
 
         <div className={styles.leftPanel}>
-
           <div className={styles.aiTag}>
-            Smart AI for Health & Care Coordination
+            <span className={styles.aiTagDot} />
+            Smart AI for Health &amp; Care Coordination
           </div>
-
           <h1 className={styles.title}>
-            Turn doctor visits into <br />
-            <span className={styles.highlightText}>clear, actionable care plans</span>
+            Your healthcare,<br />
+            <span className={styles.highlightText}>remembered</span><br />
+            &amp; reimagined
           </h1>
-
           <p className={styles.description}>
-            RemiMinderAI listens to medical conversations, extracts key instructions, 
-            and transforms them into simple reminders for seniors and caregivers.
+            RemiMinder records your doctor visits, creates clear AI-powered summaries, 
+            and keeps your entire care team in sync — so nothing important ever slips through the cracks.
           </p>
 
-          {/* CTA (UPGRADED) */}
           <div className={styles.buttonGroup}>
-
-            <a href={MAILING_LIST_URL} className={styles.primaryButton}>
-              Join Beta <ArrowRight size={16} />
+            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.primaryButton}>
+              <span>Sign Up Free</span>
+              <ArrowRight size={16} />
             </a>
-
-            <a href={ANDROID_URL} className={styles.androidButton}>
+            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.androidButton}>
               <Smartphone size={16} />
-              Download Android
+              <span>Download Android</span>
             </a>
-
             <button className={styles.iosButton} disabled>
               <Apple size={16} />
-              iOS Soon
+              <span>iOS</span>
+              <span className={styles.comingSoonBadge}>Soon</span>
             </button>
-
-            {/* DISTINCT DEMO CTA */}
-            <button
-              onClick={() => setIsFullScreen(true)}
-              style={{
-                padding: "12px 18px",
-                borderRadius: "12px",
-                background: "linear-gradient(135deg,#6366f1,#a855f7)",
-                color: "white",
-                fontWeight: "600",
-                border: "none",
-                cursor: "pointer",
-                boxShadow: "0 10px 20px rgba(99,102,241,0.3)"
-              }}
-            >
-              ⚡ Try Me Demo
-            </button>
-
           </div>
 
           <div className={styles.trustRow}>
-            <div>Encrypted</div>
-            <div>HIPAA-ready</div>
-            <div>AI-powered</div>
+            <div className={styles.trustItem}><Lock size={13} /><span>HIPAA Compliant</span></div>
+            <div className={styles.trustDivider} />
+            <div className={styles.trustItem}><Shield size={13} /><span>End-to-End Encrypted</span></div>
+            <div className={styles.trustDivider} />
+            <div className={styles.trustItem}><Zap size={13} /><span>Powered by Google Cloud AI</span></div>
           </div>
-
         </div>
 
-        {/* RIGHT PANEL (UNCHANGED) */}
         <div className={styles.rightPanel}>
           <div className={styles.phoneHeroWrapper}>
+            <div className={styles.phoneGlow} />
             <img
               src={require('../assets/Home_Screen.png')}
+              alt="RemiMinder App on Android"
               className={styles.phoneHeroImage}
-              alt="App"
             />
+            <div className={styles.floatingBadge1}>
+              <CheckCircle2 size={14} className={styles.floatingBadgeIcon} />
+              <span>Visit Summarized</span>
+            </div>
+            <div className={styles.floatingBadge2}>
+              <Bell size={14} className={styles.floatingBadgeIcon} />
+              <span>Reminder Set</span>
+            </div>
           </div>
         </div>
-
       </main>
 
-      {/* SOCIAL PROOF (UNCHANGED) */}
+      {/* ── SOCIAL PROOF BAR ── */}
       <div className={styles.socialProofBar}>
-        <span>Built for caregivers & families</span>
-        <span>Early beta validated</span>
-        <span>Zero to MVP in weeks</span>
+        <div className={styles.socialProofInner}>
+          <div className={styles.proofItem}>
+            <div className={styles.stars}>{[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}</div>
+            <span>Loved by early beta users</span>
+          </div>
+          <div className={styles.proofDivider} />
+          <div className={styles.proofItem}><Globe size={14} /><span>Built for families &amp; caregivers</span></div>
+          <div className={styles.proofDivider} />
+          <div className={styles.proofItem}><Zap size={14} /><span>Zero to beta in 7 weeks</span></div>
+        </div>
       </div>
 
-      {/* EVERYTHING BELOW UNCHANGED */}
-      {/* How It Works */}
-      <section id="how-it-works" className={styles.howItWorks}>
-        <img src={howItWorksImage} alt="" />
-      </section>
+      {/* ── DEMO + CTA SPLIT SECTION ── */}
+      <section className={styles.demoCTASection} id="demo">
+        <div className={styles.demoCTAContainer}>
 
-      {/* Benefits */}
-      <section id="benefits" className={styles.benefitsSection}>
-        {benefits.map((b, i) => (
-          <div key={i}>
-            <b.icon />
-            <h3>{b.title}</h3>
-            <p>{b.description}</p>
+          {/* LEFT: Interactive Demo Box */}
+          <div className={styles.ctaDemoBox}>
+            <div className={styles.sectionLabel}>LIVE PREVIEW</div>
+            <h3 className={styles.demoBoxTitle}>See it in action</h3>
+            <p className={styles.demoBoxSubtitle}>
+              See how RemiMinder turns a doctor conversation into a structured care plan instantly.
+            </p>
+
+            <div className={styles.ctaPreviewBox}>
+              <div className={styles.previewRow}>
+                <CheckCircle2 size={15} className={styles.previewIcon} />
+                <span><strong>Medication:</strong> Metformin — 8:00 AM daily</span>
+              </div>
+              <div className={styles.previewRow}>
+                <CheckCircle2 size={15} className={styles.previewIcon} />
+                <span><strong>Follow-up:</strong> Tuesday 10:30 AM with Dr. Patel</span>
+              </div>
+              <div className={styles.previewRow}>
+                <CheckCircle2 size={15} className={styles.previewIcon} />
+                <span><strong>Summary:</strong> 3 key care instructions captured</span>
+              </div>
+              <div className={styles.previewRow}>
+                <CheckCircle2 size={15} className={styles.previewIcon} />
+                <span><strong>Shared with:</strong> Caregiver notified automatically</span>
+              </div>
+            </div>
+
+            <button
+              className={styles.demoButton}
+              onClick={() => setIsFullScreen(true)}
+            >
+              <Play size={16} />
+              Try the Demo
+            </button>
           </div>
-        ))}
-      </section>
 
-      {/* CTA SECTION (SIMPLIFIED + INVESTOR STYLE) */}
-      <section className={styles.ctaSection}>
+          {/* RIGHT: CTA Stack */}
+          <div className={styles.ctaContent}>
+            <div className={styles.sectionLabelLight}>GET STARTED TODAY</div>
+            <h2 className={styles.ctaTitle}>
+              Start experiencing RemiMinder today
+            </h2>
+            <p className={styles.ctaSubtitle}>
+              Turn doctor visits into structured, stress-free care plans in seconds. 
+              Download the Android app or sign up for early access.
+            </p>
 
-        <h2>Ready to improve patient care outcomes?</h2>
+            <div className={styles.ctaButtonGroup}>
+              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaPrimaryButton}>
+                <span>Get Early Access</span>
+                <ArrowRight size={18} />
+              </a>
+              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaAndroidButton}>
+                <Smartphone size={18} />
+                <span>Download Android</span>
+              </a>
+              <button className={styles.ctaIosButton} disabled>
+                <Apple size={18} />
+                <span>iOS Coming Soon</span>
+              </button>
+            </div>
 
-        <p>
-          Join early access or try the demo experience instantly.
-        </p>
-
-        <div className={styles.ctaButtonGroup}>
-
-          <a href={MAILING_LIST_URL} className={styles.ctaPrimaryButton}>
-            Request Access
-          </a>
-
-          <a href={ANDROID_URL} className={styles.ctaAndroidButton}>
-            Download Android
-          </a>
-
-          <button
-            onClick={() => setIsFullScreen(true)}
-            style={{
-              marginTop: "10px",
-              background: "linear-gradient(135deg,#6366f1,#a855f7)",
-              color: "white",
-              padding: "14px 20px",
-              borderRadius: "14px",
-              border: "none",
-              fontWeight: "700",
-              cursor: "pointer"
-            }}
-          >
-            ⚡ Try Me Demo
-          </button>
+            <div className={styles.ctaFeatures}>
+              {["No missed medications", "Clear visit summaries", "Caregiver alignment", "HIPAA compliant"].map((f, i) => (
+                <div key={i} className={styles.ctaFeatureItem}>
+                  <CheckCircle2 size={14} />
+                  <span>{f}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
         </div>
-
       </section>
 
-      {/* FULLSCREEN DEMO (UNCHANGED) */}
+      {/* ── HOW IT WORKS ── */}
+      <section id="how-it-works" className={styles.howItWorks}>
+        <div className={styles.sectionLabel}>HOW IT WORKS</div>
+        <h2 className={styles.sectionTitle}>
+          From conversation to care <span className={styles.tealText}>in seconds</span>
+        </h2>
+        <p className={styles.sectionSubtitle}>Simple, intuitive, and powerful — designed for patients and caregivers alike.</p>
+
+        <div className={styles.hiwImageWrapper}>
+          <img src={howItWorksImage} alt="How RemiMinder Works" className={styles.hiwImage} />
+        </div>
+
+        <div className={styles.stepsGrid}>
+          {steps.map((step, index) => (
+            <div key={index} className={styles.stepCard}>
+              <div className={styles.stepNumber}>{step.number}</div>
+              <div className={styles.stepIconWrapper}>{step.icon}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── WHO IT'S FOR ── */}
+      <section id="who-its-for" className={styles.whoItsFor}>
+        <div className={styles.sectionLabel}>WHO IT'S FOR</div>
+        <h2 className={styles.sectionTitle}>
+          Built for real <span className={styles.tealText}>caregiving challenges</span>
+        </h2>
+        <p className={styles.sectionSubtitle}>
+          Missed medications, unclear instructions, and fragmented care communication 
+          create real stress for families. RemiMinder fixes that.
+        </p>
+
+        <div className={styles.personaGrid}>
+          <div className={styles.personaCard}>
+            <div className={styles.personaImageWrapper}>
+              <img src={elderlyImage} alt="For Seniors and Patients" className={styles.personaImage} />
+              <div className={styles.personaImageOverlay} />
+            </div>
+            <div className={styles.personaContent}>
+              <div className={styles.personaTag}>Patients</div>
+              <h3>For Seniors &amp; Patients</h3>
+              <p>Stay on top of your health with clear visit summaries, medication reminders, and easy access to your medical history.</p>
+              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.personaCta}>
+                Try the App <ArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+
+          <div className={styles.personaCard}>
+            <div className={styles.personaImageWrapper}>
+              <img src={familyImage} alt="For Families and Caregivers" className={styles.personaImage} />
+              <div className={styles.personaImageOverlay} />
+            </div>
+            <div className={styles.personaContent}>
+              <div className={styles.personaTag}>Caregivers</div>
+              <h3>For Families &amp; Caregivers</h3>
+              <p>Support your loved ones with shared health insights, appointment tracking, and real-time updates on their care journey.</p>
+              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.personaCta}>
+                Join Waitlist <ArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── BENEFITS ── */}
+      <section id="benefits" className={styles.benefitsSection}>
+        <div className={styles.sectionLabel}>REAL IMPACT</div>
+        <h2 className={styles.sectionTitle}>
+          Measurable impact on <span className={styles.tealText}>real lives</span>
+        </h2>
+        <p className={styles.sectionSubtitle}>More than just features — RemiMinder transforms how you experience healthcare.</p>
+
+        <div className={styles.benefitsGrid}>
+          {benefits.map((benefit, index) => (
+            <div key={index} className={styles.benefitCard} style={{ animationDelay: `${index * 0.1}s` }}>
+              <div className={styles.benefitTop}>
+                <div className={styles.benefitIconWrapper}><benefit.icon size={24} /></div>
+                <div className={styles.benefitStat}>
+                  <div className={styles.benefitStatValue}>{benefit.stat}</div>
+                  <div className={styles.benefitStatLabel}>{benefit.statLabel}</div>
+                </div>
+              </div>
+              <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+              <p className={styles.benefitDesc}>{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── FINAL CTA (dark) ── */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaBg}>
+          <div className={styles.ctaBgOrb1} />
+          <div className={styles.ctaBgOrb2} />
+        </div>
+        <div className={styles.ctaFinalContainer}>
+          <div className={styles.ctaFinalContent}>
+            <div className={styles.sectionLabelLight}>READY TO START?</div>
+            <h2 className={styles.ctaTitle}>Take control of your healthcare today</h2>
+            <p className={styles.ctaSubtitle}>
+              Join our early access program. Download the Android app or sign up with your email to stay updated.
+            </p>
+            <div className={styles.ctaButtonGroup}>
+              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaPrimaryButton}>
+                <span>Sign Up Free</span><ArrowRight size={18} />
+              </a>
+              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaAndroidButton}>
+                <Smartphone size={18} /><span>Download Android</span>
+              </a>
+              <button className={styles.ctaIosButton} disabled>
+                <Apple size={18} /><span>iOS Coming Soon</span>
+              </button>
+            </div>
+            <div className={styles.ctaFeatures}>
+              {["Free early access", "No credit card needed", "HIPAA compliant", "Cancel anytime"].map((f, i) => (
+                <div key={i} className={styles.ctaFeatureItem}>
+                  <CheckCircle2 size={14} /><span>{f}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.ctaPhone}>
+            <div className={styles.ctaPhoneGlow} />
+            <img src={require('../assets/Home_Screen.png')} alt="RemiMinder App" className={styles.ctaPhoneImage} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <div className={styles.footerTop}>
+            <div className={styles.footerBrand}>
+              <img src={logo} alt="RemiMinder" className={styles.footerLogo} />
+              <span className={styles.footerBrandName}>RemiMinder<span className={styles.logoAi}>.ai</span></span>
+            </div>
+            <p className={styles.footerTagline}>Smart AI for Health &amp; Care Coordination</p>
+          </div>
+          <div className={styles.footerLinks}>
+            <a href="/about" className={styles.footerLink}>About</a>
+            <a href="#how-it-works" className={styles.footerLink}>How It Works</a>
+            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Contact</a>
+            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Download Android</a>
+          </div>
+          <p className={styles.footerCopy}>© 2025 RemiMinderAI. All rights reserved. &nbsp;•&nbsp; HIPAA Compliant &nbsp;•&nbsp; End-to-End Encrypted</p>
+        </div>
+      </footer>
+
+      {/* ── FULLSCREEN DEMO OVERLAY ── */}
       {isFullScreen && (
-        <div onClick={() => setIsFullScreen(false)}>
-          <ProductDemo />
+        <div className={styles.fullScreenOverlay} onClick={() => setIsFullScreen(false)}>
+          <section className={styles.fullScreen} onClick={e => e.stopPropagation()}>
+            <ProductDemo />
+            <button className={styles.fullscreenButton} onClick={() => setIsFullScreen(false)} aria-label="Close">
+              <Maximize2 size={20} />
+            </button>
+          </section>
         </div>
       )}
 
