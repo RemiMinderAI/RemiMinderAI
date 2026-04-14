@@ -385,12 +385,38 @@
 /* Try Me button & dark title */
 .ctaTitleDark {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
   font-weight: 700;
   color: var(--white);
   line-height: 1.2;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
+}
+
+/* Features card — matches left demo box style */
+.ctaFeaturesCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(26,158,158,0.3);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ctaFeaturesCardItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+}
+.ctaFeaturesCardIcon {
+  color: var(--teal-mid);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 .demoBtnGroup {
   display: flex;
