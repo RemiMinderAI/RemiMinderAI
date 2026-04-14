@@ -7,7 +7,6 @@ import API_BASE_URL from '../config';
 
 export default function ProductDemo() {
   const [stage, setStage] = useState("cover");
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [timer, setTimer] = useState(0);
   const handleTryNow = () => setStage("ready");
   const navigate = useNavigate();
@@ -28,20 +27,17 @@ export default function ProductDemo() {
     setStage("recording");
     setTimer(0);
 
-    // Stop any previous audio first
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
 
-    // Create a new instance and save it
     const audioInstance = new Audio(demoAudio);
     audioInstance.volume = 0.5;
     audioInstance.play().catch((err) => {
       console.warn("Playback blocked:", err);
     });
 
-    // Store it for cleanup
     audioRef.current = audioInstance;
   };
 
@@ -52,11 +48,10 @@ export default function ProductDemo() {
       audioRef.current = null;
     }
   
-    // await fetchDemoSummary(); // fetches AI summary from backend
     setStage("processing");
     setTimeout(() => {
       setStage("summary");
-    }, 2000); // 2000ms = 2 seconds
+    }, 2000);
   };  
 
   const handleSignup = () => {
@@ -68,13 +63,9 @@ export default function ProductDemo() {
 
   const fullTranscription = `Hi, Ursula. I understand you've been having some knee pain. Can you tell me when it started and what makes it worse? Yes, it started about two weeks ago. It hurts most when I climb stairs or get up from a chair. That sounds like mild inflammation, possibly early arthritis or overuse. Does it swell or feel warm after activity? A little bit, yes, and it feels stiff in the mornings. All right, I recommend taking an anti-inflammatory like ibuprofen, using a knee brace when you're walking, and avoiding stairs when possible. Apply ice twice a day for 15 minutes. If it doesn't improve in a week, we'll schedule an x-ray. OK, thank you, doctor. I'll try that. You're welcome, Ursula. Take care and rest that knee.`;
 
-  // Split into sentences (regex keeps punctuation at the end)
   const transcriptionSentences = fullTranscription.match(/[^.!?]+[.!?]+/g) || [];
 
-  // Get today's date
   const today = new Date();
-
-  // Format date nicely (e.g. "Thursday, November 6, 2025")
   const formattedToday = today.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -82,11 +73,8 @@ export default function ProductDemo() {
     day: "numeric",
   });
 
-  // Add 7 days
   const xrayDate = new Date(today);
   xrayDate.setDate(today.getDate() + 7);
-
-  // Format that one too
   const formattedXrayDate = xrayDate.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -107,68 +95,39 @@ export default function ProductDemo() {
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   
       const data = await response.json();
-      console.log("Demo summary:", data);
-  
       setAiSummary(data.ai_summary || "");
       setFullTranscript(data.full_transcription ? [data.full_transcription] : []);
       setReminders(data.reminders || []);
       setStage("summary");
     } catch (error) {
       console.error("Demo summary fetch failed:", error);
-      setStage("summary"); // fallback
+      setStage("summary");
     }
   };
     
   return (
     <div className={styles.container}>
-      {isVideoOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <button
-              className={styles.closeButton}
-              onClick={() => setIsVideoOpen(false)}
-            >
-              ✕
-            </button>
-            <iframe
-              width="100%"
-              height="400"
-              src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
-              title="Demo Video"
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
 
       {stage === "cover" && (
         <div className={styles.coverScreen}>
-          <h2>RemiMinder Demo</h2>
+          <h2>Experience AI-Powered Care</h2>
           <p>See how easy it is to record and summarize your visits.</p>
           <div className={styles.actions}>
-            <button
-              className={styles.buttonSecondary}
-              onClick={() => setIsVideoOpen(true)}
-            >
-              Demo Video
-            </button>
             <button className={styles.buttonPrimary} onClick={handleTryNow}>
-            Try Now
+              Try Now
             </button>
           </div>
         </div>
       )}
 
       {stage !== "cover" && (
-      <div className={styles.header}>
-        <h2>RemiMinder Demo</h2>
-        <p className={styles.demoNote}>
-          This demo uses a sample audio recording to protect privacy and remain HIPAA-compliant. 
-          Your voice is not recorded — this simulation is for demonstration purposes only.
-        </p>
-      </div>
+        <div className={styles.header}>
+          <h2>Experience AI-Powered Care</h2>
+          <p className={styles.demoNote}>
+            This demo uses a sample audio recording to protect privacy and remain HIPAA-compliant. 
+            Your voice is not recorded — this simulation is for demonstration purposes only.
+          </p>
+        </div>
       )}
 
       {/* READY */}
@@ -230,9 +189,37 @@ export default function ProductDemo() {
 
           <div className={styles.summaryBlock}>
             <h4><FiCheck /> AI Summary</h4>
-            <p>
-              The patient presented with knee pain that started about two weeks ago, experiencing discomfort when climbing stairs, getting up from a chair, and noting morning stiffness with occasional swelling. The doctor suggested these symptoms might be due to mild inflammation, possibly early arthritis or overuse. The doctor recommended taking an anti-inflammatory medication like ibuprofen, using a knee brace when walking, avoiding stairs when possible, and applying ice to the knee twice daily.
-            </p>
+            <div className={styles.summarySection}>
+              <p className={styles.summarySectionTitle}>Visit Summary</p>
+              <p>The patient presented with knee pain that started two weeks ago, experiencing discomfort when climbing stairs and getting up from a chair, with morning stiffness and occasional swelling. The doctor identified mild inflammation, possibly early arthritis or overuse, and outlined a one-week treatment plan.</p>
+            </div>
+
+            <div className={styles.summarySection}>
+              <p className={styles.summarySectionTitle}>Medications</p>
+              <ul>
+                <li>Ibuprofen (anti-inflammatory) — as directed</li>
+                <li>Knee brace — wear when walking</li>
+                <li>Ice pack — apply twice daily, 15 minutes each</li>
+              </ul>
+            </div>
+
+            <div className={styles.summarySection}>
+              <p className={styles.summarySectionTitle}>Next Steps</p>
+              <ul>
+                <li>Avoid stairs when possible</li>
+                <li>Rest the knee and reduce physical strain</li>
+                <li>Schedule an X-ray on or after {formattedXrayDate} if no improvement</li>
+              </ul>
+            </div>
+
+            <div className={styles.summarySection}>
+              <p className={styles.summarySectionTitle}>❓ Questions for Your Next Visit</p>
+              <ul>
+                <li>Has the swelling reduced after icing?</li>
+                <li>Are there any tips for managing stairs safely?</li>
+                <li>Should physical therapy be considered?</li>
+              </ul>
+            </div>
 
             <h4><FiFileText /> Full Transcription</h4>
             <div className={styles.transcriptionBox}>
@@ -254,14 +241,11 @@ export default function ProductDemo() {
           </div>
 
           <div className={styles.demoFooter}>
-            <button
-                onClick={() => setStage("cover")}
-                className={styles.restartButton}
-            >
-                Restart Demo
+            <button onClick={() => setStage("cover")} className={styles.restartButton}>
+              Restart Demo
             </button>
             <button onClick={handleSignup} className={styles.signupButton}>
-                Try Your Own Voice Note →
+              Try Your Own Voice Note →
             </button>
           </div>
         </div>
