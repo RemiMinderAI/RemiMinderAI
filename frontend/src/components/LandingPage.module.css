@@ -1122,22 +1122,53 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .heroSection { flex-direction: column; padding: 60px 5%; min-height: unset; }
-  .rightPanel { max-width: 100%; }
-  .phoneHeroImage { width: 280px; }
-  .floatingBadge1 { left: 0; }
-  .floatingBadge2 { right: 0; }
+  .heroSection {
+    flex-direction: column;
+    padding: 40px 5%;
+    min-height: unset;
+    align-items: center;
+  }
+  .leftPanel {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    order: 1;
+  }
+  .rightPanel {
+    max-width: 100%;
+    width: 100%;
+    flex: unset;
+    align-self: auto;
+    order: 2;
+  }
+  .rightPanel .hiwImageWrapper {
+    width: 100%;
+    animation: none;
+  }
+  .rightPanel .hiwImage {
+    min-height: unset;
+    height: auto;
+    object-fit: contain;
+  }
+  .aiTag { margin: 0 auto 24px; }
+  .buttonGroup { justify-content: center; }
+  .trustRow { justify-content: center; }
   .demoCTAContainer { grid-template-columns: 1fr; }
-  .ctaFinalContainer { flex-direction: column; }
-  .ctaPhone { width: 220px; }
+  .ctaFinalContainer { flex-direction: column; align-items: center; }
 }
 @media (max-width: 640px) {
   .nav { display: none; }
-  .buttonGroup { flex-direction: column; align-items: flex-start; }
+  .buttonGroup { flex-direction: column; align-items: center; width: 100%; }
+  .primaryButton, .androidButton { width: 100%; justify-content: center; }
   .stepsGrid { grid-template-columns: 1fr; }
   .personaGrid { grid-template-columns: 1fr; }
   .benefitsGrid { grid-template-columns: 1fr; }
   .ctaFeatures { grid-template-columns: 1fr; }
   .socialProofInner { flex-direction: column; gap: 16px; }
   .proofDivider { display: none; }
+  .transformGrid { grid-template-columns: 1fr; }
+  .transformArrow { padding-top: 0; font-size: 1.4rem; text-align: center; }
+  .ctaFinalButtonGroup { flex-direction: column; align-items: center; }
+  .ctaFinalButton { width: 100%; justify-content: center; }
 }
