@@ -10,8 +10,6 @@ import {
   ArrowRight, CheckCircle2, Smartphone, Apple, Star,
   Lock, Zap, Globe, Play
 } from "lucide-react";
-import ProductDemo from "./ProductDemo";
-import { Maximize2 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
 
 
@@ -22,7 +20,6 @@ const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
   
   const location = useLocation();
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef(null);
@@ -30,9 +27,6 @@ const LandingPage = () => {
   useEffect(() => {
     if (location.hash === "#how-it-works") {
       document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
-    }
-    if (location.search.includes("fullscreen=true")) {
-      setIsFullScreen(true);
     }
   }, [location]);
 
