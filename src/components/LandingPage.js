@@ -12,10 +12,8 @@ import {
 import ProductDemo from "./ProductDemo";
 import { Maximize2 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
-
-
-const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
-const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
+import SiteFooter from "./SiteFooter";
+import { ANDROID_URL, MAILING_LIST_URL } from "../constants/site";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
@@ -436,25 +434,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <div className={styles.footerTop}>
-            <div className={styles.footerBrand}>
-              <img src={logo} alt="RemiMinder" className={styles.footerLogo} />
-              <span className={styles.footerBrandName}>RemiMinder<span className={styles.logoAi}>.ai</span></span>
-            </div>
-            <p className={styles.footerTagline}>Smart AI for Health &amp; Care Coordination</p>
-          </div>
-          <div className={styles.footerLinks}>
-            <a href="/about" className={styles.footerLink}>About</a>
-            <a href="#how-it-works" className={styles.footerLink}>How It Works</a>
-            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Contact</a>
-            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Download Android</a>
-          </div>
-          <p className={styles.footerCopy}>© 2025 RemiMinderAI. All rights reserved. &nbsp;•&nbsp; HIPAA Compliant &nbsp;•&nbsp; End-to-End Encrypted</p>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {/* ── FULLSCREEN DEMO OVERLAY ── */}
       {isFullScreen && (

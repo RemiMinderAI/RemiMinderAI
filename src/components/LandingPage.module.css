@@ -710,7 +710,23 @@
   font-size: 1.15rem; font-weight: 700; color: var(--white);
 }
 .footerTagline { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
-.footerLinks { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.footerLinks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.footerSep {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.25);
+  user-select: none;
+}
+.footerAppRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
 .footerLink {
   font-size: 0.85rem; color: rgba(255,255,255,0.5);
   text-decoration: none; transition: color 0.2s ease;
