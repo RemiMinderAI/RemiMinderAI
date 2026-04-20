@@ -1,5 +1,5 @@
-﻿/* ============================================
-   REMIMINDER.AI â€” ENTERPRISE DESIGN SYSTEM
+/* ============================================
+   REMIMINDER.AI — ENTERPRISE DESIGN SYSTEM
    Brand: Teal (#1a9e9e) + Cream (#f7f3ec) + Gold (#c9a84c)
    ============================================ */
 
@@ -37,7 +37,7 @@
   overflow-x: hidden;
 }
 
-/* â”€â”€ HEADER â”€â”€ */
+/* ── HEADER ── */
 .header {
   position: sticky;
   top: 0;
@@ -110,16 +110,16 @@
   box-shadow: 0 4px 16px rgba(26,158,158,0.3);
 }
 
-/* â”€â”€ HERO â”€â”€ */
+/* ── HERO ── */
 .heroSection {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  padding: 80px 5% 60px;
+  padding: 40px 5%;
   min-height: 90vh;
   overflow: hidden;
-  gap: 60px;
+  gap: 32px;
 }
 .heroBackground { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .heroBgOrb1 {
@@ -141,9 +141,12 @@
 }
 .leftPanel {
   flex: 1;
-  max-width: 580px;
+  max-width: 480px;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .aiTag {
   display: inline-flex;
@@ -229,10 +232,10 @@
 }
 .iosButton {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 13px 18px; background: transparent; color: var(--ink-light);
+  padding: 13px 18px; background: #1a1a1a; color: var(--cream);
   font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
-  border-radius: var(--radius-sm); border: 1px solid var(--cream-dark);
-  cursor: not-allowed; opacity: 0.65; white-space: nowrap;
+  border-radius: var(--radius-sm); border: 1px solid #1a1a1a;
+  cursor: not-allowed; white-space: nowrap;
 }
 .comingSoonBadge {
   font-size: 0.68rem; font-weight: 700;
@@ -252,9 +255,30 @@
 
 /* Hero Phone */
 .rightPanel {
-  flex: 1; max-width: 520px;
-  display: flex; justify-content: center; align-items: center;
+  flex: 1.4;
+  max-width: 750px;
+  display: flex; justify-content: center; align-items: stretch;
   position: relative; z-index: 1;
+  align-self: stretch;
+}
+.rightPanel .hiwImageWrapper {
+  width: 100%;
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  animation: floatPhone 6s ease-in-out infinite;
+  display: flex;
+  align-items: stretch;
+}
+.rightPanel .hiwImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+  min-height: 520px;
 }
 .phoneHeroWrapper { position: relative; display: inline-block; }
 .phoneGlow {
@@ -288,7 +312,162 @@
 }
 .floatingBadgeIcon { color: var(--teal); }
 
-/* â”€â”€ PHONE MOCKUP â”€â”€ */
+/* ── HERO CARE CARD (replaces phone mockup) ── */
+.heroCareCard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  max-width: 460px;
+  width: 100%;
+}
+.heroCareCardLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.heroCareCardSubtitle {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.heroCarePreviewBox {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.heroCareRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.heroCareRow strong { color: var(--teal-dark); }
+.heroCareIcon { color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+.heroDemoButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+.heroDemoButton:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26,158,158,0.35);
+}
+
+/* Try Me button & dark title */
+.ctaTitleDark {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+/* Features card — matches left demo box style */
+.ctaFeaturesCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(26,158,158,0.3);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ctaFeaturesCardItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+}
+.ctaFeaturesCardIcon {
+  color: var(--teal-mid);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.demoBtnGroup {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.tryLiveButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+}
+.tryLiveButton:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.7);
+  transform: translateY(-2px);
+}
+.tryMeButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 20px;
+}
+.tryMeButton:hover {
+  background: var(--teal-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26,158,158,0.4);
+}
+
+/* ── PHONE MOCKUP ── */
 .phoneMockup, .phoneMockupDark {
   width: 260px; height: 520px;
   border-radius: 40px;
@@ -332,7 +511,7 @@
   50% { transform: scale(1.3); }
 }
 
-/* â”€â”€ SOCIAL PROOF BAR â”€â”€ */
+/* ── SOCIAL PROOF BAR ── */
 .socialProofBar {
   background: var(--white);
   border-top: 1px solid var(--border);
@@ -352,7 +531,7 @@
 .stars { display: flex; gap: 2px; color: var(--gold); }
 .proofDivider { width: 1px; height: 20px; background: var(--cream-dark); }
 
-/* â”€â”€ DEMO + CTA SPLIT SECTION â”€â”€ */
+/* ── DEMO + CTA SPLIT SECTION ── */
 .demoCTASection {
   padding: 80px 5%;
   background: var(--ink);
@@ -444,7 +623,7 @@
 .ctaContent { padding-top: 8px; }
 .ctaTitle {
   font-family: 'Playfair Display', Georgia, serif;
-  
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
   font-weight: 700;
   color: var(--white);
   line-height: 1.2;
@@ -488,10 +667,10 @@
 }
 .ctaIosButton {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 14px 20px; background: transparent; color: rgba(255,255,255,0.35);
+  padding: 14px 20px; background: #1a1a1a; color: var(--cream);
   font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
-  border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1);
-  cursor: not-allowed; opacity: 0.6; white-space: nowrap;
+  border-radius: var(--radius-sm); border: 1px solid #1a1a1a;
+  cursor: not-allowed; white-space: nowrap;
 }
 .ctaFeatures {
   display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
@@ -502,7 +681,7 @@
 }
 .ctaFeatureItem svg { color: var(--teal-mid); flex-shrink: 0; }
 
-/* â”€â”€ SHARED SECTION STYLES â”€â”€ */
+/* ── SHARED SECTION STYLES ── */
 .sectionLabel {
   display: inline-block;
   font-size: 0.72rem; font-weight: 700;
@@ -528,11 +707,152 @@
 }
 .tealText { color: var(--teal); }
 
-/* â”€â”€ HOW IT WORKS â”€â”€ */
+/* ── HOW IT WORKS ── */
 .howItWorks {
   padding: 80px 5%; background: var(--white); text-align: center;
 }
 .howItWorks .sectionSubtitle { margin: 0 auto 48px; }
+
+/* Before/After Transformation Block */
+.transformBlock {
+  max-width: 860px;
+  margin: 0 auto 56px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  text-align: left;
+}
+.transformTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 24px;
+  text-align: center;
+}
+.transformGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.transformArrow {
+  font-size: 1.8rem;
+  color: var(--teal);
+  font-weight: 700;
+  padding-top: 32px;
+  text-align: center;
+}
+.transformLabel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-light);
+  margin-bottom: 14px;
+}
+.transformLabelDot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.transformList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.transformBefore .transformList li {
+  font-size: 0.875rem;
+  color: var(--ink-light);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.transformBefore .transformList li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  color: #e05c5c;
+  font-size: 0.7rem;
+  top: 2px;
+}
+.transformAfter .transformList li {
+  font-size: 0.875rem;
+  color: var(--ink);
+  line-height: 1.5;
+  font-weight: 500;
+  padding-left: 16px;
+  position: relative;
+}
+.transformAfter .transformList li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-size: 0.8rem;
+  top: 1px;
+}
+
+/* Step card base */
+.stepDescription {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.stepEmotion {
+  font-size: 0.82rem;
+  color: var(--teal-dark);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.5;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+/* Step 2 highlight */
+.stepCardHighlight {
+  border-color: var(--teal) !important;
+  background: linear-gradient(135deg, rgba(26,158,158,0.06), rgba(26,158,158,0.02)) !important;
+  box-shadow: 0 8px 32px rgba(26,158,158,0.18) !important;
+  position: relative;
+}
+.stepHighlightBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--teal);
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.stepIconHighlight {
+  background: var(--teal) !important;
+  box-shadow: 0 4px 16px rgba(26,158,158,0.4);
+}
+.stepCardHighlight h3 {
+  color: var(--teal-dark) !important;
+}
+.stepCardHighlight .stepEmotion {
+  color: var(--teal);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@media (max-width: 640px) {
+  .transformGrid { grid-template-columns: 1fr; }
+  .transformArrow { padding-top: 0; font-size: 1.4rem; text-align: center; }
+}
 .hiwImageWrapper {
   max-width: 740px; margin: 0 auto 56px;
   border-radius: var(--radius-lg); overflow: hidden;
@@ -575,7 +895,7 @@
 }
 .stepCard p { font-size: 0.9rem; color: var(--ink-light); line-height: 1.6; }
 
-/* â”€â”€ WHO IT'S FOR â”€â”€ */
+/* ── WHO IT'S FOR ── */
 .whoItsFor { padding: 80px 5%; background: var(--cream); text-align: center; }
 .whoItsFor .sectionSubtitle { margin: 0 auto 48px; }
 .personaGrid {
@@ -618,7 +938,7 @@
 }
 .personaCta:hover { gap: 10px; }
 
-/* â”€â”€ BENEFITS â”€â”€ */
+/* ── BENEFITS ── */
 .benefitsSection { padding: 80px 5%; background: var(--white); text-align: center; }
 .benefitsSection .sectionSubtitle { margin: 0 auto 48px; }
 .benefitsGrid {
@@ -658,7 +978,7 @@
 }
 .benefitDesc { font-size: 0.88rem; color: var(--ink-light); line-height: 1.65; }
 
-/* â”€â”€ FINAL CTA (dark) â”€â”€ */
+/* ── FINAL CTA (dark) ── */
 .ctaSection {
   position: relative; overflow: hidden;
   padding: 80px 5%; background: var(--ink-mid);
@@ -675,25 +995,92 @@
   background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
 }
 .ctaFinalContainer {
-  max-width: 1100px; margin: 0 auto;
-  display: flex; align-items: center; gap: 60px;
-  position: relative; z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
-.ctaFinalContent { flex: 1; }
-.ctaPhone { flex-shrink: 0; width: 300px; position: relative; }
-.ctaPhoneGlow {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 280px; height: 280px; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle, rgba(26,158,158,0.25) 0%, transparent 70%);
+.ctaTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
 }
-.ctaPhoneImage {
-  width: 100%; border-radius: 20px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-  position: relative; z-index: 1;
-  animation: floatPhone 5s ease-in-out infinite;
+.ctaFinalSubtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 520px;
 }
+.ctaFinalButtonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.ctaFinalButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: var(--white);
+  color: var(--teal-dark);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.ctaFinalButton:hover {
+  background: var(--teal-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,255,255,0.2);
+}
+.ctaFinalButtonDisabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: #1a1a1a;
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #1a1a1a;
+  cursor: not-allowed;
+  white-space: nowrap;
+}
+.ctaFinalFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.ctaFinalFeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+}
+.ctaFinalFeatureItem svg { color: var(--teal-mid); }
 
-/* â”€â”€ FOOTER â”€â”€ */
+/* ── FOOTER ── */
 .footer {
   background: var(--ink); padding: 40px 5%;
   border-top: 1px solid rgba(255,255,255,0.06);
@@ -710,23 +1097,7 @@
   font-size: 1.15rem; font-weight: 700; color: var(--white);
 }
 .footerTagline { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
-.footerLinks { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; }
-.footerDot {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.25);
-  user-select: none;
-}
-/* Alias for SiteFooter (synced from root src) — same visual as .footerDot */
-.footerSep {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.25);
-  user-select: none;
-}
-.footerAppRow {
-  display: flex;
-  justify-content: center;
-  margin-top: 4px;
-}
+.footerLinks { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
 .footerLink {
   font-size: 0.85rem; color: rgba(255,255,255,0.5);
   text-decoration: none; transition: color 0.2s ease;
@@ -734,7 +1105,51 @@
 .footerLink:hover { color: var(--teal-mid); }
 .footerCopy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
 
-/* â”€â”€ FULLSCREEN OVERLAY â”€â”€ */
+/* ── VIDEO MODAL ── */
+.videoOverlay {
+  position: fixed; inset: 0; z-index: 9998;
+  background: rgba(10,20,30,0.88);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.videoModal {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  background: #000;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+}
+.videoCloseBtn {
+  position: absolute;
+  top: 12px; right: 14px;
+  z-index: 10;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s ease;
+}
+.videoCloseBtn:hover { background: rgba(255,255,255,0.3); }
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+.videoIframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* ── FULLSCREEN OVERLAY ── */
 .fullScreenOverlay {
   position: fixed; inset: 0; z-index: 9998;
   background: rgba(26,35,50,0.85); backdrop-filter: blur(8px);
@@ -757,24 +1172,55 @@
 }
 .fullscreenButton:hover { background: var(--teal); color: var(--white); }
 
-/* â”€â”€ RESPONSIVE â”€â”€ */
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .heroSection { flex-direction: column; padding: 60px 5%; min-height: unset; }
-  .rightPanel { max-width: 100%; }
-  .phoneHeroImage { width: 280px; }
-  .floatingBadge1 { left: 0; }
-  .floatingBadge2 { right: 0; }
+  .heroSection {
+    flex-direction: column;
+    padding: 40px 5%;
+    min-height: unset;
+    align-items: center;
+  }
+  .leftPanel {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    order: 1;
+  }
+  .rightPanel {
+    max-width: 100%;
+    width: 100%;
+    flex: unset;
+    align-self: auto;
+    order: 2;
+  }
+  .rightPanel .hiwImageWrapper {
+    width: 100%;
+    animation: none;
+  }
+  .rightPanel .hiwImage {
+    min-height: unset;
+    height: auto;
+    object-fit: contain;
+  }
+  .aiTag { margin: 0 auto 24px; }
+  .buttonGroup { justify-content: center; }
+  .trustRow { justify-content: center; }
   .demoCTAContainer { grid-template-columns: 1fr; }
-  .ctaFinalContainer { flex-direction: column; }
-  .ctaPhone { width: 220px; }
+  .ctaFinalContainer { flex-direction: column; align-items: center; }
 }
 @media (max-width: 640px) {
   .nav { display: none; }
-  .buttonGroup { flex-direction: column; align-items: flex-start; }
+  .buttonGroup { flex-direction: column; align-items: center; width: 100%; }
+  .primaryButton, .androidButton { width: 100%; justify-content: center; }
   .stepsGrid { grid-template-columns: 1fr; }
   .personaGrid { grid-template-columns: 1fr; }
   .benefitsGrid { grid-template-columns: 1fr; }
   .ctaFeatures { grid-template-columns: 1fr; }
   .socialProofInner { flex-direction: column; gap: 16px; }
   .proofDivider { display: none; }
+  .transformGrid { grid-template-columns: 1fr; }
+  .transformArrow { padding-top: 0; font-size: 1.4rem; text-align: center; }
+  .ctaFinalButtonGroup { flex-direction: column; align-items: center; }
+  .ctaFinalButton { width: 100%; justify-content: center; }
 }
