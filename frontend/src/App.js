@@ -39,10 +39,12 @@ import SignUpConfirmation from './components/SignUpConfirmation';
 import PatientReminderModal from './patient/PatientReminderModal';
 
 import VisitHistory from './patient/VisitHistory';
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <Routes>
           {/* Main Routes */}
