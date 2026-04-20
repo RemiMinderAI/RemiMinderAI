@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './LandingPage.module.css';
 import howItWorksImage from '../assets/coverpage.png';
+import heroAppImage from '../assets/IMG_0427.jpeg';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
@@ -9,26 +10,25 @@ import {
   ArrowRight, CheckCircle2, Smartphone, Apple, Star,
   Lock, Zap, Globe, Play
 } from "lucide-react";
-import ProductDemo from "./ProductDemo";
-import { Maximize2 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
-import SiteFooter from "./SiteFooter";
-import { ANDROID_URL, MAILING_LIST_URL } from "../constants/site";
+import ProductDemo from "./ProductDemo";
+
+
+const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
+const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
   
   const location = useLocation();
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef(null);
 
   useEffect(() => {
     if (location.hash === "#how-it-works") {
       document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
-    }
-    if (location.search.includes("fullscreen=true")) {
-      setIsFullScreen(true);
     }
   }, [location]);
 
@@ -45,25 +45,33 @@ const LandingPage = () => {
       icon: <Mic className={styles.stepIcon} />,
       title: "Capture",
       description: "Record or upload doctor–patient conversations with one tap.",
-      number: "01"
+      emotion: "No note-taking. No stress. Nothing gets lost.",
+      number: "01",
+      highlight: false
     },
     {
       icon: <FileText className={styles.stepIcon} />,
       title: "Understand",
       description: "AI extracts medications, instructions, and follow-ups automatically.",
-      number: "02"
+      emotion: "Turns confusing medical conversations into clear, structured meaning in seconds.",
+      number: "02",
+      highlight: true
     },
     {
       icon: <Bell className={styles.stepIcon} />,
       title: "Organize",
       description: "Everything becomes a structured, shareable care plan.",
-      number: "03"
+      emotion: "Keeps families and caregivers aligned without confusion or repeated calls.",
+      number: "03",
+      highlight: false
     },
     {
       icon: <Shield className={styles.stepIcon} />,
       title: "Remind",
       description: "Caregivers and patients get timely, smart reminders.",
-      number: "04"
+      emotion: "Ensures nothing important is missed — ever.",
+      number: "04",
+      highlight: false
     },
   ];
 
@@ -126,7 +134,7 @@ const LandingPage = () => {
           <div className={styles.heroBgGrid} />
         </div>
 
-        <div className={styles.leftPanel}>
+                <div className={styles.leftPanel}>
           <div className={`${styles.aiTag} ${styles.heroAnimBadge}`}>
             <span className={styles.aiTagDot} />
             Smart AI for Health &amp; Care Coordination
@@ -156,8 +164,7 @@ const LandingPage = () => {
             </a>
             <button className={styles.iosButton} disabled>
               <Apple size={16} />
-              <span>iOS</span>
-              <span className={styles.comingSoonBadge}>Soon</span>
+              <span>iOS Soon</span>
             </button>
           </div>
 
@@ -171,32 +178,8 @@ const LandingPage = () => {
         </div>
 
         <div className={styles.rightPanel}>
-          <div className={styles.phoneHeroWrapper}>
-            <div className={styles.phoneGlow} />
-            {/* CSS Phone Mockup */}
-            <div className={styles.phoneMockup}>
-              <div className={styles.phoneMockupInner}>
-                <div className={styles.phoneNotch} />
-                <div className={styles.phoneScreen}>
-                  <div className={styles.appSplash}>
-                    <img src={logo} alt="RemiMinder" className={styles.splashLogo} />
-                    <div className={styles.splashTitle}>RemiMinder<span style={{color:'var(--teal)'}}>.ai</span></div>
-                    <div className={styles.splashSubtitle}>Smart AI for Health &amp; Care Coordination</div>
-                    <div className={styles.splashDots}>
-                      <span /><span /><span />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.floatingBadge1}>
-              <CheckCircle2 size={14} className={styles.floatingBadgeIcon} />
-              <span>Visit Summarized</span>
-            </div>
-            <div className={styles.floatingBadge2}>
-              <Bell size={14} className={styles.floatingBadgeIcon} />
-              <span>Reminder Set</span>
-            </div>
+          <div className={styles.hiwImageWrapper}>
+            <img src={heroAppImage} alt="RemiMinder App Beta" className={styles.hiwImage} />
           </div>
         </div>
       </main>
@@ -248,47 +231,41 @@ const LandingPage = () => {
 
             <button
               className={styles.demoButton}
-              onClick={() => setIsFullScreen(true)}
+              onClick={() => setShowVideo(true)}
             >
               <Play size={16} />
-              Try the Demo
+              Watch Demo
             </button>
           </div>
 
           {/* RIGHT: CTA Stack */}
           <div className={styles.ctaContent}>
             <div className={styles.sectionLabelLight}>GET STARTED TODAY</div>
-            <h2 className={styles.ctaTitle}>
+            <h2 className={styles.ctaTitleDark}>
               Start experiencing RemiMinder today
             </h2>
-            <p className={styles.ctaSubtitle}>
-              Turn doctor visits into structured, stress-free care plans in seconds. 
-              Download the Android app or sign up for early access.
-            </p>
 
-            <div className={styles.ctaButtonGroup}>
-              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaPrimaryButton}>
-                <span>Get Early Access</span>
-                <ArrowRight size={18} />
-              </a>
-              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaAndroidButton}>
-                <Smartphone size={18} />
-                <span>Download Android</span>
-              </a>
-              <button className={styles.ctaIosButton} disabled>
-                <Apple size={18} />
-                <span>iOS Coming Soon</span>
-              </button>
-            </div>
-
-            <div className={styles.ctaFeatures}>
-              {["No missed medications", "Clear visit summaries", "Caregiver alignment", "HIPAA compliant"].map((f, i) => (
-                <div key={i} className={styles.ctaFeatureItem}>
-                  <CheckCircle2 size={14} />
-                  <span>{f}</span>
+            <div className={styles.ctaFeaturesCard}>
+              {[
+                { text: "No missed medications", icon: <CheckCircle2 size={18} /> },
+                { text: "Clear visit summaries", icon: <CheckCircle2 size={18} /> },
+                { text: "Caregiver alignment", icon: <CheckCircle2 size={18} /> },
+                { text: "HIPAA compliant", icon: <CheckCircle2 size={18} /> },
+              ].map((f, i) => (
+                <div key={i} className={styles.ctaFeaturesCardItem}>
+                  <span className={styles.ctaFeaturesCardIcon}>{f.icon}</span>
+                  <span>{f.text}</span>
                 </div>
               ))}
             </div>
+
+            <button
+              className={styles.tryMeButton}
+              onClick={() => setShowDemo(true)}
+            >
+              <Play size={16} />
+              Try Now
+            </button>
           </div>
 
         </div>
@@ -300,19 +277,59 @@ const LandingPage = () => {
         <h2 className={styles.sectionTitle}>
           From conversation to care <span className={styles.tealText}>in seconds</span>
         </h2>
-        <p className={styles.sectionSubtitle}>Simple, intuitive, and powerful — designed for patients and caregivers alike.</p>
+        <p className={styles.sectionSubtitle}>
+          Turn doctor conversations into clear, actionable care plans for patients and caregivers.
+        </p>
 
-        <div className={styles.hiwImageWrapper}>
-          <img src={howItWorksImage} alt="How RemiMinder Works" className={styles.hiwImage} />
+        {/* Before / After Transformation Block */}
+        <div className={styles.transformBlock}>
+          <div className={styles.transformTitle}>What changes with RemiMinder</div>
+          <div className={styles.transformGrid}>
+            <div className={styles.transformBefore}>
+              <div className={styles.transformLabel}>
+                <span className={styles.transformLabelDot} style={{background:'#e05c5c'}} />
+                Before
+              </div>
+              <ul className={styles.transformList}>
+                <li>"Did the doctor say twice a day or once daily?"</li>
+                <li>Confusing notes and missed instructions</li>
+                <li>Scattered information across texts and memory</li>
+                <li>Caregiver stress and repeated phone calls</li>
+              </ul>
+            </div>
+            <div className={styles.transformArrow}>→</div>
+            <div className={styles.transformAfter}>
+              <div className={styles.transformLabel}>
+                <span className={styles.transformLabelDot} style={{background:'var(--teal)'}} />
+                After
+              </div>
+              <ul className={styles.transformList}>
+                <li>Clear medication schedule, every time</li>
+                <li>Structured care plan ready instantly</li>
+                <li>Shared understanding across all caregivers</li>
+                <li>Peace of mind for the whole family</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
+        {/* Steps */}
         <div className={styles.stepsGrid}>
           {steps.map((step, index) => (
-            <div key={index} className={styles.stepCard}>
+            <div
+              key={index}
+              className={`${styles.stepCard} ${step.highlight ? styles.stepCardHighlight : ''}`}
+            >
+              {step.highlight && (
+                <div className={styles.stepHighlightBadge}>✦ AI Magic Moment</div>
+              )}
               <div className={styles.stepNumber}>{step.number}</div>
-              <div className={styles.stepIconWrapper}>{step.icon}</div>
+              <div className={`${styles.stepIconWrapper} ${step.highlight ? styles.stepIconHighlight : ''}`}>
+                {step.icon}
+              </div>
               <h3>{step.title}</h3>
-              <p>{step.description}</p>
+              <p className={styles.stepDescription}>{step.description}</p>
+              <p className={styles.stepEmotion}>{step.emotion}</p>
             </div>
           ))}
         </div>
@@ -394,59 +411,78 @@ const LandingPage = () => {
           <div className={styles.ctaBgOrb2} />
         </div>
         <div className={styles.ctaFinalContainer}>
-          <div className={styles.ctaFinalContent}>
-            <div className={styles.sectionLabelLight}>READY TO START?</div>
-            <h2 className={styles.ctaTitle}>Take control of your healthcare today</h2>
-            <p className={styles.ctaSubtitle}>
-              Join our early access program. Download the Android app or sign up with your email to stay updated.
-            </p>
-            <div className={styles.ctaButtonGroup}>
-              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaPrimaryButton}>
-                <span>Sign Up Free</span><ArrowRight size={18} />
-              </a>
-              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaAndroidButton}>
-                <Smartphone size={18} /><span>Download Android</span>
-              </a>
-              <button className={styles.ctaIosButton} disabled>
-                <Apple size={18} /><span>iOS Coming Soon</span>
-              </button>
-            </div>
-            <div className={styles.ctaFeatures}>
-              {["Free early access", "No credit card needed", "HIPAA compliant", "Cancel anytime"].map((f, i) => (
-                <div key={i} className={styles.ctaFeatureItem}>
-                  <CheckCircle2 size={14} /><span>{f}</span>
-                </div>
-              ))}
-            </div>
+          <div className={styles.sectionLabelLight}>READY TO START?</div>
+          <h2 className={styles.ctaTitle}>Take control of your healthcare today</h2>
+          <p className={styles.ctaFinalSubtitle}>
+            Join our early access program. Download the Android app or sign up with your email to stay updated.
+          </p>
+          <div className={styles.ctaFinalButtonGroup}>
+            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaFinalButton}>
+              <span>Sign Up Free</span><ArrowRight size={18} />
+            </a>
+            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaFinalButton}>
+              <Smartphone size={18} /><span>Download Android</span>
+            </a>
+            <button className={styles.ctaFinalButtonDisabled} disabled>
+              <Apple size={18} /><span>iOS Coming Soon</span>
+            </button>
           </div>
-          <div className={styles.ctaPhone}>
-            <div className={styles.ctaPhoneGlow} />
-            <div className={styles.phoneMockupDark}>
-              <div className={styles.phoneMockupInner}>
-                <div className={styles.phoneNotch} />
-                <div className={styles.phoneScreen}>
-                  <div className={styles.appSplash}>
-                    <img src={logo} alt="RemiMinder" className={styles.splashLogo} />
-                    <div className={styles.splashTitle}>RemiMinder<span style={{color:'var(--teal)'}}>​.ai</span></div>
-                    <div className={styles.splashSubtitle}>Smart AI for Health &amp; Care Coordination</div>
-                    <div className={styles.splashDots}><span /><span /><span /></div>
-                  </div>
-                </div>
+          <div className={styles.ctaFinalFeatures}>
+            {["Free early access", "No credit card needed", "HIPAA compliant", "Cancel anytime"].map((f, i) => (
+              <div key={i} className={styles.ctaFinalFeatureItem}>
+                <CheckCircle2 size={14} /><span>{f}</span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <SiteFooter />
+      {/* ── FOOTER ── */}
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <div className={styles.footerTop}>
+            <div className={styles.footerBrand}>
+              <img src={logo} alt="RemiMinder" className={styles.footerLogo} />
+              <span className={styles.footerBrandName}>RemiMinder<span className={styles.logoAi}>.ai</span></span>
+            </div>
+            <p className={styles.footerTagline}>Smart AI for Health &amp; Care Coordination</p>
+          </div>
+          <div className={styles.footerLinks}>
+            <a href="/about" className={styles.footerLink}>About</a>
+            <a href="#how-it-works" className={styles.footerLink}>How It Works</a>
+            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Contact</a>
+            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Download Android</a>
+          </div>
+          <p className={styles.footerCopy}>© 2025 RemiMinderAI. All rights reserved. &nbsp;•&nbsp; HIPAA Compliant &nbsp;•&nbsp; End-to-End Encrypted</p>
+        </div>
+      </footer>
 
-      {/* ── FULLSCREEN DEMO OVERLAY ── */}
-      {isFullScreen && (
-        <div className={styles.fullScreenOverlay} onClick={() => setIsFullScreen(false)}>
+      {/* ── VIDEO MODAL ── */}
+      {showVideo && (
+        <div className={styles.videoOverlay} onClick={() => setShowVideo(false)}>
+          <div className={styles.videoModal} onClick={e => e.stopPropagation()}>
+            <button className={styles.videoCloseBtn} onClick={() => setShowVideo(false)}>✕</button>
+            <div className={styles.videoWrapper}>
+              <iframe
+                src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
+                title="RemiMinder Demo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={styles.videoIframe}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── INTERACTIVE DEMO OVERLAY ── */}
+      {showDemo && (
+        <div className={styles.fullScreenOverlay} onClick={() => setShowDemo(false)}>
           <section className={styles.fullScreen} onClick={e => e.stopPropagation()}>
             <ProductDemo />
-            <button className={styles.fullscreenButton} onClick={() => setIsFullScreen(false)} aria-label="Close">
-              <Maximize2 size={20} />
+            <button className={styles.fullscreenButton} onClick={() => setShowDemo(false)} aria-label="Close">
+              ✕
             </button>
           </section>
         </div>
@@ -457,4 +493,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
