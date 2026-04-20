@@ -1,0 +1,87 @@
+import os
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
+# import aiosmtplib
+# from email.message import EmailMessage
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# GMAIL_USER = os.getenv("GMAIL_USER")
+# GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+# GMAIL_NAME = os.getenv("GMAIL_NAME")
+
+# Brevo API key from environment variables
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+
+if not BREVO_API_KEY:
+    raise ValueError("BREVO_API_KEY not found in environment variables!")
+
+FRONTEND_BASE_URL = os.getenv("REACT_APP_FRONTEND_URL", "http://localhost:3000")
+
+# Initialize Brevo API client
+configuration = sib_api_v3_sdk.Configuration()
+configuration.api_key['api-key'] = BREVO_API_KEY
+api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
+    sib_api_v3_sdk.ApiClient(configuration)
+)
+
+def send_invite_email(to_email: str, invite_token: str, patient_name: str):
+    invite_link = f"{FRONTEND_BASE_URL}/invitation?token={invite_token}"
+
+    #print("DEBUG: Invite link being sent:", invite_link)
+
+    # Plain text version
+    plain_content = f"""\
+Hi,
+
+{patient_name} has invited you to join as their caregiver on RemiMinderAI.
+
+Click the link below to accept:
+{invite_link}
+
+If you didn’t expect this, you can safely ignore this email.
+"""
+
+    # HTML version
+    html_content = f"""\
+<html>
+  <body style="font-family: Arial, sans-serif; line-height:1.6;">
+    <h2 style="color: #333;">You're invited!</h2>
+    <p><strong>{patient_name}</strong> has invited you to join as their caregiver on <strong>RemiMinderAI</strong>.</p>
+    <p>
+      <a href="{invite_link}" 
+         style="
+           display:inline-block;
+           background-color:#4CAF50;
+           color:white;
+           padding:10px 20px;
+           text-decoration:none;
+           border-radius:6px;
+           font-weight:bold;
+         ">
+        Accept Invitation
+      </a>
+    </p>
+    <hr style="border:none; border-top:1px solid #eee;" />
+    <p style="font-size:0.9em; color:#555;">
+      If you didn’t expect this invitation, you can safely ignore this email.
+    </p>
+  </body>
+</html>
+"""
+
+    # Brevo email object
+    send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
+        sender={"name": "RemiMinderAI", "email": "remiminderai@gmail.com"},
+        to=[{"email": to_email}],
+        subject=f"{patient_name} invited you to join RemiMinderAI",
+        html_content=html_content,
+        text_content=plain_content
+    )
+
+    try:
+        api_instance.send_transac_email(send_smtp_email)
+        print(f"Email sent to {to_email}")
+    except ApiException as e:
+        print(f"Error sending Brevo email to {to_email}: {e}")
