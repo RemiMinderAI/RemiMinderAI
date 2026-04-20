@@ -1,0 +1,202 @@
+﻿/* Extends design tokens from LandingPage.module.css (imported in component). */
+
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.minHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 16px 5%;
+  background: rgba(247, 243, 236, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border, rgba(26, 158, 158, 0.15));
+}
+
+.logoBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+
+.logoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.headerTitle {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+  font-weight: 700;
+  color: var(--ink, #1a2332);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-style: normal;
+}
+
+.main {
+  flex: 1;
+  padding: 48px 5% 64px;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.toc {
+  background: var(--cream, #f7f3ec);
+  border: 1px solid var(--border, rgba(26, 158, 158, 0.15));
+  border-radius: var(--radius-md, 16px);
+  padding: 20px 22px;
+  margin-bottom: 36px;
+}
+
+.tocTitle {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink, #1a2332);
+  margin-bottom: 12px;
+}
+
+.tocList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tocList a {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: var(--teal-dark, #137a7a);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tocList a:hover {
+  text-decoration: underline;
+}
+
+.article {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  color: var(--ink, #1a2332);
+}
+
+.article h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--ink, #1a2332);
+}
+
+/* If markdown ever includes a top-level # title, keep it below page h1 */
+.article h1:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--ink-light, #5a6a7a);
+  margin-bottom: 32px;
+}
+
+.article h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  color: var(--ink, #1a2332);
+  scroll-margin-top: 96px;
+}
+
+.article h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  color: var(--ink, #1a2332);
+}
+
+.article p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-light, #5a6a7a);
+  margin-bottom: 14px;
+}
+
+.leadLine {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink-light, #5a6a7a);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.article ul {
+  margin: 0 0 16px 1.1rem;
+  padding: 0;
+  color: var(--ink-light, #5a6a7a);
+  line-height: 1.75;
+}
+
+.article li {
+  margin-bottom: 8px;
+}
+
+.article strong {
+  color: var(--ink, #1a2332);
+  font-weight: 600;
+}
+
+.error {
+  color: #b42318;
+  font-size: 0.95rem;
+}
+
+.bottomActions {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+}
+
+.backHome {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  background: var(--teal, #1a9e9e);
+  color: var(--white, #fff);
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm, 8px);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backHome:hover {
+  background: var(--teal-dark, #137a7a);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26, 158, 158, 0.35);
+}

@@ -1,307 +1,367 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Linkedin } from "lucide-react";
+import landingStyles from "./LandingPage.module.css";
 import styles from "./AboutPage.module.css";
-import { useNavigate } from "react-router-dom";
-import { Linkedin } from 'lucide-react';
-import logo from '../assets/RemiMinder_logo_512.png';
-import profilephoto1 from '../assets/profilephotos/tina.jfif';
-import profilephoto2 from '../assets/profilephotos/jibin.jfif';
-import profilephoto3 from '../assets/profilephotos/sri.jfif';
-import profilephoto4 from '../assets/profilephotos/cromwell.jfif';
+import SiteFooter from "./SiteFooter";
+import logo from "../assets/RemiMinder_logo_512.png";
+import profileParamita from "../assets/profilephotos/tina.jfif";
+import { CONTACT_EMAIL, MAILING_LIST_URL } from "../constants/site";
 
+/** About page copy per marketing spec (About Page — RemiMinderAI). */
 const AboutPage = () => {
-    const navigate = useNavigate();
-  
-    const goToSignIn = () => navigate("/sign-in");
+  const navigate = useNavigate();
 
-    const techStack = [
-      {
-        name: "Mobile Interface",
-        bio: "Built with Flutter for a high-performance, cross-platform experience (iOS/Android) ensuring rapid feature parity.",
-      },
-      {
-        name: "Mobile Interface",
-        bio: "We utilize Google ML Kit for on-device OCR and Google Document AI for high-accuracy extraction of complex medical transcripts.",
-      },
-      {
-        name: "Generative AI",
-        bio: "Powered by Google Gemini via Vertex AI to provide real-time visit transcriptions and personalized health action plans.",
-      },
-    ]
+  const techStack = [
+    {
+      id: "mobile",
+      name: "Mobile Interface",
+      bio: "Built with Flutter for a high-performance, cross-platform experience (iOS/Android) with rapid feature parity across devices.",
+    },
+    {
+      id: "docintel",
+      name: "Document Intelligence",
+      bio: "Google ML Kit for on-device OCR and Google Document AI for high-accuracy extraction of prescriptions, lab results, and complex medical documents.",
+    },
+    {
+      id: "genai",
+      name: "Generative AI",
+      bio: "Powered by Google Gemini via Vertex AI for real-time visit transcription, medical summarization, and personalized health action plans.",
+    },
+  ];
 
-    const cloudInfrastructure = [
-      {
-        name: "Backend",
-        bio: "High-speed FastAPI (Python) services hosted on Google Cloud Run for serverless, auto-scaling performance.",
-      },
-      {
-        name: "Database",
-        bio: "Google Cloud SQL (PostgreSQL) for robust, relational storage of patient records.",
-      },
-      {
-        name: "Security & Compliance",
-        bio: "Firebase Auth for secure identity management and Google Cloud Storage for encrypted PHI (Protected Health Information).",
-      },
-    ]
+  const cloudInfrastructure = [
+    {
+      id: "be",
+      name: "Backend",
+      bio: "High-speed FastAPI (Python) services hosted on Google Cloud Run for serverless, auto-scaling performance.",
+    },
+    {
+      id: "db",
+      name: "Database",
+      bio: "Google Cloud SQL (PostgreSQL) for robust, relational storage of patient records with automated backups.",
+    },
+    {
+      id: "sec",
+      name: "Security & Compliance",
+      bio: "Firebase Auth for secure identity management and Google Cloud Storage for encrypted PHI. We operate under a signed BAA with Google Cloud, with AI workloads running on HIPAA-eligible Vertex AI.",
+    },
+  ];
 
-    const teamMembers = [
-      {
-        name: "Paramita Malakar",
-        role: "Product & AI/ML Leader",
-        bio: "Product & Quality Assurance Leader focused on transforming ideas into impactful AI and enterprise solutions.",
-        linkedin: "https://www.linkedin.com/in/paramitam/",
-        initials: "PM",
-        photo: profilephoto1,
-      },
-      // {
-      //   name: "Jibin Kunjumon",
-      //   role: "Backend Engineer & AI/ML Developer",
-      //   bio: "Backend Engineer & AI Developer specializing in intelligent systems powered by Large Language Models, multi-agent workflows, and production-grade backend architectures.",
-      //   linkedin: "https://www.linkedin.com/in/jibin-kunjumon-9bbb3542/",
-      //   initials: "JK",
-      //   photo: profilephoto2,
-      // },
-      {
-        name: "Sridevi T",
-        role: "Lead AI Engineer",
-        bio: "Full-Stack AI Engineer with 6 years of software engineering experience, specializing in designing and delivering production-ready Generative AI systems.",
-        linkedin: "https://www.linkedin.com/in/sridevipt/",
-        initials: "ST",
-        photo: profilephoto3,
-      },
-      {
-        name: "Cromwell De Guzman",
-        role: "Lead UI/UX Designer & Frontend Developer",
-        bio: "Frontend developer and game designer with AI UI/UX experience, focused on crafting digital products that feel intuitive, engaging, and performance-driven.",
-        linkedin: "https://www.linkedin.com/in/cromwell-de-guzman-a19482218/",
-        initials: "CD",
-        photo: profilephoto4,
-      },
-    ];
+  const dataControlItems = [
+    "HIPAA Compliant. We operate under a signed Business Associate Agreement (BAA) with Google Cloud, and our AI processing runs on Vertex AI — a HIPAA-eligible Google Cloud service. Protected Health Information (PHI) is encrypted at rest and in transit using industry-standard TLS.",
+    "Identity & access. Authentication is handled by Firebase Auth with role-based access controls.",
+    "Data residency. All patient data is stored in Google Cloud infrastructure in the United States.",
+    "No selling, no ads. We don't sell user data. We don't serve ads. Our business model is the product, not the people using it.",
+    "You control who sees what. Patients can grant full or partial access to caregivers and revoke it at any time. You decide what's shared, with whom, and for how long.",
+  ];
+
+  const roadmapItems = [
+    "Q2 2026 — External beta opens to waitlist (Android first)",
+    "Q3 2026 — iOS release and caregiver web dashboard",
+    "Q4 2026 — Care team collaboration features, provider integrations",
+    "2027 — Expanded clinical partnerships and multi-language support",
+  ];
+
+  const companyLines = [
+    "Company Name: RemiMinderAI",
+    "Industry: Digital Health / HealthTech",
+    "Company Size: 2–10 employees",
+    "Headquarters: Hollister, California",
+    "Founded: 2025",
+    "Status: Private Beta (Invite Only)",
+    "Email: team@remiminderai.com",
+  ];
 
   return (
-    <main className={styles.container}>
-      {/* --- HEADER --- */}
-      <header className={styles.header}>
-      <div className={styles.logo} onClick={() => navigate("/")}>
-        <div className={styles.logoImg}>
-          <img
-            src={logo}
-            alt="RemiMinder Logo"
-            className={styles.logoImg}
-          />
-          </div>
-          RemiMinderAI
-        </div>
-        <nav className={styles.nav}>
-            <a href="/" className={styles.navLink}>Home</a>
-            <a href="/?fullscreen=true" className={styles.navLink}>Product Demo</a>
-            <a href="/#how-it-works" className={styles.navLink}>How It Works</a>
-            <a href="/about" className={styles.navLink}>About</a>
-        </nav>
-        <button onClick={goToSignIn} className={styles.signInButton}>Sign In</button>
+    <div className={`${landingStyles.container} ${styles.page}`}>
+      <header className={styles.minHeader}>
+        <button
+          type="button"
+          className={styles.logoBtn}
+          onClick={() => navigate("/")}
+          aria-label="RemiMinderAI home"
+        >
+          <img src={logo} alt="" className={styles.logoImg} />
+        </button>
+        <p className={styles.pageTitle}>About Page — RemiMinderAI</p>
       </header>
 
-      {/* --- HERO --- */}
-      <section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            About <span className={styles.gradientText}>RemiMinderAI</span>
-          </h1>
-          <p className={styles.heroSubtitle}>
-            RemiMinder is an AI-native health management platform built to simplify healthcare for families. 
-            By automating the digitization of medical records and intelligently coordinating care schedules, 
-            we ensure that critical health milestones are never missed. Our platform transforms fragmented 
-            medical data into actionable, low-latency insights for patients and caregivers globally.
+      <section className={styles.statusBanner} aria-label="Private beta notice">
+        <div className={styles.statusInner}>
+          <p className={styles.statusText}>
+            Private Beta — Invite Only. We&apos;re onboarding a small group of caregivers and patients.
           </p>
+          <a
+            href={MAILING_LIST_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={landingStyles.primaryButton}
+          >
+            Request an invite
+          </a>
         </div>
       </section>
 
-      {/* --- WHAT WE DO & PROBLEMS --- */}
-      <section className={styles.businessSection}>
-        <div className={styles.sectionGrid}>
-          <div className={styles.sectionCard}>
-            <h2 className={styles.sectionTitle}>What We Do</h2>
+      <section className={`${styles.section} ${styles.altWhite}`}>
+        <div className={styles.sectionNarrow}>
+          <h1 className={styles.heroTitle}>About RemiMinderAI</h1>
+          <p className={styles.heroSub}>
+            Healthcare coordination, finally built for the people doing the coordinating.
+          </p>
+          <div className={styles.prose}>
             <p>
-              <strong>RemiMinder is an AI-powered health management platform</strong> that helps patients record, organize, and share 
-              their health information with caregivers and healthcare providers.
+              RemiMinderAI is an AI-native health management platform that helps families capture,
+              organize, and act on medical information so critical care moments never slip through the
+              cracks.
             </p>
             <p>
-              Our mobile and web application uses advanced speech recognition and natural language processing to 
-              transcribe doctor visits, extract key medical information, and generate actionable health insights.
+              We turn fragmented doctor visits, medication schedules, and scattered records into a single,
+              shared source of truth for patients and the caregivers who support them.
             </p>
-            <p>
-              The platform connects patients with their family caregivers through a secure dashboard, enabling real-time 
-              health monitoring, medication management, and coordinated care—all while maintaining HIPAA-compliant data security.
-            </p>
-          </div>
-
-          <div className={styles.sectionCard}>
-            <h2 className={styles.sectionTitle}>Problems We Solve</h2>
-            <ul className={styles.problemList}>
-              <li>Patients forget up to 80% of medical information within 24 hours of doctor visits</li>
-              <li>Caregivers lack visibility into their loved ones' health status and appointments</li>
-              <li>Fragmented health records across multiple providers create gaps in care</li>
-              <li>Seniors struggle with complex medication schedules and adherence</li>
-              <li>Families waste hours coordinating care through phone calls and texts</li>
-            </ul>
           </div>
         </div>
       </section>
 
-      {/* --- TECH STACK --- */}
-      <section className={styles.teamSection}>
-        <h2 className={styles.sectionTitle}>Our Core Tech Stack</h2>
-
-        <div className={styles.teamGrid}>
-          {techStack.map((member) => (
-            <div key={member.name} className={styles.teamCard2}>
-              <h3 className={styles.teamName}>{member.name}</h3>
-              <p className={styles.teamBio}>{member.bio}</p>
-            </div>
-          ))}
+      <section className={`${styles.section} ${styles.altCream}`}>
+        <div className={styles.sectionNarrow}>
+          <h2 className={styles.sectionHeading}>Why We Built This</h2>
+          <div className={styles.prose}>
+            <p>
+              Anyone who has helped a parent, partner, or child navigate the healthcare system knows the
+              feeling: you leave the doctor&apos;s office already forgetting half of what was said,
+              juggling prescription names you can&apos;t pronounce, and wondering who else in the family
+              needs to know what just happened.
+            </p>
+            <p>
+              RemiMinderAI started with that exact problem. Care doesn&apos;t happen in a single
+              appointment — it happens in the days and weeks after, across phone calls, pharmacies, and
+              kitchen tables. We&apos;re building the platform that holds it all together.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* --- CLOUD INFRASTRUCTURE --- */}
-      <section className={styles.teamSection}>
-        <h2 className={styles.sectionTitle}>Cloud Infrastructure</h2>
-
-        <div className={styles.teamGrid}>
-          {cloudInfrastructure.map((member) => (
-            <div key={member.name} className={styles.teamCard2}>
-              <h3 className={styles.teamName}>{member.name}</h3>
-              <p className={styles.teamBio}>{member.bio}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- OUR TEAM --- */}
-      <section className={styles.teamSection}>
-        <h2 className={styles.sectionTitle}>Our Team</h2>
-
-        <div className={styles.teamGrid}>
-          {teamMembers.map((member) => (
-            <div key={member.name} className={styles.teamCard}>
-              <div className={styles.avatar}>
-                {member.photo ? (
-                  <img
-                    src={member.photo}
-                    alt={`${member.name} profile`}
-                    className={styles.avatarImg}
-                  />
-                ) : (
-                  <span>{member.initials}</span>
-                )}
+      <section className={`${styles.section} ${styles.altWhite}`}>
+        <div className={styles.sectionWide}>
+          <div className={styles.twoCol}>
+            <div className={`${landingStyles.stepCard} ${styles.colCard}`}>
+              <h2 className={styles.sectionHeading} style={{ fontSize: "1.65rem", marginBottom: "12px" }}>
+                What We Do
+              </h2>
+              <div className={styles.prose}>
+                <p>
+                  RemiMinderAI is an AI-powered health management platform that helps patients record,
+                  organize, and share their health information with caregivers and healthcare providers.
+                </p>
+                <p>
+                  Our mobile and web application uses advanced speech recognition and natural language
+                  processing to transcribe doctor visits, extract key medical information, and generate
+                  actionable health insights.
+                </p>
+                <p>
+                  The platform connects patients with their care team in real time, turning every
+                  appointment into structured, shareable knowledge instead of forgotten conversations.
+                </p>
               </div>
+            </div>
+            <div className={`${landingStyles.stepCard} ${styles.colCard}`}>
+              <h2 className={styles.sectionHeading} style={{ fontSize: "1.65rem", marginBottom: "12px" }}>
+                Problems We Solve
+              </h2>
+              <ul className={styles.problemList}>
+                <li>
+                  Patients forget 40–80% of medical information immediately after a visit, and nearly half
+                  of what&apos;s remembered is recalled incorrectly
+                  <sup>1</sup>
+                </li>
+                <li>
+                  Caregivers lack real-time visibility into their loved ones&apos; health status and
+                  appointments
+                </li>
+                <li>
+                  Fragmented health records across multiple providers create dangerous gaps in care
+                </li>
+                <li>Seniors struggle with complex medication schedules and adherence</li>
+                <li>
+                  Families waste hours coordinating care through scattered phone calls, texts, and sticky
+                  notes
+                </li>
+              </ul>
+              <p className={styles.footnote}>
+                <sup>1</sup> Kessels, R.P.C. Patients&apos; memory for medical information. Journal of the
+                Royal Society of Medicine, 2003.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <h3 className={styles.teamName}>{member.name}</h3>
-              <p className={styles.teamRole}>{member.role}</p>
-              <p className={styles.teamBio}>{member.bio}</p>
+      <section className={`${styles.section} ${styles.altCream}`}>
+        <div className={styles.sectionNarrow}>
+          <h2 className={styles.sectionHeading}>Your Data, Your Control</h2>
+          <p className={styles.prose} style={{ marginBottom: "16px" }}>
+            Healthcare data is the most sensitive information a person shares. We treat it that way.
+          </p>
+          <ul className={styles.dataList}>
+            {dataControlItems.map((text) => (
+              <li key={text.slice(0, 40)}>
+                <span className={styles.dataBullet} aria-hidden="true">
+                  •
+                </span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ul>
+          <Link to="/privacy" className={styles.privacyLink}>
+            Read our full Privacy Policy →
+          </Link>
+        </div>
+      </section>
 
+      <section className={`${styles.section} ${styles.altWhite}`}>
+        <div className={styles.sectionWide}>
+          <div className={styles.centerTitle}>
+            <h2 className={styles.sectionHeading}>Our Core Tech Stack</h2>
+          </div>
+          <div className={styles.cardGrid}>
+            {techStack.map((item) => (
+              <div key={item.id} className={landingStyles.stepCard}>
+                <h3>{item.name}</h3>
+                <p>{item.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.altCream}`}>
+        <div className={styles.sectionWide}>
+          <div className={styles.centerTitle}>
+            <h2 className={styles.sectionHeading}>Cloud Infrastructure</h2>
+          </div>
+          <div className={styles.cardGrid}>
+            {cloudInfrastructure.map((item) => (
+              <div key={item.id} className={landingStyles.stepCard}>
+                <h3>{item.name}</h3>
+                <p>{item.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.altWhite}`}>
+        <div className={styles.sectionWide}>
+          <div className={styles.centerTitle}>
+            <h2 className={styles.sectionHeading}>Our Team</h2>
+          </div>
+          <div className={styles.teamSingle}>
+            <div className={`${landingStyles.personaCard} ${styles.teamCardInner}`}>
+              <div className={styles.avatar}>
+                <img src={profileParamita} alt="Paramita Malakar" className={styles.avatarImg} />
+              </div>
+              <h3 className={styles.teamName}>Paramita Malakar</h3>
+              <p className={styles.teamRole}>Product &amp; AI/ML Leader</p>
+              <p className={styles.teamBio}>
+                Product &amp; Quality Assurance Leader, with 18 years of experience, focused on transforming
+                ideas into impactful AI and enterprise solutions.
+              </p>
               <a
-                href={member.linkedin}
+                href="https://www.linkedin.com/in/paramitam/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.linkedinLink}
               >
                 <Linkedin size={16} strokeWidth={1.75} />
-                <span>LinkedIn</span>
+                <span>LinkedIn →</span>
               </a>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* --- COMPANY INFO --- */}
-      <section className={styles.companyInfoSection}>
-        <div className={styles.sectionCard}>
-          <h2 className={styles.companyInfoSection}>Company Information</h2>
-
-          <ul className={styles.companyInfoList}>
-            <li>
-              <strong>Company Name:</strong> RemiMinderAI
-            </li>
-            <li>
-              <strong>Industry:</strong> Wellness and Fitness Services
-            </li>
-            <li>
-              <strong>Company Size:</strong> 2-10 employees
-            </li>
-            <li>
-              <strong>Headquarters:</strong> San Jose, California
-            </li>
-            <li>
-              <strong>Founded:</strong> 2025
-            </li>
-            <li>
-              <strong>Email:</strong> Team@remiminderai.com
-            </li>
-            <li>
-              <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/remiminderai/" target="_blank">linkedin.com/company/remiminderai</a>
-            </li>
+      <section className={`${styles.section} ${styles.altCream}`}>
+        <div className={styles.sectionWide}>
+          <div className={styles.centerTitle}>
+            <h2 className={styles.sectionHeading}>What&apos;s Next</h2>
+          </div>
+          <ul className={styles.roadmapList}>
+            {roadmapItems.map((line) => (
+              <li key={line} className={styles.roadItem}>
+                <span className={styles.dataBullet} aria-hidden="true">
+                  •
+                </span>
+                <span>{line}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
-      <footer className={styles.footer}>
-        {/* <div className={styles.footerContainer}>
-          <div className={styles.footerGrid}>
-            <div className={styles.footerBrand}>
-              <div className={styles.brandLogo}>
-                <div className={styles.brandIcon}>RM</div>
-                <span className={styles.brandName}>RemiMinderAI</span>
-              </div>
-              <p className={styles.footerText}>
-                Your healthcare, remembered and reimagined
-              </p>
-            </div>
-
-            <div>
-              <h4 className={styles.footerHeading}>Product</h4>
-              <ul className={styles.footerList}>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Security</a></li>
-                <li><a href="#">Pricing</a></li>
-                <li><a href="#">FAQ</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className={styles.footerHeading}>Company</h4>
-              <ul className={styles.footerList}>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className={styles.footerHeading}>Legal</h4>
-              <ul className={styles.footerList}>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">HIPAA Compliance</a></li>
-              </ul>
-            </div>
+      <section className={`${styles.section} ${styles.altWhite}`}>
+        <div className={styles.sectionNarrow}>
+          <div className={landingStyles.stepCard}>
+            <h2 className={styles.sectionHeading}>Company Information</h2>
+            <ul className={styles.companyList}>
+              {companyLines.map((line) => (
+                <li key={line}>
+                  <span className={styles.companyBullet} aria-hidden="true">
+                    •
+                  </span>
+                  <span>{line}</span>
+                </li>
+              ))}
+              <li>
+                <span className={styles.companyBullet} aria-hidden="true">
+                  •
+                </span>
+                <span>
+                  LinkedIn:{" "}
+                  <a
+                    href="https://www.linkedin.com/company/remiminderai/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    linkedin.com/company/remiminderai
+                  </a>
+                </span>
+              </li>
+            </ul>
           </div>
-
-          <div className={styles.footerBottom}>
-            <p>© 2025 RemiMinderAI. All rights reserved.</p>
-            <div className={styles.socialLinks}>
-              <a href="#">Twitter</a>
-              <a href="#">LinkedIn</a>
-              <a href="#">GitHub</a>
-            </div>
-          </div>
-        </div> */}
-        <div className={styles.footerContainer}>
-            <p>© 2025 RemiMinderAI. All rights reserved.</p>
         </div>
-      </footer>
-    </main>
+      </section>
+
+      <section className={`${styles.section} ${styles.altCream}`}>
+        <div className={styles.sectionNarrow} style={{ textAlign: "center" }}>
+          <p className={styles.prose} style={{ marginBottom: "22px" }}>
+            Want early access? We&apos;re onboarding a limited group of families and caregivers during private
+            beta. If RemiMinderAI sounds like something you or someone you love needs, request an invite.
+          </p>
+          <div className={styles.ctaRow}>
+            <a
+              href={MAILING_LIST_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={landingStyles.primaryButton}
+            >
+              Request Beta Access →
+            </a>
+            <a href={`mailto:${CONTACT_EMAIL}`} className={landingStyles.androidButton}>
+              Contact the Team →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles.backHomeWrap}>
+        <button type="button" className={styles.backHome} onClick={() => navigate("/")}>
+          ← Back to Home
+        </button>
+      </div>
+
+      <SiteFooter />
+    </div>
   );
 };
 
