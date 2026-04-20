@@ -6,45 +6,6 @@
   min-height: 100vh;
 }
 
-.minHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 5%;
-  background: rgba(247, 243, 236, 0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border, rgba(26, 158, 158, 0.15));
-  flex-wrap: wrap;
-}
-
-.logoBtn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-}
-
-.logoImg {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  object-fit: contain;
-}
-
-.pageTitle {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.05rem, 2.8vw, 1.45rem);
-  font-weight: 700;
-  color: var(--ink, #1a2332);
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
 .statusBanner {
   width: 100%;
   padding: 18px 5%;
