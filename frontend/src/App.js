@@ -7,6 +7,7 @@ import './App.css';
 import LandingPage from './components/LandingPage';
 import AboutPage from "./components/AboutPage";
 import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
+import PricingPage from "./components/PricingPage";
 // Corrected path based on your file structure screenshot
 import RecordVisitPage from './components/AudioRecorder';
 import CaregiverInvite from './caregiver/Invitation';
@@ -51,6 +52,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route path="/record" element={<RecordVisitPage />} />
 
           {/* Caregiver Flow Routes */}

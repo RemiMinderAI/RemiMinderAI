@@ -161,6 +161,14 @@ const LandingPage = () => {
             How It Works
           </a>
           <NavLink
+            to="/pricing"
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
+            }
+          >
+            Pricing
+          </NavLink>
+          <NavLink
             to="/about"
             className={({ isActive }) =>
               `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
