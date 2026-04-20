@@ -155,14 +155,6 @@ const AboutPage = () => {
             About
           </NavLink>
         </nav>
-        <a
-          href={MAILING_LIST_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={landingStyles.mailingListButton}
-        >
-          Join Mailing List
-        </a>
       </header>
 
       <section className={styles.statusBanner} aria-label="Private beta notice">
@@ -438,7 +430,7 @@ const AboutPage = () => {
         </button>
       </div>
 
-      <SiteFooter />
+      <SiteFooter omitMarketingFooterLinks />
     </div>
   );
 };

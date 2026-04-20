@@ -4,7 +4,7 @@ import styles from "./LandingPage.module.css";
 import logo from "../assets/RemiMinder_logo_512.png";
 import { ANDROID_URL, CONTACT_EMAIL } from "../constants/site";
 
-export default function SiteFooter() {
+export default function SiteFooter({ omitMarketingFooterLinks = false }) {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerInner}>
@@ -20,24 +20,28 @@ export default function SiteFooter() {
           </p>
         </div>
         <div className={styles.footerLinks}>
-          <Link to="/" className={styles.footerLink}>
-            Home
-          </Link>
-          <span className={styles.footerSep} aria-hidden="true">
-            •
-          </span>
-          <Link to="/about" className={styles.footerLink}>
-            About
-          </Link>
-          <span className={styles.footerSep} aria-hidden="true">
-            •
-          </span>
-          <a href="/#how-it-works" className={styles.footerLink}>
-            How It Works
-          </a>
-          <span className={styles.footerSep} aria-hidden="true">
-            •
-          </span>
+          {!omitMarketingFooterLinks && (
+            <>
+              <Link to="/" className={styles.footerLink}>
+                Home
+              </Link>
+              <span className={styles.footerSep} aria-hidden="true">
+                •
+              </span>
+              <Link to="/about" className={styles.footerLink}>
+                About
+              </Link>
+              <span className={styles.footerSep} aria-hidden="true">
+                •
+              </span>
+              <a href="/#how-it-works" className={styles.footerLink}>
+                How It Works
+              </a>
+              <span className={styles.footerSep} aria-hidden="true">
+                •
+              </span>
+            </>
+          )}
           <a href={`mailto:${CONTACT_EMAIL}`} className={styles.footerLink}>
             Contact
           </a>
