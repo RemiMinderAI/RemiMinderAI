@@ -4,7 +4,7 @@ import howItWorksImage from '../assets/coverpage.png';
 import heroAppImage from '../assets/IMG_0427.jpeg';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
   ArrowRight, CheckCircle2, Smartphone, Apple, Star,
@@ -24,11 +24,17 @@ const LandingPage = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [flashArmed, setFlashArmed] = useState(false);
   const heroRef = useRef(null);
+
+  const isHome = location.pathname === "/" || location.pathname === "";
 
   useEffect(() => {
     if (location.hash === "#how-it-works") {
       document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+    }
+    if (location.hash === "#demo") {
+      document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 
@@ -36,6 +42,11 @@ const LandingPage = () => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => setFlashArmed(true), 900);
+    return () => window.clearTimeout(id);
   }, []);
   
   const navigate = useNavigate();
@@ -113,13 +124,50 @@ const LandingPage = () => {
       <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}>
         <div className={styles.logo} onClick={() => navigate("/")}>
           <img src={logo} alt="RemiMinder Logo" className={styles.logoImg} />
-          <span className={styles.logoText}>RemiMinder<span className={styles.logoAi}>.ai</span></span>
+          <span className={styles.logoText}>RemiMinder<span className={styles.logoAi}>AI</span></span>
         </div>
         <nav className={styles.nav}>
-          <a href="/" className={styles.navLink}>Home</a>
-          <a href="#demo" className={styles.navLink} onClick={(e) => { e.preventDefault(); document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" }); }}>Demo</a>
-          <a href="#how-it-works" className={styles.navLink} onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}>How It Works</a>
-          <a href="/about" className={styles.navLink}>About</a>
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
+            }
+          >
+            Home
+          </NavLink>
+          <a
+            href="/#demo"
+            className={styles.navLink}
+            onClick={(e) => {
+              if (isHome) {
+                e.preventDefault();
+                document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            Demo
+          </a>
+          <a
+            href="/#how-it-works"
+            className={styles.navLink}
+            onClick={(e) => {
+              if (isHome) {
+                e.preventDefault();
+                document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            How It Works
+          </a>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
+            }
+          >
+            About
+          </NavLink>
         </nav>
         <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.mailingListButton}>
           Join Mailing List
@@ -136,21 +184,29 @@ const LandingPage = () => {
 
                 <div className={styles.leftPanel}>
           <div className={`${styles.aiTag} ${styles.heroAnimBadge}`}>
-            <span className={styles.aiTagDot} />
-            Smart AI for Health &amp; Care Coordination
+            <span className={styles.aiTagInner}>
+              <span className={styles.aiTagDot} />
+              Smart AI for Health &amp; Care Coordination
+            </span>
           </div>
           <h1 className={styles.title}>
             <span className={`${styles.heroTitleInner} ${styles.heroAnimHeadline}`}>
-              <span className={styles.heroTitleLine1}>Remember every visit.</span>
-              <br />
-              <span className={styles.heroTitleAccent}>
-                <span className={styles.heroTitleAccentText}>Together.</span>
-                <span className={styles.heroTitleUnderline} aria-hidden="true" />
+              <span className={styles.heroHeadlineLead}>Remember every visit.</span>{" "}
+              <span className={styles.togetherWrap}>
+                Together.
+                <svg
+                  className={`${styles.flashSvg} ${flashArmed ? styles.flashSvgArmed : ""}`}
+                  viewBox="0 0 200 14"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M4,8 Q40,3 80,7 T150,6 T196,8" />
+                </svg>
               </span>
             </span>
           </h1>
           <p className={`${styles.description} ${styles.heroAnimSub}`}>
-            Record doctor appointments for yourself and your parents, with clear AI summaries shared with the family who needs them.
+            Turn doctor conversations into clear, shareable summaries so you and your family always know what comes next.
           </p>
 
           <div className={`${styles.buttonGroup} ${styles.heroAnimCtas}`}>
@@ -443,7 +499,7 @@ const LandingPage = () => {
           <div className={styles.footerTop}>
             <div className={styles.footerBrand}>
               <img src={logo} alt="RemiMinder" className={styles.footerLogo} />
-              <span className={styles.footerBrandName}>RemiMinder<span className={styles.logoAi}>.ai</span></span>
+              <span className={styles.footerBrandName}>RemiMinder<span className={styles.logoAi}>AI</span></span>
             </div>
             <p className={styles.footerTagline}>Smart AI for Health &amp; Care Coordination</p>
           </div>
