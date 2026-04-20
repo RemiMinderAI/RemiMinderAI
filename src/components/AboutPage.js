@@ -430,7 +430,7 @@ const AboutPage = () => {
         </button>
       </div>
 
-      <SiteFooter omitMarketingFooterLinks />
+      <SiteFooter omitMarketingFooterLinks omitContactAndAppLinks />
     </div>
   );
 };
