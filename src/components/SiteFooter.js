@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import logo from "../assets/RemiMinder_logo_512.png";
-import { ANDROID_URL, MAILING_LIST_URL } from "../constants/site";
+import { ANDROID_URL, CONTACT_EMAIL } from "../constants/site";
 
 export default function SiteFooter() {
   return (
@@ -24,26 +24,21 @@ export default function SiteFooter() {
             Home
           </Link>
           <span className={styles.footerSep} aria-hidden="true">
-            ·
+            •
           </span>
           <Link to="/about" className={styles.footerLink}>
             About
           </Link>
           <span className={styles.footerSep} aria-hidden="true">
-            ·
+            •
           </span>
           <a href="/#how-it-works" className={styles.footerLink}>
             How It Works
           </a>
           <span className={styles.footerSep} aria-hidden="true">
-            ·
+            •
           </span>
-          <a
-            href={MAILING_LIST_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.footerLink}
-          >
+          <a href={`mailto:${CONTACT_EMAIL}`} className={styles.footerLink}>
             Contact
           </a>
         </div>

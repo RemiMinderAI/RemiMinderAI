@@ -43,6 +43,7 @@
   line-height: 1.25;
   letter-spacing: -0.02em;
   margin: 0;
+  font-style: normal;
 }
 
 .main {
@@ -103,6 +104,11 @@
   line-height: 1.2;
   margin-bottom: 12px;
   color: var(--ink, #1a2332);
+}
+
+/* If markdown ever includes a top-level # title, keep it below page h1 */
+.article h1:not(:first-child) {
+  margin-top: 2rem;
 }
 
 .meta {

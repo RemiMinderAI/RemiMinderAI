@@ -90,8 +90,7 @@ const AboutPage = () => {
       <section className={styles.statusBanner} aria-label="Private beta notice">
         <div className={styles.statusInner}>
           <p className={styles.statusText}>
-            Private Beta — Invite Only We&apos;re currently onboarding a small group of caregivers and
-            patients.
+            Private Beta — Invite Only. We&apos;re onboarding a small group of caregivers and patients.
           </p>
           <a
             href={MAILING_LIST_URL}
@@ -99,7 +98,7 @@ const AboutPage = () => {
             rel="noopener noreferrer"
             className={landingStyles.primaryButton}
           >
-            Join The Mailing List →
+            Request an invite
           </a>
         </div>
       </section>
@@ -114,8 +113,11 @@ const AboutPage = () => {
             <p>
               RemiMinderAI is an AI-native health management platform that helps families capture,
               organize, and act on medical information so critical care moments never slip through the
-              cracks. We turn fragmented doctor visits, medication schedules, and scattered records into
-              a single, shared source of truth for patients and the caregivers who support them.
+              cracks.
+            </p>
+            <p>
+              We turn fragmented doctor visits, medication schedules, and scattered records into a single,
+              shared source of truth for patients and the caregivers who support them.
             </p>
           </div>
         </div>
@@ -332,7 +334,6 @@ const AboutPage = () => {
 
       <section className={`${styles.section} ${styles.altCream}`}>
         <div className={styles.sectionNarrow} style={{ textAlign: "center" }}>
-          <h2 className={styles.sectionHeading}>Closing CTA</h2>
           <p className={styles.prose} style={{ marginBottom: "22px" }}>
             Want early access? We&apos;re onboarding a limited group of families and caregivers during private
             beta. If RemiMinderAI sounds like something you or someone you love needs, request an invite.

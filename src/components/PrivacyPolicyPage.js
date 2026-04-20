@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+﻿import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import landingStyles from "./LandingPage.module.css";
 import styles from "./PrivacyPolicyPage.module.css";
@@ -20,9 +20,15 @@ function parsePrivacyMarkdown(mdText) {
     const parts = text.split(/(\*\*[^*]+\*\*)/g);
     return parts.map((part, idx) => {
       if (part.startsWith("**") && part.endsWith("**")) {
-        return (
-          <strong key={idx}>{part.slice(2, -2)}</strong>
-        );
+        const inner = part.slice(2, -2);
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inner)) {
+          return (
+            <a key={idx} href={`mailto:${inner}`}>
+              {inner}
+            </a>
+          );
+        }
+        return <strong key={idx}>{inner}</strong>;
       }
       return part;
     });
@@ -201,13 +207,13 @@ export default function PrivacyPolicyPage() {
         >
           <img src={logo} alt="" className={styles.logoImg} />
         </button>
-        <h1 className={styles.headerTitle}>Privacy Policy ΓÇö RemiMinderAI</h1>
+        <h1 className={styles.headerTitle}>Privacy Policy — RemiMinderAI</h1>
       </header>
 
       <main className={styles.main}>
         {loadError && <p className={styles.error}>{loadError}</p>}
         {!loadError && !rawMd && (
-          <p className={styles.meta}>Loading privacy policyΓÇª</p>
+          <p className={styles.meta}>Loading privacy policy…</p>
         )}
         {rawMd && (
           <>
@@ -229,7 +235,7 @@ export default function PrivacyPolicyPage() {
 
         <div className={styles.bottomActions}>
           <button type="button" className={styles.backHome} onClick={() => navigate("/")}>
-            ΓåÉ Back to Home
+            ← Back to Home
           </button>
         </div>
       </main>

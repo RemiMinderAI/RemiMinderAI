@@ -1,4 +1,4 @@
-﻿_Last updated: April 19th, 2026. Effective date: April 19th, 2026._
+﻿_Privacy Policy — Effective Date: April 20th, 2026. Last Updated: April 20th, 2026._
 
 ## 1. Introduction
 
@@ -10,11 +10,9 @@ By using our Services, you agree to the practices described in this policy. If y
 
 ## 2. Who Can Use RemiMinderAI
 
-**Patients:** You must be at least 13 years old to create a patient account. If you are under 18, a parent or legal guardian must provide consent and accept these terms on your behalf.
-
-**Caregivers:** You must be at least 18 years old to create a caregiver account.
-
-**Geographic scope:** The Services are intended for individuals located in the United States. If you are outside the United States, please do not use the Services.
+- **Patients:** You must be at least 13 years old to create a patient account. If you are under 18, a parent or legal guardian must provide consent and accept these terms on your behalf.
+- **Caregivers:** You must be at least 18 years old to create a caregiver account.
+- **Geographic scope:** The Services are intended for individuals located in the United States. If you are outside the United States, please do not use the Services.
 
 We do not knowingly collect personal information from children under 13. If we learn we have collected information from a child under 13, we will delete it promptly.
 
@@ -84,14 +82,14 @@ We share your information only in the following limited circumstances:
 
 ### 5.1 With People You Authorize
 
-**Caregivers:** You control whether to grant caregivers full or partial access to your health information. You can modify or revoke that access at any time through the app.
+- **Caregivers:** You control whether to grant caregivers full or partial access to your health information. You can modify or revoke that access at any time through the app.
 
 ### 5.2 With Service Providers (HIPAA Business Associates)
 
 We use trusted service providers to operate the Services. These providers are bound by HIPAA Business Associate Agreements (BAAs) where they process Protected Health Information:
 
-- **Google Cloud Platform** (including Vertex AI, Cloud Run, Cloud SQL, Cloud Storage, Firebase Authentication) ΓÇö cloud hosting, AI processing, authentication, and storage
-- **Vercel** ΓÇö website hosting (no PHI is stored on Vercel)
+- **Google Cloud Platform** (including Vertex AI, Cloud Run, Cloud SQL, Cloud Storage, Firebase Authentication) — cloud hosting, AI processing, authentication, and storage
+- **Vercel** — website hosting (no PHI is stored on Vercel)
 
 Each Business Associate is contractually required to protect your information and use it only for the purposes we specify.
 
@@ -111,13 +109,10 @@ We will share your information in any other way only with your explicit consent.
 
 RemiMinderAI operates as a HIPAA Compliant platform.
 
-We have a signed Business Associate Agreement (BAA) with Google Cloud covering all HIPAA-eligible services we use.
-
-Our AI processing runs on Google Vertex AI, a HIPAA-eligible Google Cloud service.
-
-Protected Health Information is encrypted at rest and in transit using industry-standard TLS.
-
-Access controls and audit logs are maintained in accordance with HIPAA's technical safeguards.
+- We have a signed Business Associate Agreement (BAA) with Google Cloud covering all HIPAA-eligible services we use.
+- Our AI processing runs on Google Vertex AI, a HIPAA-eligible Google Cloud service.
+- Protected Health Information is encrypted at rest and in transit using industry-standard TLS.
+- Access controls and audit logs are maintained in accordance with HIPAA's technical safeguards.
 
 If you believe your Protected Health Information has been used or disclosed in violation of HIPAA, please contact us at **team@remiminderai.com**. You may also file a complaint with the U.S. Department of Health and Human Services, Office for Civil Rights.
 
