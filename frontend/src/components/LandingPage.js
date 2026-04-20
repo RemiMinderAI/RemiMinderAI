@@ -511,12 +511,6 @@ const LandingPage = () => {
             </div>
             <p className={styles.footerTagline}>Smart AI for Health &amp; Care Coordination</p>
           </div>
-          <div className={styles.footerLinks}>
-            <a href="/about" className={styles.footerLink}>About</a>
-            <a href="#how-it-works" className={styles.footerLink}>How It Works</a>
-            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Contact</a>
-            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Download Android</a>
-          </div>
           <p className={styles.footerCopy}>© 2025 RemiMinderAI. All rights reserved. &nbsp;•&nbsp; HIPAA Compliant &nbsp;•&nbsp; End-to-End Encrypted</p>
         </div>
       </footer>
