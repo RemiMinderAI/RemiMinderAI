@@ -1,11 +1,7 @@
 import React from "react";
-import { ArrowRight, Smartphone, Apple } from "lucide-react";
+import { Smartphone, Apple } from "lucide-react";
 import styles from "./CtaSection.module.css";
-import { ANDROID_URL, CONTACT_EMAIL } from "../constants/site";
-
-const SIGNUP_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-  "Sign up - RemiMinderAI"
-)}`;
+import { ANDROID_URL } from "../constants/site";
 
 /**
  * Shared bottom CTA for Landing, Pricing, and About.
@@ -22,19 +18,14 @@ export default function CtaSection() {
           Take control of your healthcare today
         </h2>
         <p className={styles.subtext}>
-          Join our early access program. Download the Android app or sign up with your email to stay
-          updated.
+          Download the Android app to get started. iOS support is on the way.
         </p>
         <div className={styles.buttonRow}>
-          <a href={SIGNUP_MAILTO} className={styles.btnPrimary}>
-            <span>Sign Up Free</span>
-            <ArrowRight size={18} aria-hidden="true" />
-          </a>
           <a
             href={ANDROID_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.btnSecondary}
+            className={styles.btnPrimary}
           >
             <Smartphone size={18} aria-hidden="true" />
             <span>Download Android</span>

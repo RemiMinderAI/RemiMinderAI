@@ -160,11 +160,7 @@ const LandingPage = () => {
           </p>
 
           <div className={`${styles.buttonGroup} ${styles.heroAnimCtas}`}>
-            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.primaryButton}>
-              <span>Sign Up Free</span>
-              <ArrowRight size={16} />
-            </a>
-            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.androidButton}>
+            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.primaryButton}>
               <Smartphone size={16} />
               <span>Download Android</span>
             </a>
