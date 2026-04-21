@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Check } from "lucide-react";
 import styles from "./PricingPage.module.css";
 import MarketingHeader from "./MarketingHeader";
 import CtaSection from "./CtaSection";
 import SiteFooter from "./SiteFooter";
+import { openMailingListModal } from "./MailingListModal";
 
 const START_FREE_MAILTO =
   "mailto:team@remiminderai.com?subject=" +
@@ -13,77 +14,14 @@ const START_FREE_MAILTO =
     "Hi RemiMinderAI team, I'd like to sign up for the free tier. Please send me next steps."
   );
 
-function validateEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-}
-
 const PricingPage = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalPlan, setModalPlan] = useState("family");
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [success, setSuccess] = useState(false);
-  const emailInputRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (!modalOpen) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") {
-        setModalOpen(false);
-        setSuccess(false);
-        setEmail("");
-        setEmailError("");
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [modalOpen]);
-
-  useEffect(() => {
-    if (modalOpen && !success && emailInputRef.current) {
-      emailInputRef.current.focus();
-    }
-  }, [modalOpen, success]);
-
-  const openModal = (plan) => {
-    setModalPlan(plan);
-    setEmail("");
-    setEmailError("");
-    setSuccess(false);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setSuccess(false);
-    setEmail("");
-    setEmailError("");
-  };
-
-  const handleModalSubmit = (e) => {
-    e.preventDefault();
-    if (!validateEmail(email)) {
-      setEmailError("Please enter a valid email address.");
-      return;
-    }
-    setEmailError("");
-    const planTitle = modalPlan === "family" ? "Family" : "Premium";
-    const subject = `Early access - ${planTitle} plan`;
-    const body = `Email: ${email.trim()}\nPlan: ${modalPlan}\n\nI would like to join the early access list for the ${planTitle} plan.`;
-    window.location.href =
-      "mailto:team@remiminderai.com?subject=" +
-      encodeURIComponent(subject) +
-      "&body=" +
-      encodeURIComponent(body);
-    setSuccess(true);
-  };
 
   const freeFeatures = [
     "**2 recorded visits** every month",
@@ -199,7 +137,12 @@ const PricingPage = () => {
             <button
               type="button"
               className={`${styles.tierButton} ${styles.tierButtonFamily}`}
-              onClick={() => openModal("family")}
+              onClick={() =>
+                openMailingListModal({
+                  source: "pricing",
+                  planInterest: "family",
+                })
+              }
             >
               Choose Family
             </button>
@@ -235,7 +178,12 @@ const PricingPage = () => {
             <button
               type="button"
               className={styles.tierButton}
-              onClick={() => openModal("premium")}
+              onClick={() =>
+                openMailingListModal({
+                  source: "pricing",
+                  planInterest: "premium",
+                })
+              }
             >
               Choose Premium
             </button>
@@ -285,79 +233,6 @@ const PricingPage = () => {
 
       <CtaSection />
       <SiteFooter />
-
-      {modalOpen && (
-        <div
-          className={styles.modalBackdrop}
-          onClick={closeModal}
-          role="presentation"
-        >
-          <div
-            className={styles.modalPanel}
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
-          >
-            <button type="button" className={styles.modalClose} onClick={closeModal} aria-label="Close">
-              ×
-            </button>
-            {success ? (
-              <div className={styles.modalSuccess}>
-                <p id="modal-title" className={styles.modalSuccessText}>
-                  You&apos;re on the list. We&apos;ll email you the moment we launch.
-                </p>
-                <button type="button" className={styles.modalPrimaryBtn} onClick={closeModal}>
-                  Close
-                </button>
-              </div>
-            ) : (
-              <>
-                <h2 id="modal-title" className={styles.modalTitle}>
-                  Early access list
-                </h2>
-                <p className={styles.modalBody}>
-                  We&apos;re finalizing our payment system. Join our early access list and we&apos;ll
-                  notify you the moment paid plans go live, plus 20% off as a thank you for your
-                  patience.
-                </p>
-                <form className={styles.modalForm} onSubmit={handleModalSubmit}>
-                  <input type="hidden" name="plan" value={modalPlan} readOnly />
-                  <label className={styles.modalLabel} htmlFor="early-access-email">
-                    Email address
-                  </label>
-                  <input
-                    ref={emailInputRef}
-                    id="early-access-email"
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    className={styles.modalInput}
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      if (emailError) setEmailError("");
-                    }}
-                    aria-invalid={!!emailError}
-                    aria-describedby={emailError ? "email-error" : undefined}
-                  />
-                  {emailError && (
-                    <p id="email-error" className={styles.modalError} role="alert">
-                      {emailError}
-                    </p>
-                  )}
-                  <button type="submit" className={styles.modalPrimaryBtn}>
-                    Add me to the list
-                  </button>
-                </form>
-                <button type="button" className={styles.modalSecondary} onClick={closeModal}>
-                  No thanks, take me back
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

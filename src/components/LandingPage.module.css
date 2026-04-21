@@ -219,8 +219,8 @@
   font-size: 0.95rem;
   color: var(--white);
   background: var(--teal);
-  border-radius: 20px;
   border: none;
+  border-radius: 20px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -1223,6 +1223,7 @@
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 0.875rem; font-weight: 600; color: var(--teal);
   text-decoration: none; transition: gap 0.2s ease;
+  background: none; border: none; padding: 0; cursor: pointer; font: inherit; text-align: left;
 }
 .personaCta:hover { gap: 10px; }
 

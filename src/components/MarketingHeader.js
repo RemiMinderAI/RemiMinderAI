@@ -3,7 +3,7 @@ import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import styles from "./LandingPage.module.css";
 import logo from "../assets/RemiMinder_logo_512.png";
-import { MAILING_LIST_URL } from "../constants/site";
+import { openMailingListModal } from "./MailingListModal";
 
 /**
  * Shared marketing site header: desktop nav + mobile hamburger.
@@ -119,14 +119,13 @@ export default function MarketingHeader({
         </nav>
 
         {showMailingList && (
-          <a
-            href={MAILING_LIST_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openMailingListModal({ source: "header" })}
             className={`${styles.mailingListButton} ${styles.mailingListDesktop}`}
           >
             Join Mailing List
-          </a>
+          </button>
         )}
 
         <button
@@ -182,15 +181,16 @@ export default function MarketingHeader({
             </NavLink>
           </div>
           {showMailingList && (
-            <a
-              href={MAILING_LIST_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => {
+                openMailingListModal({ source: "header" });
+                closeMenu();
+              }}
               className={styles.mobileNavCta}
-              onClick={closeMenu}
             >
               Join Mailing List
-            </a>
+            </button>
           )}
         </div>
       )}

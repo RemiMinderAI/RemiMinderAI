@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./SiteFooter.module.css";
 import logo from "../assets/RemiMinder_logo_512.png";
 import { ANDROID_URL, CONTACT_EMAIL } from "../constants/site";
+import { openMailingListModal } from "./MailingListModal";
 
 function LinkedInIcon() {
   return (
@@ -69,6 +70,13 @@ export default function SiteFooter() {
             >
               Contact
             </a>
+            <button
+              type="button"
+              className={styles.navButton}
+              onClick={() => openMailingListModal({ source: "footer" })}
+            >
+              Join our mailing list
+            </button>
           </nav>
 
           <nav className={styles.navCol} aria-label="Legal">

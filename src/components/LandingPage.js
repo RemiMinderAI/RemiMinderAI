@@ -16,9 +16,8 @@ import {
 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
 import ProductDemo from "./ProductDemo";
+import { openMailingListModal } from "./MailingListModal";
 
-
-const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
 const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
 
 const LandingPage = () => {
@@ -374,9 +373,13 @@ const LandingPage = () => {
               <div className={styles.personaTag}>Caregivers</div>
               <h3>For Families &amp; Caregivers</h3>
               <p>Support your loved ones with shared health insights, appointment tracking, and real-time updates on their care journey.</p>
-              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.personaCta}>
+              <button
+                type="button"
+                className={styles.personaCta}
+                onClick={() => openMailingListModal({ source: "landing_page" })}
+              >
                 Join Waitlist <ArrowRight size={14} />
-              </a>
+              </button>
             </div>
           </div>
         </div>

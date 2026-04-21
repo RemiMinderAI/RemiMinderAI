@@ -8,8 +8,9 @@ import SiteFooter from "./SiteFooter";
 import MarketingHeader from "./MarketingHeader";
 import CtaSection from "./CtaSection";
 import profileParamita from "../assets/profilephotos/tina.jfif";
-import { CONTACT_EMAIL, MAILING_LIST_URL } from "../constants/site";
+import { CONTACT_EMAIL } from "../constants/site";
 import { openContactModal } from "./ContactModal";
+import { openMailingListModal } from "./MailingListModal";
 
 /** About page copy per marketing spec (About Page — RemiMinderAI). */
 const AboutPage = () => {
@@ -88,7 +89,7 @@ const AboutPage = () => {
       <MarketingHeader
         scrolled={scrolled}
         headerExtraClass={pricingStyles.pricingHeader}
-        showMailingList={false}
+        showMailingList
       />
 
       <section className={styles.statusBanner} aria-label="Private beta notice">
@@ -96,14 +97,13 @@ const AboutPage = () => {
           <p className={styles.statusText}>
             Private Beta — Invite Only. We&apos;re onboarding a small group of caregivers and patients.
           </p>
-          <a
-            href={MAILING_LIST_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openMailingListModal({ source: "about" })}
             className={landingStyles.primaryButton}
           >
             Request an invite
-          </a>
+          </button>
         </div>
       </section>
 
@@ -343,14 +343,13 @@ const AboutPage = () => {
             beta. If RemiMinderAI sounds like something you or someone you love needs, request an invite.
           </p>
           <div className={styles.ctaRow}>
-            <a
-              href={MAILING_LIST_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openMailingListModal({ source: "about" })}
               className={landingStyles.primaryButton}
             >
               Request Beta Access →
-            </a>
+            </button>
             <button
               type="button"
               className={landingStyles.androidButton}
