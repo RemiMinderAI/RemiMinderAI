@@ -1,0 +1,193 @@
+/* Testimonials — cream background, forced light palette */
+
+.section {
+  color-scheme: light;
+  background: #faf5eb;
+  color: #1a2b3c;
+  padding: 72px 32px;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #0f6e56;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.eyebrowDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1d9e75;
+  flex-shrink: 0;
+  animation: heroEyebrowPulse 2s ease-in-out infinite;
+}
+
+@keyframes heroEyebrowPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+.eyebrowText {
+  color: #0f6e56;
+  font-weight: 700;
+}
+
+.title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: #1a2b3c;
+  line-height: 1.15;
+  letter-spacing: -0.7px;
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 17px;
+  color: #1a2b3c;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  margin-top: 56px;
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 2px solid rgba(26, 43, 60, 0.08);
+  border-radius: 18px;
+  padding: 32px;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.quoteMark {
+  position: absolute;
+  top: 22px;
+  right: 32px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 62px;
+  line-height: 1;
+  color: #e8b84b;
+  opacity: 0.45;
+  font-weight: 700;
+  pointer-events: none;
+  user-select: none;
+}
+
+.blockquote {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.quoteText {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  color: #1a2b3c;
+  line-height: 1.65;
+  font-style: italic;
+  margin: 8px 0 24px;
+  flex-grow: 1;
+}
+
+.attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-top: 1px solid rgba(26, 43, 60, 0.1);
+  padding-top: 18px;
+  margin: 0;
+  font-style: normal;
+}
+
+.role {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f6e56;
+}
+
+.location {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 13px;
+  color: #1a2b3c;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+}
+
+@media (max-width: 899px) {
+  .section {
+    padding: 48px 18px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .card {
+    padding: 28px;
+  }
+
+  .quoteMark {
+    font-size: 52px;
+    right: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrowDot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

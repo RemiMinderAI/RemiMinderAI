@@ -7,6 +7,7 @@ import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
 import CtaSection from "./CtaSection";
+import TestimonialsSection from "./TestimonialsSection";
 import SiteFooter from "./SiteFooter";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
@@ -406,6 +407,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      <TestimonialsSection />
       <CtaSection />
       <SiteFooter />
 
