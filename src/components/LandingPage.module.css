@@ -40,7 +40,7 @@
 /* ── HEADER ── */
 .header {
   position: sticky;
-  top: 0;
+  top: var(--announcement-bar-height, 0px);
   z-index: 200;
   display: flex;
   flex-direction: column;
@@ -259,13 +259,22 @@
 /* ── HERO ── */
 .heroSection {
   position: relative;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  padding: 40px 5%;
+  display: block;
+  padding: 0;
   min-height: 90vh;
   overflow: hidden;
-  gap: 32px;
+}
+.heroContentGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: min(92vh, 1100px);
+  width: 100%;
+  max-width: 100%;
+  gap: 0;
+  margin: 0;
 }
 .heroBackground { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .heroBgOrb1 {
@@ -286,13 +295,15 @@
   background-size: 48px 48px;
 }
 .leftPanel {
-  flex: 1;
-  max-width: 480px;
+  max-width: 520px;
+  min-width: 0;
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 40px 40px 48px 5%;
+  box-sizing: border-box;
 }
 .aiTagInner {
   position: relative;
@@ -541,30 +552,26 @@
 .trustItem svg { color: var(--teal); }
 .trustDivider { width: 1px; height: 14px; background: var(--cream-dark); }
 
-/* Hero phone — large frame like pre–mailing list (cover + tall box; phones stay centered) */
+/* Hero image — edge-to-edge right column, no box */
 .rightPanel {
-  flex: 1.45;
   min-width: 0;
-  max-width: 860px;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
   position: relative;
   z-index: 1;
-  align-self: stretch;
+  margin: 0;
+  padding: 0;
+  min-height: clamp(400px, 70vh, 900px);
 }
 .rightPanel .hiwImageWrapper {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
   margin: 0;
-  min-height: clamp(560px, 58vh, 860px);
-  max-height: min(88vh, 920px);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
-  animation: floatPhone 6s ease-in-out infinite;
-  align-self: stretch;
+  box-shadow: none;
+  border: none;
+  animation: none;
 }
 .rightPanel .hiwImage {
   position: absolute;
@@ -574,7 +581,7 @@
   object-fit: cover;
   object-position: center center;
   display: block;
-  border-radius: var(--radius-lg);
+  border-radius: 0;
 }
 .phoneHeroWrapper { position: relative; display: inline-block; }
 .phoneGlow {
@@ -1255,7 +1262,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 .benefitTop {
-  display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;
+  display: flex; justify-content: flex-start; align-items: flex-start; margin-bottom: 16px;
 }
 .benefitIconWrapper {
   width: 52px; height: 52px;
@@ -1274,6 +1281,14 @@
   font-weight: 600; color: var(--ink); margin-bottom: 8px;
 }
 .benefitDesc { font-size: 0.88rem; color: var(--ink-light); line-height: 1.65; }
+.benefitFootnote {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
 
 /* ── FINAL CTA (dark) ── */
 .ctaSection {
@@ -1471,11 +1486,12 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .heroSection {
-    flex-direction: column;
-    padding: 40px 5%;
+  .heroContentGrid {
+    grid-template-columns: 1fr;
     min-height: unset;
-    align-items: center;
+  }
+  .heroSection {
+    min-height: unset;
   }
   .leftPanel {
     max-width: 100%;
@@ -1483,26 +1499,25 @@
     text-align: center;
     align-items: center;
     order: 1;
+    padding: 32px 5% 20px;
   }
   .rightPanel {
-    max-width: 100%;
-    width: 100%;
-    flex: unset;
-    align-self: auto;
     order: 2;
+    width: 100%;
+    min-height: 52vh;
+    max-width: 100%;
   }
   .rightPanel .hiwImageWrapper {
-    width: 100%;
-    min-height: unset;
-    max-height: none;
-    animation: none;
+    position: absolute;
+    inset: 0;
   }
   .rightPanel .hiwImage {
-    position: static;
-    min-height: unset;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
   }
   .aiTag { margin: 0 auto 24px; }
   .buttonGroup { justify-content: center; }

@@ -39,15 +39,15 @@ export default function TestimonialsSection() {
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} aria-hidden="true" />
             <span className={styles.eyebrowText}>
-              Real feedback from real users
+              Beta program feedback
             </span>
           </div>
           <h2 id="testimonials-heading" className={styles.title}>
             People already building habits with RemiMinderAI
           </h2>
           <p className={styles.subtitle}>
-            Private beta is in progress. Here&apos;s what early users are
-            telling us about their experience.
+            Private beta in progress. Here are perspectives shaping what we
+            build next.
           </p>
         </header>
 
@@ -60,8 +60,14 @@ export default function TestimonialsSection() {
               <blockquote className={styles.blockquote}>
                 <p className={styles.quoteText}>{item.quote}</p>
                 <cite className={styles.attribution}>
-                  <span className={styles.role}>{item.role}</span>
-                  <span className={styles.location}>{item.location}</span>
+                  <div className={styles.attributionLine}>
+                    <span className={styles.role}>{item.role}</span>
+                    <span className={styles.locationDot} aria-hidden="true">
+                      ·
+                    </span>
+                    <span className={styles.location}>{item.location}</span>
+                  </div>
+                  <span className={styles.betaLine}>Beta user perspective</span>
                 </cite>
               </blockquote>
             </article>

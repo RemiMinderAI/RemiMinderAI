@@ -41,6 +41,7 @@ import PatientReminderModal from './patient/PatientReminderModal';
 
 import VisitHistory from './patient/VisitHistory';
 import ScrollToTop from "./components/ScrollToTop";
+import AnnouncementBar from "./components/AnnouncementBar";
 import ContactModal from "./components/ContactModal";
 import MailingListModal from "./components/MailingListModal";
 import FeedbackWidget from "./components/FeedbackWidget";
@@ -50,6 +51,7 @@ function App() {
   return (
     <Router>
       <MailingListProvider>
+        <AnnouncementBar />
         <ScrollToTop />
         <ContactModal />
         <MailingListModal />

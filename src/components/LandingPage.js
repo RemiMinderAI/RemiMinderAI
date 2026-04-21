@@ -90,31 +90,32 @@ const LandingPage = () => {
   const benefits = [
     {
       icon: Heart,
-      title: "Peace of Mind",
-      description: "Every important detail from your healthcare visits is captured and organized, giving you confidence in your care decisions.",
-      stat: "95%",
-      statLabel: "feel more in control",
+      title: "Designed for peace of mind",
+      description:
+        "Every important detail from your healthcare visits is captured and organized, giving you confidence in your care decisions.",
+      footnote: null,
     },
     {
       icon: Brain,
-      title: "Better Health Outcomes",
-      description: "With clear summaries and reminders, you're more likely to follow treatment plans and catch important health changes early.",
-      stat: "3x",
-      statLabel: "better medication adherence",
+      title: "Built for better adherence",
+      description:
+        "Missed medications cost the U.S. healthcare system an estimated $300B annually. RemiMinderAI is built to help families close that gap, one visit at a time.",
+      footnote:
+        "Aggregate cost estimates of non-adherence and related waste vary by study and methodology; the scale remains directionally in the hundreds of billions USD annually in U.S. research.",
     },
     {
       icon: Clock,
-      title: "Time Saved",
-      description: "Stop trying to remember what the doctor said. Everything you need is right at your fingertips, organized and searchable.",
-      stat: "10hrs",
-      statLabel: "saved per month",
+      title: "Less mental load for caregivers",
+      description:
+        "Stop trying to remember what the doctor said. Everything you need is right at your fingertips, organized and searchable.",
+      footnote: null,
     },
     {
       icon: Users,
-      title: "Family Connection",
-      description: "Keep your family in the loop automatically. Share updates and coordinate care effortlessly with the people who matter most.",
-      stat: "100%",
-      statLabel: "family satisfaction",
+      title: "Built to keep families aligned",
+      description:
+        "Keep your family in the loop automatically. Share updates and coordinate care effortlessly with the people who matter most.",
+      footnote: null,
     },
   ];
 
@@ -132,6 +133,7 @@ const LandingPage = () => {
           <div className={styles.heroBgGrid} />
         </div>
 
+        <div className={styles.heroContentGrid}>
                 <div className={styles.leftPanel}>
           <div className={`${styles.aiTag} ${styles.heroAnimBadge}`}>
             <span className={styles.aiTagInner}>
@@ -194,6 +196,7 @@ const LandingPage = () => {
               className={styles.hiwImage}
             />
           </div>
+        </div>
         </div>
       </main>
 
@@ -400,22 +403,24 @@ const LandingPage = () => {
       <section id="benefits" className={styles.benefitsSection}>
         <div className={styles.sectionLabel}>REAL IMPACT</div>
         <h2 className={styles.sectionTitle}>
-          Measurable impact on <span className={styles.tealText}>real lives</span>
+          Why <span className={styles.tealText}>RemiMinderAI</span> matters
         </h2>
-        <p className={styles.sectionSubtitle}>More than just features — RemiMinder transforms how you experience healthcare.</p>
+        <p className={styles.sectionSubtitle}>
+          More than just features — we&apos;re building for the 54M+ unpaid family
+          caregivers who carry it all.
+        </p>
 
         <div className={styles.benefitsGrid}>
           {benefits.map((benefit, index) => (
             <div key={index} className={styles.benefitCard} style={{ animationDelay: `${index * 0.1}s` }}>
               <div className={styles.benefitTop}>
                 <div className={styles.benefitIconWrapper}><benefit.icon size={24} /></div>
-                <div className={styles.benefitStat}>
-                  <div className={styles.benefitStatValue}>{benefit.stat}</div>
-                  <div className={styles.benefitStatLabel}>{benefit.statLabel}</div>
-                </div>
               </div>
               <h3 className={styles.benefitTitle}>{benefit.title}</h3>
               <p className={styles.benefitDesc}>{benefit.description}</p>
+              {benefit.footnote && (
+                <p className={styles.benefitFootnote}>{benefit.footnote}</p>
+              )}
             </div>
           ))}
         </div>

@@ -133,11 +133,24 @@
 .attribution {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 8px;
   border-top: 1px solid rgba(26, 43, 60, 0.1);
   padding-top: 18px;
   margin: 0;
   font-style: normal;
+}
+
+.attributionLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 6px;
+}
+
+.locationDot {
+  color: #1a2b3c;
+  opacity: 0.4;
+  font-weight: 600;
 }
 
 .role {
@@ -152,6 +165,14 @@
   font-size: 13px;
   color: #1a2b3c;
   opacity: 0.6;
+  font-weight: 500;
+}
+
+.betaLine {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: #5a6a7a;
   font-weight: 500;
 }
 
