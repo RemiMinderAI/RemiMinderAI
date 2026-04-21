@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Check } from "lucide-react";
 import styles from "./PricingPage.module.css";
 import MarketingHeader from "./MarketingHeader";
+import CtaSection from "./CtaSection";
+import SiteFooter from "./SiteFooter";
 
 const START_FREE_MAILTO =
   "mailto:team@remiminderai.com?subject=" +
@@ -280,6 +282,9 @@ const PricingPage = () => {
           </div>
         </section>
       </main>
+
+      <CtaSection />
+      <SiteFooter />
 
       {modalOpen && (
         <div

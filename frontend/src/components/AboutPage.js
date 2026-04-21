@@ -6,6 +6,7 @@ import pricingStyles from "./PricingPage.module.css";
 import styles from "./AboutPage.module.css";
 import SiteFooter from "./SiteFooter";
 import MarketingHeader from "./MarketingHeader";
+import CtaSection from "./CtaSection";
 import profileParamita from "../assets/profilephotos/tina.jfif";
 import { CONTACT_EMAIL, MAILING_LIST_URL } from "../constants/site";
 
@@ -362,7 +363,8 @@ const AboutPage = () => {
         </button>
       </div>
 
-      <SiteFooter omitMarketingFooterLinks omitContactAndAppLinks />
+      <CtaSection />
+      <SiteFooter />
     </div>
   );
 };

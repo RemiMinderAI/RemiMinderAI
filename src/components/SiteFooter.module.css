@@ -1,0 +1,175 @@
+/* Enterprise footer — dark bar, explicit colors */
+
+.footer {
+  color-scheme: light;
+  background: #0f2a36;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 48px 5% 0;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px 40px;
+  padding-bottom: 36px;
+}
+
+.brandCol {
+  min-width: 0;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.logoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.brandTagline {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 320px;
+  margin: 0;
+}
+
+.colHeading {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 14px;
+  letter-spacing: 0.02em;
+}
+
+.navCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navCol a {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.navCol a:hover {
+  color: #1d9e75;
+}
+
+.bottomBar {
+  border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+  padding: 28px 0 36px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.badgeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1d9e75;
+  flex-shrink: 0;
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.socialLink:hover {
+  background: rgba(29, 158, 117, 0.2);
+  color: #1d9e75;
+}
+
+.socialLink svg {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 28px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .badges {
+    justify-content: center;
+  }
+
+  .socialRow {
+    justify-content: center;
+  }
+}

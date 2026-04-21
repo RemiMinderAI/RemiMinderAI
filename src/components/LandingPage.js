@@ -6,6 +6,8 @@ import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
+import CtaSection from "./CtaSection";
+import SiteFooter from "./SiteFooter";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
   ArrowRight, CheckCircle2, Smartphone, Apple, Star,
@@ -408,52 +410,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ── FINAL CTA (dark) ── */}
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaBg}>
-          <div className={styles.ctaBgOrb1} />
-          <div className={styles.ctaBgOrb2} />
-        </div>
-        <div className={styles.ctaFinalContainer}>
-          <div className={styles.sectionLabelLight}>READY TO START?</div>
-          <h2 className={styles.ctaTitle}>Take control of your healthcare today</h2>
-          <p className={styles.ctaFinalSubtitle}>
-            Join our early access program. Download the Android app or sign up with your email to stay updated.
-          </p>
-          <div className={styles.ctaFinalButtonGroup}>
-            <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaFinalButton}>
-              <span>Sign Up Free</span><ArrowRight size={18} />
-            </a>
-            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaFinalButton}>
-              <Smartphone size={18} /><span>Download Android</span>
-            </a>
-            <button className={styles.ctaFinalButtonDisabled} disabled>
-              <Apple size={18} /><span>iOS Coming Soon</span>
-            </button>
-          </div>
-          <div className={styles.ctaFinalFeatures}>
-            {["Free early access", "No credit card needed", "HIPAA compliant", "Cancel anytime"].map((f, i) => (
-              <div key={i} className={styles.ctaFinalFeatureItem}>
-                <CheckCircle2 size={14} /><span>{f}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOOTER ── */}
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <div className={styles.footerTop}>
-            <div className={styles.footerBrand}>
-              <img src={logo} alt="RemiMinder" className={styles.footerLogo} />
-              <span className={styles.footerBrandName}>RemiMinder<span className={styles.logoAi}>AI</span></span>
-            </div>
-            <p className={styles.footerTagline}>Smart AI for Health &amp; Care Coordination</p>
-          </div>
-          <p className={styles.footerCopy}>© 2025 RemiMinderAI. All rights reserved. &nbsp;•&nbsp; HIPAA Compliant &nbsp;•&nbsp; End-to-End Encrypted</p>
-        </div>
-      </footer>
+      <CtaSection />
+      <SiteFooter />
 
       {/* ── VIDEO MODAL ── */}
       {showVideo && (
