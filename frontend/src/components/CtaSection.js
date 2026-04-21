@@ -2,11 +2,13 @@ import React from "react";
 import { Smartphone, Apple } from "lucide-react";
 import styles from "./CtaSection.module.css";
 import { ANDROID_URL } from "../constants/site";
+import { useMailingList } from "../context/MailingListContext";
 
 /**
  * Shared bottom CTA for Landing, Pricing, and About.
  */
 export default function CtaSection() {
+  const { open: openMailingList } = useMailingList();
   return (
     <section className={styles.ctaWrap} aria-labelledby="cta-heading">
       <div className={styles.inner}>
@@ -30,6 +32,13 @@ export default function CtaSection() {
             <Smartphone size={18} aria-hidden="true" />
             <span>Download Android</span>
           </a>
+          <button
+            type="button"
+            className={styles.btnSecondary}
+            onClick={() => openMailingList({ source: "cta" })}
+          >
+            Join mailing list
+          </button>
           <button type="button" className={styles.btnTertiary} disabled>
             <Apple size={18} aria-hidden="true" />
             <span>iOS Coming Soon</span>

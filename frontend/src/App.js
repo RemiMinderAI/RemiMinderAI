@@ -42,13 +42,19 @@ import PatientReminderModal from './patient/PatientReminderModal';
 import VisitHistory from './patient/VisitHistory';
 import ScrollToTop from "./components/ScrollToTop";
 import ContactModal from "./components/ContactModal";
+import MailingListModal from "./components/MailingListModal";
+import FeedbackWidget from "./components/FeedbackWidget";
+import { MailingListProvider } from "./context/MailingListContext";
 
 function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <ContactModal />
-      <div className="App">
+      <MailingListProvider>
+        <ScrollToTop />
+        <ContactModal />
+        <MailingListModal />
+        <FeedbackWidget />
+        <div className="App">
         <Routes>
           {/* Main Routes */}
           <Route path="/" element={<LandingPage />} />
@@ -89,7 +95,8 @@ function App() {
           <Route path="/visit-history" element={<VisitHistory onBack={() => window.history.back()} role="patient" />} />
 
         </Routes>
-      </div>
+        </div>
+      </MailingListProvider>
     </Router>
   );
 }

@@ -1,23 +1,23 @@
 .container {
-  background: #0a0a0a;
-  color: #ffffff;
+  background: #fff; /* light mode background */
+  color: #1a1a1a; /* dark text */
   border-radius: 20px;
   padding: 2rem;
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .header h2 {
   font-size: 1.6rem;
-  color: #1a9e9e;
+  color: #7b5cf6; /* purple accent */
   margin-bottom: 0.25rem;
 }
 
 .demoNote {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #555; /* neutral grey */
   margin-bottom: 1.5rem;
 }
 
@@ -27,35 +27,33 @@
 
 h3 {
   margin-bottom: 0.5rem;
-  color: #1a9e9e;
+  color: #7b5cf6;
 }
 
 h4 {
   margin-top: 1.2rem;
   margin-bottom: 0.4rem;
-  color: #1a9e9e;
+  color: #7b5cf6;
 }
 
 .timer {
   font-size: 2rem;
   margin: 0.5rem 0;
-  color: #ffffff;
 }
 
 .tips {
-  background: rgba(255, 255, 255, 0.07);
+  background: #f3f4f6; /* light grey tips box */
   border-radius: 12px;
   padding: 1rem;
   margin-top: 1.5rem;
   text-align: left;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tips ul {
   margin: 0.5rem 1rem;
   padding: 0;
   list-style-type: disc;
-  color: rgba(255, 255, 255, 0.8);
+  color: #1a1a1a;
 }
 
 .buttonPrimary,
@@ -75,36 +73,35 @@ h4 {
 }
 
 .buttonPrimary {
-  background: #1a9e9e;
+  background: #7b5cf6;
   color: #fff;
 }
 
 .buttonPrimary:hover {
-  background: #2ab5b5;
+  background: #a78bfa;
 }
 
 .buttonPrimaryNOT {
-  background: #1a9e9e;
+  background: #7b5cf6;
   color: #fff;
   cursor: not-allowed;
-  opacity: 0.6;
 }
 
 .buttonSecondary {
   background: transparent;
-  color: #1a9e9e;
-  border: 1px solid #1a9e9e;
+  color: #7b5cf6;
+  border: 1px solid #7b5cf6;
 }
 
 .buttonSecondaryNOT {
   background: transparent;
-  color: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #7b5cf6;
+  border: 1px solid #7b5cf6;
   cursor: not-allowed;
 }
 
 .buttonSecondary:hover {
-  background-color: rgba(26, 158, 158, 0.15);
+  background-color: rgba(123, 92, 246, 0.15);
 }
 
 .buttonDanger {
@@ -119,7 +116,7 @@ h4 {
 .progressBar {
   width: 100%;
   height: 12px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #e5e7eb;
   border-radius: 8px;
   overflow: hidden;
   margin: 1rem 0;
@@ -128,24 +125,26 @@ h4 {
 .progressFill {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #1a9e9e, #2ab5b5);
+  background: linear-gradient(90deg, #a78bfa, #c084fc);
   animation: fill 2s ease-out;
 }
 
 @keyframes fill {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .summaryBlock {
-  background: rgba(255, 255, 255, 0.06);
+  background: #f9fafb;
   padding: 1.5rem;
   border-radius: 12px;
   text-align: left;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .summaryBlock ul {
@@ -169,7 +168,7 @@ h4 {
 }
 
 .signupButton {
-  background-color: #1a9e9e;
+  background-color: #7b5cf6;
   color: white;
   border: none;
   border-radius: 8px;
@@ -180,13 +179,13 @@ h4 {
 }
 
 .signupButton:hover {
-  background-color: #137a7a;
+  background-color: #5a3fd1;
 }
 
 .restartButton {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #7b5cf6;
+  color: #7b5cf6;
   border-radius: 8px;
   padding: 0.6rem 1.25rem;
   font-size: 0.95rem;
@@ -195,7 +194,7 @@ h4 {
 }
 
 .restartButton:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(123, 92, 246, 0.15);
 }
 
 .demoScreen {
@@ -223,23 +222,25 @@ h4 {
   width: 100%;
   text-align: center;
   border-radius: 20px;
+  /* background-image: url('../assets/hero-ai-orb.jpg'); */
 }
 
 .coverScreen h2 {
   font-size: 2rem;
-  color: #1a9e9e;
+  color: #8b5cf6;
   margin-bottom: 1rem;
 }
 
 .coverScreen p {
-  color: rgba(255, 255, 255, 0.6);
+  color: #4b5563;
   margin-bottom: 2rem;
 }
 
+/* ProductDemo.module.css */
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -247,90 +248,21 @@ h4 {
 }
 
 .modalContent {
-  background: #0a0a0a;
+  background: white;
   padding: 2rem;
   border-radius: 12px;
   max-width: 800px;
   width: 90%;
   position: relative;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
-.recordingPulse {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: rgba(239, 68, 68, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-  color: #ef4444;
-  animation: recordPulse 1.2s ease-in-out infinite;
-  border: 2px solid rgba(239, 68, 68, 0.4);
-}
-@keyframes recordPulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
-  50% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(239,68,68,0); }
-}
-
-.summarySection {
-  margin-bottom: 16px;
-  padding: 14px 16px;
-  background: rgba(26, 158, 158, 0.08);
-  border-radius: 10px;
-  border-left: 3px solid #1a9e9e;
-  text-align: left;
-}
-.summarySectionTitle {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #1a9e9e;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px !important;
-}
-.summarySection p {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
-  margin: 0;
-}
-.summarySection ul {
-  margin: 0;
-  padding-left: 18px;
-  list-style-type: disc;
-}
-.summarySection ul li {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.7;
-}
-.summarySection:last-child {
-  border-left-color: rgba(201, 168, 76, 0.8);
-  background: rgba(201, 168, 76, 0.06);
-}
-.summarySection:last-child .summarySectionTitle {
-  color: #c9a84c;
-}
 .closeButton {
   position: absolute;
   top: 10px;
   right: 10px;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 1.2rem;
+  background: transparent;
+  font-size: 1.5rem;
   cursor: pointer;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.closeButton:hover {
-  background: rgba(255, 255, 255, 0.2);
 }

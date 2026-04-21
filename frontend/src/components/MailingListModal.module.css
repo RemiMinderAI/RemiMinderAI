@@ -1,0 +1,278 @@
+/* Match LandingPage design system; force light + ignore OS dark mode */
+.root {
+  --teal: #1a9e9e;
+  --teal-dark: #137a7a;
+  --gold: #c9a84c;
+  --cream: #f7f3ec;
+  --ink: #1a2332;
+  --ink-mid: #2d3f52;
+  --white: #ffffff;
+  color-scheme: only light;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  color: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  .root {
+    color: var(--ink);
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483640;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(26, 35, 50, 0.45);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.backdropOpen {
+  opacity: 1;
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: min(90vh, 700px);
+  overflow: auto;
+  background: #faf8f3;
+  border: 1px solid rgba(26, 158, 158, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(26, 50, 50, 0.15);
+  padding: 28px 26px 24px;
+  transform: scale(0.97) translateY(8px);
+  opacity: 0;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.panelIn {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  background: rgba(26, 35, 50, 0.06);
+  color: var(--ink-mid);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(26, 35, 50, 0.1);
+}
+
+.title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 40px 8px 0;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  margin: 0 0 20px;
+  line-height: 1.45;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-mid);
+}
+
+.input,
+.select {
+  font: inherit;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(26, 158, 158, 0.25);
+  background: var(--white);
+  color: var(--ink);
+  color-scheme: only light;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(26, 158, 158, 0.15);
+}
+
+.inputError {
+  border-color: #c45c5c;
+}
+
+.errorText {
+  font-size: 0.8rem;
+  color: #a94442;
+  margin: 0;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rowActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 20px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
+  background: var(--teal);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--teal-dark);
+  box-shadow: 0 4px 16px rgba(26, 158, 158, 0.3);
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.successBlock {
+  text-align: center;
+  padding: 12px 0 4px;
+}
+
+.checkWrap {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(26, 158, 158, 0.12);
+  color: var(--teal);
+  animation: checkPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.checkSvg {
+  width: 36px;
+  height: 36px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 32;
+  stroke-dashoffset: 32;
+  animation: drawCheck 0.5s 0.12s ease forwards;
+}
+
+@keyframes checkPop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.successTitle {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+.successText {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  margin: 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 480px) {
+  .panel {
+    padding: 24px 20px 20px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+}

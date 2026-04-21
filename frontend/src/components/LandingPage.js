@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './LandingPage.module.css';
 import howItWorksImage from '../assets/coverpage.png';
-import heroAppImage from '../assets/IMG_0427.jpeg';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
@@ -16,14 +15,14 @@ import {
 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
 import ProductDemo from "./ProductDemo";
+import { useMailingList } from "../context/MailingListContext";
 
-
-const MAILING_LIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUUVtqWYyrDdnrfWDLK57QQVWVqwjIBbkoPz1DfXvBmkUaKw/viewform?usp=sharing&ouid=115359110800847240110";
 const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
-  
+
+  const { open: openMailingList } = useMailingList();
   const location = useLocation();
   const [showVideo, setShowVideo] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
@@ -169,6 +168,13 @@ const LandingPage = () => {
               <Apple size={16} />
               <span>iOS Soon</span>
             </button>
+            <button
+              type="button"
+              className={styles.androidButton}
+              onClick={() => openMailingList({ source: "hero" })}
+            >
+              Join our mailing list
+            </button>
           </div>
 
           <div className={styles.trustRow}>
@@ -182,7 +188,7 @@ const LandingPage = () => {
 
         <div className={styles.rightPanel}>
           <div className={styles.hiwImageWrapper}>
-            <img src={heroAppImage} alt="RemiMinder App Beta" className={styles.hiwImage} />
+            <img src={howItWorksImage} alt="RemiMinder App Beta" className={styles.hiwImage} />
           </div>
         </div>
       </main>
@@ -374,9 +380,13 @@ const LandingPage = () => {
               <div className={styles.personaTag}>Caregivers</div>
               <h3>For Families &amp; Caregivers</h3>
               <p>Support your loved ones with shared health insights, appointment tracking, and real-time updates on their care journey.</p>
-              <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.personaCta}>
+              <button
+                type="button"
+                className={styles.personaCta}
+                onClick={() => openMailingList({ source: "landing_page" })}
+              >
                 Join Waitlist <ArrowRight size={14} />
-              </a>
+              </button>
             </div>
           </div>
         </div>

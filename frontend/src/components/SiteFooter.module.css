@@ -101,6 +101,30 @@
   color: #1d9e75;
 }
 
+.navCol button.navButton {
+  font: inherit;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  min-height: 44px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  box-sizing: border-box;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.navCol button.navButton:hover {
+  color: #1d9e75;
+}
+
 .bottomBar {
   border-top: 0.5px solid rgba(255, 255, 255, 0.1);
   padding: 28px 0 36px;
