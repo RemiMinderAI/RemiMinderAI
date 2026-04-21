@@ -270,7 +270,7 @@ export default function FeedbackWidget() {
                     </button>
                   ))}
                 </div>
-                {error && step === 0 && (
+                {error && (
                   <p className={styles.error} role="alert">
                     {error}
                   </p>
@@ -320,7 +320,7 @@ export default function FeedbackWidget() {
                     </button>
                   ))}
                 </div>
-                {error && step === 1 && (
+                {error && (
                   <p className={styles.error} role="alert">
                     {error}
                   </p>
