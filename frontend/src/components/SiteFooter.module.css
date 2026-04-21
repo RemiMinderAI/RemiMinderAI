@@ -5,22 +5,29 @@
   background: #0f2a36;
   color: rgba(255, 255, 255, 0.85);
   padding: 48px 5% 0;
+  text-align: left;
 }
 
 .inner {
   max-width: 1200px;
   margin: 0 auto;
+  text-align: left;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 32px 40px;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(24px, 3vw, 40px);
+  row-gap: 32px;
+  align-items: start;
+  justify-items: stretch;
+  text-align: left;
   padding-bottom: 36px;
 }
 
 .brandCol {
   min-width: 0;
+  text-align: left;
 }
 
 .brandRow {
@@ -60,12 +67,19 @@
   color: #ffffff;
   margin: 0 0 14px;
   letter-spacing: 0.02em;
+  text-align: left;
+  width: 100%;
 }
 
 .navCol {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+  min-width: 0;
+  width: 100%;
+  text-align: left;
 }
 
 .navCol a {
@@ -73,8 +87,13 @@
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   min-height: 44px;
-  display: inline-flex;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
   align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  box-sizing: border-box;
   transition: color 0.2s ease;
 }
 
