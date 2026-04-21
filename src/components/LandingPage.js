@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './LandingPage.module.css';
-import howItWorksImage from '../assets/coverpage.png';
+import howItWorksImage from '../assets/landing-hero.png';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
@@ -188,7 +188,11 @@ const LandingPage = () => {
 
         <div className={styles.rightPanel}>
           <div className={styles.hiwImageWrapper}>
-            <img src={howItWorksImage} alt="RemiMinder App Beta" className={styles.hiwImage} />
+            <img
+              src={howItWorksImage}
+              alt="RemiMinder.ai on phone mockups in a bright kitchen"
+              className={styles.hiwImage}
+            />
           </div>
         </div>
       </main>
