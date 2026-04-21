@@ -95,6 +95,7 @@
   padding: 32px;
   box-sizing: border-box;
   min-height: 0;
+  text-align: left;
 }
 
 .quoteMark {
