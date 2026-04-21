@@ -4,7 +4,8 @@ import howItWorksImage from '../assets/coverpage.png';
 import heroAppImage from '../assets/IMG_0427.jpeg';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
-import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import MarketingHeader from "./MarketingHeader";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
   ArrowRight, CheckCircle2, Smartphone, Apple, Star,
@@ -26,8 +27,6 @@ const LandingPage = () => {
   const [scrolled, setScrolled] = useState(false);
   const [flashArmed, setFlashArmed] = useState(false);
   const heroRef = useRef(null);
-
-  const isHome = location.pathname === "/" || location.pathname === "";
 
   useEffect(() => {
     if (location.hash === "#how-it-works") {
@@ -121,66 +120,7 @@ const LandingPage = () => {
     <div className={styles.container}>
 
       {/* ── HEADER ── */}
-      <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}>
-        <div className={styles.logo} onClick={() => navigate("/")}>
-          <img src={logo} alt="RemiMinder Logo" className={styles.logoImg} />
-          <span className={styles.logoText}>RemiMinder<span className={styles.logoAi}>AI</span></span>
-        </div>
-        <nav className={styles.nav}>
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
-            }
-          >
-            Home
-          </NavLink>
-          <a
-            href="/#demo"
-            className={styles.navLink}
-            onClick={(e) => {
-              if (isHome) {
-                e.preventDefault();
-                document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            Demo
-          </a>
-          <a
-            href="/#how-it-works"
-            className={styles.navLink}
-            onClick={(e) => {
-              if (isHome) {
-                e.preventDefault();
-                document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            How It Works
-          </a>
-          <NavLink
-            to="/pricing"
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
-            }
-          >
-            Pricing
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
-            }
-          >
-            About
-          </NavLink>
-        </nav>
-        <a href={MAILING_LIST_URL} target="_blank" rel="noopener noreferrer" className={styles.mailingListButton}>
-          Join Mailing List
-        </a>
-      </header>
+      <MarketingHeader scrolled={scrolled} />
 
       {/* ── HERO ── */}
       <main className={styles.heroSection} ref={heroRef} id="home">

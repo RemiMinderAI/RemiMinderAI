@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { Check } from "lucide-react";
-import landingStyles from "./LandingPage.module.css";
 import styles from "./PricingPage.module.css";
-import logo from "../assets/RemiMinder_logo_512.png";
-import { MAILING_LIST_URL } from "../constants/site";
+import MarketingHeader from "./MarketingHeader";
 
 const START_FREE_MAILTO =
   "mailto:team@remiminderai.com?subject=" +
@@ -19,8 +16,6 @@ function validateEmail(value) {
 }
 
 const PricingPage = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPlan, setModalPlan] = useState("family");
@@ -28,8 +23,6 @@ const PricingPage = () => {
   const [emailError, setEmailError] = useState("");
   const [success, setSuccess] = useState(false);
   const emailInputRef = useRef(null);
-
-  const isHome = location.pathname === "/" || location.pathname === "";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -132,85 +125,10 @@ const PricingPage = () => {
 
   return (
     <div className={styles.pricingPageRoot}>
-      <header
-        className={`${landingStyles.header} ${styles.pricingHeader} ${
-          scrolled ? landingStyles.headerScrolled : ""
-        }`}
-      >
-        <div
-          className={landingStyles.logo}
-          onClick={() => navigate("/")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") navigate("/");
-          }}
-          role="button"
-          tabIndex={0}
-        >
-          <img src={logo} alt="RemiMinder Logo" className={landingStyles.logoImg} />
-          <span className={landingStyles.logoText}>
-            RemiMinder<span className={landingStyles.logoAi}>AI</span>
-          </span>
-        </div>
-        <nav className={landingStyles.nav}>
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `${landingStyles.navLink} ${isActive ? landingStyles.navLinkActive : ""}`
-            }
-          >
-            Home
-          </NavLink>
-          <a
-            href="/#demo"
-            className={landingStyles.navLink}
-            onClick={(e) => {
-              if (isHome) {
-                e.preventDefault();
-                document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            Demo
-          </a>
-          <a
-            href="/#how-it-works"
-            className={landingStyles.navLink}
-            onClick={(e) => {
-              if (isHome) {
-                e.preventDefault();
-                document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            How It Works
-          </a>
-          <NavLink
-            to="/pricing"
-            className={({ isActive }) =>
-              `${landingStyles.navLink} ${isActive ? landingStyles.navLinkActive : ""}`
-            }
-          >
-            Pricing
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `${landingStyles.navLink} ${isActive ? landingStyles.navLinkActive : ""}`
-            }
-          >
-            About
-          </NavLink>
-        </nav>
-        <a
-          href={MAILING_LIST_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={landingStyles.mailingListButton}
-        >
-          Join Mailing List
-        </a>
-      </header>
+      <MarketingHeader
+        scrolled={scrolled}
+        headerExtraClass={styles.pricingHeader}
+      />
 
       <main className={styles.pricingWrap}>
         <section className={styles.heroBlock} aria-labelledby="pricing-heading">

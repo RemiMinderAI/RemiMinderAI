@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation, NavLink } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Linkedin } from "lucide-react";
 import landingStyles from "./LandingPage.module.css";
 import pricingStyles from "./PricingPage.module.css";
 import styles from "./AboutPage.module.css";
 import SiteFooter from "./SiteFooter";
-import logo from "../assets/RemiMinder_logo_512.png";
+import MarketingHeader from "./MarketingHeader";
 import profileParamita from "../assets/profilephotos/tina.jfif";
 import { CONTACT_EMAIL, MAILING_LIST_URL } from "../constants/site";
 
 /** About page copy per marketing spec (About Page — RemiMinderAI). */
 const AboutPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  const isHome = location.pathname === "/" || location.pathname === "";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -85,77 +83,11 @@ const AboutPage = () => {
 
   return (
     <div className={`${landingStyles.container} ${styles.page}`}>
-      <header
-        className={`${landingStyles.header} ${pricingStyles.pricingHeader} ${
-          scrolled ? landingStyles.headerScrolled : ""
-        }`}
-      >
-        <div
-          className={landingStyles.logo}
-          onClick={() => navigate("/")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") navigate("/");
-          }}
-          role="button"
-          tabIndex={0}
-        >
-          <img src={logo} alt="RemiMinder Logo" className={landingStyles.logoImg} />
-          <span className={landingStyles.logoText}>
-            RemiMinder<span className={landingStyles.logoAi}>AI</span>
-          </span>
-        </div>
-        <nav className={landingStyles.nav}>
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `${landingStyles.navLink} ${isActive ? landingStyles.navLinkActive : ""}`
-            }
-          >
-            Home
-          </NavLink>
-          <a
-            href="/#demo"
-            className={landingStyles.navLink}
-            onClick={(e) => {
-              if (isHome) {
-                e.preventDefault();
-                document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            Demo
-          </a>
-          <a
-            href="/#how-it-works"
-            className={landingStyles.navLink}
-            onClick={(e) => {
-              if (isHome) {
-                e.preventDefault();
-                document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            How It Works
-          </a>
-          <NavLink
-            to="/pricing"
-            className={({ isActive }) =>
-              `${landingStyles.navLink} ${isActive ? landingStyles.navLinkActive : ""}`
-            }
-          >
-            Pricing
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `${landingStyles.navLink} ${isActive ? landingStyles.navLinkActive : ""}`
-            }
-          >
-            About
-          </NavLink>
-        </nav>
-      </header>
+      <MarketingHeader
+        scrolled={scrolled}
+        headerExtraClass={pricingStyles.pricingHeader}
+        showMailingList={false}
+      />
 
       <section className={styles.statusBanner} aria-label="Private beta notice">
         <div className={styles.statusInner}>
