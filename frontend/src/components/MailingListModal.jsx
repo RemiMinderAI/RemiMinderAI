@@ -286,7 +286,9 @@ export default function MailingListModal() {
               </svg>
             </div>
             <p id="mailing-modal-success" className={styles.successTitle}>
-              You&apos;re on the list. We&apos;ll reach out at launch.
+              You&apos;re on the list. We&apos;ll reach out at launch. You may
+              get a short confirmation email—check spam or junk if you don&apos;t
+              see it.
             </p>
           </div>
         ) : (

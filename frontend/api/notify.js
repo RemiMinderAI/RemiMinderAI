@@ -32,6 +32,10 @@ module.exports = async function handler(req, res) {
       ? `New mailing list signup: ${data.email || ""}`
       : "New feedback from RemiMinderAI";
 
+  const from =
+    process.env.RESEND_FROM || "RemiMinderAI <onboarding@resend.dev>";
+  const toAdmin = process.env.NOTIFICATION_EMAIL;
+
   let html;
   if (type === "mailing_list") {
     const planLine = data.planInterest
@@ -53,16 +57,36 @@ module.exports = async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: "RemiMinderAI <onboarding@resend.dev>",
-      to: process.env.NOTIFICATION_EMAIL,
+      from,
+      to: toAdmin,
       subject,
       html,
     });
-    return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("Resend error:", err);
+    console.error("Resend error (admin):", err);
     return res.status(500).json({ error: "Email failed" });
   }
+
+  if (type === "mailing_list" && data.email) {
+    const subj = "You're on the RemiMinderAI mailing list";
+    const confirmHtml = `<p>Hi${data.name ? ` ${escape(String(data.name).split(/\s+/)[0])}` : ""},</p>
+      <p>Thanks for joining our mailing list. We’ll share launch news, early access, and product updates at this address.</p>
+      <p>If you didn’t sign up, you can ignore this message.</p>
+      <p>— The RemiMinderAI team</p>`;
+    try {
+      await resend.emails.send({
+        from,
+        to: [String(data.email).trim()],
+        subject: subj,
+        html: confirmHtml,
+      });
+    } catch (err) {
+      // e.g. Resend test mode only allows certain recipients; or domain not verified
+      console.error("Resend error (subscriber confirmation):", err);
+    }
+  }
+
+  return res.status(200).json({ ok: true });
 };
 
 function escape(str) {
