@@ -1,5 +1,4 @@
-# Note: this is for web crawler stuff (not needed currently as we are in local)
-
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://remiminderai.com/sitemap.xml
