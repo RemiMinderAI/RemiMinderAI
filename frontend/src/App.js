@@ -41,11 +41,13 @@ import PatientReminderModal from './patient/PatientReminderModal';
 
 import VisitHistory from './patient/VisitHistory';
 import ScrollToTop from "./components/ScrollToTop";
+import ContactModal from "./components/ContactModal";
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ContactModal />
       <div className="App">
         <Routes>
           {/* Main Routes */}

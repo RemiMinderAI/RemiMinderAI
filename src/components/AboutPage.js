@@ -9,6 +9,7 @@ import MarketingHeader from "./MarketingHeader";
 import CtaSection from "./CtaSection";
 import profileParamita from "../assets/profilephotos/tina.jfif";
 import { CONTACT_EMAIL, MAILING_LIST_URL } from "../constants/site";
+import { openContactModal } from "./ContactModal";
 
 /** About page copy per marketing spec (About Page — RemiMinderAI). */
 const AboutPage = () => {
@@ -350,9 +351,13 @@ const AboutPage = () => {
             >
               Request Beta Access →
             </a>
-            <a href={`mailto:${CONTACT_EMAIL}`} className={landingStyles.androidButton}>
+            <button
+              type="button"
+              className={landingStyles.androidButton}
+              onClick={() => openContactModal()}
+            >
               Contact the Team →
-            </a>
+            </button>
           </div>
         </div>
       </section>

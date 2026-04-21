@@ -1,0 +1,230 @@
+/* Calm healthcare UI — matches landing cream + teal system */
+.overlay {
+  --contact-accent: #0ea5a4;
+  --contact-accent-hover: #0d9493;
+  --contact-ink: #1a2332;
+  --contact-ink-muted: #4a5a68;
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  box-sizing: border-box;
+  background: rgba(247, 243, 238, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.overlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel {
+  width: min(100%, 440px);
+  max-height: min(90vh, 720px);
+  overflow: auto;
+  padding: 28px 26px 26px;
+  background: #fffcf8;
+  border-radius: 24px;
+  box-shadow:
+    0 4px 6px -1px rgba(26, 35, 50, 0.06),
+    0 24px 48px -12px rgba(26, 35, 50, 0.12);
+  border: 1px solid rgba(14, 165, 164, 0.12);
+  transform: scale(0.97) translateY(8px);
+  opacity: 0;
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.28s ease;
+  pointer-events: auto;
+}
+
+.overlayOpen .panel {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.headerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--contact-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  color: var(--contact-ink-muted);
+  line-height: 1.55;
+  margin: 8px 0 0;
+  max-width: 34ch;
+}
+
+.closeBtn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 12px;
+  background: rgba(14, 165, 164, 0.08);
+  color: var(--contact-ink);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(14, 165, 164, 0.16);
+  color: var(--contact-accent-hover);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--contact-accent);
+  outline-offset: 2px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--contact-ink);
+}
+
+.input,
+.textarea {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--contact-ink);
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(14, 165, 164, 0.22);
+  background: rgba(255, 255, 255, 0.95);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(74, 90, 104, 0.55);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--contact-accent);
+  box-shadow: 0 0 0 3px rgba(14, 165, 164, 0.18);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 15px 22px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--contact-accent);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.submitBtn:hover {
+  background: var(--contact-accent-hover);
+}
+
+.submitBtn:active {
+  transform: scale(0.99);
+}
+
+.submitBtn:focus-visible {
+  outline: 2px solid var(--contact-accent);
+  outline-offset: 3px;
+}
+
+.fallback {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--contact-ink-muted);
+  line-height: 1.5;
+}
+
+.fallback a {
+  color: var(--contact-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(14, 165, 164, 0.35);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.fallback a:hover {
+  color: var(--contact-accent-hover);
+  border-bottom-color: var(--contact-accent-hover);
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+    padding-top: 24px;
+  }
+
+  .panel {
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 24px 24px 0 0;
+    padding: 24px 20px 22px;
+  }
+}
