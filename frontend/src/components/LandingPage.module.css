@@ -541,32 +541,38 @@
 .trustItem svg { color: var(--teal); }
 .trustDivider { width: 1px; height: 14px; background: var(--cream-dark); }
 
-/* Hero Phone */
+/* Hero phone — large frame like pre–mailing list (cover + tall box; phones stay centered) */
 .rightPanel {
-  flex: 1.4;
-  max-width: 750px;
-  display: flex; justify-content: center; align-items: center;
-  position: relative; z-index: 1;
-  align-self: center;
+  flex: 1.45;
+  min-width: 0;
+  max-width: 860px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+  align-self: stretch;
 }
 .rightPanel .hiwImageWrapper {
+  position: relative;
   width: 100%;
   margin: 0;
+  min-height: clamp(560px, 58vh, 860px);
+  max-height: min(88vh, 920px);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border);
   animation: floatPhone 6s ease-in-out infinite;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: stretch;
 }
 .rightPanel .hiwImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
   display: block;
   border-radius: var(--radius-lg);
 }
@@ -1487,10 +1493,14 @@
   }
   .rightPanel .hiwImageWrapper {
     width: 100%;
+    min-height: unset;
+    max-height: none;
     animation: none;
   }
   .rightPanel .hiwImage {
+    position: static;
     min-height: unset;
+    width: 100%;
     height: auto;
     object-fit: contain;
   }
