@@ -50,8 +50,8 @@ import { MailingListProvider } from "./context/MailingListContext";
 function App() {
   return (
     <Router>
+      <AnnouncementBar />
       <MailingListProvider>
-        <AnnouncementBar />
         <ScrollToTop />
         <ContactModal />
         <MailingListModal />

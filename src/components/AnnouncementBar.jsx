@@ -3,15 +3,20 @@ import styles from "./AnnouncementBar.module.css";
 
 const STORAGE_KEY = "remiminderai_announcement_v1_dismissed";
 
+function isDismissedStored() {
+  const v = localStorage.getItem(STORAGE_KEY);
+  return v === "true" || v === "1";
+}
+
 function getBarHeightPx() {
   if (typeof window === "undefined") return 40;
-  return window.innerWidth <= 640 ? 36 : 40;
+  return window.innerWidth < 768 ? 36 : 40;
 }
 
 export default function AnnouncementBar() {
   const [dismissed, setDismissed] = useState(() => {
     if (typeof localStorage === "undefined") return true;
-    return localStorage.getItem(STORAGE_KEY) === "1";
+    return isDismissedStored();
   });
 
   const applyVar = useCallback((active) => {
@@ -27,7 +32,7 @@ export default function AnnouncementBar() {
     }
     applyVar(true);
     const onResize = () => {
-      if (localStorage.getItem(STORAGE_KEY) === "1") return;
+      if (isDismissedStored()) return;
       applyVar(true);
     };
     window.addEventListener("resize", onResize);
@@ -38,7 +43,7 @@ export default function AnnouncementBar() {
 
   const handleDismiss = () => {
     try {
-      localStorage.setItem(STORAGE_KEY, "1");
+      localStorage.setItem(STORAGE_KEY, "true");
     } catch {
       // ignore
     }

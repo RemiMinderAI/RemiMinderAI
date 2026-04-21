@@ -12,8 +12,8 @@
   gap: 12px;
   min-height: 40px;
   padding: 8px 44px 8px 16px;
-  background: #0d5a5a;
-  color: #f7f3ec;
+  background: #0d4d52;
+  color: #faf8f3;
   font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 0.8125rem;
   font-weight: 500;
@@ -44,7 +44,7 @@
   border: none;
   border-radius: 8px;
   background: transparent;
-  color: rgba(247, 243, 236, 0.85);
+  color: rgba(250, 248, 243, 0.88);
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
@@ -53,10 +53,10 @@
 
 .dismiss:hover {
   background: rgba(255, 255, 255, 0.12);
-  color: #f7f3ec;
+  color: #faf8f3;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .root {
     min-height: 36px;
     padding: 6px 40px 6px 12px;
