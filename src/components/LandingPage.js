@@ -15,13 +15,14 @@ import {
 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
 import ProductDemo from "./ProductDemo";
-import { openMailingListModal } from "./MailingListModal";
+import { useMailingList } from "../context/MailingListContext";
 
 const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
-  
+
+  const { open: openMailingList } = useMailingList();
   const location = useLocation();
   const [showVideo, setShowVideo] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
@@ -166,6 +167,13 @@ const LandingPage = () => {
             <button className={styles.iosButton} disabled>
               <Apple size={16} />
               <span>iOS Soon</span>
+            </button>
+            <button
+              type="button"
+              className={styles.androidButton}
+              onClick={() => openMailingList({ source: "hero" })}
+            >
+              Join our mailing list
             </button>
           </div>
 
@@ -375,7 +383,7 @@ const LandingPage = () => {
               <button
                 type="button"
                 className={styles.personaCta}
-                onClick={() => openMailingListModal({ source: "landing_page" })}
+                onClick={() => openMailingList({ source: "landing_page" })}
               >
                 Join Waitlist <ArrowRight size={14} />
               </button>

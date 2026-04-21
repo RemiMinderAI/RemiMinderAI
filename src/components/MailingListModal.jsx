@@ -10,6 +10,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db, isFirestoreAvailable } from "../firebase";
+import { useMailingList } from "../context/MailingListContext";
 import styles from "./MailingListModal.module.css";
 
 const ROLES = [
@@ -22,29 +23,13 @@ const ROLES = [
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const openMailingListModalStub = (opts) => {
-  if (process.env.NODE_ENV === "development" && !openMailingListModalStub._ready) {
-    console.warn("MailingListModal is not mounted yet.");
-  }
-  void opts;
-};
-openMailingListModalStub._ready = false;
-
-let openMailingListModalImpl = openMailingListModalStub;
-
-/**
- * @param {{ source?: string, planInterest?: string }} [opts]
- * source: e.g. 'landing_page', 'about', 'pricing'
- */
-export function openMailingListModal(opts) {
-  openMailingListModalImpl(opts);
-}
-
 function validateEmail(v) {
   return EMAIL_RE.test((v || "").trim());
 }
 
 export default function MailingListModal() {
+  const { isOpen, options, close: closeContext } = useMailingList();
+
   const [mounted, setMounted] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [panelIn, setPanelIn] = useState(false);
@@ -57,10 +42,14 @@ export default function MailingListModal() {
   const [role, setRole] = useState("family_caregiver");
   const [website, setWebsite] = useState("");
 
-  const openOptionsRef = useRef({});
+  const openOptionsRef = useRef(options);
   const emailRef = useRef(null);
   const hasBeenOpenRef = useRef(false);
   const successCloseTimer = useRef(null);
+
+  useEffect(() => {
+    openOptionsRef.current = options;
+  }, [options]);
 
   const resetForm = useCallback(() => {
     setEmail("");
@@ -70,14 +59,9 @@ export default function MailingListModal() {
     setFormError("");
   }, []);
 
-  const close = useCallback(() => {
-    setPanelIn(false);
-    setOverlayOpen(false);
-  }, []);
-
   useEffect(() => {
-    const open = (opts) => {
-      openOptionsRef.current = opts || {};
+    if (isOpen) {
+      hasBeenOpenRef.current = true;
       setSuccess(false);
       setLoading(false);
       setFormError("");
@@ -87,47 +71,34 @@ export default function MailingListModal() {
       setWebsite("");
       setPanelIn(false);
       setMounted(true);
-    };
-    open._ready = true;
-    openMailingListModalImpl = open;
-    openMailingListModalStub._ready = true;
-    return () => {
-      openMailingListModalImpl = openMailingListModalStub;
-      openMailingListModalStub._ready = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return undefined;
-    const id = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setOverlayOpen(true);
-        setTimeout(() => setPanelIn(true), 10);
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setOverlayOpen(true);
+          setTimeout(() => setPanelIn(true), 10);
+        });
       });
-    });
-    return () => cancelAnimationFrame(id);
-  }, [mounted]);
+      return () => cancelAnimationFrame(id);
+    }
+    if (!isOpen && hasBeenOpenRef.current) {
+      setPanelIn(false);
+      setOverlayOpen(false);
+      const t = window.setTimeout(() => {
+        setMounted(false);
+        setSuccess(false);
+        setLoading(false);
+        setFormError("");
+        resetForm();
+      }, 300);
+      return () => clearTimeout(t);
+    }
+    return undefined;
+  }, [isOpen, resetForm]);
 
   useEffect(() => {
     if (overlayOpen) {
       hasBeenOpenRef.current = true;
     }
   }, [overlayOpen]);
-
-  useEffect(() => {
-    if (!mounted || overlayOpen || !hasBeenOpenRef.current) {
-      return undefined;
-    }
-    const t = window.setTimeout(() => {
-      resetForm();
-      setSuccess(false);
-      setLoading(false);
-      setFormError("");
-      setMounted(false);
-      hasBeenOpenRef.current = false;
-    }, 300);
-    return () => clearTimeout(t);
-  }, [mounted, overlayOpen, resetForm]);
 
   useEffect(() => {
     if (!mounted) return undefined;
@@ -151,17 +122,17 @@ export default function MailingListModal() {
     const onKey = (e) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        close();
+        closeContext();
       }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [mounted, overlayOpen, close]);
+  }, [mounted, overlayOpen, closeContext]);
 
   useEffect(() => {
     if (success) {
       successCloseTimer.current = window.setTimeout(() => {
-        close();
+        closeContext();
       }, 3000);
       return () => {
         if (successCloseTimer.current) {
@@ -170,11 +141,11 @@ export default function MailingListModal() {
       };
     }
     return undefined;
-  }, [success, close]);
+  }, [success, closeContext]);
 
   const handleBackdropPointerDown = (e) => {
     if (e.target === e.currentTarget) {
-      close();
+      closeContext();
     }
   };
 
@@ -297,7 +268,7 @@ export default function MailingListModal() {
         <button
           type="button"
           className={styles.closeBtn}
-          onClick={close}
+          onClick={closeContext}
           aria-label="Close"
         >
           ×

@@ -4,7 +4,7 @@ import styles from "./PricingPage.module.css";
 import MarketingHeader from "./MarketingHeader";
 import CtaSection from "./CtaSection";
 import SiteFooter from "./SiteFooter";
-import { openMailingListModal } from "./MailingListModal";
+import { useMailingList } from "../context/MailingListContext";
 
 const START_FREE_MAILTO =
   "mailto:team@remiminderai.com?subject=" +
@@ -15,6 +15,7 @@ const START_FREE_MAILTO =
   );
 
 const PricingPage = () => {
+  const { open: openMailingList } = useMailingList();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -138,7 +139,7 @@ const PricingPage = () => {
               type="button"
               className={`${styles.tierButton} ${styles.tierButtonFamily}`}
               onClick={() =>
-                openMailingListModal({
+                openMailingList({
                   source: "pricing",
                   planInterest: "family",
                 })
@@ -179,7 +180,7 @@ const PricingPage = () => {
               type="button"
               className={styles.tierButton}
               onClick={() =>
-                openMailingListModal({
+                openMailingList({
                   source: "pricing",
                   planInterest: "premium",
                 })

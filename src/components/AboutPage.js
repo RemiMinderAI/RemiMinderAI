@@ -10,11 +10,12 @@ import CtaSection from "./CtaSection";
 import profileParamita from "../assets/profilephotos/tina.jfif";
 import { CONTACT_EMAIL } from "../constants/site";
 import { openContactModal } from "./ContactModal";
-import { openMailingListModal } from "./MailingListModal";
+import { useMailingList } from "../context/MailingListContext";
 
 /** About page copy per marketing spec (About Page — RemiMinderAI). */
 const AboutPage = () => {
   const navigate = useNavigate();
+  const { open: openMailingList } = useMailingList();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -99,7 +100,7 @@ const AboutPage = () => {
           </p>
           <button
             type="button"
-            onClick={() => openMailingListModal({ source: "about" })}
+            onClick={() => openMailingList({ source: "about" })}
             className={landingStyles.primaryButton}
           >
             Request an invite
@@ -345,7 +346,7 @@ const AboutPage = () => {
           <div className={styles.ctaRow}>
             <button
               type="button"
-              onClick={() => openMailingListModal({ source: "about" })}
+              onClick={() => openMailingList({ source: "about" })}
               className={landingStyles.primaryButton}
             >
               Request Beta Access →

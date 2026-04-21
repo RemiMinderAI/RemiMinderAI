@@ -45,7 +45,6 @@ export default function FeedbackWidget() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
-  const [hydrated, setHydrated] = useState(false);
 
   const [pulseOn, setPulseOn] = useState(true);
 
@@ -57,7 +56,6 @@ export default function FeedbackWidget() {
     } catch {
       // ignore
     }
-    setHydrated(true);
   }, []);
 
   useEffect(() => {
@@ -177,12 +175,12 @@ export default function FeedbackWidget() {
     dismissPulseForSession();
   };
 
-  if (!hydrated) {
-    return null;
-  }
-
   const fab = (
-    <div className={styles.widget} aria-hidden={open}>
+    <div
+      className={styles.widget}
+      aria-hidden={open}
+      data-remiminder-feedback
+    >
       <button
         type="button"
         className={`${styles.fab} ${pulseOn && !open ? styles.fabPulse : ""}`}
@@ -192,6 +190,7 @@ export default function FeedbackWidget() {
         }}
         aria-label="Open feedback"
         aria-expanded={open}
+        data-testid="remiminder-feedback-fab"
         style={{ pointerEvents: "auto" }}
       >
         <ChatBubbleIcon />
