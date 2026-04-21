@@ -93,21 +93,6 @@ const AboutPage = () => {
         showMailingList
       />
 
-      <section className={styles.statusBanner} aria-label="Private beta notice">
-        <div className={styles.statusInner}>
-          <p className={styles.statusText}>
-            Private Beta — Invite Only. We&apos;re onboarding a small group of caregivers and patients.
-          </p>
-          <button
-            type="button"
-            onClick={() => openMailingList({ source: "about" })}
-            className={landingStyles.primaryButton}
-          >
-            Request an invite
-          </button>
-        </div>
-      </section>
-
       <section className={`${styles.section} ${styles.altWhite}`}>
         <div className={styles.sectionNarrow}>
           <h1 className={styles.heroTitle}>About RemiMinderAI</h1>
