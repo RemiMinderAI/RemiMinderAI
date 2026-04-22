@@ -26,6 +26,7 @@ const LandingPage = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [flashArmed, setFlashArmed] = useState(false);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -41,6 +42,11 @@ const LandingPage = () => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => setFlashArmed(true), 900);
+    return () => window.clearTimeout(id);
   }, []);
 
   const steps = [
@@ -134,8 +140,16 @@ const LandingPage = () => {
 
               <h1 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}>
                 Visits{" "}
-                <span className={styles.hero2HeadlineEm}>
+                <span className={styles.togetherWrap}>
                   Together.
+                  <svg
+                    className={`${styles.flashSvg} ${flashArmed ? styles.flashSvgArmed : ""}`}
+                    viewBox="0 0 200 14"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M4,8 Q40,3 80,7 T150,6 T196,8" />
+                  </svg>
                 </span>
               </h1>
 

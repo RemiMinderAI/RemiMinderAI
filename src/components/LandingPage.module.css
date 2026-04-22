@@ -420,26 +420,54 @@
   margin: 0 0 20px;
   text-wrap: balance;
 }
-.hero2HeadlineEm {
+.togetherWrap {
   position: relative;
-  display: inline;
-  z-index: 1;
+  display: inline-block;
+  white-space: nowrap;
+  color: var(--teal-700);
   font-style: italic;
   font-weight: 600;
-  color: var(--teal-700);
+  padding-bottom: 10px;
 }
-.hero2HeadlineEm::after {
-  content: "";
+.flashSvg {
   position: absolute;
-  left: 0.02em;
-  right: 0;
-  bottom: 0.02em;
-  height: 6px;
-  background: #c9a961;
-  opacity: 0.85;
-  z-index: -1;
-  border-radius: 2px;
+  left: -4px;
+  right: -4px;
+  bottom: -2px;
+  width: calc(100% + 8px);
+  height: 14px;
   pointer-events: none;
+  opacity: 0;
+}
+.flashSvg path {
+  stroke: #e8b84b;
+  stroke-width: 3.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  filter: drop-shadow(0 0 3px rgba(232, 184, 75, 0.4));
+}
+.flashSvgArmed {
+  opacity: 1;
+  animation: swaySubtle 3s ease-in-out infinite 1s;
+}
+.flashSvgArmed path {
+  animation: drawStroke 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes drawStroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes swaySubtle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(-0.3deg);
+  }
 }
 .hero2Sub {
   font-family: "DM Sans", sans-serif;
@@ -615,6 +643,15 @@ a.hero2BtnTeal {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+  .flashSvgArmed {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .flashSvgArmed path {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
   }
 }
 .primaryButton {
