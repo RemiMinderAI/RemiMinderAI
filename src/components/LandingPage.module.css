@@ -581,13 +581,19 @@ a.heroCtaAppBtnTeal {
   }
 }
 .heroCtaMailingBtn {
-  max-width: 572px;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   min-height: 44px;
-  padding: 10px 20px;
+  padding: 10px 18px;
   font-size: 0.875rem;
   box-sizing: border-box;
   justify-content: center;
+  align-self: flex-start;
+}
+@media (max-width: 1023px) {
+  .leftPanel .buttonGroup .heroCtaMailingBtn {
+    align-self: center;
+  }
 }
 .primaryButton {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1616,7 +1622,7 @@ a.heroCtaAppBtnTeal {
 }
 @media (max-width: 640px) {
   .buttonGroup { flex-direction: column; align-items: center; width: 100%; }
-  .primaryButton, .androidButton { width: 100%; justify-content: center; }
+  .primaryButton, .androidButton:not(.heroCtaMailingBtn) { width: 100%; justify-content: center; }
   .stepsGrid { grid-template-columns: 1fr; }
   .personaGrid { grid-template-columns: 1fr; }
   .benefitsGrid { grid-template-columns: 1fr; }
