@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Check } from "lucide-react";
 import styles from "./PricingPage.module.css";
 import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
-import { useMailingList } from "../context/MailingListContext";
+import { supabase } from "../supabaseClient";
+import { billingApiPath } from "../config";
 
 const START_FREE_MAILTO =
   "mailto:team@remiminderai.com?subject=" +
@@ -14,14 +16,74 @@ const START_FREE_MAILTO =
   );
 
 const PricingPage = () => {
-  const { open: openMailingList } = useMailingList();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [scrolled, setScrolled] = useState(false);
+  const [familyBilling, setFamilyBilling] = useState(/** @type {"monthly" | "yearly"} */ ("monthly"));
+  const [premiumBilling, setPremiumBilling] = useState(/** @type {"monthly" | "yearly"} */ ("monthly"));
+  const [checkoutLoading, setCheckoutLoading] = useState(/** @type {null | "family" | "premium"} */ (null));
+  const [checkoutMessage, setCheckoutMessage] = useState(/** @type {string | null} */ (null));
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const c = searchParams.get("checkout");
+    if (c === "success") {
+      setCheckoutMessage("Your subscription is being confirmed. It may take a moment to show in your account.");
+    } else if (c === "cancel") {
+      setCheckoutMessage("Checkout was canceled. You can try again anytime.");
+    }
+    if (c) {
+      searchParams.delete("checkout");
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
+  const startPaidCheckout = useCallback(
+    async (plan) => {
+      setCheckoutMessage(null);
+      const billing = plan === "family" ? familyBilling : premiumBilling;
+      setCheckoutLoading(plan);
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session?.access_token) {
+          const next = "/pricing";
+          navigate(`/sign-in?redirect=${encodeURIComponent(next)}`);
+          setCheckoutLoading(null);
+          return;
+        }
+        const res = await fetch(billingApiPath("/api/create-checkout-session"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session.access_token}`,
+          },
+          body: JSON.stringify({ plan, billing }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          setCheckoutMessage(data.error || "Could not start checkout. Please try again.");
+          setCheckoutLoading(null);
+          return;
+        }
+        if (data.url) {
+          window.location.assign(data.url);
+          return;
+        }
+        setCheckoutMessage("No checkout URL returned.");
+      } catch (e) {
+        console.error(e);
+        setCheckoutMessage("Network error. If you are running locally, use `vercel dev` so /api is available, or set REACT_APP_BILLING_API_BASE.");
+      } finally {
+        setCheckoutLoading(null);
+      }
+    },
+    [familyBilling, premiumBilling, navigate]
+  );
 
   const freeFeatures = [
     "**2 recorded visits** every month",
@@ -63,6 +125,9 @@ const PricingPage = () => {
     });
   };
 
+  const isFamilyLoading = checkoutLoading === "family";
+  const isPremiumLoading = checkoutLoading === "premium";
+
   return (
     <div className={styles.pricingPageRoot}>
       <MarketingHeader
@@ -86,6 +151,15 @@ const PricingPage = () => {
             Save up to $80 a year by choosing annual billing.
           </p>
         </section>
+
+        {checkoutMessage && (
+          <p
+            className={styles.checkoutBanner}
+            role="status"
+          >
+            {checkoutMessage}
+          </p>
+        )}
 
         <section className={styles.cardsGrid} aria-label="Pricing tiers">
           {/* Free */}
@@ -124,27 +198,52 @@ const PricingPage = () => {
             <p className={styles.tierTagline}>
               For one loved one and the family who helps care for them.
             </p>
+
+            <div className={styles.billingToggle} role="group" aria-label="Family billing period">
+              <button
+                type="button"
+                className={`${styles.billingOption} ${familyBilling === "monthly" ? styles.billingOptionActive : ""}`}
+                onClick={() => setFamilyBilling("monthly")}
+                aria-pressed={familyBilling === "monthly"}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                className={`${styles.billingOption} ${familyBilling === "yearly" ? styles.billingOptionActive : ""}`}
+                onClick={() => setFamilyBilling("yearly")}
+                aria-pressed={familyBilling === "yearly"}
+              >
+                Yearly
+              </button>
+            </div>
+
             <div className={styles.priceBlock}>
-              <div className={styles.priceRow}>
-                <span className={styles.priceAmount}>$9.99</span>
-                <span className={styles.priceSuffix}>/month</span>
-              </div>
-              <div className={styles.annualRow}>
-                <span className={styles.annualText}>or $79 a year</span>
-                <span className={styles.savingsPill}>Save $40</span>
-              </div>
+              {familyBilling === "monthly" ? (
+                <>
+                  <div className={styles.priceRow}>
+                    <span className={styles.priceAmount}>$9.99</span>
+                    <span className={styles.priceSuffix}>/month</span>
+                  </div>
+                  <p className={styles.subPrice}>$79.99 if billed annually (save $40)</p>
+                </>
+              ) : (
+                <>
+                  <div className={styles.priceRow}>
+                    <span className={styles.priceAmount}>$79.99</span>
+                    <span className={styles.priceSuffix}>/year</span>
+                  </div>
+                  <p className={styles.subPrice}>Billed once per year</p>
+                </>
+              )}
             </div>
             <button
               type="button"
               className={`${styles.tierButton} ${styles.tierButtonFamily}`}
-              onClick={() =>
-                openMailingList({
-                  source: "pricing",
-                  planInterest: "family",
-                })
-              }
+              disabled={isFamilyLoading}
+              onClick={() => startPaidCheckout("family")}
             >
-              Choose Family
+              {isFamilyLoading ? "Redirecting to secure checkout…" : "Choose Family"}
             </button>
             <p className={styles.featuresLabel}>Everything in Free, plus</p>
             <ul className={styles.featureList}>
@@ -165,27 +264,52 @@ const PricingPage = () => {
             <p className={styles.tierTagline}>
               For families managing care for more than one loved one.
             </p>
+
+            <div className={styles.billingToggle} role="group" aria-label="Premium billing period">
+              <button
+                type="button"
+                className={`${styles.billingOption} ${premiumBilling === "monthly" ? styles.billingOptionActive : ""}`}
+                onClick={() => setPremiumBilling("monthly")}
+                aria-pressed={premiumBilling === "monthly"}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                className={`${styles.billingOption} ${premiumBilling === "yearly" ? styles.billingOptionActive : ""}`}
+                onClick={() => setPremiumBilling("yearly")}
+                aria-pressed={premiumBilling === "yearly"}
+              >
+                Yearly
+              </button>
+            </div>
+
             <div className={styles.priceBlock}>
-              <div className={styles.priceRow}>
-                <span className={styles.priceAmount}>$19.99</span>
-                <span className={styles.priceSuffix}>/month</span>
-              </div>
-              <div className={styles.annualRow}>
-                <span className={styles.annualText}>or $159 a year</span>
-                <span className={styles.savingsPill}>Save $80</span>
-              </div>
+              {premiumBilling === "monthly" ? (
+                <>
+                  <div className={styles.priceRow}>
+                    <span className={styles.priceAmount}>$19.99</span>
+                    <span className={styles.priceSuffix}>/month</span>
+                  </div>
+                  <p className={styles.subPrice}>$159.99 if billed annually (save $80)</p>
+                </>
+              ) : (
+                <>
+                  <div className={styles.priceRow}>
+                    <span className={styles.priceAmount}>$159.99</span>
+                    <span className={styles.priceSuffix}>/year</span>
+                  </div>
+                  <p className={styles.subPrice}>Billed once per year</p>
+                </>
+              )}
             </div>
             <button
               type="button"
               className={styles.tierButton}
-              onClick={() =>
-                openMailingList({
-                  source: "pricing",
-                  planInterest: "premium",
-                })
-              }
+              disabled={isPremiumLoading}
+              onClick={() => startPaidCheckout("premium")}
             >
-              Choose Premium
+              {isPremiumLoading ? "Redirecting to secure checkout…" : "Choose Premium"}
             </button>
             <p className={styles.featuresLabel}>Everything in Family, plus</p>
             <ul className={styles.featureList}>
@@ -200,6 +324,15 @@ const PricingPage = () => {
             </ul>
           </article>
         </section>
+
+        <p className={styles.billingNote}>
+          Secure payment via Stripe. Subscriptions and receipts are the source of truth. Sign in
+          is required to upgrade. If you are not on an account yet, you can still{" "}
+          <a href={START_FREE_MAILTO} className={styles.inlineLink}>
+            start free
+          </a>{" "}
+          or join the list.
+        </p>
 
         <section className={styles.trustSection} aria-label="Trust and guarantees">
           <div className={styles.trustRow}>

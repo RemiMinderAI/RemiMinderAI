@@ -13,3 +13,21 @@ export const FRONTEND_URL =
   process.env.REACT_APP_FRONTEND_URL ||
   process.env.NEXT_PUBLIC_FRONTEND_URL ||
   "http://localhost:3000"; // fallback for local dev
+
+/**
+ * Vercel hosts `/api/*` on the same origin. Use empty base.
+ * For local dev, run `vercel dev` (recommended) or set REACT_APP_BILLING_API_BASE
+ * to the origin that serves the API.
+ */
+export function getBillingApiBase() {
+  return (process.env.REACT_APP_BILLING_API_BASE || "").trim().replace(/\/$/, "");
+}
+
+/**
+ * @param {string} path e.g. "/api/create-checkout-session"
+ */
+export function billingApiPath(path) {
+  const p = path.startsWith("/") ? path : `/${path}`;
+  const b = getBillingApiBase();
+  return b ? `${b}${p}` : p;
+}

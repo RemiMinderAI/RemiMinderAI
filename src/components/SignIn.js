@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaApple, FaTimes, FaUser, FaUserFriends } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { FRONTEND_URL } from "../config";
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // --- Top-level state ---
   const [role, setRole] = useState(null);
@@ -46,12 +47,17 @@ export default function SignIn() {
         return;
       }
       if (session?.user && !recoveryMode) {
-        navigate(`/dashboard/${currentRole}`);
+        const dest = searchParams.get("redirect");
+        if (dest && dest.startsWith("/") && !dest.startsWith("//")) {
+          navigate(dest);
+        } else {
+          navigate(`/dashboard/${currentRole}`);
+        }
       }
     });
 
     return () => listener.subscription.unsubscribe();
-  }, [navigate, role, recoveryMode]);
+  }, [navigate, role, recoveryMode, searchParams]);
 
   useEffect(() => {
     const clearRecovery = () => setRecoveryMode(false);
@@ -93,9 +99,14 @@ export default function SignIn() {
   const handleGoogleSignIn = async () => {
     try {
       const currentRole = role || localStorage.getItem("role") || "patient";
+      const r = searchParams.get("redirect");
+      let returnTo = `${FRONTEND_URL}/dashboard/${currentRole}`;
+      if (r && r.startsWith("/") && !r.startsWith("//")) {
+        returnTo = `${FRONTEND_URL}/sign-in?redirect=${encodeURIComponent(r)}`;
+      }
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `${FRONTEND_URL}/dashboard/${currentRole}` },
+        options: { redirectTo: returnTo },
       });
       if (error) throw error;
     } catch (err) {
