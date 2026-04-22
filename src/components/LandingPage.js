@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './LandingPage.module.css';
-import howItWorksImage from '../assets/landing-hero.png';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
 import TestimonialsSection from "./TestimonialsSection";
 import SiteFooter from "./SiteFooter";
+import HeroPhoneStage from "./HeroPhoneStage";
+import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
   CheckCircle2, Smartphone, Apple, Star,
   Lock, Zap, Globe, Play
 } from "lucide-react";
-import logo from '../assets/RemiMinder_logo_512.png';
 import ProductDemo from "./ProductDemo";
 import { useMailingList } from "../context/MailingListContext";
 
@@ -26,7 +26,6 @@ const LandingPage = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [flashArmed, setFlashArmed] = useState(false);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -43,13 +42,6 @@ const LandingPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    const id = window.setTimeout(() => setFlashArmed(true), 900);
-    return () => window.clearTimeout(id);
-  }, []);
-  
-  const navigate = useNavigate();
 
   const steps = [
     {
@@ -126,89 +118,81 @@ const LandingPage = () => {
 
       {/* ── HERO ── */}
       <main className={styles.heroSection} ref={heroRef} id="home">
-        <div className={styles.heroBackground}>
-          <div className={styles.heroBgOrb1} />
-          <div className={styles.heroBgOrb2} />
-          <div className={styles.heroBgGrid} />
+        <div className={styles.hero2Bg}>
+          <div className={styles.hero2Ambient1} aria-hidden="true" />
+          <div className={styles.hero2Ambient2} aria-hidden="true" />
+          <div className={styles.hero2GridPattern} aria-hidden="true" />
         </div>
 
-        <div className={styles.heroContentGrid}>
-                <div className={styles.leftPanel}>
-          <div className={`${styles.aiTag} ${styles.heroAnimBadge}`}>
-            <span className={styles.aiTagInner}>
-              <span className={styles.aiTagDot} />
-              Smart AI for Health &amp; Care Coordination
-            </span>
-          </div>
-          <h1 className={styles.title}>
-            <span className={`${styles.heroTitleInner} ${styles.heroAnimHeadline}`}>
-              <span className={styles.heroHeadlineLead}>Remember every visit.</span>{" "}
-              <span className={styles.togetherWrap}>
-                Together.
-                <svg
-                  className={`${styles.flashSvg} ${flashArmed ? styles.flashSvgArmed : ""}`}
-                  viewBox="0 0 200 14"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
+        <div className={styles.hero2Inner}>
+          <div className={styles.hero2Grid}>
+            <div className={styles.hero2CopyCol}>
+              <div className={`${styles.hero2Eyebrow} ${styles.heroAnimBadge}`}>
+                <span className={styles.hero2EyebrowDot} aria-hidden="true" />
+                <span>Now in beta</span>
+              </div>
+
+              <h1 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}>
+                Visits{" "}
+                <span className={styles.hero2HeadlineEm}>
+                  Together.
+                </span>
+              </h1>
+
+              <p className={`${styles.hero2Sub} ${styles.heroAnimSub}`}>
+                Turn doctor conversations into clear, shareable summaries so you and your family
+                always know what comes next.
+              </p>
+
+              <div className={`${styles.hero2CtaBlock} ${styles.heroAnimCtas}`}>
+                <div className={styles.hero2CtaRow}>
+                  <a
+                    href={ANDROID_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.hero2BtnTeal}
+                  >
+                    <Smartphone size={18} aria-hidden="true" />
+                    <span>Download Android</span>
+                  </a>
+                  <button type="button" className={styles.hero2BtnIos} disabled>
+                    <Apple size={18} aria-hidden="true" />
+                    <span>iOS Coming Soon</span>
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  className={styles.hero2MailingBtn}
+                  onClick={() => openMailingList({ source: "hero" })}
                 >
-                  <path d="M4,8 Q40,3 80,7 T150,6 T196,8" />
-                </svg>
-              </span>
-            </span>
-          </h1>
-          <p className={`${styles.description} ${styles.heroAnimSub}`}>
-            Turn doctor conversations into clear, shareable summaries so you and your family always know what comes next.
-          </p>
+                  Join our mailing list
+                </button>
+              </div>
 
-          <div className={`${styles.buttonGroup} ${styles.heroAnimCtas}`}>
-            <div className={styles.heroCtaAppPair}>
-              <a
-                href={ANDROID_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.heroCtaAppBtn} ${styles.heroCtaAppBtnTeal}`}
-              >
-                <Smartphone size={16} aria-hidden="true" />
-                <span>Download Android</span>
-              </a>
-              <button
-                type="button"
-                className={`${styles.heroCtaAppBtn} ${styles.heroCtaAppBtnIos}`}
-                disabled
-              >
-                <Apple size={16} aria-hidden="true" />
-                <span>iOS Coming Soon</span>
-              </button>
+              <div className={`${styles.hero2TrustRow} ${styles.heroAnimTrust}`}>
+                <div className={styles.hero2TrustItem}>
+                  <Lock size={14} strokeWidth={2.5} aria-hidden="true" />
+                  <span>HIPAA Compliant</span>
+                </div>
+                <div className={styles.hero2TrustItem}>
+                  <Shield size={14} strokeWidth={2.5} aria-hidden="true" />
+                  <span>End-to-End Encrypted</span>
+                </div>
+                <div className={styles.hero2TrustItem}>
+                  <Zap size={14} strokeWidth={2.5} aria-hidden="true" />
+                  <span>Powered by Google Cloud AI</span>
+                </div>
+              </div>
             </div>
-            <button
-              type="button"
-              className={`${styles.androidButton} ${styles.heroCtaMailingBtn}`}
-              onClick={() => openMailingList({ source: "hero" })}
-            >
-              Join our mailing list
-            </button>
-          </div>
 
-          <div className={styles.trustRow}>
-            <div className={styles.trustItem}><Lock size={13} /><span>HIPAA Compliant</span></div>
-            <div className={styles.trustDivider} />
-            <div className={styles.trustItem}><Shield size={13} /><span>End-to-End Encrypted</span></div>
-            <div className={styles.trustDivider} />
-            <div className={styles.trustItem}><Zap size={13} /><span>Powered by Google Cloud AI</span></div>
+            <div className={styles.hero2VisualCol}>
+              <HeroPhoneStage />
+            </div>
           </div>
-        </div>
-
-        <div className={styles.rightPanel}>
-          <div className={styles.hiwImageWrapper}>
-            <img
-              src={howItWorksImage}
-              alt="RemiMinder.ai on phone mockups in a bright kitchen"
-              className={styles.hiwImage}
-            />
-          </div>
-        </div>
         </div>
       </main>
+
+      <WhatRemiMinderIsSection />
 
       {/* ── SOCIAL PROOF BAR ── */}
       <div className={styles.socialProofBar}>
