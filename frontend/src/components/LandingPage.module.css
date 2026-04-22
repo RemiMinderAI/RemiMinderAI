@@ -350,12 +350,28 @@
   padding: 0;
 }
 @media (max-width: 899px) {
+  /* Full-bleed phone stage: only copy uses horizontal padding so the image shares the
+     same surface as the hero (no cream gutters framing a "card" around the art). */
+  .hero2Inner {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
   .hero2Grid {
     grid-template-columns: 1fr;
+    gap: 28px 0;
   }
   .hero2CopyCol {
     align-items: center;
     text-align: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .hero2VisualCol {
+    width: 100%;
   }
   .hero2CtaBlock {
     align-items: center;
@@ -372,6 +388,16 @@
   .hero2Sub {
     margin-left: auto;
     margin-right: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 899px) {
+  .hero2CopyCol {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+  .hero2Inner {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 }
 @media (min-width: 900px) {

@@ -70,18 +70,33 @@
 
 @media (max-width: 899px) {
   .stage {
-    min-height: 260px;
+    min-height: 240px;
+    max-width: none;
+  }
+  .ambientRadial {
+    inset: 0;
+    /* Match hero cream + grid: soften edge where PNG meets viewport */
+    background: radial-gradient(
+      ellipse 120% 80% at 50% 45%,
+      rgba(59, 134, 128, 0.18) 0%,
+      rgba(201, 169, 97, 0.08) 50%,
+      rgba(250, 247, 239, 0) 72%
+    );
+  }
+  .ambientBlob {
+    width: min(90vw, 500px);
+    height: min(90vw, 500px);
+    margin-left: calc(min(90vw, 500px) / -2);
+    margin-top: calc(min(90vw, 500px) / -2);
   }
   .compositeWrap {
-    max-width: 520px;
+    max-width: none;
+    width: 100%;
   }
 }
 
 @media (max-width: 599px) {
   .stage {
     min-height: 200px;
-  }
-  .compositeWrap {
-    max-width: 100%;
   }
 }
