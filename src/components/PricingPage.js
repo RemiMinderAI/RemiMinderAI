@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Check } from "lucide-react";
 import styles from "./PricingPage.module.css";
 import MarketingHeader from "./MarketingHeader";
-import CtaSection from "./CtaSection";
 import SiteFooter from "./SiteFooter";
 import { useMailingList } from "../context/MailingListContext";
 
@@ -232,7 +231,6 @@ const PricingPage = () => {
         </section>
       </main>
 
-      <CtaSection />
       <SiteFooter />
     </div>
   );

@@ -508,10 +508,86 @@
 }
 .buttonGroup {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px 12px;
   margin-bottom: 28px;
+  align-items: flex-start;
+  max-width: 100%;
+}
+/* Hero: equal-width app download + iOS (compact) */
+.heroCtaAppPair {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px 12px;
+  width: 100%;
+  max-width: 572px;
+  box-sizing: border-box;
+}
+.heroCtaAppBtn {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 280px;
+  min-height: 44px;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.heroCtaAppBtnTeal {
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+}
+a.heroCtaAppBtnTeal {
+  cursor: pointer;
+  color: var(--white);
+}
+.heroCtaAppBtnTeal:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 158, 158, 0.35);
+}
+.heroCtaAppBtnIos {
+  background: #1a1a1a;
+  color: var(--cream);
+  border: 1px solid #1a1a1a;
+  font-weight: 500;
+  cursor: not-allowed;
+  opacity: 0.95;
+}
+@media (max-width: 520px) {
+  .heroCtaAppPair {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .heroCtaAppBtn {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+.heroCtaMailingBtn {
+  max-width: 572px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  justify-content: center;
 }
 .primaryButton {
   display: inline-flex; align-items: center; gap: 8px;

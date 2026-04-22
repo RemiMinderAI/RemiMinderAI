@@ -6,16 +6,12 @@ import pricingStyles from "./PricingPage.module.css";
 import styles from "./AboutPage.module.css";
 import SiteFooter from "./SiteFooter";
 import MarketingHeader from "./MarketingHeader";
-import CtaSection from "./CtaSection";
 import profileParamita from "../assets/profilephotos/tina.jfif";
 import { CONTACT_EMAIL } from "../constants/site";
 import { openContactModal } from "./ContactModal";
-import { useMailingList } from "../context/MailingListContext";
-
 /** About page copy per marketing spec (About Page — RemiMinderAI). */
 const AboutPage = () => {
   const navigate = useNavigate();
-  const { open: openMailingList } = useMailingList();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -331,13 +327,6 @@ const AboutPage = () => {
           <div className={styles.ctaRow}>
             <button
               type="button"
-              onClick={() => openMailingList({ source: "about" })}
-              className={landingStyles.primaryButton}
-            >
-              Request Beta Access →
-            </button>
-            <button
-              type="button"
               className={landingStyles.androidButton}
               onClick={() => openContactModal()}
             >
@@ -353,7 +342,6 @@ const AboutPage = () => {
         </button>
       </div>
 
-      <CtaSection />
       <SiteFooter />
     </div>
   );

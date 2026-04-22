@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./SiteFooter.module.css";
 import logo from "../assets/RemiMinder_logo_512.png";
-import { ANDROID_URL, CONTACT_EMAIL } from "../constants/site";
-import { useMailingList } from "../context/MailingListContext";
+import { CONTACT_EMAIL } from "../constants/site";
 
 function LinkedInIcon() {
   return (
@@ -36,7 +35,6 @@ function XIcon() {
  * Enterprise 4-column footer for marketing pages.
  */
 export default function SiteFooter() {
-  const { open: openMailingList } = useMailingList();
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -57,9 +55,6 @@ export default function SiteFooter() {
             <a href="/#how-it-works">How It Works</a>
             <Link to="/pricing">Pricing</Link>
             <a href="/#demo">Demo</a>
-            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer">
-              Download Android
-            </a>
           </nav>
 
           <nav className={styles.navCol} aria-label="Company">
@@ -71,13 +66,6 @@ export default function SiteFooter() {
             >
               Contact
             </a>
-            <button
-              type="button"
-              className={styles.navButton}
-              onClick={() => openMailingList({ source: "footer" })}
-            >
-              Join our mailing list
-            </button>
           </nav>
 
           <nav className={styles.navCol} aria-label="Legal">

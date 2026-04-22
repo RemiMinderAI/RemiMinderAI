@@ -5,12 +5,11 @@ import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
 import { useNavigate, useLocation } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
-import CtaSection from "./CtaSection";
 import TestimonialsSection from "./TestimonialsSection";
 import SiteFooter from "./SiteFooter";
 import { 
   Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
-  ArrowRight, CheckCircle2, Smartphone, Apple, Star,
+  CheckCircle2, Smartphone, Apple, Star,
   Lock, Zap, Globe, Play
 } from "lucide-react";
 import logo from '../assets/RemiMinder_logo_512.png';
@@ -162,17 +161,28 @@ const LandingPage = () => {
           </p>
 
           <div className={`${styles.buttonGroup} ${styles.heroAnimCtas}`}>
-            <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.primaryButton}>
-              <Smartphone size={16} />
-              <span>Download Android</span>
-            </a>
-            <button className={styles.iosButton} disabled>
-              <Apple size={16} />
-              <span>iOS Soon</span>
-            </button>
+            <div className={styles.heroCtaAppPair}>
+              <a
+                href={ANDROID_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.heroCtaAppBtn} ${styles.heroCtaAppBtnTeal}`}
+              >
+                <Smartphone size={16} aria-hidden="true" />
+                <span>Download Android</span>
+              </a>
+              <button
+                type="button"
+                className={`${styles.heroCtaAppBtn} ${styles.heroCtaAppBtnIos}`}
+                disabled
+              >
+                <Apple size={16} aria-hidden="true" />
+                <span>iOS Coming Soon</span>
+              </button>
+            </div>
             <button
               type="button"
-              className={styles.androidButton}
+              className={`${styles.androidButton} ${styles.heroCtaMailingBtn}`}
               onClick={() => openMailingList({ source: "hero" })}
             >
               Join our mailing list
@@ -372,9 +382,6 @@ const LandingPage = () => {
               <div className={styles.personaTag}>Patients</div>
               <h3>For Seniors &amp; Patients</h3>
               <p>Stay on top of your health with clear visit summaries, medication reminders, and easy access to your medical history.</p>
-              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className={styles.personaCta}>
-                Try the App <ArrowRight size={14} />
-              </a>
             </div>
           </div>
 
@@ -387,13 +394,6 @@ const LandingPage = () => {
               <div className={styles.personaTag}>Caregivers</div>
               <h3>For Families &amp; Caregivers</h3>
               <p>Support your loved ones with shared health insights, appointment tracking, and real-time updates on their care journey.</p>
-              <button
-                type="button"
-                className={styles.personaCta}
-                onClick={() => openMailingList({ source: "landing_page" })}
-              >
-                Join Waitlist <ArrowRight size={14} />
-              </button>
             </div>
           </div>
         </div>
@@ -427,7 +427,6 @@ const LandingPage = () => {
       </section>
 
       <TestimonialsSection />
-      <CtaSection />
       <SiteFooter />
 
       {/* ── VIDEO MODAL ── */}
