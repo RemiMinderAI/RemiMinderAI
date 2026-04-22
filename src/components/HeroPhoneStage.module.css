@@ -1,4 +1,4 @@
-/* Single hero composite image; light mode; subtle glow behind */
+/* Single hero composite: phones read as floating on hero cream, no card panel */
 .stage {
   --teal-900: #1f4e4a;
   position: relative;
@@ -8,8 +8,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 0 12px;
+  padding: 0;
   overflow: visible;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.ambientRadial {
+  position: absolute;
+  inset: 5% 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(59, 134, 128, 0.2) 0%,
+    rgba(201, 169, 97, 0.1) 48%,
+    transparent 68%
+  );
 }
 
 .ambientBlob {
@@ -35,20 +51,26 @@
   max-width: 680px;
   margin: 0 auto;
   line-height: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
 }
 
 .compositeImg {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 20px 50px -20px rgba(31, 78, 74, 0.25);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
 }
 
 @media (max-width: 899px) {
   .stage {
     min-height: 260px;
-    padding: 0 0 8px;
   }
   .compositeWrap {
     max-width: 520px;

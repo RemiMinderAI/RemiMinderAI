@@ -8,6 +8,7 @@ import heroComposite from "../assets/hero-phones-composite.png";
 const HeroPhoneStage = () => {
   return (
     <div className={styles.stage}>
+      <div className={styles.ambientRadial} aria-hidden="true" />
       <div className={styles.ambientBlob} aria-hidden="true" />
       <div className={styles.compositeWrap}>
         <img
