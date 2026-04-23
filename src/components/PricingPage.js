@@ -61,26 +61,50 @@ const PricingPage = () => {
       setCheckoutLoading(plan);
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        const headers = { "Content-Type": "application/json" };
-        if (session?.access_token) {
-          headers.Authorization = `Bearer ${session.access_token}`;
+        const doFetch = async (includeAuth) => {
+          const headers = { "Content-Type": "application/json" };
+          if (includeAuth && session?.access_token) {
+            headers.Authorization = `Bearer ${session.access_token}`;
+          }
+          return fetch(billingApiPath("/api/create-checkout-session"), {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ plan, billing }),
+          });
+        };
+
+        let res = await doFetch(true);
+        // Stale or invalid JWT returns 401; continue as guest without blocking checkout.
+        if (res.status === 401) {
+          res = await doFetch(false);
         }
-        const res = await fetch(billingApiPath("/api/create-checkout-session"), {
-          method: "POST",
-          headers,
-          body: JSON.stringify({ plan, billing }),
-        });
+
+        const ct = (res.headers.get("content-type") || "").toLowerCase();
+        if (!ct.includes("application/json")) {
+          setCheckoutMessage(
+            "The billing service did not return JSON. Check that this site is deployed with /api routes (e.g. Vercel) and that REACT_APP_BILLING_API_BASE is correct when testing locally."
+          );
+          return;
+        }
+
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
-          setCheckoutMessage(data.error || "Could not start checkout. Please try again.");
-          setCheckoutLoading(null);
+          let msg = data.error || "Could not start checkout. Please try again.";
+          if (res.status === 500 && String(msg).includes("Price not configured")) {
+            msg =
+              "Set STRIPE_FAMILY_MONTHLY_PRICE_ID, STRIPE_FAMILY_YEARLY_PRICE_ID, STRIPE_PREMIUM_MONTHLY_PRICE_ID, and STRIPE_PREMIUM_YEARLY_PRICE_ID in Vercel (Production), then try again.";
+          } else if (res.status === 500 && (msg === "Billing is not configured" || /billing is not configured/i.test(String(msg)))) {
+            msg =
+              "Payments are not configured on the server yet. Add STRIPE_SECRET_KEY in the Vercel project environment (Production), plus the four STRIPE_*_PRICE_ID variables. Save, then redeploy or wait for env to apply.";
+          }
+          setCheckoutMessage(msg);
           return;
         }
         if (data.url) {
           window.location.assign(data.url);
           return;
         }
-        setCheckoutMessage("No checkout URL returned.");
+        setCheckoutMessage("No checkout URL returned. Check Stripe dashboard and server logs.");
       } catch (e) {
         console.error(e);
         setCheckoutMessage("Network error. If you are running locally, use `vercel dev` so /api is available, or set REACT_APP_BILLING_API_BASE.");

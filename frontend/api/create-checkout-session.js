@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
 
   const secret = process.env.STRIPE_SECRET_KEY;
   if (!secret) {
-    console.error("STRIPE_SECRET_KEY is not set");
+    console.error("STRIPE_SECRET_KEY is not set (Vercel: add for Production, Preview, or All Environments as needed)");
     return res.status(500).json({ error: "Billing is not configured" });
   }
 
