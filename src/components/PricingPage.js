@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Check } from "lucide-react";
 import styles from "./PricingPage.module.css";
 import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
 import { supabase } from "../supabaseClient";
-import { billingApiPath } from "../config";
+import { billingApiPath, STRIPE_CHECKOUT_SESSION_STORAGE_KEY } from "../config";
 
 const START_FREE_MAILTO =
   "mailto:team@remiminderai.com?subject=" +
@@ -16,7 +16,6 @@ const START_FREE_MAILTO =
   );
 
 const PricingPage = () => {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [scrolled, setScrolled] = useState(false);
   const [familyBilling, setFamilyBilling] = useState(/** @type {"monthly" | "yearly"} */ ("monthly"));
@@ -32,14 +31,26 @@ const PricingPage = () => {
 
   useEffect(() => {
     const c = searchParams.get("checkout");
+    const sessionId = searchParams.get("session_id");
+    if (sessionId) {
+      try {
+        sessionStorage.setItem(STRIPE_CHECKOUT_SESSION_STORAGE_KEY, sessionId);
+      } catch {
+        // ignore
+      }
+    }
     if (c === "success") {
-      setCheckoutMessage("Your subscription is being confirmed. It may take a moment to show in your account.");
+      setCheckoutMessage(
+        "Your subscription is being confirmed. If you paid as a guest, sign in with the same email to link your plan to your account."
+      );
     } else if (c === "cancel") {
       setCheckoutMessage("Checkout was canceled. You can try again anytime.");
     }
-    if (c) {
-      searchParams.delete("checkout");
-      setSearchParams(searchParams, { replace: true });
+    if (c || sessionId) {
+      const next = new URLSearchParams(searchParams);
+      if (c) next.delete("checkout");
+      if (sessionId) next.delete("session_id");
+      setSearchParams(next, { replace: true });
     }
   }, [searchParams, setSearchParams]);
 
@@ -50,18 +61,13 @@ const PricingPage = () => {
       setCheckoutLoading(plan);
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        if (!session?.access_token) {
-          const next = "/pricing";
-          navigate(`/sign-in?redirect=${encodeURIComponent(next)}`);
-          setCheckoutLoading(null);
-          return;
+        const headers = { "Content-Type": "application/json" };
+        if (session?.access_token) {
+          headers.Authorization = `Bearer ${session.access_token}`;
         }
         const res = await fetch(billingApiPath("/api/create-checkout-session"), {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access_token}`,
-          },
+          headers,
           body: JSON.stringify({ plan, billing }),
         });
         const data = await res.json().catch(() => ({}));
@@ -82,7 +88,7 @@ const PricingPage = () => {
         setCheckoutLoading(null);
       }
     },
-    [familyBilling, premiumBilling, navigate]
+    [familyBilling, premiumBilling]
   );
 
   const freeFeatures = [
@@ -326,8 +332,9 @@ const PricingPage = () => {
         </section>
 
         <p className={styles.billingNote}>
-          Secure payment via Stripe. Subscriptions and receipts are the source of truth. Sign in
-          is required to upgrade. If you are not on an account yet, you can still{" "}
+          Secure payment via Stripe. Subscriptions and receipts are the source of truth. You can
+          check out on this page without signing in first; if you are new, create an account with
+          the same email you use at checkout so we can link your plan. You can also{" "}
           <a href={START_FREE_MAILTO} className={styles.inlineLink}>
             start free
           </a>{" "}

@@ -1,6 +1,6 @@
 const getRawBody = require("raw-body");
 const Stripe = require("stripe");
-const { getSupabaseAdmin } = require("../lib/billing/supabaseAdmin");
+const { getSupabaseAdmin, getAuthUidByEmail } = require("../lib/billing/supabaseAdmin");
 const {
   rowFromSubscription,
   upsertUserBilling,
@@ -84,9 +84,20 @@ async function dispatchStripeEvent(stripe, event) {
       const sub = await stripe.subscriptions.retrieve(
         typeof session.subscription === "string" ? session.subscription : session.subscription.id
       );
-      const userId = session.metadata && session.metadata.userId ? session.metadata.userId : session.client_reference_id;
+      const metaId = session.metadata && session.metadata.userId;
+      const refId = session.client_reference_id;
+      const emailFromSession =
+        (session.customer_details && session.customer_details.email) ||
+        session.customer_email;
+      let userId = metaId || refId;
+      if (!userId && emailFromSession) {
+        userId = await getAuthUidByEmail(emailFromSession);
+      }
       if (!userId) {
-        console.error("checkout.session.completed: missing userId");
+        console.info(
+          "checkout.session.completed: no app user (guest or new email; link on sign-in via claim-checkout-session):",
+          session.id
+        );
         return;
       }
       const customerId = typeof session.customer === "string" ? session.customer : session.customer && session.customer.id;

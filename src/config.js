@@ -31,3 +31,6 @@ export function billingApiPath(path) {
   const b = getBillingApiBase();
   return b ? `${b}${p}` : p;
 }
+
+/** sessionStorage key for Stripe return URL `session_id` (guest link-after-sign-in) */
+export const STRIPE_CHECKOUT_SESSION_STORAGE_KEY = "stripe_pending_checkout_session";

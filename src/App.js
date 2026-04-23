@@ -46,12 +46,14 @@ import ContactModal from "./components/ContactModal";
 import MailingListModal from "./components/MailingListModal";
 import FeedbackWidget from "./components/FeedbackWidget";
 import { MailingListProvider } from "./context/MailingListContext";
+import StripeCheckoutClaim from "./components/StripeCheckoutClaim";
 
 function App() {
   return (
     <Router>
       <AnnouncementBar />
       <MailingListProvider>
+        <StripeCheckoutClaim />
         <ScrollToTop />
         <ContactModal />
         <MailingListModal />
