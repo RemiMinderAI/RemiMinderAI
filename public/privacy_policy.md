@@ -1,20 +1,50 @@
-﻿_Privacy Policy — Effective Date: April 20th, 2026. Last Updated: April 20th, 2026._
+﻿# Privacy Policy
+
+**Effective Date:** May 10, 2026
+**Last Updated:** May 10, 2026
 
 ## 1. Introduction
 
-RemiMinderAI ("RemiMinderAI," "we," "us," or "our") is a HIPAA Compliant digital health platform that helps patients and caregivers capture, organize, and coordinate health information. This Privacy Policy explains what information we collect, how we use it, how we protect it, and the rights you have regarding your information.
+RemiMinderAI ("RemiMinderAI," "we," "us," or "our") is a personal recorder and reminder app designed for older adults managing their own healthcare. Think of it like using a voice recorder during a doctor visit — except the recording happens inside the app with the doctor's consent, and the app helps turn it into a plain-language summary you can refer back to later.
 
-This policy applies to the RemiMinderAI mobile application, website at remiminderai.com, and related services (collectively, the "Services").
+**What RemiMinderAI does:**
+- Records your conversation with your doctor, with your doctor's consent
+- Translates medical jargon from the visit into simpler, easier-to-understand language
+- Helps you remember what medications your doctor mentioned and when to take them
+- Reminds you about upcoming appointments and medication times
 
-By using our Services, you agree to the practices described in this policy. If you do not agree, please do not use the Services.
+**What RemiMinderAI does not do:**
+- We don't give medical advice
+- We don't recommend medications, dosages, treatments, or care plans
+- We don't diagnose conditions
+- We don't replace anything your doctor, nurse, or pharmacist tells you
 
-## 2. Who Can Use RemiMinderAI
+Everything in the app comes from what your doctor said during the visit — we just help you remember it more clearly. If you have questions about your care, ask your doctor.
 
-- **Patients:** You must be at least 13 years old to create a patient account. If you are under 18, a parent or legal guardian must provide consent and accept these terms on your behalf.
-- **Caregivers:** You must be at least 18 years old to create a caregiver account.
-- **Geographic scope:** The Services are intended for individuals located in the United States. If you are outside the United States, please do not use the Services.
+The patient owns the account. You decide:
 
-We do not knowingly collect personal information from children under 13. If we learn we have collected information from a child under 13, we will delete it promptly.
+- Whether to record a visit (your doctor consents first)
+- What to do with the recording afterward
+- Whether to invite a trusted family member as a caregiver who can help you keep track of medications and appointments
+
+This Privacy Policy explains what information we collect, how we use it, how we protect it, and the rights you have. It applies to the RemiMinderAI mobile application, our website at remiminderai.com, and related services (collectively, the "Services").
+
+By using the Services, you agree to the practices described here. If you don't agree, please don't use the Services.
+
+**A note on what we don't do with your information:**
+- We don't sell your data.
+- We don't show ads.
+- We don't track you across other apps or websites.
+- We don't share your information with insurance companies, employers, advertisers, or other third parties.
+- We don't ask for your medical record number, date of birth, Social Security number, or insurance information.
+
+Your doctor visit is between you and your doctor. We help you keep a record of it. That's all.
+
+## 2. Who the Services Are For
+
+RemiMinderAI is designed for adults — older adults managing their own healthcare, and the family members or friends who help them. The Services are not intended for or directed to children.
+
+**Geographic scope:** The Services are intended for individuals located in the United States. If you are outside the United States, please don't use the Services.
 
 ## 3. Information We Collect
 
@@ -24,32 +54,45 @@ When you create an account, we collect:
 
 - Full name
 - Email address
-- Password (stored in hashed, encrypted form via Firebase Authentication)
-- Date of birth (used to verify minimum age requirements)
+- Password (stored in hashed, encrypted form via Firebase Authentication, or handled entirely by Google when you sign in with Google)
+- Phone number (optional)
 - Profile photo (optional)
 
-### 3.2 Health Information (Protected Health Information / PHI)
+We don't collect your date of birth, medical record number, or Social Security number.
 
-To provide our core services, we collect health-related information, including:
+### 3.2 Health Information You Choose to Capture
 
-- Audio recordings of medical visits or health-related conversations that you choose to record
-- Transcripts generated from those recordings
-- Structured health data extracted from transcripts and documents, including medications, diagnoses, symptoms, allergies, and care plans
-- Photos or scans of prescriptions, lab results, and other medical documents
-- Appointment details and healthcare provider information you enter
-- Medication schedules, adherence data, and reminders
+To provide the core Services, we process health-related information that you actively choose to capture in the app. The recording feature captures the conversation between you and your doctor — no third party is involved, and we don't share recordings with insurance companies, employers, advertisers, or anyone outside the small set of service providers listed in Section 5.2.
+
+What we may handle, based on what you choose to record or enter:
+
+- **Audio recordings** of your doctor visits, captured by you in the app with your doctor's consent.
+- **Transcripts** generated from those recordings.
+- **Plain-language summaries** of recordings — we translate medical jargon from what your doctor said into easier-to-understand language and organize it into medications mentioned, next steps, and questions for follow-up. The summary reflects what your doctor said. We do not add medical advice, recommendations, or interpretations of our own.
+- **Information parsed from prescription scans** — if you choose to use the optional prescription scan feature, the app's camera reads the prescription and extracts the medication name, dosage, and instructions as text. The image itself is not retained.
+- **Appointment details and doctor information** you enter manually.
+- **Medication names and schedules** that appear in your personal dashboard, drawn from your prescriptions and recordings. This list is for your reference inside the app — we don't share medication names externally.
+- **Reminders** for medications and appointments, set up by you or your invited caregiver.
+
+You decide what to record, what to scan, and what to share. Scanning is always optional. You cannot upload files into the app, and you cannot download recordings or summaries out of the app. You can delete reminders inside the app at any time, and you can delete your account (which removes your associated recordings and summaries) by contacting us as described in Section 9.
+
+**A note on AI-generated content:**
+
+The summaries and parsed medication information in the app are generated by AI based on what was said in your doctor visit or what appears on your prescription. AI can occasionally miss details, hear words incorrectly, or summarize something in a way that doesn't capture the full meaning. The summary is meant to help you remember the visit, not to replace your doctor's instructions. If a summary doesn't match what you remember your doctor saying, trust your doctor — and ask them to clarify if needed.
 
 ### 3.3 Caregiver and Access Information
 
-If you use caregiver features, we collect:
+If you (the patient) choose to invite a family member or trusted friend as a caregiver, we record:
 
-- Links between patient and caregiver accounts
-- Permission levels and access scopes granted by patients
+- Links between your account and the caregiver's account
+- Permission levels you grant the caregiver
 - History of access grants and revocations
+
+The patient owns the account and always controls whether to grant or revoke caregiver access. Caregivers do not have independent accounts that can access your data without your explicit invitation.
 
 ### 3.4 Device and Technical Information
 
-To operate and improve the app, we collect:
+To operate and improve the Services, we collect:
 
 - Device type, model, and operating system version
 - Application version
@@ -57,41 +100,46 @@ To operate and improve the app, we collect:
 - Crash logs and error reports
 - Notification and push-token identifiers (for delivering reminders)
 
-### 3.5 Information We Do Not Collect
+### 3.5 Information We Don't Collect
 
-We do not currently use third-party analytics or advertising trackers in the application. We do not collect browsing history outside our Services, and we do not track you across other apps or websites.
+We don't use third-party analytics or advertising trackers in the app. We don't collect browsing history outside our Services. We don't track you across other apps or websites.
 
 ## 4. How We Use Your Information
 
-We use the information we collect to:
+We use the information we collect only to:
 
-- Provide the core functionality of the Services (recording, transcribing, organizing, and sharing your health information)
-- Generate AI-powered health summaries, medication reminders, and care plans using Google Vertex AI
+- Provide the core functionality of the Services (recording, transcribing, organizing, and reminding)
+- Generate AI-powered summaries, medication reminders, and follow-up suggestions using Google Vertex AI
 - Authenticate your account and maintain security
 - Deliver notifications and reminders
 - Respond to your questions and support requests
 - Detect, investigate, and prevent fraud, abuse, or unauthorized access
 - Comply with legal obligations
-- Improve the Services (using only de-identified or aggregated data, never identifiable PHI, unless you explicitly opt in)
+- Improve the Services using only de-identified or aggregated data, never identifiable health information, unless you explicitly opt in
 
-We do not use your Protected Health Information for advertising, marketing to third parties, or sale.
+We don't use your health information for advertising, marketing to third parties, or sale.
 
 ## 5. How We Share Your Information
 
-We share your information only in the following limited circumstances:
+We share your information only in the limited circumstances described below.
 
 ### 5.1 With People You Authorize
 
-- **Caregivers:** You control whether to grant caregivers full or partial access to your health information. You can modify or revoke that access at any time through the app.
+You (the patient) control whether to invite a family member or trusted friend as a caregiver. If you do, you can share with them:
 
-### 5.2 With Service Providers (HIPAA Business Associates)
+- Plain-language summaries of your visits
+- Medication and appointment reminders
 
-We use trusted service providers to operate the Services. These providers are bound by HIPAA Business Associate Agreements (BAAs) where they process Protected Health Information:
+You can modify or revoke caregiver access at any time through the app. Audio recordings remain with you unless you specifically choose to share them.
 
-- **Google Cloud Platform** (including Vertex AI, Cloud Run, Cloud SQL, Cloud Storage, Firebase Authentication) — cloud hosting, AI processing, authentication, and storage
-- **Vercel** — website hosting (no PHI is stored on Vercel)
+### 5.2 With Trusted Service Providers
 
-Each Business Associate is contractually required to protect your information and use it only for the purposes we specify.
+We use a small number of trusted service providers to operate the Services. Where these providers process health information on our behalf, they are bound by Business Associate Agreements (BAAs) consistent with HIPAA standards:
+
+- **Google Cloud Platform** (including Vertex AI, Cloud Run, Cloud SQL, Cloud Storage, Firebase Authentication) — cloud hosting, AI processing, authentication, and storage. We operate under a signed Business Associate Agreement with Google Cloud.
+- **Vercel** — website hosting. No health information is stored on Vercel.
+
+Each service provider is contractually required to protect your information and use it only for the purposes we specify.
 
 ### 5.3 For Legal Reasons
 
@@ -105,16 +153,17 @@ If RemiMinderAI is involved in a merger, acquisition, financing, or sale of asse
 
 We will share your information in any other way only with your explicit consent.
 
-## 6. HIPAA Compliance
+## 6. How We Handle Health Information
 
-RemiMinderAI operates as a HIPAA Compliant platform.
+While RemiMinderAI is a consumer app and not itself a HIPAA "Covered Entity," we handle health information with care:
 
-- We have a signed Business Associate Agreement (BAA) with Google Cloud covering all HIPAA-eligible services we use.
-- Our AI processing runs on Google Vertex AI, a HIPAA-eligible Google Cloud service.
-- Protected Health Information is encrypted at rest and in transit using industry-standard TLS.
-- Access controls and audit logs are maintained in accordance with HIPAA's technical safeguards.
+- Our cloud infrastructure provider (Google Cloud) is covered by a signed Business Associate Agreement.
+- Our AI processing runs on Google Vertex AI, which is HIPAA-eligible.
+- Health information is encrypted at rest (Google Cloud Storage) and in transit (TLS).
+- Access controls and audit logs are maintained consistent with HIPAA technical safeguards.
+- We collect only what's needed to provide the Services, and we don't ask for medical record numbers, dates of birth, or Social Security numbers.
 
-If you believe your Protected Health Information has been used or disclosed in violation of HIPAA, please contact us at **team@remiminderai.com**. You may also file a complaint with the U.S. Department of Health and Human Services, Office for Civil Rights.
+If you believe your health information has been mishandled, please contact us at team@remiminderai.com.
 
 ## 7. How We Protect Your Information
 
@@ -138,10 +187,11 @@ Backups and archival copies may persist for a limited period after deletion in a
 
 ### 9.1 All Users
 
-- **Access:** You can view your health information and account data within the app.
+- **Access:** You can view your information within the app.
 - **Update:** You can update your profile information at any time.
-- **Access control:** You can grant, modify, or revoke caregiver access at any time.
-- **Account deletion:** You can request account deletion by emailing **team@remiminderai.com**.
+- **Delete reminders:** You can delete reminders directly in the app at any time.
+- **Caregiver access:** You can invite, modify, or revoke caregiver access at any time.
+- **Account deletion:** You can request account deletion by emailing team@remiminderai.com. Account deletion removes your recordings, summaries, and associated information from the active app, subject to the backup and retention provisions in Section 8.
 
 ### 9.2 California Residents (CCPA/CPRA)
 
@@ -150,29 +200,29 @@ If you are a California resident, you have additional rights under the Californi
 - The right to know what personal information we collect, use, and disclose
 - The right to request deletion of your personal information
 - The right to correct inaccurate personal information
-- The right to opt out of the sale or sharing of personal information (we do not sell or share personal information)
+- The right to opt out of the sale or sharing of personal information (we don't sell or share personal information)
 - The right to limit the use of sensitive personal information
 - The right to non-discrimination for exercising your privacy rights
 
-To exercise these rights, email **team@remiminderai.com**. We will verify your identity before fulfilling your request.
+To exercise these rights, email team@remiminderai.com. We will verify your identity before fulfilling your request.
 
 ### 9.3 Other US State Privacy Laws
 
-Residents of other US states with comprehensive privacy laws (including but not limited to Virginia, Colorado, Connecticut, Utah, and Texas) may have similar rights. Contact us at **team@remiminderai.com** to exercise those rights.
+Residents of other US states with comprehensive privacy laws (including Virginia, Colorado, Connecticut, Utah, and Texas) may have similar rights. Contact us at team@remiminderai.com to exercise those rights.
 
 ## 10. Children's Privacy
 
-Our Services are not intended for children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child under 13 has provided us with information, contact us at **team@remiminderai.com** and we will delete it.
+RemiMinderAI is designed for adults and is not intended for or directed to children under 13. We don't knowingly collect personal information from children under 13.
 
-For users between 13 and 17, a parent or legal guardian must provide consent before the account is created. We will honor parental requests to review, update, or delete their minor child's information.
+If you are a parent or guardian and believe your child under 13 has provided us with information, contact us at team@remiminderai.com and we will delete it promptly.
 
 ## 11. International Users
 
-The Services are intended for users located in the United States. We do not currently comply with the European Union General Data Protection Regulation (GDPR), India's Digital Personal Data Protection Act, or similar international frameworks. If you are located outside the United States, please do not use the Services.
+The Services are intended for users located in the United States. We don't currently comply with the European Union General Data Protection Regulation (GDPR), India's Digital Personal Data Protection Act, or similar international frameworks. If you are located outside the United States, please don't use the Services.
 
 ## 12. Third-Party Links
 
-Our Services may link to third-party websites or services. We are not responsible for the privacy practices of those third parties. Review their privacy policies before providing any information.
+The Services may link to third-party websites or services. We aren't responsible for the privacy practices of those third parties. Review their privacy policies before providing any information.
 
 ## 13. Changes to This Policy
 
@@ -182,10 +232,12 @@ We may update this Privacy Policy from time to time. When we do, we will update 
 
 If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, contact us at:
 
-**RemiMinderAI**  
-Email: **team@remiminderai.com**  
+**RemiMinderAI**
+Email: team@remiminderai.com
 Location: Hollister, California, USA
 
 A specific postal mailing address is available upon written request to the email above.
 
-This Privacy Policy is provided for informational purposes. It does not constitute legal advice. RemiMinderAI recommends users consult with qualified legal counsel for specific questions about their rights under HIPAA, state privacy laws, or other applicable regulations.
+---
+
+*This Privacy Policy is provided for informational purposes. It does not constitute legal advice. RemiMinderAI recommends users consult with qualified legal counsel for specific questions about their rights under HIPAA, state privacy laws, or other applicable regulations.*
