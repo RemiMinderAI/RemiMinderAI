@@ -23,7 +23,6 @@ const LandingPage = () => {
 
   const { open: openMailingList } = useMailingList();
   const location = useLocation();
-  const [showVideo, setShowVideo] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [flashArmed, setFlashArmed] = useState(false);
@@ -237,29 +236,21 @@ const LandingPage = () => {
             <div className={styles.ctaPreviewBox}>
               <div className={styles.previewRow}>
                 <CheckCircle2 size={15} className={styles.previewIcon} />
-                <span><strong>Medication:</strong> Metformin — 8:00 AM daily</span>
+                <span><strong>Medication:</strong> No new medication prescribed</span>
               </div>
               <div className={styles.previewRow}>
                 <CheckCircle2 size={15} className={styles.previewIcon} />
-                <span><strong>Follow-up:</strong> Tuesday 10:30 AM with Dr. Patel</span>
+                <span><strong>Follow-up:</strong> Six-month checkup with Dr. Patel in November</span>
               </div>
               <div className={styles.previewRow}>
                 <CheckCircle2 size={15} className={styles.previewIcon} />
-                <span><strong>Summary:</strong> 3 key care instructions captured</span>
+                <span><strong>Summary:</strong> Plain-language summary of Margaret&apos;s visit with Dr. Patel</span>
               </div>
               <div className={styles.previewRow}>
                 <CheckCircle2 size={15} className={styles.previewIcon} />
                 <span><strong>Shared with:</strong> Caregiver notified automatically</span>
               </div>
             </div>
-
-            <button
-              className={styles.demoButton}
-              onClick={() => setShowVideo(true)}
-            >
-              <Play size={16} />
-              Watch Demo
-            </button>
           </div>
 
           {/* RIGHT: CTA Stack */}
@@ -426,25 +417,6 @@ const LandingPage = () => {
 
       <TestimonialsSection />
       <SiteFooter />
-
-      {/* ── VIDEO MODAL ── */}
-      {showVideo && (
-        <div className={styles.videoOverlay} onClick={() => setShowVideo(false)}>
-          <div className={styles.videoModal} onClick={e => e.stopPropagation()}>
-            <button className={styles.videoCloseBtn} onClick={() => setShowVideo(false)}>✕</button>
-            <div className={styles.videoWrapper}>
-              <iframe
-                src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
-                title="RemiMinder Demo"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className={styles.videoIframe}
-              />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ── INTERACTIVE DEMO OVERLAY ── */}
       {showDemo && (

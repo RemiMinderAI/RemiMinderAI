@@ -7,7 +7,6 @@ import API_BASE_URL from '../config';
 
 export default function ProductDemo() {
   const [stage, setStage] = useState("cover");
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [timer, setTimer] = useState(0);
   const handleTryNow = () => setStage("ready");
   const navigate = useNavigate();
@@ -66,7 +65,7 @@ export default function ProductDemo() {
   const formatTime = (t) =>
     `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 
-  const fullTranscription = `Hi, Ursula. I understand you've been having some knee pain. Can you tell me when it started and what makes it worse? Yes, it started about two weeks ago. It hurts most when I climb stairs or get up from a chair. That sounds like mild inflammation, possibly early arthritis or overuse. Does it swell or feel warm after activity? A little bit, yes, and it feels stiff in the mornings. All right, I recommend taking an anti-inflammatory like ibuprofen, using a knee brace when you're walking, and avoiding stairs when possible. Apply ice twice a day for 15 minutes. If it doesn't improve in a week, we'll schedule an x-ray. OK, thank you, doctor. I'll try that. You're welcome, Ursula. Take care and rest that knee.`;
+  const fullTranscription = `Hi, Margaret. How have you been feeling since your last visit? Hello, Dr. Patel. I've been doing okay, but I'm getting more tired in the afternoons than usual. Tell me about that. When does the tiredness start, and how long does it last? Around two or three in the afternoon. I usually need to sit down for an hour. It's been going on for about a month now. Have you been sleeping well at night? Most nights, yes. I go to bed around ten and wake up around six. And how about your appetite and water intake during the day? My appetite is fine. Water — I probably don't drink enough. Maybe three or four glasses a day. That could be part of it. For someone your age, eight glasses a day is a good target. Try keeping a water bottle nearby and sipping throughout the morning. I can try that. Should I be worried about something more serious? Based on what you're telling me, I don't see signs of anything serious. The afternoon tiredness with low water intake is a common pattern. Let's give the water habit two weeks and see if you feel better. What if it doesn't help? If you still feel tired after two weeks of more water, give us a call and we'll schedule some routine blood work just to rule things out. That sounds good. Anything else I should do? Keep up your morning walks. Try to get outside for at least twenty minutes a day. Sunlight in the morning helps with energy levels too. Okay, I'll do that. Thank you, Dr. Patel. You're welcome, Margaret. I'll see you at your six-month checkup in November. Take care.`;
 
   // Split into sentences (regex keeps punctuation at the end)
   const transcriptionSentences = fullTranscription.match(/[^.!?]+[.!?]+/g) || [];
@@ -76,18 +75,6 @@ export default function ProductDemo() {
 
   // Format date nicely (e.g. "Thursday, November 6, 2025")
   const formattedToday = today.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  // Add 7 days
-  const xrayDate = new Date(today);
-  xrayDate.setDate(today.getDate() + 7);
-
-  // Format that one too
-  const formattedXrayDate = xrayDate.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -121,39 +108,11 @@ export default function ProductDemo() {
     
   return (
     <div className={styles.container}>
-      {isVideoOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <button
-              className={styles.closeButton}
-              onClick={() => setIsVideoOpen(false)}
-            >
-              ✕
-            </button>
-            <iframe
-              width="100%"
-              height="400"
-              src="https://www.youtube.com/embed/dVbArw-WjwA?autoplay=1"
-              title="Demo Video"
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
-
       {stage === "cover" && (
         <div className={styles.coverScreen}>
           <h2>RemiMinder Demo</h2>
           <p>See how easy it is to record and summarize your visits.</p>
           <div className={styles.actions}>
-            <button
-              className={styles.buttonSecondary}
-              onClick={() => setIsVideoOpen(true)}
-            >
-              Demo Video
-            </button>
             <button className={styles.buttonPrimary} onClick={handleTryNow}>
             Try Now
             </button>
@@ -231,7 +190,7 @@ export default function ProductDemo() {
           <div className={styles.summaryBlock}>
             <h4><FiCheck /> AI Summary</h4>
             <p>
-              The patient presented with knee pain that started about two weeks ago, experiencing discomfort when climbing stairs, getting up from a chair, and noting morning stiffness with occasional swelling. The doctor suggested these symptoms might be due to mild inflammation, possibly early arthritis or overuse. The doctor recommended taking an anti-inflammatory medication like ibuprofen, using a knee brace when walking, avoiding stairs when possible, and applying ice to the knee twice daily.
+              Dr. Patel asked Margaret about her afternoon tiredness, which has been happening for about a month. He noticed that Margaret only drinks three or four glasses of water a day and suggested she try eight glasses a day instead. He recommended keeping a water bottle nearby and sipping throughout the morning. He also encouraged Margaret to continue her morning walks and get at least twenty minutes of sunlight outside each day. If the tiredness doesn't improve after two weeks of drinking more water, Margaret should call the office to schedule routine blood work. Her next checkup is at the six-month mark in November.
             </p>
 
             <h4><FiFileText /> Full Transcription</h4>
@@ -243,7 +202,7 @@ export default function ProductDemo() {
 
             <h4><FiClock /> Auto-Generated Reminders</h4>
             <div className={styles.remindersList}>
-              <p>Schedule an X-ray on or after {formattedXrayDate}</p>
+              <p>Try drinking 8 glasses of water daily — check back in 2 weeks if tiredness persists</p>
             </div>
           </div>
 
@@ -254,12 +213,6 @@ export default function ProductDemo() {
           </div>
 
           <div className={styles.demoFooter}>
-            <button
-                onClick={() => setStage("cover")}
-                className={styles.restartButton}
-            >
-                Restart Demo
-            </button>
             <button onClick={handleSignup} className={styles.signupButton}>
                 Try Your Own Voice Note →
             </button>

@@ -234,9 +234,6 @@ If you have questions, concerns, or requests regarding this Privacy Policy or ou
 
 **RemiMinderAI**
 Email: team@remiminderai.com
-Location: Hollister, California, USA
-
-A specific postal mailing address is available upon written request to the email above.
 
 ---
 
