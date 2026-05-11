@@ -245,7 +245,7 @@ export default function CaregiverSettings({ onBack, onLogout, role = "caregiver"
           </button>
         </div>
 
-        <div className={styles.versionText}>Version 1.0.0 • HIPAA Compliant</div>
+        <div className={styles.versionText}>Version 1.0.0</div>
       </div>
     </div>
   );

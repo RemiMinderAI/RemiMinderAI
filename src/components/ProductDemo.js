@@ -165,7 +165,7 @@ export default function ProductDemo() {
       <div className={styles.header}>
         <h2>RemiMinder Demo</h2>
         <p className={styles.demoNote}>
-          This demo uses a sample audio recording to protect privacy and remain HIPAA-compliant. 
+          Uses a sample recording — your real conversations stay private.
           Your voice is not recorded — this simulation is for demonstration purposes only.
         </p>
       </div>

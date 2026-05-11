@@ -121,7 +121,7 @@ const PricingPage = () => {
     "AI summaries and transcripts",
     "Basic medication reminders",
     "30-day recording history",
-    "HIPAA-compliant and encrypted",
+    "Encrypted & Private",
   ];
 
   const familyFeatures = [
@@ -371,7 +371,7 @@ const PricingPage = () => {
               <span className={styles.trustCheckWrap} aria-hidden="true">
                 <Check className={styles.trustCheckIcon} size={14} strokeWidth={3} />
               </span>
-              <span className={styles.trustText}>HIPAA Compliant</span>
+              <span className={styles.trustText}>Encrypted & Private</span>
             </div>
             <div className={styles.trustItem}>
               <span className={styles.trustCheckWrap} aria-hidden="true">

@@ -82,7 +82,7 @@ export default function SiteFooter() {
           <div className={styles.badges}>
             <span className={styles.badgeItem}>
               <span className={styles.badgeDot} aria-hidden="true" />
-              <span>HIPAA Compliant</span>
+              <span>Encrypted & Private</span>
             </span>
             <span className={styles.badgeItem}>
               <span className={styles.badgeDot} aria-hidden="true" />

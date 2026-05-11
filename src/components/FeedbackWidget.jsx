@@ -11,7 +11,6 @@ const MAX_MSG = 2000;
 const ROLES = [
   { id: "patient", label: "Patient" },
   { id: "caregiver", label: "Caregiver" },
-  { id: "clinician", label: "Clinician" },
   { id: "curious", label: "Just curious" },
 ];
 

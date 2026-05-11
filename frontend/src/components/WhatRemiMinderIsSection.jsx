@@ -44,14 +44,12 @@ const WhatRemiMinderIsSection = () => {
             <div className={styles.audienceIconGold} aria-hidden="true">
               <Stethoscope size={26} strokeWidth={1.8} />
             </div>
-            <p className={styles.audienceLabel}>For doctors</p>
+            <p className={styles.audienceLabel}>To share with your doctor</p>
             <h3 className={styles.audienceHeading}>
-              Keep an accurate record of what you actually said.
+              A clear record of what your doctor said.
             </h3>
             <p className={styles.audienceBody}>
-              No manual notes. No workflow change. Just speak, and we handle the rest.
-              Prescriptions scan cleanly, and you have verified documentation of every
-              care instruction given.
+              No extra work during the visit. A clear record of what was discussed, ready to share with family or your doctor's office if needed.
             </p>
           </div>
         </div>

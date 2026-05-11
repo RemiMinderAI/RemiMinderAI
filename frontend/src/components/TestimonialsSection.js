@@ -4,12 +4,6 @@ import styles from "./TestimonialsSection.module.css";
 const TESTIMONIALS = [
   {
     quote:
-      "I can use this to record my conversations with patients and generate summaries, saving me 1-2 hours of documentation time every day.",
-    role: "Pediatrician",
-    location: "California",
-  },
-  {
-    quote:
       "I live far from my dad, who has early-stage dementia and Parkinson's. I never know what his doctor tells him, and he forgets his medications, which is making his health worse. With RemiMinderAI, I can finally see what his doctor said and remind him to take his meds on time.",
     role: "Daughter caring for her father, long-distance",
     location: "California",

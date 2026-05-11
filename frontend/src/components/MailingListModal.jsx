@@ -16,8 +16,6 @@ import styles from "./MailingListModal.module.css";
 const ROLES = [
   { value: "patient", label: "Patient" },
   { value: "family_caregiver", label: "Family Caregiver" },
-  { value: "clinician", label: "Clinician" },
-  { value: "healthcare_admin", label: "Healthcare Admin" },
   { value: "other", label: "Other" },
 ];
 

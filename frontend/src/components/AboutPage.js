@@ -52,14 +52,15 @@ const AboutPage = () => {
     {
       id: "sec",
       name: "Security & Compliance",
-      bio: "Firebase Auth for secure identity management and Google Cloud Storage for encrypted PHI. We operate under a signed BAA with Google Cloud, with AI workloads running on HIPAA-eligible Vertex AI.",
+      bio: "RemiMinderAI is built on Google Cloud's secure infrastructure with enterprise-grade encryption. We collect only the minimum information needed to use the app — your name, optional phone number, and email. We never ask for medical record numbers, dates of birth, or social security numbers. Recordings belong to you, and you choose whether to share them with a family caregiver.",
     },
   ];
 
   const dataControlItems = [
-    "HIPAA Compliant. We operate under a signed Business Associate Agreement (BAA) with Google Cloud, and our AI processing runs on Vertex AI — a HIPAA-eligible Google Cloud service. Protected Health Information (PHI) is encrypted at rest and in transit using industry-standard TLS.",
-    "Identity & access. Authentication is handled by Firebase Auth with role-based access controls.",
-    "Data residency. All patient data is stored in Google Cloud infrastructure in the United States.",
+    "Encrypted. Recordings and summaries are encrypted in storage and in transit.",
+    "Yours to share. You control whether to share with a caregiver.",
+    "Minimal data. We don't ask for medical record numbers, dates of birth, or SSNs.",
+    "Sign in with Google. No separate password to manage.",
     "No selling, no ads. We don't sell user data. We don't serve ads. Our business model is the product, not the people using it.",
     "You control who sees what. Patients can grant full or partial access to caregivers and revoke it at any time. You decide what's shared, with whom, and for how long.",
   ];
@@ -68,7 +69,7 @@ const AboutPage = () => {
     "Q2 2026 — External beta opens to waitlist (Android first)",
     "Q3 2026 — iOS release and caregiver web dashboard",
     "Q4 2026 — Care team collaboration features, provider integrations",
-    "2027 — Expanded clinical partnerships and multi-language support",
+    "2027 — Caregiver community partnerships and multi-language support",
   ];
 
   const companyLines = [

@@ -81,7 +81,7 @@ const PatientConsent = () => {
             <div className={styles.agreementScroll}>
               <h5>1. Introduction</h5>
               <p>
-                This agreement outlines the terms and conditions for using RemiMinder’s telehealth platform. By accepting
+                This agreement outlines the terms and conditions for using RemiMinder’s personal health organizer. By accepting
                 these terms, you acknowledge that you have read, understood, and agree to be bound by this agreement.
               </p>
 

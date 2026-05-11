@@ -79,7 +79,7 @@ const Consent = () => {
             <div className={styles.agreementScroll}>
               <h5>1. Introduction</h5>
               <p>
-                This agreement outlines the terms for caregivers using RemiMinder’s telehealth platform. By accepting, you acknowledge and agree to these terms.
+                This agreement outlines the terms for caregivers using RemiMinder’s personal health organizer. By accepting, you acknowledge and agree to these terms.
               </p>
 
               <h5>2. HIPAA Compliance</h5>
@@ -104,7 +104,7 @@ const Consent = () => {
 
               <h5>6. Liability and Limitations</h5>
               <p>
-                RemiMinder provides caregiver access as a communication tool. It is not a substitute for professional medical systems or clinical judgment.
+                RemiMinder provides caregiver access as a communication tool. It is not a substitute for professional medical systems or professional medical advice.
               </p>
 
               <h5>7. Data Retention and Termination</h5>

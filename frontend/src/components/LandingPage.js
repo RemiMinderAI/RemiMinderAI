@@ -186,7 +186,7 @@ const LandingPage = () => {
               <div className={`${styles.hero2TrustRow} ${styles.heroAnimTrust}`}>
                 <div className={styles.hero2TrustItem}>
                   <Lock size={14} strokeWidth={2.5} aria-hidden="true" />
-                  <span>HIPAA Compliant</span>
+                  <span>Encrypted & Private</span>
                 </div>
                 <div className={styles.hero2TrustItem}>
                   <Shield size={14} strokeWidth={2.5} aria-hidden="true" />
@@ -274,7 +274,7 @@ const LandingPage = () => {
                 { text: "No missed medications", icon: <CheckCircle2 size={18} /> },
                 { text: "Clear visit summaries", icon: <CheckCircle2 size={18} /> },
                 { text: "Caregiver alignment", icon: <CheckCircle2 size={18} /> },
-                { text: "HIPAA compliant", icon: <CheckCircle2 size={18} /> },
+                { text: "Encrypted and private — no personal health information required", icon: <CheckCircle2 size={18} /> },
               ].map((f, i) => (
                 <div key={i} className={styles.ctaFeaturesCardItem}>
                   <span className={styles.ctaFeaturesCardIcon}>{f.icon}</span>
