@@ -55,6 +55,7 @@ export default function SiteFooter() {
             <a href="/#how-it-works">How It Works</a>
             <Link to="/pricing">Pricing</Link>
             <a href="/#demo">Demo</a>
+            <Link to="/support">Support</Link>
           </nav>
 
           <nav className={styles.navCol} aria-label="Company">

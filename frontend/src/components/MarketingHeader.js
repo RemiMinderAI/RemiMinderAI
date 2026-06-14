@@ -117,6 +117,9 @@ export default function MarketingHeader({
           <NavLink to="/about" className={navClass}>
             About
           </NavLink>
+          <NavLink to="/support" className={navClass}>
+            Support
+          </NavLink>
         </nav>
 
         {showMailingList && (
@@ -179,6 +182,9 @@ export default function MarketingHeader({
             </NavLink>
             <NavLink to="/about" className={navClass} onClick={closeMenu}>
               About
+            </NavLink>
+            <NavLink to="/support" className={navClass} onClick={closeMenu}>
+              Support
             </NavLink>
           </div>
           {showMailingList && (
