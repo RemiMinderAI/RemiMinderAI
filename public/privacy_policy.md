@@ -1,7 +1,7 @@
 ﻿# Privacy Policy
 
 **Effective Date:** May 10, 2026
-**Last Updated:** May 10, 2026
+**Last Updated:** June 24, 2026
 
 ## 1. Introduction
 
@@ -36,7 +36,7 @@ By using the Services, you agree to the practices described here. If you don't a
 - We don't show ads.
 - We don't track you across other apps or websites.
 - We don't share your information with insurance companies, employers, advertisers, data brokers, or other third parties.
-- We don't ask for your medical record number, date of birth, Social Security number, or insurance information.
+- We don't ask for your medical record number, Social Security number, or insurance information.
 
 Your doctor visit is between you and your doctor. We help you keep a record of it. That's all.
 
@@ -50,19 +50,22 @@ RemiMinderAI is designed for adults — older adults managing their own healthca
 
 We collect only the minimum information necessary to provide the Services. We do not collect information beyond what is described in this section, and we do not collect information for any purpose not disclosed in this policy.
 
-### 3.1 Account Information
+### 3.1 Account and Profile Information
 
 When you create an account (whether as a patient or as a caregiver), we collect:
 
 - Full name
 - Email address
 - Password (stored in hashed, encrypted form via Firebase Authentication, or handled entirely by your sign-in provider when you sign in with Google or Apple)
-- Phone number (optional)
-- Profile photo (optional)
+- Phone number
+- Date of birth (patients only)
+- Gender (optional)
+- Profile photo (optional, if you choose to add one)
+- Health notes or other profile notes you choose to enter (optional)
 
 Caregivers create their own accounts after accepting an invitation from a patient. The caregiver's account is separate from the patient's account. The patient controls what the caregiver can access.
 
-We don't collect your date of birth, medical record number, or Social Security number.
+We don't collect your medical record number, Social Security number, or insurance information.
 
 **Sign in with Apple:** If you choose to sign in with Apple, you may elect to hide your email address using Apple's private email relay service. In that case, we will receive a relay email address rather than your personal email address. This relay address is sufficient for us to deliver invitations, password resets, and account notifications. We do not attempt to identify or contact you outside the relay address you provide.
 
@@ -79,8 +82,9 @@ What we may handle, based on what you choose to record or enter:
 - **Appointment details and doctor information** you enter manually.
 - **Medication names and schedules** that appear in your personal dashboard, drawn from your prescriptions and recordings. This list is for your reference inside the app — we don't share medication names externally.
 - **Reminders** for medications and appointments, set up by you or your invited caregiver.
+- **Health notes** you choose to enter in your profile or dashboard.
 
-You decide what to record, what to scan, and what to share. Recording, scanning, and caregiver invitations are always optional. You cannot upload files into the app, and you cannot download recordings or summaries out of the app. You can delete reminders inside the app at any time.
+You decide what to record, what to scan, and what to share. Recording, scanning, and caregiver invitations are always optional. Other than recording audio and using the optional prescription scan flow, you cannot upload arbitrary files into the app. You cannot download recordings or summaries out of the app. You can delete reminders inside the app at any time.
 
 **A note on AI-generated content:**
 
@@ -94,12 +98,12 @@ Before you start any recording, the app shows a consent screen that confirms you
 
 If you (the patient) choose to invite a family member or trusted friend as a caregiver, we record:
 
-- The caregiver's email address (provided by you to send the invitation)
+- The caregiver's name and email address that you manually enter to send the invitation
 - Links between your account and the caregiver's account once they accept
 - Permission levels you grant the caregiver
 - History of access grants and revocations
 
-The patient owns the account and always controls whether to grant or revoke caregiver access. Caregivers do not have independent access to your data without your explicit invitation. A caregiver's own account information is described in Section 3.1.
+We do not import your device address book or contact list. The patient owns the account and always controls whether to grant or revoke caregiver access. Caregivers do not have independent access to your data without your explicit invitation. A caregiver's own account information is described in Section 3.1.
 
 ### 3.5 Device and Technical Information
 
@@ -151,7 +155,9 @@ We share your information only in the limited circumstances described below. We 
 You (the patient) control whether to invite a family member or trusted friend as a caregiver. If you do, you can share with them:
 
 - Plain-language summaries of your visits
+- Transcripts and audio recordings, if enabled for that caregiver
 - Medication and appointment reminders
+- Health notes or other dashboard information you choose to make available
 
 You can modify or revoke caregiver access at any time through the app. Audio recordings remain with you unless you specifically choose to share them.
 
@@ -178,6 +184,18 @@ If RemiMinderAI is involved in a merger, acquisition, financing, or sale of asse
 
 We will share your information in any other way only with your explicit consent.
 
+### 5.6 App Store Privacy Label Summary
+
+The App Store privacy label should reflect only data collected from the app and any third-party services we use to provide the app. Based on the practices described in this policy, RemiMinderAI does not use data for tracking or advertising. Data that may be linked to your account and used for App Functionality includes:
+
+- **Contact Info:** name, email address, and phone number.
+- **Health:** patient-provided health and medical information, such as visit summaries, medications, prescription details, appointments, reminders, and health notes.
+- **User Content:** audio recordings, transcripts, summaries, notes, and prescription scan images or extracted text if they are transmitted for processing.
+- **Identifiers:** user or account identifiers used to authenticate your account, link caregivers, maintain security, and provide reminders.
+- **Diagnostics and technical data:** crash logs, error reports, IP address, device type, app version, and notification identifiers when needed to operate and protect the Services.
+
+We do not collect your device Contacts, address book, or social graph. Manually entering a caregiver's name or email address for an invitation is different from granting access to your device contacts.
+
 ## 6. How We Handle Health Information
 
 While RemiMinderAI is a consumer app and not itself a HIPAA "Covered Entity," we handle health information with care:
@@ -186,7 +204,7 @@ While RemiMinderAI is a consumer app and not itself a HIPAA "Covered Entity," we
 - Our AI processing runs on Google Vertex AI, which is HIPAA-eligible.
 - Health information is encrypted at rest (Google Cloud Storage) and in transit (TLS 1.2 or higher).
 - Access controls and audit logs are maintained consistent with HIPAA technical safeguards.
-- We collect only what's needed to provide the Services, and we don't ask for medical record numbers, dates of birth, or Social Security numbers.
+- We collect only what's needed to provide the Services, and we don't ask for medical record numbers, Social Security numbers, or insurance information.
 - We do not integrate with Apple HealthKit, Google Fit, or any electronic health record system. We do not pull information from your existing medical records.
 
 If you believe your health information has been mishandled, please contact us at team@remiminderai.com.
