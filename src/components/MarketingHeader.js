@@ -7,7 +7,7 @@ import { useMailingList } from "../context/MailingListContext";
 
 /**
  * Shared marketing site header: desktop nav + mobile hamburger.
- * Used on Landing, Pricing, and About.
+ * Used on Landing, Support, and About.
  */
 export default function MarketingHeader({
   scrolled,
@@ -111,9 +111,6 @@ export default function MarketingHeader({
           >
             How It Works
           </a>
-          <NavLink to="/pricing" className={navClass}>
-            Pricing
-          </NavLink>
           <NavLink to="/about" className={navClass}>
             About
           </NavLink>
@@ -177,9 +174,6 @@ export default function MarketingHeader({
             >
               How It Works
             </a>
-            <NavLink to="/pricing" className={navClass} onClick={closeMenu}>
-              Pricing
-            </NavLink>
             <NavLink to="/about" className={navClass} onClick={closeMenu}>
               About
             </NavLink>

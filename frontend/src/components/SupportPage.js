@@ -40,7 +40,7 @@ const FAQ_ITEMS = [
     id: "billing",
     question: "How do subscriptions and billing work?",
     answer:
-      "RemiMinderAI offers a free tier during beta, plus paid Family and Premium plans with monthly or yearly billing. Visit our Pricing page for current rates. Paid subscriptions are processed securely through Stripe. If you have a billing question or need to update your plan, contact us and include the email address on your account.",
+      "RemiMinderAI offers a free tier during beta, plus paid Family and Premium plans with monthly or yearly billing. Paid subscriptions are processed securely through Stripe. If you have a billing question or need to update your plan, contact us and include the email address on your account.",
   },
   {
     id: "privacy",
