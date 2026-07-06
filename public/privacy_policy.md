@@ -1,7 +1,7 @@
 ﻿# Privacy Policy
 
 **Effective Date:** July 5, 2026
-**Last Updated:** July 5, 2026
+**Last Updated:** July 6, 2026
 
 ## 1. Introduction
 
@@ -48,8 +48,9 @@ These services process your data only on our behalf and only for the purposes de
 
 **You are in control of your data.**
 
-- You can **delete individual recordings, summaries, and scanned documents** at any time from within the app
-- **Account deletion** removes all data associated with your account
+- You can **delete individual recordings and summaries** at any time from within the app
+- **Delete scanned documents:** You can delete individual scanned medical documents (including lab results) from the app. Deletion removes the document text and associated image from our systems, subject to our backup retention schedule (below)
+- **Account deletion:** You can delete your account in the app (Profile → Delete Account) or by emailing team@remiminderai.com. Account deletion removes all data associated with your account
 - We **retain your data until you delete it** — recordings, summaries, and documents remain stored until you delete them individually or delete your account
 
 When you delete content or your account, we remove it from our active systems. Backup copies may take a short additional time to be fully removed from our cloud infrastructure.
