@@ -121,7 +121,7 @@ const PricingPage = () => {
     "AI summaries and transcripts",
     "Basic medication reminders",
     "30-day recording history",
-    "Encrypted & Private",
+    "Encrypted in transit and at rest",
   ];
 
   const familyFeatures = [
@@ -371,7 +371,7 @@ const PricingPage = () => {
               <span className={styles.trustCheckWrap} aria-hidden="true">
                 <Check className={styles.trustCheckIcon} size={14} strokeWidth={3} />
               </span>
-              <span className={styles.trustText}>Encrypted & Private</span>
+              <span className={styles.trustText}>Encrypted in transit and at rest</span>
             </div>
             <div className={styles.trustItem}>
               <span className={styles.trustCheckWrap} aria-hidden="true">

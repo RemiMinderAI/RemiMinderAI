@@ -49,8 +49,8 @@ const PatientConsent = () => {
                 <FaLock className={styles.blueIcon} />
                 </div>
                 <div className={styles.textWrapper}>
-                  <h4 className={styles.keyHeading}>HIPAA Compliance</h4>
-                  <p className={styles.keyText}>Your health information is protected under HIPAA regulations and stored with end-to-end encryption.</p>
+                  <h4 className={styles.keyHeading}>Data Security</h4>
+                  <p className={styles.keyText}>Your health information is encrypted in transit and at rest. Audio and document images are processed on Google Cloud to provide transcription, summaries, and document reading.</p>
                 </div>
             </div>
 
@@ -85,11 +85,11 @@ const PatientConsent = () => {
                 these terms, you acknowledge that you have read, understood, and agree to be bound by this agreement.
               </p>
 
-              <h5>2. HIPAA Authorization</h5>
+              <h5>2. Privacy and Security</h5>
               <p>
-                HealthConnect is committed to protecting your health information in accordance with the Health Insurance Portability
-                and Accountability Act (HIPAA). We implement appropriate safeguards to protect your protected health information (PHI)
-                from unauthorized access, use, or disclosure.
+                RemiMinderAI is committed to protecting your health information. We implement appropriate safeguards
+                to protect your data from unauthorized access, use, or disclosure. Audio and document images are
+                processed on Google Cloud to provide transcription, summaries, and document reading.
               </p>
 
               <h5>3. Data Collection and Use</h5>
@@ -153,7 +153,7 @@ const PatientConsent = () => {
             />
             <label htmlFor="consent">
               I have read and agree to the terms outlined above. I understand my rights and responsibilities,
-              including how my health information will be used and protected under HIPAA regulations.
+              including how my health information will be used and protected.
             </label>
           </div>
 

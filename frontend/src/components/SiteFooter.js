@@ -82,11 +82,7 @@ export default function SiteFooter() {
           <div className={styles.badges}>
             <span className={styles.badgeItem}>
               <span className={styles.badgeDot} aria-hidden="true" />
-              <span>Encrypted & Private</span>
-            </span>
-            <span className={styles.badgeItem}>
-              <span className={styles.badgeDot} aria-hidden="true" />
-              <span>End-to-End Encrypted</span>
+              <span>Encrypted in transit and at rest</span>
             </span>
           </div>
           <div className={styles.socialRow}>

@@ -47,8 +47,8 @@ const Consent = () => {
                 <FaLock className={styles.blueIcon} />
                 </div>
                 <div className={styles.textWrapper}>
-                  <h4 className={styles.keyHeading}>HIPAA Compliance</h4>
-                  <p className={styles.keyText}>Your access to patient data complies with HIPAA regulations. All shared information is encrypted and access-controlled.</p>
+                  <h4 className={styles.keyHeading}>Secure Access</h4>
+                  <p className={styles.keyText}>Your access to patient data is encrypted in transit and at rest, and limited to patients who have authorized you.</p>
                 </div>
             </div>
 
