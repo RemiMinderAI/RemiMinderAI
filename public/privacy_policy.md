@@ -13,11 +13,11 @@ By using the Services, you agree to the practices described here. If you don't a
 
 We collect only what we need to help you record doctor visits, scan medical documents, and keep plain-language summaries you can refer back to later:
 
-- **Audio recordings of doctor visits** — captured via the in-app recorder (with your doctor's consent)
+- **Audio recordings of doctor visits** — captured via the in-app recorder after users confirm they have obtained any required consent from participants
 - **Document images** — photos of prescriptions, lab results, and medical documents, captured via the in-app camera
 - **Transcripts** — text generated from your audio recordings
-- **Plain-language summaries** — AI-generated summaries of your visits and scanned documents, written in easy-to-read language
-- **Account information** — your email address and name, provided when you register
+- **Plain-language summaries** — AI-generated summaries of your visits and scanned documents, provided for informational purposes to help users organize healthcare information
+- **Account information** — your email address and name, provided when you register using email/password or Google Sign-In
 - **Device information and app usage data** — details about your phone or tablet and how you use the app, to help us troubleshoot problems
 
 We do not sell your data, show ads, or track you across other apps and websites.
@@ -42,7 +42,7 @@ In the current version of RemiMinderAI, **Google Cloud Platform** is the sole th
 - Firebase (authentication and push notifications)
 - Cloud SQL, Cloud Storage, and Firestore (storage and databases)
 
-These services process your data only on our behalf and only for the purposes described in this policy. If we add additional processors in the future, we will update this list and this Privacy Policy.
+These services process your data only on our behalf and are not permitted to use your information for advertising or unrelated purposes. They process data only for the purposes described in this policy. If we add additional processors in the future, we will update this list and this Privacy Policy.
 
 ## 5. Data Security
 
@@ -91,9 +91,9 @@ We want to be clear: **we never sell your personal information to third parties.
 
 ## 10. Children's Privacy
 
-RemiMinderAI is designed for adults and is not intended for or directed to children under 13. We don't knowingly collect personal information from children under 13.
+RemiMinderAI is designed for adults (18+) and is not intended for children or users under the age of 18. We don't knowingly collect personal information from children.
 
-If you are a parent or guardian and believe your child under 13 has provided us with information, contact us at team@remiminderai.com and we will delete it promptly.
+If you are a parent or guardian and believe a child under 18 has provided us with information, contact us at team@remiminderai.com and we will delete it promptly.
 
 ## 11. Changes to This Policy
 
