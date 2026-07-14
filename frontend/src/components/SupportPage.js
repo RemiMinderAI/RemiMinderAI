@@ -16,7 +16,7 @@ const FAQ_ITEMS = [
     id: "recording",
     question: "How does visit recording work?",
     answer:
-      "Before you record, the app asks you to confirm that your doctor has consented to being recorded. Tap Record during your visit, and RemiMinderAI captures the conversation, transcribes it, and generates a plain-language summary with medications, follow-ups, and next steps. Recordings stay in your account unless you choose to share them with an invited caregiver.",
+      "Before you record, the app asks you to confirm that you have obtained any required consent from participants. Tap Record during your visit, and RemiMinderAI captures the conversation, transcribes it, and generates a plain-language summary with medications, follow-ups, and next steps. Recordings stay in your account unless you choose to share them with an invited caregiver.",
   },
   {
     id: "scanning",
@@ -46,7 +46,7 @@ const FAQ_ITEMS = [
     id: "privacy",
     question: "How can I delete my data or exercise my privacy rights?",
     answer:
-      "You can delete individual recordings, reminders, and caregiver invitations inside the app. To request full account deletion or a copy of your data, email us at support@remiminderai.com or use the form below with the topic \"Privacy or data deletion.\" We respond within one business day. See our Privacy Policy for full details on your rights.",
+      "You can delete individual recordings, reminders, and caregiver invitations inside the app. To delete your full account, open the app and go to Profile → Delete Account, or visit remiminderai.com/delete-account. You can also email team@remiminderai.com or use the form below with the topic \"Privacy or data deletion.\" We respond within one business day. See our Privacy Policy for full details on your rights.",
   },
   {
     id: "bug",

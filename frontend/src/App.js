@@ -7,6 +7,7 @@ import './App.css';
 import LandingPage from './components/LandingPage';
 import AboutPage from "./components/AboutPage";
 import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
+import DeleteAccountPage from "./components/DeleteAccountPage";
 import SupportPage from "./components/SupportPage";
 // Corrected path based on your file structure screenshot
 import RecordVisitPage from './components/AudioRecorder';
@@ -64,6 +65,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/delete-account" element={<DeleteAccountPage />} />
           <Route path="/pricing" element={<Navigate to="/" replace />} />
           <Route path="/support" element={<SupportPage />} />
           <Route path="/record" element={<RecordVisitPage />} />

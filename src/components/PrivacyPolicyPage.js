@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import landingStyles from "./LandingPage.module.css";
 import styles from "./PrivacyPolicyPage.module.css";
 import SiteFooter from "./SiteFooter";
@@ -17,8 +17,38 @@ function parsePrivacyMarkdown(mdText) {
   let sectionIndex = 0;
 
   const renderInline = (text) => {
-    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    // Split on markdown links [label](url) and **bold**
+    const parts = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
     return parts.map((part, idx) => {
+      if (!part) return null;
+      const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      if (linkMatch) {
+        const [, label, href] = linkMatch;
+        if (href.startsWith("/")) {
+          return (
+            <Link key={idx} to={href}>
+              {label}
+            </Link>
+          );
+        }
+        if (href.startsWith("#")) {
+          return (
+            <a key={idx} href={href}>
+              {label}
+            </a>
+          );
+        }
+        return (
+          <a
+            key={idx}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {label}
+          </a>
+        );
+      }
       if (part.startsWith("**") && part.endsWith("**")) {
         const inner = part.slice(2, -2);
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inner)) {
