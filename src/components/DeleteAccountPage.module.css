@@ -1,0 +1,40 @@
+.headerScrolled {
+  box-shadow: 0 2px 12px rgba(26, 35, 50, 0.06);
+}
+
+.main {
+  padding-top: 40px;
+}
+
+.article ol.steps,
+.steps {
+  margin: 0 0 16px 1.1rem;
+  padding: 0;
+  color: var(--ink-light, #5a6a7a);
+  line-height: 1.75;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 1rem;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+.article a,
+.main a {
+  color: var(--teal-dark, #137a7a);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.article a:hover,
+.main a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}

@@ -1,7 +1,7 @@
 ﻿# Privacy Policy
 
 **Effective Date:** July 5, 2026
-**Last Updated:** July 6, 2026
+**Last Updated:** July 14, 2026
 
 ## 1. Introduction
 
@@ -44,32 +44,62 @@ In the current version of RemiMinderAI, **Google Cloud Platform** is the sole th
 
 These services process your data only on our behalf and only for the purposes described in this policy. If we add additional processors in the future, we will update this list and this Privacy Policy.
 
-## 5. Data Retention and Deletion
+## 5. Data Security
 
-**You are in control of your data.**
+We take the security of your information seriously and use industry-standard protections:
 
-- You can **delete individual recordings and summaries** at any time from within the app
-- **Delete scanned documents:** You can delete individual scanned medical documents (including lab results) from the app. Deletion removes the document text and associated image from our systems, subject to our backup retention schedule (below)
-- **Account deletion:** You can delete your account in the app (Profile → Delete Account) or by emailing team@remiminderai.com. Account deletion removes all data associated with your account
-- We **retain your data until you delete it** — recordings, summaries, and documents remain stored until you delete them individually or delete your account
+- **HTTPS encryption** — All data transmitted between your device, our website, and our servers is protected with HTTPS/TLS encryption in transit
+- **Encryption at rest** — Recordings, documents, and account data stored in Google Cloud are encrypted at rest
+- **Firebase security** — Authentication and access control are managed through Google Firebase Authentication and Firebase security rules so that only you (and caregivers you explicitly invite) can access your account data
+- **Least-privilege access** — Our systems and team members access personal data only when needed to operate or support the Services
 
-When you delete content or your account, we remove it from our active systems. Backup copies may take a short additional time to be fully removed from our cloud infrastructure.
+No method of transmission or storage is 100% secure. If we become aware of a security incident that affects your data, we will notify you as required by applicable law.
 
-## 6. No Sale of Data
+## 6. Data Retention
+
+We retain your data only as long as needed to provide the Services or until you delete it:
+
+- **Active data:** Recordings, transcripts, summaries, scanned documents, reminders, and account information remain stored until you delete them individually or delete your account
+- **After deletion:** When you delete content or your account, we remove it from our active systems promptly
+- **Backup retention:** Backup copies may remain temporarily as part of our normal backup retention process (typically up to 30 days) before permanent removal from our cloud infrastructure
+
+For step-by-step instructions on deleting your account, see our [Delete Account](/delete-account) page.
+
+## 7. Account Deletion
+
+You can permanently delete your RemiMinderAI account and associated data at any time.
+
+- **In the app:** Open RemiMinderAI → Profile → Delete Account, then confirm your request
+- **By email:** Send a deletion request to **team@remiminderai.com** from the email address associated with your account
+- **On the web:** Follow the instructions on our dedicated [Delete Account](/delete-account) page
+
+When your account is deleted, we remove account information (name and email), doctor visit recordings, transcripts, AI-generated summaries, scanned medical documents, medication reminders, and related user data from our active systems, subject to the backup retention period described in Section 6.
+
+## 8. Your Rights
+
+Depending on where you live, you may have rights regarding your personal information, including the right to access, correct, or delete your data. You can:
+
+- Delete individual recordings, summaries, and documents inside the app
+- Request a copy of your data by emailing **team@remiminderai.com**
+- Request full account deletion using the in-app flow, by email, or via our [Delete Account](/delete-account) page
+
+We aim to respond to privacy requests within one business day. For more detail on how deletion works, visit [Delete Account](/delete-account).
+
+## 9. No Sale of Data
 
 We want to be clear: **we never sell your personal information to third parties.** Your data is shared only with the processors listed in Section 4, and only for the purposes described in this policy. We do not share your information with advertisers, data brokers, insurance companies, or anyone else for their own purposes.
 
-## 7. Children's Privacy
+## 10. Children's Privacy
 
 RemiMinderAI is designed for adults and is not intended for or directed to children under 13. We don't knowingly collect personal information from children under 13.
 
 If you are a parent or guardian and believe your child under 13 has provided us with information, contact us at team@remiminderai.com and we will delete it promptly.
 
-## 8. Changes to This Policy
+## 11. Changes to This Policy
 
 We may update this Privacy Policy from time to time. When we do, we will update the "Last Updated" date above. For material changes, we will provide additional notice (for example, through an in-app notification or email). Your continued use of the Services after the effective date of the updated policy constitutes your acceptance of the changes.
 
-## 9. Contact Us
+## 12. Contact Us
 
 If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, contact us at:
 

@@ -46,7 +46,7 @@ const FAQ_ITEMS = [
     id: "privacy",
     question: "How can I delete my data or exercise my privacy rights?",
     answer:
-      "You can delete individual recordings, reminders, and caregiver invitations inside the app. To request full account deletion or a copy of your data, email us at support@remiminderai.com or use the form below with the topic \"Privacy or data deletion.\" We respond within one business day. See our Privacy Policy for full details on your rights.",
+      "You can delete individual recordings, reminders, and caregiver invitations inside the app. To delete your full account, open the app and go to Profile → Delete Account, or visit remiminderai.com/delete-account. You can also email team@remiminderai.com or use the form below with the topic \"Privacy or data deletion.\" We respond within one business day. See our Privacy Policy for full details on your rights.",
   },
   {
     id: "bug",

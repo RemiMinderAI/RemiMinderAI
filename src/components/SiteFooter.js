@@ -71,6 +71,7 @@ export default function SiteFooter() {
           <nav className={styles.navCol} aria-label="Legal">
             <div className={styles.colHeading}>Legal</div>
             <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/delete-account">Delete Account</Link>
             <a href="#">Terms of Service</a>
           </nav>
         </div>
