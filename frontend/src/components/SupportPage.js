@@ -16,7 +16,7 @@ const FAQ_ITEMS = [
     id: "recording",
     question: "How does visit recording work?",
     answer:
-      "Before you record, the app asks you to confirm that your doctor has consented to being recorded. Tap Record during your visit, and RemiMinderAI captures the conversation, transcribes it, and generates a plain-language summary with medications, follow-ups, and next steps. Recordings stay in your account unless you choose to share them with an invited caregiver.",
+      "Before you record, the app asks you to confirm that you have obtained any required consent from participants. Tap Record during your visit, and RemiMinderAI captures the conversation, transcribes it, and generates a plain-language summary with medications, follow-ups, and next steps. Recordings stay in your account unless you choose to share them with an invited caregiver.",
   },
   {
     id: "scanning",
