@@ -74,7 +74,7 @@ export default function DeleteAccountPage() {
           <p>
             Deletion removes your information from our active systems. Backup
             copies may remain temporarily as part of our normal backup retention
-            process before permanent removal.
+            process before permanent removal (typically within 30 days).
           </p>
           <p>
             For more details, see our{" "}
