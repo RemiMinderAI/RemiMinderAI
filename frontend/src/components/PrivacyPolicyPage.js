@@ -16,6 +16,14 @@ function parsePrivacyMarkdown(mdText) {
   let key = 0;
   let sectionIndex = 0;
 
+  const parseHeadingText = (text) => {
+    const anchorMatch = text.match(/^(.*?)\s*\{#([A-Za-z0-9_-]+)\}$/);
+    if (!anchorMatch) {
+      return { title: text, id: null };
+    }
+    return { title: anchorMatch[1].trim(), id: anchorMatch[2] };
+  };
+
   const renderInline = (text) => {
     // Split on markdown links [label](url) and **bold**
     const parts = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
@@ -123,8 +131,11 @@ function parsePrivacyMarkdown(mdText) {
     }
 
     if (trimmed.startsWith("### ")) {
+      const { title, id } = parseHeadingText(trimmed.slice(4).trim());
       blocks.push(
-        <h3 key={`h3-${key++}`}>{trimmed.slice(4).trim()}</h3>
+        <h3 key={`h3-${key++}`} id={id || undefined}>
+          {title}
+        </h3>
       );
       i += 1;
       continue;

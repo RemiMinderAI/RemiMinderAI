@@ -68,7 +68,7 @@ These services process your data only on our behalf and only for the purposes de
 
 You have the right to request a copy of all your data in a portable, machine-readable format. Contact us at **team@remiminderai.com** to submit a data access request. We will provide your data within 30 days of receipt.
 
-### Delete Individual Content
+### Delete Individual Content {#delete-individual-content}
 
 You can delete individual recordings, summaries, and scanned documents at any time from within the app without deleting your account. This gives you granular control over your data:
 
