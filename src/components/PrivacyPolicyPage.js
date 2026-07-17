@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import landingStyles from "./LandingPage.module.css";
 import styles from "./PrivacyPolicyPage.module.css";
 import SiteFooter from "./SiteFooter";
@@ -214,6 +214,7 @@ function buildToc(mdText) {
 
 export default function PrivacyPolicyPage() {
   const navigate = useNavigate();
+  const { hash } = useLocation();
   const [rawMd, setRawMd] = useState("");
   const [loadError, setLoadError] = useState(null);
 
@@ -233,6 +234,23 @@ export default function PrivacyPolicyPage() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!rawMd || !hash) return undefined;
+
+    let targetId;
+    try {
+      targetId = decodeURIComponent(hash.slice(1));
+    } catch {
+      targetId = hash.slice(1);
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(targetId)?.scrollIntoView({ block: "start" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [hash, rawMd]);
 
   const toc = useMemo(() => (rawMd ? buildToc(rawMd) : []), [rawMd]);
   const body = useMemo(() => (rawMd ? parsePrivacyMarkdown(rawMd) : []), [rawMd]);
