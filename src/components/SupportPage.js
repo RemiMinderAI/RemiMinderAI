@@ -94,7 +94,6 @@ export default function SupportPage() {
       <MarketingHeader
         scrolled={scrolled}
         headerExtraClass={`${pricingStyles.pricingHeader} ${styles.supportHeader}`}
-        showMailingList
       />
 
       <section className={styles.hero} aria-labelledby="support-hero-heading">
