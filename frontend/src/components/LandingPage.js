@@ -130,11 +130,6 @@ const LandingPage = () => {
         <div className={styles.hero2Inner}>
           <div className={styles.hero2Grid}>
             <div className={styles.hero2CopyCol}>
-              <div className={`${styles.hero2Eyebrow} ${styles.heroAnimBadge}`}>
-                <span className={styles.hero2EyebrowDot} aria-hidden="true" />
-                <span>Now in beta</span>
-              </div>
-
               <h1 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}>
                 Visits{" "}
                 <span className={styles.togetherWrap}>
