@@ -87,7 +87,6 @@ const AboutPage = () => {
       <MarketingHeader
         scrolled={scrolled}
         headerExtraClass={pricingStyles.pricingHeader}
-        showMailingList
       />
 
       <section className={`${styles.section} ${styles.altWhite}`}>

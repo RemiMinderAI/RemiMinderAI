@@ -2,6 +2,6 @@
 /** Mailing list: use <MailingListModal /> (see MarketingHeader, hero CTA, etc.). */
 
 export const ANDROID_URL =
-  "https://play.google.com/apps/internaltest/4701094525127045534";
+  "https://play.google.com/store/apps/details?id=com.remiminderai.app";
 
 export const CONTACT_EMAIL = "team@remiminderai.com";
