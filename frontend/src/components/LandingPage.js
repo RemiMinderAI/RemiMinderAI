@@ -14,14 +14,12 @@ import {
   Lock, Zap, Globe, Play
 } from "lucide-react";
 import ProductDemo from "./ProductDemo";
-import { useMailingList } from "../context/MailingListContext";
 
-const ANDROID_URL = "https://play.google.com/apps/internaltest/4701094525127045534";
+const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.remiminderai.app";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
 
-  const { open: openMailingList } = useMailingList();
   const location = useLocation();
   const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -132,11 +130,6 @@ const LandingPage = () => {
         <div className={styles.hero2Inner}>
           <div className={styles.hero2Grid}>
             <div className={styles.hero2CopyCol}>
-              <div className={`${styles.hero2Eyebrow} ${styles.heroAnimBadge}`}>
-                <span className={styles.hero2EyebrowDot} aria-hidden="true" />
-                <span>Now in beta</span>
-              </div>
-
               <h1 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}>
                 Visits{" "}
                 <span className={styles.togetherWrap}>
@@ -173,13 +166,6 @@ const LandingPage = () => {
                     <span>iOS Coming Soon</span>
                   </button>
                 </div>
-                <button
-                  type="button"
-                  className={styles.hero2MailingBtn}
-                  onClick={() => openMailingList({ source: "hero" })}
-                >
-                  Join our mailing list
-                </button>
               </div>
 
               <div className={`${styles.hero2TrustRow} ${styles.heroAnimTrust}`}>
