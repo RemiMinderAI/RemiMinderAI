@@ -46,8 +46,9 @@ export default function DeleteAccountPage() {
             <h1 id="delete-account-heading">Delete Your RemiMinderAI Account</h1>
             <p className={styles.heroText}>
               You can request deletion of your RemiMinderAI account and associated
-              data at any time. The fastest path is in the app, and email support
-              is available if you cannot access your account.
+              data at any time. The recommended path is in the app: open Profile →
+              Delete Account. Email support is available if you cannot access your
+              account.
             </p>
             <div className={styles.heroActions}>
               <a
