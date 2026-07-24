@@ -131,9 +131,9 @@ const LandingPage = () => {
           <div className={styles.hero2Grid}>
             <div className={styles.hero2CopyCol}>
               <h1 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}>
-                Visits{" "}
+                Healthcare doesn&apos;t end when the{" "}
                 <span className={styles.togetherWrap}>
-                  Together.
+                  appointment ends.
                   <svg
                     className={`${styles.flashSvg} ${flashArmed ? styles.flashSvgArmed : ""}`}
                     viewBox="0 0 200 14"
@@ -146,8 +146,8 @@ const LandingPage = () => {
               </h1>
 
               <p className={`${styles.hero2Sub} ${styles.heroAnimSub}`}>
-                Turn doctor conversations into clear, shareable summaries so you and your family
-                always know what comes next.
+                RemiMinderAI helps you and your loved ones remember, understand, and manage care
+                together.
               </p>
 
               <div className={`${styles.hero2CtaBlock} ${styles.heroAnimCtas}`}>
