@@ -443,12 +443,13 @@
 }
 .hero2Title {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(44px, 5.2vw, 74px);
+  font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 600;
-  line-height: 1.05;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--teal-900);
-  margin: 0 0 20px;
+  margin: 0 0 18px;
+  max-width: 18ch;
   text-wrap: balance;
 }
 .togetherWrap {
@@ -458,7 +459,7 @@
   color: var(--teal-700);
   font-style: italic;
   font-weight: 600;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 .flashSvg {
   position: absolute;
