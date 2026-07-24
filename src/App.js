@@ -6,6 +6,7 @@ import './App.css';
 // 2. Import pages and components
 import LandingPage from './components/LandingPage';
 import AboutPage from "./components/AboutPage";
+import HealthcareMomentsPage from "./components/HealthcareMomentsPage";
 import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
 import DeleteAccountPage from "./components/DeleteAccountPage";
 import SupportPage from "./components/SupportPage";
@@ -64,6 +65,7 @@ function App() {
           {/* Main Routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/healthcare-moments" element={<HealthcareMomentsPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/delete-account" element={<DeleteAccountPage />} />
           <Route path="/pricing" element={<Navigate to="/" replace />} />

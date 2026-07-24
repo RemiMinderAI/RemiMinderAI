@@ -1,5 +1,12 @@
-.headerScrolled {
-  box-shadow: 0 2px 12px rgba(26, 35, 50, 0.06);
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.deleteHeader {
+  background: rgba(247, 243, 236, 0.95) !important;
+  border-bottom-color: rgba(13, 61, 56, 0.08) !important;
 }
 
 .main {

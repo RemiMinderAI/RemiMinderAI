@@ -108,6 +108,9 @@ export default function MarketingHeader({
           >
             How It Works
           </a>
+          <NavLink to="/healthcare-moments" className={navClass}>
+            Use Cases
+          </NavLink>
           <NavLink to="/about" className={navClass}>
             About
           </NavLink>
@@ -164,6 +167,9 @@ export default function MarketingHeader({
             >
               How It Works
             </a>
+            <NavLink to="/healthcare-moments" className={navClass} onClick={closeMenu}>
+              Use Cases
+            </NavLink>
             <NavLink to="/about" className={navClass} onClick={closeMenu}>
               About
             </NavLink>
