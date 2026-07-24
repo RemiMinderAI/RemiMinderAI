@@ -15,17 +15,26 @@ const WhatRemiMinderIsSection = () => {
         <h2 className={styles.eyebrow} id="what-rmia-heading">
           What RemiMinderAI Is
         </h2>
+
         <p className={styles.lead}>
-          RemiMinderAI records doctor visits and turns them into shareable, searchable
-          summaries, so families remember what was said a month ago, and doctors have a
-          record of what they actually told the patient.
+          Healthcare technology is often built for clinicians and healthcare systems.
         </p>
+        <p className={styles.leadContrast}>
+          RemiMinderAI is built for patients, caregivers, and families.
+        </p>
+
         <div className={styles.punchlineBlock}>
           <div className={styles.goldBar} aria-hidden="true" />
+          <p className={styles.supporting}>
+            After every appointment, important details can be forgotten, instructions become
+            confusing, and loved ones are left trying to piece everything together.
+          </p>
           <p className={styles.punchline}>
-            No appointments. No pharmacy. Just the conversation, captured and understood.
+            RemiMinderAI helps families understand what happened, organize what comes next, and
+            stay connected throughout the care journey.
           </p>
         </div>
+
         <div className={styles.audienceCard} role="region" aria-label="Who RemiMinderAI is for">
           <div className={styles.audienceCol} data-audience="families">
             <div className={styles.audienceIconTeal} aria-hidden="true">
