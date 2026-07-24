@@ -46,10 +46,10 @@ export default function MarketingHeader({
   const navClass = ({ isActive }) =>
     `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`;
 
-  const demoClick = (e) => {
+  const getStartedClick = (e) => {
     if (isHome) {
       e.preventDefault();
-      document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("get-started")?.scrollIntoView({ behavior: "smooth" });
     }
     closeMenu();
   };
@@ -95,11 +95,11 @@ export default function MarketingHeader({
             Home
           </NavLink>
           <a
-            href="/#demo"
+            href="/#get-started"
             className={styles.navLink}
-            onClick={demoClick}
+            onClick={getStartedClick}
           >
-            Demo
+            Get Started
           </a>
           <a
             href="/#how-it-works"
@@ -154,8 +154,8 @@ export default function MarketingHeader({
             <NavLink to="/" end className={navClass} onClick={closeMenu}>
               Home
             </NavLink>
-            <a href="/#demo" className={styles.navLink} onClick={demoClick}>
-              Demo
+            <a href="/#get-started" className={styles.navLink} onClick={getStartedClick}>
+              Get Started
             </a>
             <a
               href="/#how-it-works"
