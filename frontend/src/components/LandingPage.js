@@ -270,9 +270,6 @@ const LandingPage = () => {
         <h2 className={styles.sectionTitle}>
           After Every <span className={styles.tealText}>Appointment</span>
         </h2>
-        <p className={styles.sectionSubtitle}>
-          RemiMinderAI helps you remember, understand, stay organized, and share what matters most.
-        </p>
 
         {/* Before / After Transformation Block */}
         <div className={styles.transformBlock}>
