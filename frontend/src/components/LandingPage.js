@@ -9,7 +9,7 @@ import SiteFooter from "./SiteFooter";
 import HeroPhoneStage from "./HeroPhoneStage";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
-  Mic, FileText, Bell, Shield, Heart, Brain, Clock, Users, 
+  Mic, FileText, FolderOpen, Share2, Heart, Brain, Clock, Users, 
   CheckCircle2, Smartphone, Apple, Star,
   Lock, Zap, Globe, Play
 } from "lucide-react";
@@ -49,33 +49,29 @@ const LandingPage = () => {
   const steps = [
     {
       icon: <Mic className={styles.stepIcon} />,
-      title: "Capture",
-      description: "Record or upload doctor–patient conversations with one tap.",
-      emotion: "No note-taking. No stress. Nothing gets lost.",
+      title: "Remember",
+      description: "Capture conversations and important healthcare information.",
       number: "01",
       highlight: false
     },
     {
       icon: <FileText className={styles.stepIcon} />,
       title: "Understand",
-      description: "AI extracts medications, instructions, and follow-ups automatically.",
-      emotion: "Turns confusing medical conversations into clear, structured meaning in seconds.",
+      description: "Turn complex medical language into clear, everyday explanations.",
       number: "02",
       highlight: true
     },
     {
-      icon: <Bell className={styles.stepIcon} />,
-      title: "Organize",
-      description: "Everything becomes a structured, shareable care plan.",
-      emotion: "Keeps families and caregivers aligned without confusion or repeated calls.",
+      icon: <FolderOpen className={styles.stepIcon} />,
+      title: "Stay Organized",
+      description: "Keep documents, medications, and reminders together.",
       number: "03",
       highlight: false
     },
     {
-      icon: <Shield className={styles.stepIcon} />,
-      title: "Remind",
-      description: "Caregivers and patients get timely, smart reminders.",
-      emotion: "Ensures nothing important is missed — ever.",
+      icon: <Share2 className={styles.stepIcon} />,
+      title: "Share",
+      description: "Keep family and caregivers informed—wherever they are.",
       number: "04",
       highlight: false
     },
@@ -270,12 +266,12 @@ const LandingPage = () => {
 
       {/* ── HOW IT WORKS ── */}
       <section id="how-it-works" className={styles.howItWorks}>
-        <div className={styles.sectionLabel}>HOW IT WORKS</div>
+        <div className={styles.sectionLabel}>AFTER EVERY APPOINTMENT</div>
         <h2 className={styles.sectionTitle}>
-          From conversation to care <span className={styles.tealText}>in seconds</span>
+          After Every <span className={styles.tealText}>Appointment</span>
         </h2>
         <p className={styles.sectionSubtitle}>
-          Turn doctor conversations into clear, actionable care plans for patients and caregivers.
+          RemiMinderAI helps you remember, understand, stay organized, and share what matters most.
         </p>
 
         {/* Before / After Transformation Block */}
@@ -326,7 +322,7 @@ const LandingPage = () => {
               </div>
               <h3>{step.title}</h3>
               <p className={styles.stepDescription}>{step.description}</p>
-              <p className={styles.stepEmotion}>{step.emotion}</p>
+              {step.emotion ? <p className={styles.stepEmotion}>{step.emotion}</p> : null}
             </div>
           ))}
         </div>
