@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import landingStyles from "./LandingPage.module.css";
-import privacyStyles from "./PrivacyPolicyPage.module.css";
+import pricingStyles from "./PricingPage.module.css";
 import styles from "./DeleteAccountPage.module.css";
+import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
-import logo from "../assets/RemiMinder_logo_512.png";
 import { CONTACT_EMAIL } from "../constants/site";
 
 const DELETION_STEPS = [
@@ -33,22 +33,11 @@ export default function DeleteAccountPage() {
   }, []);
 
   return (
-    <div className={`${landingStyles.container} ${privacyStyles.wrap}`}>
-      <header
-        className={`${privacyStyles.minHeader} ${
-          scrolled ? styles.headerScrolled : ""
-        }`}
-      >
-        <button
-          type="button"
-          className={privacyStyles.logoBtn}
-          onClick={() => navigate("/")}
-          aria-label="RemiMinderAI home"
-        >
-          <img src={logo} alt="" className={privacyStyles.logoImg} />
-        </button>
-        <h1 className={privacyStyles.headerTitle}>Delete Account — RemiMinderAI</h1>
-      </header>
+    <div className={`${landingStyles.container} ${styles.page}`}>
+      <MarketingHeader
+        scrolled={scrolled}
+        headerExtraClass={`${pricingStyles.pricingHeader} ${styles.deleteHeader}`}
+      />
 
       <main className={styles.main}>
         <section className={styles.hero} aria-labelledby="delete-account-heading">

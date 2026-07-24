@@ -13,6 +13,8 @@ import {
 import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
 import { ANDROID_URL } from "../constants/site";
+import landingStyles from "./LandingPage.module.css";
+import pricingStyles from "./PricingPage.module.css";
 import styles from "./HealthcareMomentsPage.module.css";
 
 const useCases = [
@@ -117,8 +119,11 @@ const HealthcareMomentsPage = () => {
   }, []);
 
   return (
-    <div className={styles.page}>
-      <MarketingHeader scrolled={scrolled} headerExtraClass={styles.pageHeader} />
+    <div className={`${landingStyles.container} ${styles.page}`}>
+      <MarketingHeader
+        scrolled={scrolled}
+        headerExtraClass={`${pricingStyles.pricingHeader} ${styles.pageHeader}`}
+      />
 
       <main>
         <section className={styles.hero} aria-labelledby="moments-hero-title">
