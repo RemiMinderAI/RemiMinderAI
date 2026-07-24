@@ -445,21 +445,21 @@
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 600;
-  line-height: 1.18;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--teal-900);
   margin: 0 0 18px;
-  max-width: 16ch;
+  max-width: 18ch;
   text-wrap: balance;
 }
 .togetherWrap {
   position: relative;
-  display: inline;
+  display: inline-block;
   white-space: nowrap;
   color: var(--teal-700);
   font-style: italic;
   font-weight: 600;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 .flashSvg {
   position: absolute;
