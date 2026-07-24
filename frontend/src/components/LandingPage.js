@@ -11,7 +11,7 @@ import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
   Mic, FileText, FolderOpen, Share2, Heart, Brain, Clock, Users, 
   CheckCircle2, Smartphone, Apple, Star,
-  Lock, Zap, Globe, Play
+  Lock, Zap, Globe
 } from "lucide-react";
 import ProductDemo from "./ProductDemo";
 
@@ -80,33 +80,39 @@ const LandingPage = () => {
   const benefits = [
     {
       icon: Heart,
-      title: "Designed for peace of mind",
+      title: "Built for Peace of Mind",
       description:
-        "Every important detail from your healthcare visits is captured and organized, giving you confidence in your care decisions.",
+        "Capture important healthcare conversations and keep everything organized in one place, so nothing important gets lost.",
       footnote: null,
     },
     {
       icon: Brain,
-      title: "Built for better adherence",
+      title: "Designed for Better Follow-Through",
       description:
-        "Missed medications cost the U.S. healthcare system an estimated $300B annually. RemiMinderAI is built to help families close that gap, one visit at a time.",
-      footnote:
-        "Aggregate cost estimates of non-adherence and related waste vary by study and methodology; the scale remains directionally in the hundreds of billions USD annually in U.S. research.",
+        "Turn conversations into clear next steps, reminders, and care plans that help families stay on track.",
+      footnote: null,
     },
     {
       icon: Clock,
-      title: "Less mental load for caregivers",
+      title: "Less Mental Load",
       description:
-        "Stop trying to remember what the doctor said. Everything you need is right at your fingertips, organized and searchable.",
+        "Stop relying on memory. Give patients and caregivers a shared understanding of what comes next.",
       footnote: null,
     },
     {
       icon: Users,
-      title: "Built to keep families aligned",
+      title: "Keeping Families Connected",
       description:
-        "Keep your family in the loop automatically. Share updates and coordinate care effortlessly with the people who matter most.",
+        "Whether you're together or miles apart, everyone can stay informed and aligned around care.",
       footnote: null,
     },
+  ];
+
+  const clinicQuestions = [
+    "What medication changed?",
+    "What did the doctor recommend?",
+    "When is the next appointment?",
+    "Did everyone understand the plan?",
   ];
 
   return (
@@ -235,15 +241,14 @@ const LandingPage = () => {
           <div className={styles.ctaContent}>
             <div className={styles.sectionLabelLight}>GET STARTED TODAY</div>
             <h2 className={styles.ctaTitleDark}>
-              Start experiencing RemiMinder today
+              Start Caring with Confidence
             </h2>
 
             <div className={styles.ctaFeaturesCard}>
               {[
-                { text: "No missed medications", icon: <CheckCircle2 size={18} /> },
-                { text: "Clear visit summaries", icon: <CheckCircle2 size={18} /> },
-                { text: "Caregiver alignment", icon: <CheckCircle2 size={18} /> },
-                { text: "Your data stays yours — delete anytime", icon: <CheckCircle2 size={18} /> },
+                { text: "Remember what matters.", icon: <CheckCircle2 size={18} /> },
+                { text: "Stay organized.", icon: <CheckCircle2 size={18} /> },
+                { text: "Support the people you love.", icon: <CheckCircle2 size={18} /> },
               ].map((f, i) => (
                 <div key={i} className={styles.ctaFeaturesCardItem}>
                   <span className={styles.ctaFeaturesCardIcon}>{f.icon}</span>
@@ -252,13 +257,25 @@ const LandingPage = () => {
               ))}
             </div>
 
-            <button
-              className={styles.tryMeButton}
-              onClick={() => setShowDemo(true)}
-            >
-              <Play size={16} />
-              Try Now
-            </button>
+            <p className={styles.ctaSupportText}>
+              Download RemiMinderAI today and bring clarity to every healthcare journey.
+            </p>
+
+            <div className={styles.ctaDownloadRow}>
+              <a
+                href={ANDROID_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.hero2BtnTeal}
+              >
+                <Smartphone size={18} aria-hidden="true" />
+                <span>Download for Android</span>
+              </a>
+              <button type="button" className={styles.hero2BtnIos} disabled>
+                <Apple size={18} aria-hidden="true" />
+                <span>iOS Coming Soon</span>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -365,14 +382,33 @@ const LandingPage = () => {
 
       {/* ── BENEFITS ── */}
       <section id="benefits" className={styles.benefitsSection}>
-        <div className={styles.sectionLabel}>REAL IMPACT</div>
+        <div className={styles.sectionLabel}>WHY IT MATTERS</div>
         <h2 className={styles.sectionTitle}>
-          Why <span className={styles.tealText}>RemiMinderAI</span> matters
+          Why <span className={styles.tealText}>RemiMinderAI</span> Matters
         </h2>
         <p className={styles.sectionSubtitle}>
-          More than just features — we&apos;re building for the 54M+ unpaid family
-          caregivers who carry it all.
+          Healthcare is built around appointments.
+          <br />
+          Life happens between them.
         </p>
+
+        <div className={styles.benefitsIntro}>
+          <p>After every doctor visit, families are left with important questions.</p>
+          <p>
+            Medications need to be remembered.
+            <br />
+            Instructions need to be understood.
+            <br />
+            Follow-up appointments need to be scheduled.
+            <br />
+            Loved ones need to stay informed.
+          </p>
+          <p>This is where caregivers quietly become care coordinators.</p>
+          <p className={styles.benefitsIntroClose}>
+            RemiMinderAI helps patients and families remember what matters, stay organized, and
+            move forward with confidence.
+          </p>
+        </div>
 
         <div className={styles.benefitsGrid}>
           {benefits.map((benefit, index) => (
@@ -388,6 +424,36 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ── HEALTHCARE DOESN'T STOP AT THE CLINIC ── */}
+      <section id="beyond-the-clinic" className={styles.whoItsFor}>
+        <div className={styles.sectionLabel}>BETWEEN APPOINTMENTS</div>
+        <h2 className={styles.sectionTitle}>
+          Healthcare Doesn&apos;t Stop at the <span className={styles.tealText}>Clinic</span>
+        </h2>
+        <p className={styles.sectionSubtitle}>
+          The appointment may last 20 minutes.
+          <br />
+          The questions last for weeks.
+        </p>
+
+        <div className={styles.stepsGrid}>
+          {clinicQuestions.map((question, index) => (
+            <div key={index} className={styles.stepCard}>
+              <div className={styles.stepNumber}>{String(index + 1).padStart(2, "0")}</div>
+              <div className={styles.stepIconWrapper}>
+                <CheckCircle2 className={styles.stepIcon} />
+              </div>
+              <h3>{question}</h3>
+            </div>
+          ))}
+        </div>
+
+        <p className={styles.clinicClosing}>
+          RemiMinderAI helps patients and families answer those questions together by turning
+          conversations into clear summaries, organized care plans, and timely reminders.
+        </p>
       </section>
 
       <TestimonialsSection />
