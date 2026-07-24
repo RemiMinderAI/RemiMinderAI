@@ -115,7 +115,7 @@
   background: linear-gradient(180deg, #ffffff 0%, #f9f7f2 100%);
 }
 
-.audienceCol[data-audience="doctors"] {
+.audienceCol[data-audience="conversations"] {
   background: linear-gradient(180deg, #f9f6f0 0%, #f5f0e4 100%);
 }
 

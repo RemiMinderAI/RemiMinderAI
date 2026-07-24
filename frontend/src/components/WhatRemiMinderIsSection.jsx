@@ -1,5 +1,5 @@
 import React from "react";
-import { Users, Stethoscope } from "lucide-react";
+import { Users, MessagesSquare } from "lucide-react";
 import styles from "./WhatRemiMinderIsSection.module.css";
 
 const WhatRemiMinderIsSection = () => {
@@ -40,25 +40,28 @@ const WhatRemiMinderIsSection = () => {
             <div className={styles.audienceIconTeal} aria-hidden="true">
               <Users size={26} strokeWidth={1.8} />
             </div>
-            <p className={styles.audienceLabel}>For families</p>
-            <h3 className={styles.audienceHeading}>Never forget what the doctor said.</h3>
+            <p className={styles.audienceLabel}>For Families</p>
+            <h3 className={styles.audienceHeading}>
+              Being there for someone doesn&apos;t always mean being in the room.
+            </h3>
             <p className={styles.audienceBody}>
-              Share clear summaries, medications, and next steps with everyone helping care
-              for your loved one. One record, one source of truth, accessible weeks or
-              months later.
+              Whether you&apos;re helping an aging parent, supporting a spouse, or coordinating care
+              from another city, RemiMinderAI keeps everyone informed with one shared
+              understanding of the care plan.
             </p>
           </div>
           <div className={styles.audienceDivider} aria-hidden="true" />
-          <div className={styles.audienceCol} data-audience="doctors">
+          <div className={styles.audienceCol} data-audience="conversations">
             <div className={styles.audienceIconGold} aria-hidden="true">
-              <Stethoscope size={26} strokeWidth={1.8} />
+              <MessagesSquare size={26} strokeWidth={1.8} />
             </div>
-            <p className={styles.audienceLabel}>To share with your doctor</p>
+            <p className={styles.audienceLabel}>For Healthcare Conversations</p>
             <h3 className={styles.audienceHeading}>
-              A clear record of what your doctor said.
+              Every appointment contains important decisions.
             </h3>
             <p className={styles.audienceBody}>
-              No extra work during the visit. A clear record of what was discussed, ready to share with family or your doctor's office if needed.
+              RemiMinderAI helps preserve those conversations so patients and families can
+              revisit instructions, medications, and follow-up plans whenever they need them.
             </p>
           </div>
         </div>
