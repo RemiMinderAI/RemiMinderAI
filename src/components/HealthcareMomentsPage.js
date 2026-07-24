@@ -144,19 +144,6 @@ const HealthcareMomentsPage = () => {
             <p className={styles.highlight}>
               No waiting. No guessing. No trying to remember everything alone.
             </p>
-            <div className={styles.heroActions}>
-              <a
-                href={ANDROID_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.btnPrimary}
-              >
-                Try RemiMinderAI
-              </a>
-              <Link to="/" className={styles.btnSecondary}>
-                Back to Home
-              </Link>
-            </div>
           </div>
         </section>
 
