@@ -13,7 +13,6 @@ import {
   CheckCircle2, Smartphone, Apple, Star,
   Lock, Zap, Globe
 } from "lucide-react";
-import ProductDemo from "./ProductDemo";
 
 const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.remiminderai.app";
 
@@ -21,7 +20,6 @@ const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
 
   const location = useLocation();
-  const [showDemo, setShowDemo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [flashArmed, setFlashArmed] = useState(false);
   const heroRef = useRef(null);
@@ -30,8 +28,8 @@ const LandingPage = () => {
     if (location.hash === "#how-it-works") {
       document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
     }
-    if (location.hash === "#demo") {
-      document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+    if (location.hash === "#get-started" || location.hash === "#demo") {
+      document.getElementById("get-started")?.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 
@@ -205,39 +203,9 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* ── DEMO + CTA SPLIT SECTION ── */}
-      <section className={styles.demoCTASection} id="demo">
+      {/* ── FINAL CTA ── */}
+      <section className={styles.demoCTASection} id="get-started">
         <div className={styles.demoCTAContainer}>
-
-          {/* LEFT: Interactive Demo Box */}
-          <div className={styles.ctaDemoBox}>
-            <div className={styles.sectionLabel}>LIVE PREVIEW</div>
-            <h3 className={styles.demoBoxTitle}>See it in action</h3>
-            <p className={styles.demoBoxSubtitle}>
-              See how RemiMinder turns a doctor conversation into a structured care plan instantly.
-            </p>
-
-            <div className={styles.ctaPreviewBox}>
-              <div className={styles.previewRow}>
-                <CheckCircle2 size={15} className={styles.previewIcon} />
-                <span><strong>Medication:</strong> No new medication prescribed</span>
-              </div>
-              <div className={styles.previewRow}>
-                <CheckCircle2 size={15} className={styles.previewIcon} />
-                <span><strong>Follow-up:</strong> Six-month checkup with Dr. Patel in November</span>
-              </div>
-              <div className={styles.previewRow}>
-                <CheckCircle2 size={15} className={styles.previewIcon} />
-                <span><strong>Summary:</strong> Plain-language summary of Margaret&apos;s visit with Dr. Patel</span>
-              </div>
-              <div className={styles.previewRow}>
-                <CheckCircle2 size={15} className={styles.previewIcon} />
-                <span><strong>Shared with:</strong> Caregiver notified automatically</span>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT: CTA Stack */}
           <div className={styles.ctaContent}>
             <div className={styles.sectionLabelLight}>GET STARTED TODAY</div>
             <h2 className={styles.ctaTitleDark}>
@@ -277,7 +245,6 @@ const LandingPage = () => {
               </button>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -458,18 +425,6 @@ const LandingPage = () => {
 
       <TestimonialsSection />
       <SiteFooter />
-
-      {/* ── INTERACTIVE DEMO OVERLAY ── */}
-      {showDemo && (
-        <div className={styles.fullScreenOverlay} onClick={() => setShowDemo(false)}>
-          <section className={styles.fullScreen} onClick={e => e.stopPropagation()}>
-            <ProductDemo />
-            <button className={styles.fullscreenButton} onClick={() => setShowDemo(false)} aria-label="Close">
-              ✕
-            </button>
-          </section>
-        </div>
-      )}
 
     </div>
   );

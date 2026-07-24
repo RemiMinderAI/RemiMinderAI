@@ -53,7 +53,7 @@ export default function SiteFooter() {
           <nav className={styles.navCol} aria-label="Product">
             <div className={styles.colHeading}>Product</div>
             <a href="/#how-it-works">How It Works</a>
-            <a href="/#demo">Demo</a>
+            <a href="/#get-started">Get Started</a>
             <Link to="/support">Support</Link>
           </nav>
 
