@@ -23,11 +23,11 @@ const useCases = [
     icon: HeartHandshake,
     title: "For Seniors Managing Their Own Care",
     description:
-      "Stay organized and confident while managing appointments, medications, and important healthcare information.",
+      "Stay organized and confident while keeping track of appointments, medication notes, and important healthcare information from your visits.",
     benefits: [
       "Capture important conversations",
-      "Understand instructions in simple language",
-      "Keep medications and follow-up tasks organized",
+      "Review instructions in simple language",
+      "Keep medication and follow-up notes organized",
       "Revisit important details anytime",
     ],
   },
@@ -38,7 +38,7 @@ const useCases = [
     description: "Be connected even when you cannot always be in the room.",
     benefits: [
       "Stay informed after appointments",
-      "Understand care instructions",
+      "Review care instructions together",
       "Share important updates",
       "Coordinate support together",
     ],
@@ -46,25 +46,25 @@ const useCases = [
   {
     id: "memory",
     icon: Brain,
-    title: "For Memory Challenges and Cognitive Changes",
+    title: "For Families Navigating Memory Challenges",
     description:
-      "Supporting families navigating dementia, Alzheimer's, and other memory-related challenges.",
+      "Help loved ones stay organized when remembering appointment details and care instructions is harder.",
     benefits: [
       "Preserve important healthcare conversations",
-      "Organize care information",
-      "Create shared understanding among caregivers",
-      "Reduce repeated questions and confusion",
+      "Keep care information in one shared place",
+      "Help caregivers stay aligned on what was discussed",
+      "Revisit notes and instructions whenever needed",
     ],
-    note: "RemiMinderAI does not treat, diagnose, or improve dementia. It helps families stay organized and informed.",
+    note: "RemiMinderAI is an organization and reminder tool. It does not diagnose, treat, cure, or prevent dementia, Alzheimer's disease, or any other medical condition.",
   },
   {
     id: "language",
     icon: Languages,
     title: "Healthcare in Your Language",
-    description: "Everyone deserves to understand their healthcare information.",
+    description: "Everyone deserves to understand the information shared during their healthcare visits.",
     benefits: [
       "Create summaries in preferred languages",
-      "Make medical information easier to understand",
+      "Make visit information easier to review",
       "Share clear updates with loved ones",
     ],
   },
@@ -154,8 +154,8 @@ const HealthcareMomentsPage = () => {
                 Real moments. Real families. Real support.
               </h2>
               <p className={styles.sectionLead}>
-                RemiMinderAI is a family-centered care companion for the moments that matter after
-                the appointment ends.
+                RemiMinderAI helps families organize healthcare information after the appointment
+                ends — so everyone can stay informed and connected.
               </p>
             </Reveal>
 
@@ -213,11 +213,11 @@ const HealthcareMomentsPage = () => {
           <Reveal>
             <div className={styles.bottomCtaInner}>
               <h2 id="cta-heading" className={styles.bottomCtaTitle}>
-                Understand more. Remember better. Stay connected.
+                Stay informed. Stay organized. Stay connected.
               </h2>
               <p className={styles.bottomCtaText}>
-                Support yourself and the people you love with a simpler way to manage healthcare
-                information.
+                Support yourself and the people you love with a simpler way to organize healthcare
+                information from your visits.
               </p>
               <div className={styles.heroActions}>
                 <a
@@ -244,6 +244,12 @@ const HealthcareMomentsPage = () => {
             Home
           </Link>
         </div>
+
+        <p className={styles.disclaimer}>
+          RemiMinderAI is not a medical device and does not provide medical advice, diagnosis, or
+          treatment. Summaries and reminders are meant to help you organize what was discussed —
+          always follow your healthcare provider&apos;s instructions.
+        </p>
       </main>
 
       <SiteFooter />

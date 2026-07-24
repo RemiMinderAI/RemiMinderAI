@@ -1403,6 +1403,15 @@ a.hero2BtnTeal {
   max-width: 680px;
   margin: 40px auto 0;
 }
+.medicalDisclaimer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 5% 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-light);
+}
 .benefitsGrid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px; max-width: 1100px; margin: 0 auto;

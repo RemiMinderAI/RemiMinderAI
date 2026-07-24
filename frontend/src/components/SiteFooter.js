@@ -45,8 +45,8 @@ export default function SiteFooter() {
               <span className={styles.brandName}>RemiMinderAI</span>
             </div>
             <p className={styles.brandTagline}>
-              AI-powered health coordination for families. Record doctor visits, turn them into clear
-              summaries, and keep your whole care team in sync.
+              A family-centered way to organize healthcare visit information, share clear summaries,
+              and keep caregivers in sync.
             </p>
           </div>
 

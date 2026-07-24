@@ -130,6 +130,11 @@ const LandingPage = () => {
         <div className={styles.hero2Inner}>
           <div className={styles.hero2Grid}>
             <div className={styles.hero2CopyCol}>
+              <div className={`${styles.hero2Eyebrow} ${styles.heroAnimBadge}`}>
+                <span className={styles.hero2EyebrowDot} aria-hidden="true" />
+                <span>Now in beta</span>
+              </div>
+
               <h1 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}>
                 Healthcare doesn&apos;t end when the{" "}
                 <span className={styles.togetherWrap}>
@@ -146,8 +151,8 @@ const LandingPage = () => {
               </h1>
 
               <p className={`${styles.hero2Sub} ${styles.heroAnimSub}`}>
-                RemiMinderAI helps you and your loved ones remember, understand, and manage care
-                together.
+                RemiMinderAI helps you and your loved ones stay organized, informed, and connected
+                after healthcare visits.
               </p>
 
               <div className={`${styles.hero2CtaBlock} ${styles.heroAnimCtas}`}>
@@ -372,7 +377,7 @@ const LandingPage = () => {
           </p>
           <p>This is where caregivers quietly become care coordinators.</p>
           <p className={styles.benefitsIntroClose}>
-            RemiMinderAI helps patients and families remember what matters, stay organized, and
+            RemiMinderAI helps patients and families stay organized, revisit what was discussed, and
             move forward with confidence.
           </p>
         </div>
@@ -424,6 +429,10 @@ const LandingPage = () => {
       </section>
 
       <TestimonialsSection />
+      <p className={styles.medicalDisclaimer}>
+        RemiMinderAI is not a medical device and does not provide medical advice, diagnosis, or
+        treatment. Always follow your healthcare provider&apos;s instructions.
+      </p>
       <SiteFooter />
 
     </div>

@@ -344,7 +344,7 @@
 .homeNav {
   display: flex;
   justify-content: center;
-  padding: 8px 5% 56px;
+  padding: 8px 5% 32px;
 }
 
 .homeButton {
@@ -359,6 +359,16 @@
   background: var(--hm-green-hover);
   transform: translateY(-1px);
   color: #ffffff;
+}
+
+.disclaimer {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  padding: 0 5%;
+  text-align: center;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--hm-ink-soft);
 }
 
 .reveal {
