@@ -43,8 +43,19 @@
   margin: 0 auto;
 }
 
+.leadContrast {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(24px, 3.2vw, 34px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #1f4e4a;
+  max-width: 820px;
+  margin: 12px auto 0;
+}
+
 .punchlineBlock {
-  padding-top: 24px;
+  padding-top: 28px;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -58,13 +69,22 @@
   opacity: 0.9;
 }
 
+.supporting {
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(16px, 1.6vw, 18px);
+  font-weight: 400;
+  line-height: 1.65;
+  color: #4a5858;
+  margin: 24px 0 0;
+}
+
 .punchline {
   font-family: "DM Sans", sans-serif;
   font-size: clamp(17px, 1.8vw, 20px);
   font-weight: 600;
   line-height: 1.5;
   color: #1f4e4a;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .audienceCard {
@@ -95,7 +115,7 @@
   background: linear-gradient(180deg, #ffffff 0%, #f9f7f2 100%);
 }
 
-.audienceCol[data-audience="doctors"] {
+.audienceCol[data-audience="conversations"] {
   background: linear-gradient(180deg, #f9f6f0 0%, #f5f0e4 100%);
 }
 

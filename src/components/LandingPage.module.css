@@ -827,6 +827,20 @@ a.hero2BtnTeal {
   display: flex;
   align-items: center;
 }
+.ctaSupportText {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin: 20px 0 24px;
+  max-width: 420px;
+}
+.ctaDownloadRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 100%;
+}
 .demoBtnGroup {
   display: flex;
   gap: 12px;
@@ -1350,7 +1364,30 @@ a.hero2BtnTeal {
 
 /* ── BENEFITS ── */
 .benefitsSection { padding: 80px 5%; background: var(--white); text-align: center; }
-.benefitsSection .sectionSubtitle { margin: 0 auto 48px; }
+.benefitsSection .sectionSubtitle { margin: 0 auto 24px; }
+.benefitsIntro {
+  max-width: 680px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.benefitsIntro p {
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  margin: 0 0 1.1em;
+}
+.benefitsIntro p:last-child { margin-bottom: 0; }
+.benefitsIntroClose {
+  color: var(--ink) !important;
+  font-weight: 500;
+}
+.clinicClosing {
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 40px auto 0;
+}
 .benefitsGrid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px; max-width: 1100px; margin: 0 auto;
