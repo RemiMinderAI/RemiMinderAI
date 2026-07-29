@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
 import { CONTACT_EMAIL } from "../constants/site";
+import landingStyles from "./LandingPage.module.css";
+import pricingStyles from "./PricingPage.module.css";
 import styles from "./FutureVisionPage.module.css";
 
 const INTEGRATIONS = [
@@ -82,8 +84,11 @@ export default function FutureVisionPage() {
   }, []);
 
   return (
-    <div className={styles.page}>
-      <MarketingHeader scrolled={scrolled} />
+    <div className={`${landingStyles.container} ${styles.page}`}>
+      <MarketingHeader
+        scrolled={scrolled}
+        headerExtraClass={`${pricingStyles.pricingHeader} ${styles.pageHeader}`}
+      />
 
       <header className={styles.hero}>
         <p className={styles.heroEyebrow}>RemiMinder Future Vision</p>

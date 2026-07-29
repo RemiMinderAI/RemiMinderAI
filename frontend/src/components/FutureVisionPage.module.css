@@ -18,6 +18,11 @@
   min-height: 100vh;
 }
 
+.pageHeader {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom-color: rgba(27, 42, 74, 0.08) !important;
+}
+
 /* ── HERO ── */
 .hero {
   background: var(--deep-navy); color: var(--white);
