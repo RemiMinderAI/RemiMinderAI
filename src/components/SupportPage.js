@@ -231,8 +231,8 @@ export default function SupportPage() {
             )}
 
             <div className={styles.divider}>or email us directly</div>
-            <a href="mailto:support@remiminderai.com" className={styles.emailLink}>
-              support@remiminderai.com
+            <a href={`mailto:${CONTACT_EMAIL}`} className={styles.emailLink}>
+              {CONTACT_EMAIL}
             </a>
           </div>
         </div>

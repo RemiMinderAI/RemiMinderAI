@@ -97,11 +97,11 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--navy, #1B2A4A);
   letter-spacing: -0.02em;
 }
-.logoMinder { color: var(--coral); }
-.logoAi { color: var(--navy); }
+.logoMinder { color: var(--coral, #D4614A); }
+.logoAi { color: var(--navy, #1B2A4A); }
 .nav {
   display: flex;
   align-items: center;

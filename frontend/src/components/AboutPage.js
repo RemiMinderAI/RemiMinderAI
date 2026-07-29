@@ -7,6 +7,7 @@ import styles from "./AboutPage.module.css";
 import SiteFooter from "./SiteFooter";
 import MarketingHeader from "./MarketingHeader";
 import profileParamita from "../assets/profilephotos/tina.jfif";
+import profileAngkon from "../assets/profilephotos/angkon.jpg";
 import { CONTACT_EMAIL } from "../constants/site";
 import { openContactModal } from "./ContactModal";
 /** About page copy per marketing spec (About Page — RemiMinderAI). */
@@ -66,10 +67,10 @@ const AboutPage = () => {
   ];
 
   const roadmapItems = [
-    "Q2 2026 — External beta opens to waitlist (Android first)",
-    "Q3 2026 — iOS release and caregiver web dashboard",
-    "Q4 2026 — Care team collaboration features, provider integrations",
-    "2027 — Caregiver community partnerships and multi-language support",
+    "iOS launch and RemiVox voice companion beta",
+    "Provider documentation pilot and care team collaboration",
+    "Healthcare organization integrations and API platform",
+    "Multilingual voice support",
   ];
 
   const companyLines = [
@@ -78,7 +79,6 @@ const AboutPage = () => {
     "Company Size: 2–10 employees",
     "Headquarters: Hollister, California",
     "Founded: 2025",
-    "Status: Private Beta (Invite Only)",
     "Email: team@remiminderai.com",
   ];
 
@@ -242,19 +242,52 @@ const AboutPage = () => {
           <div className={styles.centerTitle}>
             <h2 className={styles.sectionHeading}>Our Team</h2>
           </div>
-          <div className={styles.teamSingle}>
+          <div className={styles.teamGrid}>
             <div className={`${landingStyles.personaCard} ${styles.teamCardInner}`}>
               <div className={styles.avatar}>
-                <img src={profileParamita} alt="Paramita Malakar" className={styles.avatarImg} />
+                <img
+                  src={profileParamita}
+                  alt="Paramita (Tina) Malakar"
+                  className={styles.avatarImg}
+                />
               </div>
-              <h3 className={styles.teamName}>Paramita Malakar</h3>
-              <p className={styles.teamRole}>Product &amp; AI/ML Leader</p>
+              <h3 className={styles.teamName}>Paramita (Tina) Malakar</h3>
+              <p className={styles.teamRole}>Founder &amp; CEO</p>
               <p className={styles.teamBio}>
-                Product &amp; Quality Assurance Leader, with 18 years of experience, focused on transforming
-                ideas into impactful AI and enterprise solutions.
+                18+ years in enterprise delivery across federal IT and HealthTech. Built RemiMinderAI
+                solo from idea to beta in under 6 months.
+              </p>
+              <p className={styles.teamCreds}>
+                BS Business Management &amp; E-Global Business · PMP · CSM · AIPM · Security+ CE
               </p>
               <a
-                href="https://www.linkedin.com/in/paramitam/"
+                href="https://www.linkedin.com/in/paramitam/?skipRedirect=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkedinLink}
+              >
+                <Linkedin size={16} strokeWidth={1.75} />
+                <span>LinkedIn →</span>
+              </a>
+            </div>
+
+            <div className={`${landingStyles.personaCard} ${styles.teamCardInner}`}>
+              <div className={styles.avatar}>
+                <img src={profileAngkon} alt="Angkon Biswas" className={styles.avatarImg} />
+              </div>
+              <h3 className={styles.teamName}>Angkon Biswas</h3>
+              <p className={styles.teamRole}>Co-Founder &amp; Mobile Engineering Lead</p>
+              <p className={styles.teamBio}>
+                Building and shipping the full mobile stack across iOS and Android using Flutter,
+                Firebase, and GCP. Background in cloud infrastructure, IT operations, and agile
+                delivery.
+              </p>
+              <p className={styles.teamCreds}>
+                MBA in Systems · MS Cloud Computing · Azure Fundamentals · Google Advanced Data
+                Analytics · Scrum Master · 6x Databricks Certified
+              </p>
+              <a
+                href="https://www.linkedin.com/in/angkon-biswas-a13167214/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.linkedinLink}

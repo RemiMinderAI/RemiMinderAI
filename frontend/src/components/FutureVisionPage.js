@@ -1,5 +1,9 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import MarketingHeader from "./MarketingHeader";
+import { CONTACT_EMAIL } from "../constants/site";
+import landingStyles from "./LandingPage.module.css";
+import pricingStyles from "./PricingPage.module.css";
 import styles from "./FutureVisionPage.module.css";
 
 const INTEGRATIONS = [
@@ -62,6 +66,9 @@ const CONSUMERS = [
 ];
 
 export default function FutureVisionPage() {
+  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const previousTitle = document.title;
     document.title = "Future Vision — RemiMinderAI";
@@ -70,16 +77,18 @@ export default function FutureVisionPage() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <nav className={styles.nav}>
-        <div className={styles.navInner}>
-          <Link to="/" className={styles.navLogo}>
-            Remi<span className={styles.navLogoAccent}>Minder</span>AI
-          </Link>
-          <span className={styles.navLabel}>Future Vision</span>
-        </div>
-      </nav>
+    <div className={`${landingStyles.container} ${styles.page}`}>
+      <MarketingHeader
+        scrolled={scrolled}
+        headerExtraClass={`${pricingStyles.pricingHeader} ${styles.pageHeader}`}
+      />
 
       <header className={styles.hero}>
         <p className={styles.heroEyebrow}>RemiMinder Future Vision</p>
@@ -465,10 +474,20 @@ export default function FutureVisionPage() {
           a loved one, or a healthcare organization looking to improve communication — our mission
           is the same: help every important healthcare conversation lead to better care.
         </p>
-        <a href="mailto:tina@remiminderai.com" className={styles.ctaBtn}>
-          Start a Conversation
+        <a href={`mailto:${CONTACT_EMAIL}`} className={styles.ctaBtn}>
+          Start The Conversation
         </a>
       </section>
+
+      <div className={styles.backHomeWrap}>
+        <button
+          type="button"
+          className={styles.backHome}
+          onClick={() => navigate("/")}
+        >
+          ← Back to Home
+        </button>
+      </div>
 
       <footer className={styles.footer}>
         <p>
