@@ -67,10 +67,10 @@ const AboutPage = () => {
   ];
 
   const roadmapItems = [
-    "Q2 2026 — External beta opens to waitlist (Android first)",
-    "Q3 2026 — iOS release and caregiver web dashboard",
-    "Q4 2026 — Care team collaboration features, provider integrations",
-    "2027 — Caregiver community partnerships and multi-language support",
+    "iOS launch and RemiVox voice companion beta",
+    "Provider documentation pilot and care team collaboration",
+    "Healthcare organization integrations and API platform",
+    "Multilingual voice support",
   ];
 
   const companyLines = [
