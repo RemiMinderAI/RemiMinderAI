@@ -79,7 +79,6 @@ const AboutPage = () => {
     "Company Size: 2–10 employees",
     "Headquarters: Hollister, California",
     "Founded: 2025",
-    "Status: Private Beta (Invite Only)",
     "Email: team@remiminderai.com",
   ];
 
