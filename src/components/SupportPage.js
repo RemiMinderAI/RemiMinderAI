@@ -4,6 +4,7 @@ import pricingStyles from "./PricingPage.module.css";
 import styles from "./SupportPage.module.css";
 import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
+import { CONTACT_EMAIL } from "../constants/site";
 
 const FAQ_ITEMS = [
   {
