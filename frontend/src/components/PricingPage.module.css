@@ -46,7 +46,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #1d9e75;
+  background: #1B2A4A;
   flex-shrink: 0;
   animation: pricingPulse 2s ease-in-out infinite;
 }
@@ -121,7 +121,7 @@
 
 .cardFeatured {
   border: 2px solid #e8b84b;
-  box-shadow: 0 10px 28px rgba(29, 158, 117, 0.12);
+  box-shadow: 0 10px 28px rgba(27, 42, 74, 0.12);
   padding-top: 36px;
 }
 
@@ -482,7 +482,7 @@
 }
 
 .modalClose:hover {
-  background: rgba(29, 158, 117, 0.12);
+  background: rgba(27, 42, 74, 0.12);
 }
 
 .modalTitle {
@@ -524,7 +524,7 @@
 }
 
 .modalInput:focus {
-  outline: 2px solid #1d9e75;
+  outline: 2px solid #1B2A4A;
   outline-offset: 1px;
 }
 

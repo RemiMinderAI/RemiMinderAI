@@ -26,7 +26,7 @@
   padding: clamp(32px, 5vw, 56px);
   background:
     radial-gradient(circle at 10% 15%, rgba(201, 168, 76, 0.22), transparent 30%),
-    linear-gradient(135deg, #0d3d38 0%, #102f33 100%);
+    linear-gradient(135deg, #1B2A4A 0%, #152238 100%);
   border-radius: 28px;
   color: #ffffff;
   box-shadow: 0 24px 60px rgba(13, 61, 56, 0.18);
@@ -98,7 +98,7 @@
 
 .primaryAction {
   background: #ffffff;
-  color: #0d3d38;
+  color: #1B2A4A;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
@@ -216,7 +216,7 @@
   height: 44px;
   border-radius: 14px;
   background: rgba(13, 61, 56, 0.1);
-  color: #0d3d38;
+  color: #1B2A4A;
   font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 1rem;
   font-weight: 800;
@@ -286,7 +286,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #0d3d38;
+  background: #1B2A4A;
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: 800;
@@ -325,13 +325,13 @@
   height: 20px;
   border-radius: 50%;
   background: rgba(13, 61, 56, 0.12);
-  color: #0d3d38;
+  color: #1B2A4A;
   font-size: 0.78rem;
   font-weight: 800;
 }
 
 .main a {
-  color: var(--teal-dark, #137a7a);
+  color: var(--teal-dark, #152238);
   font-weight: 700;
   text-decoration: none;
 }
@@ -348,13 +348,13 @@
 
 .backHome {
   border: 0;
-  background: #0d3d38;
+  background: #1B2A4A;
   color: #ffffff;
   cursor: pointer;
 }
 
 .backHome:hover {
-  background: #0a302c;
+  background: #152238;
   box-shadow: 0 12px 28px rgba(13, 61, 56, 0.18);
 }
 

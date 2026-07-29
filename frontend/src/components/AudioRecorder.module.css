@@ -170,13 +170,13 @@
     border-radius: 0.5rem;
     font-weight: 600;
     color: #ffffff;
-    background-color: #22c55e; /* bg-green-500 */
+    background-color: #1B2A4A; /* bg-green-500 */
     border: none;
     cursor: pointer;
     transition: background-color 0.2s;
   }
   .uploadButton:hover {
-    background-color: #16a34a; /* hover:bg-green-600 */
+    background-color: #152238; /* hover:bg-green-600 */
   }
   
   
@@ -204,7 +204,7 @@
   .tipIcon {
     height: 1.25rem;
     width: 1.25rem;
-    color: #22c55e; /* text-green-500 */
+    color: #1B2A4A; /* text-green-500 */
     flex-shrink: 0; /* Prevents icon from shrinking */
   }
   

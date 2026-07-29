@@ -2,7 +2,7 @@
 
 .footer {
   color-scheme: light;
-  background: #0f2a36;
+  background: #1B2A4A;
   color: rgba(255, 255, 255, 0.85);
   padding: 48px 5% 0;
   text-align: left;
@@ -53,6 +53,10 @@
   letter-spacing: -0.02em;
 }
 
+.brandMinder {
+  color: #D4614A;
+}
+
 .brandTagline {
   font-size: 13px;
   line-height: 1.6;
@@ -98,7 +102,7 @@
 }
 
 .navCol a:hover {
-  color: #1d9e75;
+  color: #D4614A;
 }
 
 .navCol button.navButton {
@@ -122,7 +126,7 @@
 }
 
 .navCol button.navButton:hover {
-  color: #1d9e75;
+  color: #D4614A;
 }
 
 .bottomBar {
@@ -161,7 +165,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #1d9e75;
+  background: #D4614A;
   flex-shrink: 0;
 }
 
@@ -186,8 +190,8 @@
 }
 
 .socialLink:hover {
-  background: rgba(29, 158, 117, 0.2);
-  color: #1d9e75;
+  background: rgba(212, 97, 74, 0.2);
+  color: #D4614A;
 }
 
 .socialLink svg {

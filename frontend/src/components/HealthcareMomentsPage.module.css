@@ -6,11 +6,11 @@
   --hm-card: #ffffff;
   --hm-ink: #2c3330;
   --hm-ink-soft: #4a524e;
-  --hm-green: #1f4e45;
-  --hm-green-hover: #173c35;
-  --hm-sage: #d7e6df;
-  --hm-sage-strong: #6f9588;
-  --hm-border: rgba(31, 78, 69, 0.12);
+  --hm-green: #1B2A4A;
+  --hm-green-hover: #152238;
+  --hm-sage: #E8EBF2;
+  --hm-sage-strong: #3A4F6F;
+  --hm-border: rgba(27, 42, 74, 0.12);
   --hm-shadow: 0 10px 30px rgba(44, 51, 48, 0.07);
 
   color-scheme: light;
@@ -29,7 +29,7 @@
 .hero {
   padding: 88px 5% 72px;
   background:
-    radial-gradient(circle at top right, rgba(215, 230, 223, 0.7), transparent 42%),
+    radial-gradient(circle at top right, rgba(232, 235, 242, 0.7), transparent 42%),
     linear-gradient(180deg, #faf7f0 0%, #f5f1e8 100%);
 }
 
@@ -262,7 +262,7 @@
 }
 
 .emotionalInner {
-  background: linear-gradient(180deg, #f7fbf8 0%, #eef6f1 100%);
+  background: linear-gradient(180deg, #E8EBF2 0%, #dfe3ec 100%);
   border: 1px solid rgba(111, 149, 136, 0.28);
   border-radius: 22px;
   padding: 48px 40px;

@@ -118,8 +118,8 @@
 
 .roleButton2:hover {
   background: rgba(58, 213, 94, 0.1);
-  border-color: #10b981;
-  color: #10b981;
+  border-color: #1B2A4A;
+  color: #1B2A4A;
 }
 
 /* =====================
@@ -143,7 +143,7 @@
 
 .iconBoxCaregiver {
   background: rgba(58, 213, 94, 0.1);
-  color: #10b981;
+  color: #1B2A4A;
 }
 
 .icon {
@@ -303,7 +303,7 @@
 }
 
 .greenButton {
-  background-color: #10b981;
+  background-color: #1B2A4A;
   color: white;
   border: none;
   border-radius: 8px;
@@ -316,7 +316,7 @@
 }
 
 .greenButton:hover {
-  background-color: #059669;
+  background-color: #152238;
 }
 
 .recoveryFooter {

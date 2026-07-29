@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Future Vision — RemiMinderAI</title>
+  <meta name="description" content="RemiMinderAI Future Vision — Transforming healthcare conversations into action for patients, caregivers, clinicians, and healthcare organizations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --deep-navy: #1B2A4A;
+      --navy-light: #E8EBF2;
+      --warm-coral: #D4614A;
+      --sand: #F8F6F2;
+      --white: #FFFFFF;
+      --ink: #1A1D2B;
+      --muted: #5F6B7A;
+      --border: #DDE1E6;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--white);
+      text-align: left;
+    }
+    .fv-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    .fv-nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .fv-nav-logo {
+      font-family: var(--font-body); font-weight: 600; font-size: 1.05rem;
+      color: var(--deep-navy); text-decoration: none; letter-spacing: -0.01em;
+    }
+    .fv-nav-logo-accent { color: var(--warm-coral); }
+    .fv-nav-label {
+      font-size: 0.78rem; font-weight: 500; color: var(--muted);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .fv-hero {
+      background: var(--deep-navy); color: var(--white);
+      padding: 5.5rem 2rem 5rem; text-align: center;
+    }
+    .fv-hero-eyebrow {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 1.2rem;
+    }
+    .fv-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400; line-height: 1.2; max-width: 720px; margin: 0 auto 1.4rem;
+    }
+    .fv-hero p {
+      font-size: 1.08rem; line-height: 1.7; max-width: 620px;
+      margin: 0 auto; color: rgba(255,255,255,0.8);
+    }
+    .fv-hero-principle {
+      display: inline-block; margin-top: 2rem;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.5rem 1.4rem; border-radius: 6px;
+    }
+    .fv-section { padding: 5rem 2rem; }
+    .fv-section-alt { background: var(--sand); }
+    .fv-container { max-width: 900px; margin: 0 auto; }
+    .fv-section-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--warm-coral); margin-bottom: 0.8rem;
+    }
+    .fv-section h2 {
+      font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 400; line-height: 1.25; margin-bottom: 1.2rem; color: var(--ink);
+    }
+    .fv-section-intro {
+      font-size: 1.05rem; color: var(--muted); max-width: 660px; margin-bottom: 2.8rem;
+    }
+    .fv-diagram {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2.5rem 2rem; margin-top: 2.5rem;
+    }
+    .fv-diagram-source { text-align: center; margin-bottom: 2rem; }
+    .fv-diagram-source-label {
+      display: inline-block; background: var(--deep-navy); color: var(--white);
+      font-size: 0.82rem; font-weight: 600; padding: 0.5rem 1.4rem; border-radius: 6px;
+    }
+    .fv-diagram-arrow {
+      display: block; width: 2px; height: 32px;
+      background: var(--border); margin: 0 auto;
+    }
+    .fv-diagram-engine { text-align: center; margin: 0.8rem 0; }
+    .fv-diagram-engine-label {
+      display: inline-block; background: var(--warm-coral); color: var(--white);
+      font-size: 0.82rem; font-weight: 600; padding: 0.5rem 1.4rem; border-radius: 6px;
+    }
+    .fv-diagram-outputs {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-top: 1.6rem;
+    }
+    .fv-diagram-output {
+      text-align: center; padding: 1.2rem 1rem;
+      background: var(--navy-light); border-radius: 8px;
+    }
+    .fv-diagram-output-icon { font-size: 1.6rem; margin-bottom: 0.4rem; }
+    .fv-diagram-output-title {
+      font-weight: 600; font-size: 0.88rem; margin-bottom: 0.25rem; color: var(--deep-navy);
+    }
+    .fv-diagram-output-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .fv-card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem;
+    }
+    .fv-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.8rem 1.6rem;
+    }
+    .fv-card-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .fv-card h3 {
+      font-family: var(--font-display); font-size: 1.15rem;
+      font-weight: 400; margin-bottom: 0.7rem; color: var(--deep-navy);
+    }
+    .fv-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+    .fv-integration-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem; margin-top: 1rem;
+    }
+    .fv-integration-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 1rem 0; }
+    .fv-integration-check {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--navy-light); color: var(--deep-navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 600; margin-top: 2px;
+    }
+    .fv-integration-text { font-size: 0.92rem; color: var(--ink); line-height: 1.5; }
+    .fv-integration-sub { font-size: 0.8rem; color: var(--muted); }
+    .fv-deploy-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.4rem; margin-top: 1rem;
+    }
+    .fv-deploy-card {
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 1.8rem 1.5rem; background: var(--white);
+    }
+    .fv-deploy-card-preferred { border-color: var(--deep-navy); border-width: 2px; }
+    .fv-deploy-card h3 {
+      font-family: var(--font-display); font-size: 1.1rem;
+      font-weight: 400; color: var(--deep-navy); margin-bottom: 0.6rem;
+    }
+    .fv-deploy-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+    .fv-deploy-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--warm-coral); margin-bottom: 0.6rem;
+    }
+    .fv-deploy-tag-preferred { color: var(--deep-navy); }
+    .fv-trust-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+    }
+    .fv-trust-item { padding: 1.2rem 0; }
+    .fv-trust-item h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+    .fv-trust-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    .fv-data-principle {
+      background: var(--ink); color: var(--white);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .fv-data-principle-quote {
+      font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.7rem);
+      font-weight: 400; line-height: 1.4; max-width: 600px; margin: 0 auto 0.8rem;
+    }
+    .fv-data-principle-sub { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+    .fv-remiq {
+      background: var(--deep-navy); color: var(--white);
+      padding: 3.5rem 2rem; text-align: center;
+    }
+    .fv-remiq p {
+      max-width: 640px; margin: 0 auto; font-size: 1.02rem;
+      line-height: 1.75; color: rgba(255,255,255,0.82);
+    }
+    .fv-remiq a {
+      color: var(--warm-coral); text-decoration: underline; text-underline-offset: 3px;
+    }
+    .fv-closing { text-align: center; padding: 5rem 2rem; }
+    .fv-closing h2 {
+      font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 400; line-height: 1.25; margin-bottom: 1rem; color: var(--ink);
+    }
+    .fv-closing p {
+      max-width: 560px; margin: 0 auto 2rem;
+      font-size: 1.02rem; color: var(--muted);
+    }
+    .fv-cta-btn {
+      display: inline-block; background: var(--warm-coral); color: var(--white);
+      font-family: var(--font-body); font-size: 0.92rem; font-weight: 600;
+      padding: 0.8rem 2rem; border-radius: 6px; text-decoration: none;
+    }
+    .fv-cta-btn:hover { background: #c0533f; }
+    .fv-footer {
+      border-top: 1px solid var(--border); padding: 2rem;
+      text-align: center; font-size: 0.78rem; color: var(--muted);
+    }
+    .fv-chip-navy {
+      background: var(--navy-light); color: var(--deep-navy);
+      font-size: 0.8rem; font-weight: 500; padding: 0.45rem 1rem; border-radius: 6px;
+    }
+    .fv-chip-coral {
+      background: rgba(212, 97, 74, 0.1); color: var(--warm-coral);
+      font-size: 0.8rem; font-weight: 500; padding: 0.45rem 1rem; border-radius: 6px;
+    }
+    .fv-chip-muted {
+      display: inline-block; background: var(--sand); color: var(--muted);
+      font-size: 0.78rem; font-weight: 500; padding: 0.4rem 1.2rem;
+      border-radius: 6px; border: 1px solid var(--border);
+    }
+    .fv-label-upper {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem;
+    }
+    @media (max-width: 600px) {
+      .fv-section { padding: 3.5rem 1.4rem; }
+      .fv-hero { padding: 4rem 1.4rem 3.5rem; }
+      .fv-diagram-outputs { grid-template-columns: 1fr; }
+      .fv-card-grid { grid-template-columns: 1fr; }
+      .fv-deploy-grid { grid-template-columns: 1fr; }
+      .fv-ambient-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="fv-nav">
+    <div class="fv-nav-inner">
+      <a href="/" class="fv-nav-logo">Remi<span class="fv-nav-logo-accent">Minder</span>AI</a>
+      <span class="fv-nav-label">Future Vision</span>
+    </div>
+  </nav>
+
+  <header class="fv-hero">
+    <p class="fv-hero-eyebrow">RemiMinder Future Vision</p>
+    <h1>Transforming Healthcare Conversations Into Action</h1>
+    <p>Every conversation between a patient and a healthcare professional contains valuable information for many people. Today, most of it is lost. We're building the intelligence layer that changes that — designed to work within your existing systems, not replace them.</p>
+    <span class="fv-hero-principle">The data stays where you trust it. We provide the intelligence.</span>
+  </header>
+
+  <section class="fv-section">
+    <div class="fv-container">
+      <p class="fv-section-label">The Thesis</p>
+      <h2>One Conversation. Multiple Outputs.</h2>
+      <p class="fv-section-intro">Every patient encounter generates information that matters to clinicians, patients, caregivers, and families — each with different needs. We're building toward a future where a single healthcare conversation can produce tailored, intelligent outputs for every stakeholder.</p>
+      <div class="fv-diagram">
+        <div class="fv-diagram-source"><span class="fv-diagram-source-label">Healthcare Conversation</span></div>
+        <span class="fv-diagram-arrow"></span>
+        <div class="fv-diagram-source"><span class="fv-chip-muted">Hospital-Controlled Environment</span></div>
+        <span class="fv-diagram-arrow"></span>
+        <div class="fv-diagram-engine"><span class="fv-diagram-engine-label">RemiMinderAI Intelligence Layer</span></div>
+        <span class="fv-diagram-arrow"></span>
+        <div class="fv-diagram-outputs">
+          <div class="fv-diagram-output"><div class="fv-diagram-output-icon">🩺</div><div class="fv-diagram-output-title">Clinician</div><div class="fv-diagram-output-desc">Structured draft documentation to reduce note-taking burden</div></div>
+          <div class="fv-diagram-output"><div class="fv-diagram-output-icon">🧑</div><div class="fv-diagram-output-title">Patient</div><div class="fv-diagram-output-desc">Plain-language summary with medications and follow-ups</div></div>
+          <div class="fv-diagram-output"><div class="fv-diagram-output-icon">👨‍👩‍👧</div><div class="fv-diagram-output-title">Family &amp; Caregiver</div><div class="fv-diagram-output-desc">Action items, medication changes, and care coordination</div></div>
+          <div class="fv-diagram-output"><div class="fv-diagram-output-icon">🏥</div><div class="fv-diagram-output-title">Organization</div><div class="fv-diagram-output-desc">Structured data for engagement, continuity, and workflows</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fv-data-principle">
+    <p class="fv-data-principle-quote">&ldquo;Store once. Secure once. Share intelligently.&rdquo;</p>
+    <p class="fv-data-principle-sub">Our enterprise vision is built around a data-first principle: healthcare organizations maintain control of their data, while RemiMinderAI provides the intelligence layer that transforms conversations into actionable experiences.</p>
+  </div>
+
+  <section class="fv-section">
+    <div class="fv-container">
+      <p class="fv-section-label">Who This Serves</p>
+      <h2>Designed for Every Side of the Conversation</h2>
+      <p class="fv-section-intro">We're hearing the same pain point from patients, families, and clinicians alike: important healthcare conversations deserve better tools.</p>
+      <div class="fv-card-grid">
+        <div class="fv-card"><div class="fv-card-icon">🩺</div><h3>Healthcare Professionals</h3><p>We're exploring how to reduce the documentation burden that follows every patient encounter — helping clinicians spend more time with patients and less time on paperwork.</p></div>
+        <div class="fv-card"><div class="fv-card-icon">🧑</div><h3>Patients</h3><p>Our consumer app already helps patients understand what happened during a visit — with plain-language summaries, medication reminders, and follow-up instructions.</p></div>
+        <div class="fv-card"><div class="fv-card-icon">👨‍👩‍👧</div><h3>Families &amp; Caregivers</h3><p>Caregivers can't always be in the room. We're designing ways for families to stay informed through shared visit summaries, coordinated medication tracking, and clear next steps.</p></div>
+        <div class="fv-card"><div class="fv-card-icon">🏥</div><h3>Healthcare Organizations</h3><p>We're exploring how RemiMinderAI can help organizations improve patient engagement, reduce post-discharge misunderstandings, and support continuity of care — all without creating another data silo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fv-section fv-section-alt">
+    <div class="fv-container">
+      <p class="fv-section-label">Deployment Flexibility</p>
+      <h2>Your Data. Your Environment. Our Intelligence.</h2>
+      <p class="fv-section-intro">We're designing RemiMinderAI with flexible deployment options that allow healthcare organizations to maintain control of their data while leveraging AI-powered conversation intelligence.</p>
+      <div class="fv-deploy-grid">
+        <div class="fv-deploy-card fv-deploy-card-preferred"><div class="fv-deploy-tag fv-deploy-tag-preferred">Preferred for Enterprise</div><h3>Hospital-Hosted</h3><p>RemiMinderAI services run inside the hospital's own cloud environment. The hospital controls PHI, manages compliance, and owns the data.</p></div>
+        <div class="fv-deploy-card"><div class="fv-deploy-tag">Also Available</div><h3>Private Cloud</h3><p>A dedicated RemiMinderAI cloud environment for organizations that prefer faster deployment with enterprise-grade controls.</p></div>
+        <div class="fv-deploy-card"><div class="fv-deploy-tag">Available Today</div><h3>Consumer</h3><p>Patient-owned recordings processed in a secure cloud environment. This is our live product on Android and coming soon to iOS.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fv-section">
+    <div class="fv-container">
+      <p class="fv-section-label">Integration Vision</p>
+      <h2>Built to Complement, Not Compete</h2>
+      <p class="fv-section-intro">RemiMinderAI is designed to plug into existing hospital infrastructure as an API-first platform — not ask organizations to adopt another tool.</p>
+      <div class="fv-integration-list">
+        <div class="fv-integration-item"><div class="fv-integration-check">→</div><div><div class="fv-integration-text">Electronic Health Records</div><div class="fv-integration-sub">Epic, Oracle Health/Cerner, athenahealth</div></div></div>
+        <div class="fv-integration-item"><div class="fv-integration-check">→</div><div><div class="fv-integration-text">Ambient AI &amp; Clinical Documentation Tools</div><div class="fv-integration-sub">Complementary patient-facing layer alongside existing workflows</div></div></div>
+        <div class="fv-integration-item"><div class="fv-integration-check">→</div><div><div class="fv-integration-text">Patient Portals</div><div class="fv-integration-sub">Summaries patients can understand</div></div></div>
+        <div class="fv-integration-item"><div class="fv-integration-check">→</div><div><div class="fv-integration-text">Care Management Platforms</div><div class="fv-integration-sub">Structured handoffs and action items</div></div></div>
+        <div class="fv-integration-item"><div class="fv-integration-check">→</div><div><div class="fv-integration-text">Wearable Devices &amp; Voice Assistants</div><div class="fv-integration-sub">Contextual reminders and health tracking</div></div></div>
+        <div class="fv-integration-item"><div class="fv-integration-check">→</div><div><div class="fv-integration-text">Remote Patient Monitoring</div><div class="fv-integration-sub">Connecting conversations to ongoing care</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fv-remiq">
+    <p>RemiMinderAI is the first application being developed under the <strong>Remiq</strong> vision — a platform for transforming healthcare conversations into actionable intelligence. <a href="https://remiq.health">Learn more at remiq.health</a></p>
+  </div>
+
+  <section class="fv-closing">
+    <h2>Healthcare AI Shouldn't Replace Conversations.<br />It Should Help People Remember Them.</h2>
+    <p>Whether you're a patient, a caregiver, or a healthcare organization — our mission is the same: help every important healthcare conversation lead to better care.</p>
+    <a href="mailto:tina@remiminderai.com" class="fv-cta-btn">Start a Conversation</a>
+  </section>
+
+  <footer class="fv-footer">
+    <p>&copy; 2026 RemiMinderAI &middot; A Remiq Company &middot; This page describes our future vision and product roadmap.</p>
+  </footer>
+</body>
+</html>

@@ -42,7 +42,9 @@ export default function SiteFooter() {
           <div className={styles.brandCol}>
             <div className={styles.brandRow}>
               <img src={logo} alt="" className={styles.logoImg} />
-              <span className={styles.brandName}>RemiMinderAI</span>
+              <span className={styles.brandName}>
+                Remi<span className={styles.brandMinder}>Minder</span>AI
+              </span>
             </div>
             <p className={styles.brandTagline}>
               A family-centered way to organize healthcare visit information, share clear summaries,
@@ -55,6 +57,7 @@ export default function SiteFooter() {
             <a href="/#how-it-works">How It Works</a>
             <a href="/#get-started">Get Started</a>
             <Link to="/healthcare-moments">Use Cases</Link>
+            <Link to="/future-vision">Future Vision</Link>
             <Link to="/support">Support</Link>
           </nav>
 
