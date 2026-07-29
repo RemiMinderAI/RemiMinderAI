@@ -7,6 +7,7 @@ import styles from "./AboutPage.module.css";
 import SiteFooter from "./SiteFooter";
 import MarketingHeader from "./MarketingHeader";
 import profileParamita from "../assets/profilephotos/tina.jfif";
+import profileAngkon from "../assets/profilephotos/angkon.jpg";
 import { CONTACT_EMAIL } from "../constants/site";
 import { openContactModal } from "./ContactModal";
 /** About page copy per marketing spec (About Page — RemiMinderAI). */
@@ -242,7 +243,7 @@ const AboutPage = () => {
           <div className={styles.centerTitle}>
             <h2 className={styles.sectionHeading}>Our Team</h2>
           </div>
-          <div className={styles.teamSingle}>
+          <div className={styles.teamGrid}>
             <div className={`${landingStyles.personaCard} ${styles.teamCardInner}`}>
               <div className={styles.avatar}>
                 <img src={profileParamita} alt="Paramita Malakar" className={styles.avatarImg} />
@@ -255,6 +256,31 @@ const AboutPage = () => {
               </p>
               <a
                 href="https://www.linkedin.com/in/paramitam/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkedinLink}
+              >
+                <Linkedin size={16} strokeWidth={1.75} />
+                <span>LinkedIn →</span>
+              </a>
+            </div>
+
+            <div className={`${landingStyles.personaCard} ${styles.teamCardInner}`}>
+              <div className={styles.avatar}>
+                <img src={profileAngkon} alt="Angkon Biswas" className={styles.avatarImg} />
+              </div>
+              <h3 className={styles.teamName}>Angkon Biswas</h3>
+              <p className={styles.teamRole}>Co-Founder &amp; Mobile Engineering Lead</p>
+              <p className={styles.teamBio}>
+                Currently co-founding and leading mobile engineering at RemiMinderAI. Building and
+                shipping the full mobile stack across iOS and Android using Flutter, Firebase, and GCP.
+                Background includes an MBA in Systems from IEM, a Master&apos;s in Cloud Computing from
+                Hanson Canada, and hands-on experience in IT operations, cloud infrastructure, and
+                agile delivery. Supported by certifications including Microsoft Azure Fundamentals,
+                Google Advanced Data Analytics, six Databricks certifications, and Scrum Master.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/angkon-biswas-a13167214/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.linkedinLink}
