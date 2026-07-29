@@ -1,7 +1,8 @@
 /* Match LandingPage design system; force light + ignore OS dark mode */
 .root {
-  --teal: #1a9e9e;
-  --teal-dark: #137a7a;
+  --teal: #1B2A4A;
+  --teal-dark: #152238;
+  --coral: #D4614A;
   --gold: #c9a84c;
   --cream: #f7f3ec;
   --ink: #1a2332;
@@ -43,7 +44,7 @@
   max-height: min(90vh, 700px);
   overflow: auto;
   background: #faf8f3;
-  border: 1px solid rgba(26, 158, 158, 0.2);
+  border: 1px solid rgba(27, 42, 74, 0.2);
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(26, 50, 50, 0.15);
   padding: 28px 26px 24px;
@@ -115,7 +116,7 @@
   font: inherit;
   padding: 11px 14px;
   border-radius: 10px;
-  border: 1.5px solid rgba(26, 158, 158, 0.25);
+  border: 1.5px solid rgba(27, 42, 74, 0.25);
   background: var(--white);
   color: var(--ink);
   color-scheme: only light;
@@ -126,7 +127,7 @@
 .select:focus {
   outline: none;
   border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(26, 158, 158, 0.15);
+  box-shadow: 0 0 0 3px rgba(27, 42, 74, 0.15);
 }
 
 .inputError {
@@ -179,7 +180,7 @@
 
 .submitBtn:hover:not(:disabled) {
   background: var(--teal-dark);
-  box-shadow: 0 4px 16px rgba(26, 158, 158, 0.3);
+  box-shadow: 0 4px 16px rgba(27, 42, 74, 0.3);
   transform: translateY(-1px);
 }
 
@@ -217,7 +218,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(26, 158, 158, 0.12);
+  background: rgba(27, 42, 74, 0.12);
   color: var(--teal);
   animation: checkPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }

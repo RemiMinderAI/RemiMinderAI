@@ -42,7 +42,7 @@
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(1.15rem, 2.4vw, 1.45rem);
   font-weight: 600;
-  color: var(--teal-dark, #137a7a);
+  color: var(--teal-dark, #152238);
   line-height: 1.35;
   margin-bottom: 20px;
 }
@@ -125,7 +125,7 @@
 
 .dataBullet {
   flex-shrink: 0;
-  color: var(--teal, #1a9e9e);
+  color: var(--teal, #1B2A4A);
   font-weight: 700;
   line-height: 1.65;
 }
@@ -135,7 +135,7 @@
   margin-top: 18px;
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--teal-dark, #137a7a);
+  color: var(--teal-dark, #152238);
   text-decoration: none;
   font-family: "DM Sans", sans-serif;
 }
@@ -165,7 +165,7 @@
   border-radius: 50%;
   margin: 0 auto 16px;
   overflow: hidden;
-  border: 3px solid rgba(26, 158, 158, 0.25);
+  border: 3px solid rgba(27, 42, 74, 0.25);
 }
 
 .avatarImg {
@@ -187,7 +187,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--teal, #1a9e9e);
+  color: var(--teal, #1B2A4A);
   margin-bottom: 12px;
 }
 
@@ -205,7 +205,7 @@
   gap: 6px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--teal-dark, #137a7a);
+  color: var(--teal-dark, #152238);
   text-decoration: none;
   font-family: "DM Sans", sans-serif;
 }
@@ -256,13 +256,13 @@
 }
 
 .companyBullet {
-  color: var(--teal, #1a9e9e);
+  color: var(--teal, #1B2A4A);
   font-weight: 700;
   flex-shrink: 0;
 }
 
 .companyList a {
-  color: var(--teal-dark, #137a7a);
+  color: var(--teal-dark, #152238);
   font-weight: 500;
   text-decoration: none;
 }
@@ -290,7 +290,7 @@
   align-items: center;
   justify-content: center;
   padding: 13px 28px;
-  background: var(--teal, #1a9e9e);
+  background: var(--teal, #1B2A4A);
   color: var(--white, #fff);
   font-family: "DM Sans", sans-serif;
   font-weight: 600;
@@ -303,9 +303,9 @@
 }
 
 .backHome:hover {
-  background: var(--teal-dark, #137a7a);
+  background: var(--teal-dark, #152238);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(26, 158, 158, 0.35);
+  box-shadow: 0 6px 20px rgba(27, 42, 74, 0.35);
 }
 
 .centerTitle {

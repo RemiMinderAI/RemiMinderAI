@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap');
+
+.page {
+  --deep-navy: #1B2A4A;
+  --navy-light: #E8EBF2;
+  --warm-coral: #D4614A;
+  --sand: #F8F6F2;
+  --white: #FFFFFF;
+  --ink: #1A1D2B;
+  --muted: #5F6B7A;
+  --border: #DDE1E6;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  text-align: left;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: var(--announcement-bar-height, 0px); z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+.navInner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.navLogo {
+  font-family: var(--font-body); font-weight: 600; font-size: 1.05rem;
+  color: var(--deep-navy); text-decoration: none; letter-spacing: -0.01em;
+}
+.navLogoAccent { color: var(--warm-coral); }
+.navLabel {
+  font-size: 0.78rem; font-weight: 500; color: var(--muted);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--deep-navy); color: var(--white);
+  padding: 5.5rem 2rem 5rem; text-align: center;
+}
+.heroEyebrow {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400; line-height: 1.2; max-width: 720px; margin: 0 auto 1.4rem;
+}
+.hero p {
+  font-size: 1.08rem; line-height: 1.7; max-width: 620px;
+  margin: 0 auto; color: rgba(255,255,255,0.8);
+}
+.heroPrinciple {
+  display: inline-block; margin-top: 2rem;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.5rem 1.4rem; border-radius: 6px;
+}
+
+/* ── SECTIONS ── */
+.section { padding: 5rem 2rem; }
+.sectionAlt { background: var(--sand); }
+.container { max-width: 900px; margin: 0 auto; }
+
+.sectionLabel {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--warm-coral); margin-bottom: 0.8rem;
+}
+.section h2 {
+  font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400; line-height: 1.25; margin-bottom: 1.2rem; color: var(--ink);
+}
+.sectionIntro {
+  font-size: 1.05rem; color: var(--muted); max-width: 660px; margin-bottom: 2.8rem;
+}
+
+/* ── THESIS DIAGRAM ── */
+.diagram {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2.5rem 2rem; margin-top: 2.5rem;
+}
+.diagramSource { text-align: center; margin-bottom: 2rem; }
+.diagramSourceLabel {
+  display: inline-block; background: var(--deep-navy); color: var(--white);
+  font-size: 0.82rem; font-weight: 600; padding: 0.5rem 1.4rem; border-radius: 6px;
+}
+.diagramArrow {
+  display: block; width: 2px; height: 32px;
+  background: var(--border); margin: 0 auto;
+}
+.diagramEngine { text-align: center; margin: 0.8rem 0; }
+.diagramEngineLabel {
+  display: inline-block; background: var(--warm-coral); color: var(--white);
+  font-size: 0.82rem; font-weight: 600; padding: 0.5rem 1.4rem; border-radius: 6px;
+}
+.diagramOutputs {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; margin-top: 1.6rem;
+}
+.diagramOutput {
+  text-align: center; padding: 1.2rem 1rem;
+  background: var(--navy-light); border-radius: 8px;
+}
+.diagramOutputIcon { font-size: 1.6rem; margin-bottom: 0.4rem; }
+.diagramOutputTitle {
+  font-weight: 600; font-size: 0.88rem; margin-bottom: 0.25rem; color: var(--deep-navy);
+}
+.diagramOutputDesc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+/* ── CARDS ── */
+.cardGrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem;
+}
+.card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.8rem 1.6rem; transition: box-shadow 0.2s ease;
+}
+.card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.cardIcon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+.card h3 {
+  font-family: var(--font-display); font-size: 1.15rem;
+  font-weight: 400; margin-bottom: 0.7rem; color: var(--deep-navy);
+}
+.card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+/* ── INTEGRATION LIST ── */
+.integrationList {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem; margin-top: 1rem;
+}
+.integrationItem { display: flex; align-items: flex-start; gap: 0.7rem; padding: 1rem 0; }
+.integrationCheck {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--navy-light); color: var(--deep-navy);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600; margin-top: 2px;
+}
+.integrationText { font-size: 0.92rem; color: var(--ink); line-height: 1.5; }
+.integrationSub { font-size: 0.8rem; color: var(--muted); }
+
+/* ── DEPLOY CARDS ── */
+.deployGrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.4rem; margin-top: 1rem;
+}
+.deployCard {
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.8rem 1.5rem; background: var(--white);
+}
+.deployCardPreferred { border-color: var(--deep-navy); border-width: 2px; }
+.deployCard h3 {
+  font-family: var(--font-display); font-size: 1.1rem;
+  font-weight: 400; color: var(--deep-navy); margin-bottom: 0.6rem;
+}
+.deployCard p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+.deployTag {
+  display: inline-block; font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--warm-coral); margin-bottom: 0.6rem;
+}
+.deployTagPreferred { color: var(--deep-navy); }
+
+/* ── TRUST GRID ── */
+.trustGrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+}
+.trustItem { padding: 1.2rem 0; }
+.trustItem h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.trustItem p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+/* ── DATA PRINCIPLE BANNER ── */
+.dataPrinciple {
+  background: var(--ink); color: var(--white);
+  padding: 3rem 2rem; text-align: center;
+}
+.dataPrincipleQuote {
+  font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 400; line-height: 1.4; max-width: 600px; margin: 0 auto 0.8rem;
+}
+.dataPrincipleSub { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+
+/* ── REMIQ BRIDGE ── */
+.remiq {
+  background: var(--deep-navy); color: var(--white);
+  padding: 3.5rem 2rem; text-align: center;
+}
+.remiq p {
+  max-width: 640px; margin: 0 auto; font-size: 1.02rem;
+  line-height: 1.75; color: rgba(255,255,255,0.82);
+}
+.remiq a {
+  color: var(--warm-coral); text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ── CLOSING ── */
+.closing { text-align: center; padding: 5rem 2rem; }
+.closing h2 {
+  font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400; line-height: 1.25; margin-bottom: 1rem; color: var(--ink);
+}
+.closing p {
+  max-width: 560px; margin: 0 auto 2rem;
+  font-size: 1.02rem; color: var(--muted);
+}
+.ctaBtn {
+  display: inline-block; background: var(--warm-coral); color: var(--white);
+  font-family: var(--font-body); font-size: 0.92rem; font-weight: 600;
+  padding: 0.8rem 2rem; border-radius: 6px; text-decoration: none;
+  transition: background 0.2s ease;
+}
+.ctaBtn:hover { background: #c0533f; }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border); padding: 2rem;
+  text-align: center; font-size: 0.78rem; color: var(--muted);
+}
+
+/* ── API CHIPS ── */
+.chipNavy {
+  background: var(--navy-light); color: var(--deep-navy);
+  font-size: 0.8rem; font-weight: 500; padding: 0.45rem 1rem; border-radius: 6px;
+}
+.chipCoral {
+  background: rgba(212, 97, 74, 0.1); color: var(--warm-coral);
+  font-size: 0.8rem; font-weight: 500; padding: 0.45rem 1rem; border-radius: 6px;
+}
+.chipMuted {
+  display: inline-block; background: var(--sand); color: var(--muted);
+  font-size: 0.78rem; font-weight: 500; padding: 0.4rem 1.2rem;
+  border-radius: 6px; border: 1px solid var(--border);
+}
+.labelUpper {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem;
+}
+
+.apiPlatformWrap { text-align: center; margin-bottom: 1.6rem; }
+.apiPlatformLabel { margin-bottom: 0.8rem; }
+.chipRow {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;
+}
+.chipRowSpaced { margin-top: 0.4rem; }
+.consumedByLabel { text-align: center; margin: 0.6rem 0; }
+.diagramCaption {
+  text-align: center; font-size: 0.85rem; color: var(--muted);
+  margin-top: 1.6rem; font-style: italic;
+}
+.diagramCaptionTight { margin-top: 1.4rem; }
+.docSource { text-align: center; margin-bottom: 1.2rem; }
+.docMid { text-align: center; margin: 0.6rem 0; }
+.ambientGrid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  text-align: center; margin-top: 0.8rem;
+}
+.ambientBox {
+  background: var(--navy-light); border-radius: 8px; padding: 1.2rem;
+}
+.ambientBoxCoral {
+  background: rgba(212, 97, 74, 0.1); border-radius: 8px; padding: 1.2rem;
+}
+.ambientTitle {
+  font-weight: 600; font-size: 0.9rem; color: var(--deep-navy); margin-bottom: 0.3rem;
+}
+.ambientTitleCoral {
+  font-weight: 600; font-size: 0.9rem; color: var(--warm-coral); margin-bottom: 0.3rem;
+}
+.ambientDesc { font-size: 0.82rem; color: var(--muted); }
+
+@media (max-width: 600px) {
+  .section { padding: 3.5rem 1.4rem; }
+  .hero { padding: 4rem 1.4rem 3.5rem; }
+  .diagramOutputs { grid-template-columns: 1fr; }
+  .cardGrid { grid-template-columns: 1fr; }
+  .deployGrid { grid-template-columns: 1fr; }
+  .ambientGrid { grid-template-columns: 1fr; }
+}

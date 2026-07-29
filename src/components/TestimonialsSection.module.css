@@ -37,7 +37,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #1d9e75;
+  background: #1B2A4A;
   flex-shrink: 0;
   animation: heroEyebrowPulse 2s ease-in-out infinite;
 }

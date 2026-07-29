@@ -86,7 +86,8 @@ export default function MarketingHeader({
         >
           <img src={logo} alt="RemiMinder Logo" className={styles.logoImg} />
           <span className={styles.logoText}>
-            RemiMinder<span className={styles.logoAi}>AI</span>
+            Remi<span className={styles.logoMinder}>Minder</span>
+            <span className={styles.logoAi}>AI</span>
           </span>
         </div>
 
@@ -111,6 +112,9 @@ export default function MarketingHeader({
           <NavLink to="/healthcare-moments" className={navClass}>
             Use Cases
           </NavLink>
+          <NavLink to="/future-vision" className={navClass}>
+            Future Vision
+          </NavLink>
           <NavLink to="/about" className={navClass}>
             About
           </NavLink>
@@ -131,9 +135,9 @@ export default function MarketingHeader({
           aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
         >
           {mobileNavOpen ? (
-            <X size={26} color="#1A2B3C" strokeWidth={2} aria-hidden="true" />
+            <X size={26} color="#1B2A4A" strokeWidth={2} aria-hidden="true" />
           ) : (
-            <Menu size={26} color="#1A2B3C" strokeWidth={2} aria-hidden="true" />
+            <Menu size={26} color="#1B2A4A" strokeWidth={2} aria-hidden="true" />
           )}
         </button>
       </div>
@@ -169,6 +173,9 @@ export default function MarketingHeader({
             </a>
             <NavLink to="/healthcare-moments" className={navClass} onClick={closeMenu}>
               Use Cases
+            </NavLink>
+            <NavLink to="/future-vision" className={navClass} onClick={closeMenu}>
+              Future Vision
             </NavLink>
             <NavLink to="/about" className={navClass} onClick={closeMenu}>
               About

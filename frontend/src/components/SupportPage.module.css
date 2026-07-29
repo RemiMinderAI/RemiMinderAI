@@ -11,7 +11,7 @@
 }
 
 .hero {
-  background: #0d3d38;
+  background: #1B2A4A;
   color: #ffffff;
   padding: 56px 5% 64px;
   text-align: center;
@@ -29,7 +29,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #c9a84c;
+  color: #D4614A;
   margin-bottom: 16px;
 }
 
@@ -69,7 +69,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #c9a84c;
+  color: #D4614A;
   margin-bottom: 12px;
 }
 
@@ -132,7 +132,7 @@
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1;
-  color: #0d3d38;
+  color: #1B2A4A;
   transition: transform 0.2s ease;
 }
 
@@ -239,7 +239,7 @@
 .select:focus,
 .textarea:focus {
   outline: none;
-  border-color: #0d3d38;
+  border-color: #1B2A4A;
   box-shadow: 0 0 0 3px rgba(13, 61, 56, 0.12);
 }
 
@@ -258,7 +258,7 @@
   font-size: 1rem;
   font-weight: 600;
   color: #edeae1;
-  background: #0d3d38;
+  background: #1B2A4A;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -266,7 +266,7 @@
 }
 
 .submitBtn:hover {
-  background: #0a302c;
+  background: #152238;
 }
 
 .submitBtn:active {
@@ -310,7 +310,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #0d3d38;
+  color: #1B2A4A;
   text-decoration: none;
 }
 

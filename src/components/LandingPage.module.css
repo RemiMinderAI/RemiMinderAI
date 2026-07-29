@@ -1,15 +1,18 @@
 /* ============================================
    REMIMINDER.AI — ENTERPRISE DESIGN SYSTEM
-   Brand: Teal (#1a9e9e) + Cream (#f7f3ec) + Gold (#c9a84c)
+   Brand: Navy (#1B2A4A) + Cream (#f7f3ec) + Coral (#D4614A)
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --teal:        #1a9e9e;
-  --teal-dark:   #137a7a;
-  --teal-light:  #e8f7f7;
-  --teal-mid:    #2ab5b5;
+  --teal:        #1B2A4A;
+  --teal-dark:   #152238;
+  --teal-light:  #E8EBF2;
+  --teal-mid:    #3A4F6F;
+  --navy:        #1B2A4A;
+  --navy-light:  #E8EBF2;
+  --coral:       #D4614A;
   --gold:        #c9a84c;
   --gold-light:  #f5e9c8;
   --cream:       #f7f3ec;
@@ -18,18 +21,18 @@
   --ink-mid:     #2d3f52;
   --ink-light:   #5a6a7a;
   --white:       #ffffff;
-  --border:      rgba(26,158,158,0.15);
-  --shadow-sm:   0 2px 8px rgba(26,158,158,0.08);
-  --shadow-md:   0 8px 32px rgba(26,158,158,0.12);
+  --border:      rgba(27,42,74,0.15);
+  --shadow-sm:   0 2px 8px rgba(27,42,74,0.08);
+  --shadow-md:   0 8px 32px rgba(27,42,74,0.12);
   --shadow-lg:   0 20px 60px rgba(26,50,50,0.15);
   --radius-sm:   8px;
   --radius-md:   16px;
   --radius-lg:   24px;
   /* Landing hero / positioning (spec) */
-  --teal-900: #1f4e4a;
-  --teal-700: #2d6a64;
-  --teal-600: #3b8680;
-  --teal-100: #e1f0ee;
+  --teal-900: #1B2A4A;
+  --teal-700: #243556;
+  --teal-600: #3A4F6F;
+  --teal-100: #E8EBF2;
   --cream-light: #faf7ef;
   --cream-landing: #f5f1e8;
   --gold-line: #c9a961;
@@ -94,10 +97,11 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--navy);
   letter-spacing: -0.02em;
 }
-.logoAi { color: var(--teal); }
+.logoMinder { color: var(--coral); }
+.logoAi { color: var(--navy); }
 .nav {
   display: flex;
   align-items: center;
@@ -105,7 +109,7 @@
 }
 .navLink {
   text-decoration: none;
-  color: #1A2B3C;
+  color: #1B2A4A;
   font-weight: 600;
   font-size: 14px;
   padding: 6px 14px;
@@ -115,13 +119,13 @@
   transition: color 0.2s ease;
 }
 .navLink:hover {
-  color: #1D9E75;
+  color: var(--coral);
   background: transparent;
   border-color: transparent;
 }
 .navLinkActive {
-  color: #1D9E75;
-  border-color: #E8B84B;
+  color: var(--coral);
+  border-color: var(--coral);
   background: transparent;
 }
 .mailingListButton {
@@ -141,7 +145,7 @@
 .mailingListButton:hover {
   background: var(--teal-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(26,158,158,0.3);
+  box-shadow: 0 4px 16px rgba(27,42,74,0.3);
 }
 
 .hamburgerButton {
@@ -160,7 +164,7 @@
   flex-shrink: 0;
 }
 .hamburgerButton:hover {
-  background: rgba(29, 158, 117, 0.1);
+  background: rgba(27, 42, 74, 0.1);
 }
 
 .mobileNavBackdrop {
@@ -415,7 +419,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--teal-600);
-  background: #e1f0ee;
+  background: #E8EBF2;
   border-radius: 999px;
   padding: 6px 14px 6px 12px;
   margin-bottom: 20px;
@@ -426,7 +430,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #3b8680;
+  background: #3A4F6F;
   flex-shrink: 0;
   animation: heroEyebrowPulse 2s ease-in-out infinite;
 }
@@ -550,15 +554,15 @@
 .hero2BtnTeal {
   background: var(--teal-600);
   color: #ffffff;
-  box-shadow: 0 4px 0 0 #2d6a64;
+  box-shadow: 0 4px 0 0 #243556;
 }
 a.hero2BtnTeal {
   color: #ffffff;
 }
 .hero2BtnTeal:hover {
-  background: #2d6a64;
+  background: #243556;
   transform: translateY(-1px);
-  box-shadow: 0 5px 0 0 #1f4e4a;
+  box-shadow: 0 5px 0 0 #1B2A4A;
 }
 .hero2BtnIos {
   background: #1a2929;
@@ -583,7 +587,7 @@ a.hero2BtnTeal {
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .hero2MailingBtn:hover {
-  background: #e1f0ee;
+  background: #E8EBF2;
   border-color: var(--teal-600);
 }
 @media (max-width: 599px) {
@@ -695,7 +699,7 @@ a.hero2BtnTeal {
 }
 .primaryButton:hover {
   background: var(--teal-dark); transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26,158,158,0.35);
+  box-shadow: 0 6px 20px rgba(27,42,74,0.35);
 }
 .androidButton {
   display: inline-flex; align-items: center; gap: 8px;
@@ -706,7 +710,7 @@ a.hero2BtnTeal {
 }
 .androidButton:hover {
   background: var(--teal-light); transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(26,158,158,0.2);
+  box-shadow: 0 4px 16px rgba(27,42,74,0.2);
 }
 .iosButton {
   display: inline-flex; align-items: center; gap: 6px;
@@ -789,7 +793,7 @@ a.hero2BtnTeal {
 .heroDemoButton:hover {
   background: var(--teal-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26,158,158,0.35);
+  box-shadow: 0 6px 20px rgba(27,42,74,0.35);
 }
 
 /* Try Me button & dark title */
@@ -806,7 +810,7 @@ a.hero2BtnTeal {
 /* Features card — matches left demo box style */
 .ctaFeaturesCard {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(26,158,158,0.3);
+  border: 1px solid rgba(27,42,74,0.3);
   border-radius: var(--radius-md);
   padding: 20px 24px;
   margin-top: 8px;
@@ -892,7 +896,7 @@ a.hero2BtnTeal {
 .tryMeButton:hover {
   background: var(--teal-mid);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26,158,158,0.4);
+  box-shadow: 0 6px 20px rgba(27,42,74,0.4);
 }
 
 /* ── PHONE MOCKUP ── */
@@ -971,7 +975,7 @@ a.hero2BtnTeal {
   position: absolute;
   top: -200px; right: -200px;
   width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,158,158,0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,42,74,0.15) 0%, transparent 70%);
   pointer-events: none;
 }
 .demoCTAContainer {
@@ -997,7 +1001,7 @@ a.hero2BtnTeal {
 /* Demo Box */
 .ctaDemoBox {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(26,158,158,0.3);
+  border: 1px solid rgba(27,42,74,0.3);
   border-radius: var(--radius-lg);
   padding: 36px;
 }
@@ -1016,8 +1020,8 @@ a.hero2BtnTeal {
   margin-bottom: 24px;
 }
 .ctaPreviewBox {
-  background: rgba(26,158,158,0.08);
-  border: 1px solid rgba(26,158,158,0.25);
+  background: rgba(27,42,74,0.08);
+  border: 1px solid rgba(27,42,74,0.25);
   border-radius: var(--radius-md);
   padding: 20px 24px;
   margin-bottom: 24px;
@@ -1055,7 +1059,7 @@ a.hero2BtnTeal {
 .demoButton:hover {
   background: var(--teal-mid);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26,158,158,0.4);
+  box-shadow: 0 6px 20px rgba(27,42,74,0.4);
 }
 
 /* CTA Content (legacy title styles kept for reuse) */
@@ -1090,7 +1094,7 @@ a.hero2BtnTeal {
 }
 .ctaPrimaryButton:hover {
   background: var(--teal-mid); transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(26,158,158,0.4);
+  box-shadow: 0 6px 24px rgba(27,42,74,0.4);
 }
 .ctaAndroidButton {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -1256,8 +1260,8 @@ a.hero2BtnTeal {
 /* Step 2 highlight */
 .stepCardHighlight {
   border-color: var(--teal) !important;
-  background: linear-gradient(135deg, rgba(26,158,158,0.06), rgba(26,158,158,0.02)) !important;
-  box-shadow: 0 8px 32px rgba(26,158,158,0.18) !important;
+  background: linear-gradient(135deg, rgba(27,42,74,0.06), rgba(27,42,74,0.02)) !important;
+  box-shadow: 0 8px 32px rgba(27,42,74,0.18) !important;
   position: relative;
 }
 .stepHighlightBadge {
@@ -1276,7 +1280,7 @@ a.hero2BtnTeal {
 }
 .stepIconHighlight {
   background: var(--teal) !important;
-  box-shadow: 0 4px 16px rgba(26,158,158,0.4);
+  box-shadow: 0 4px 16px rgba(27,42,74,0.4);
 }
 .stepCardHighlight h3 {
   color: var(--teal-dark) !important;
@@ -1466,7 +1470,7 @@ a.hero2BtnTeal {
 .ctaBgOrb1 {
   position: absolute; top: -100px; left: -100px;
   width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,158,158,0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,42,74,0.2) 0%, transparent 70%);
 }
 .ctaBgOrb2 {
   position: absolute; bottom: -100px; right: -50px;

@@ -1,6 +1,6 @@
 /* Single hero composite: phones read as floating on hero cream, no card panel */
 .stage {
-  --teal-900: #1f4e4a;
+  --teal-900: #1B2A4A;
   position: relative;
   color-scheme: light;
   width: 100%;
@@ -37,7 +37,7 @@
   margin-left: -210px;
   margin-top: -210px;
   border-radius: 50%;
-  background: #3b8680;
+  background: #3A4F6F;
   opacity: 0.06;
   filter: blur(48px);
   pointer-events: none;

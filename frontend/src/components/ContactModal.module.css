@@ -1,7 +1,7 @@
-/* Calm healthcare UI — matches landing cream + teal system */
+/* Calm healthcare UI — matches landing cream + navy system */
 .overlay {
-  --contact-accent: #0ea5a4;
-  --contact-accent-hover: #0d9493;
+  --contact-accent: #1B2A4A;
+  --contact-accent-hover: #152238;
   --contact-ink: #1a2332;
   --contact-ink-muted: #4a5a68;
   position: fixed;
