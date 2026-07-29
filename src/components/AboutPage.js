@@ -246,16 +246,23 @@ const AboutPage = () => {
           <div className={styles.teamGrid}>
             <div className={`${landingStyles.personaCard} ${styles.teamCardInner}`}>
               <div className={styles.avatar}>
-                <img src={profileParamita} alt="Paramita Malakar" className={styles.avatarImg} />
+                <img
+                  src={profileParamita}
+                  alt="Paramita (Tina) Malakar"
+                  className={styles.avatarImg}
+                />
               </div>
-              <h3 className={styles.teamName}>Paramita Malakar</h3>
-              <p className={styles.teamRole}>Product &amp; AI/ML Leader</p>
+              <h3 className={styles.teamName}>Paramita (Tina) Malakar</h3>
+              <p className={styles.teamRole}>Founder &amp; CEO</p>
               <p className={styles.teamBio}>
-                Product &amp; Quality Assurance Leader, with 18 years of experience, focused on transforming
-                ideas into impactful AI and enterprise solutions.
+                18+ years in enterprise delivery across federal IT and HealthTech. Built RemiMinderAI
+                solo from idea to beta in under 6 months.
+              </p>
+              <p className={styles.teamCreds}>
+                BS Business Management &amp; E-Global Business · PMP · CSM · AIPM · Security+ CE
               </p>
               <a
-                href="https://www.linkedin.com/in/paramitam/"
+                href="https://www.linkedin.com/in/paramitam/?skipRedirect=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.linkedinLink}
@@ -272,12 +279,13 @@ const AboutPage = () => {
               <h3 className={styles.teamName}>Angkon Biswas</h3>
               <p className={styles.teamRole}>Co-Founder &amp; Mobile Engineering Lead</p>
               <p className={styles.teamBio}>
-                Currently co-founding and leading mobile engineering at RemiMinderAI. Building and
-                shipping the full mobile stack across iOS and Android using Flutter, Firebase, and GCP.
-                Background includes an MBA in Systems from IEM, a Master&apos;s in Cloud Computing from
-                Hanson Canada, and hands-on experience in IT operations, cloud infrastructure, and
-                agile delivery. Supported by certifications including Microsoft Azure Fundamentals,
-                Google Advanced Data Analytics, six Databricks certifications, and Scrum Master.
+                Building and shipping the full mobile stack across iOS and Android using Flutter,
+                Firebase, and GCP. Background in cloud infrastructure, IT operations, and agile
+                delivery.
+              </p>
+              <p className={styles.teamCreds}>
+                MBA in Systems · MS Cloud Computing · Azure Fundamentals · Google Advanced Data
+                Analytics · Scrum Master · 6x Databricks Certified
               </p>
               <a
                 href="https://www.linkedin.com/in/angkon-biswas-a13167214/"

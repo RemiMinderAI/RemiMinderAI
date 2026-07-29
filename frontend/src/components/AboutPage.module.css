@@ -220,6 +220,15 @@
   font-size: 0.95rem;
   line-height: 1.65;
   color: var(--ink-light, #5a6a7a);
+  margin-bottom: 12px;
+}
+
+.teamCreds {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--ink-mid, #2d3f52);
   margin-bottom: 14px;
 }
 
