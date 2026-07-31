@@ -25,13 +25,12 @@
 .viewport {
   position: relative;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0;
   overflow: hidden;
-  background: #1b2a4a;
+  background: #fdf8f4;
   aspect-ratio: 16 / 9;
-  max-height: min(85vh, 85dvh);
 }
 
 .slide {
@@ -51,9 +50,9 @@
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Keep left-side headline text visible when tall viewports crop sides */
+  object-fit: contain;
   object-position: left center;
+  background: #fdf8f4;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
@@ -83,15 +82,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-  text-align: right;
+  align-items: center;
+  text-align: center;
   gap: 0;
   min-width: 0;
   padding: clamp(1rem, 3.2vw, 2.75rem) clamp(1rem, 2.8vw, 2.5rem);
   background: linear-gradient(
     90deg,
-    rgba(27, 42, 74, 0.12) 0%,
-    #1b2a4a 16%,
+    rgba(27, 42, 74, 0.08) 0%,
+    #1b2a4a 14%,
     #1b2a4a 100%
   );
   color: #ffffff;
@@ -102,12 +101,12 @@
   width: 42px;
   height: 2px;
   background: #e07a5f;
-  margin-bottom: 0.7rem;
+  margin: 0 auto 0.7rem;
   flex-shrink: 0;
 }
 
 .solutionLabel {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.75rem;
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(0.68rem, 1.15vw, 0.78rem);
   font-weight: 600;
@@ -116,11 +115,26 @@
   color: #e07a5f;
 }
 
+.solutionBrand {
+  margin: 0 0 0.85rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.solutionMinder {
+  color: #e07a5f;
+}
+
 .solutionBody {
-  margin: 0 0 1.1rem;
+  margin: 0 auto 1.1rem;
   max-width: 30ch;
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  /* Medium body copy — readable without overpowering the photo */
+  /* Medium body copy — readable across desktop and mobile */
   font-size: clamp(0.95rem, 1.55vw, 1.15rem);
   font-weight: 400;
   line-height: 1.55;
@@ -250,22 +264,8 @@
   background: #e07a5f;
 }
 
-/* ── Desktop ── */
-@media (min-width: 1025px) {
-  .viewport {
-    height: min(56.25vw, 85vh, 85dvh);
-    max-height: min(85vh, 85dvh);
-    aspect-ratio: unset;
-  }
-}
-
 /* ── Tablet / iPad ── */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .viewport {
-    aspect-ratio: 16 / 9;
-    max-height: min(70vh, 70dvh);
-  }
-
   .solutionCard {
     grid-template-columns: 1.35fr 1fr;
   }
@@ -299,6 +299,12 @@
     height: auto;
   }
 
+  .image {
+    object-fit: cover;
+    /* Keep left-side headline text visible when mobile crops the sides */
+    object-position: left center;
+  }
+
   .solutionCard {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(42%, 1fr) auto;
@@ -324,8 +330,13 @@
   }
 
   .solutionLabel {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
     font-size: 0.7rem;
+  }
+
+  .solutionBrand {
+    margin-bottom: 0.65rem;
+    font-size: clamp(1.35rem, 6.5vw, 1.75rem);
   }
 
   .solutionBody {
@@ -365,11 +376,6 @@
 
 /* Very small phones */
 @media (max-width: 380px) {
-  .viewport {
-    aspect-ratio: 2 / 3;
-    max-height: min(80vh, 80dvh);
-  }
-
   .solutionBody {
     font-size: 0.9rem;
   }
@@ -386,10 +392,9 @@
 }
 
 /* Landscape phones / iPad landscape: keep content usable */
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   .viewport {
     aspect-ratio: 16 / 9;
-    max-height: min(72vh, 72dvh);
   }
 
   .solutionCard {
@@ -398,18 +403,17 @@
   }
 
   .solutionPanel {
-    align-items: flex-end;
-    text-align: right;
+    align-items: center;
+    text-align: center;
     padding: 0.7rem 1rem;
   }
 
-  .solutionRule {
-    margin-left: 0;
-    margin-right: 0;
+  .solutionBrand {
+    font-size: clamp(1.2rem, 3.5vw, 1.55rem);
   }
 
   .solutionBody {
-    margin: 0 0 0.7rem;
+    margin: 0 auto 0.7rem;
     max-width: 28ch;
     font-size: 0.9rem;
   }
