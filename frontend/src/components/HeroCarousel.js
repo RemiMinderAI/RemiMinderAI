@@ -60,6 +60,9 @@ export default function HeroCarousel() {
       aria-label="RemiMinderAI story"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+      onTouchCancel={() => setPaused(false)}
     >
       <div className={styles.viewport}>
         {SLIDES.map((slide, index) => (
