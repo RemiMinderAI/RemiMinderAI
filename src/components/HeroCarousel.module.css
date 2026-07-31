@@ -83,15 +83,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-  text-align: right;
+  align-items: center;
+  text-align: center;
   gap: 0;
   min-width: 0;
   padding: clamp(1rem, 3.2vw, 2.75rem) clamp(1rem, 2.8vw, 2.5rem);
   background: linear-gradient(
     90deg,
-    rgba(27, 42, 74, 0.12) 0%,
-    #1b2a4a 16%,
+    rgba(27, 42, 74, 0.08) 0%,
+    #1b2a4a 14%,
     #1b2a4a 100%
   );
   color: #ffffff;
@@ -102,12 +102,12 @@
   width: 42px;
   height: 2px;
   background: #e07a5f;
-  margin-bottom: 0.7rem;
+  margin: 0 auto 0.7rem;
   flex-shrink: 0;
 }
 
 .solutionLabel {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.75rem;
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(0.68rem, 1.15vw, 0.78rem);
   font-weight: 600;
@@ -116,11 +116,26 @@
   color: #e07a5f;
 }
 
+.solutionBrand {
+  margin: 0 0 0.85rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.solutionMinder {
+  color: #e07a5f;
+}
+
 .solutionBody {
-  margin: 0 0 1.1rem;
+  margin: 0 auto 1.1rem;
   max-width: 30ch;
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  /* Medium body copy — readable without overpowering the photo */
+  /* Medium body copy — readable across desktop and mobile */
   font-size: clamp(0.95rem, 1.55vw, 1.15rem);
   font-weight: 400;
   line-height: 1.55;
@@ -324,8 +339,13 @@
   }
 
   .solutionLabel {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
     font-size: 0.7rem;
+  }
+
+  .solutionBrand {
+    margin-bottom: 0.65rem;
+    font-size: clamp(1.35rem, 6.5vw, 1.75rem);
   }
 
   .solutionBody {

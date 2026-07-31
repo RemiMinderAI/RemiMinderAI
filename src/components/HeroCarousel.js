@@ -84,6 +84,9 @@ export default function HeroCarousel() {
                 <div className={styles.solutionPanel}>
                   <div className={styles.solutionRule} aria-hidden="true" />
                   <p className={styles.solutionLabel}>The Solution</p>
+                  <h2 className={styles.solutionBrand}>
+                    Remi<span className={styles.solutionMinder}>Minder</span>AI
+                  </h2>
                   <p className={styles.solutionBody}>
                     Turns healthcare conversations into clear, shareable memories —
                     helping patients, caregivers, and families stay aligned.
