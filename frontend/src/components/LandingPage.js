@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './LandingPage.module.css';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import familyImage from '../assets/user-family.jpg';
@@ -6,12 +6,12 @@ import { useLocation } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
 import TestimonialsSection from "./TestimonialsSection";
 import SiteFooter from "./SiteFooter";
-import HeroPhoneStage from "./HeroPhoneStage";
+import HeroCarousel from "./HeroCarousel";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
   Mic, FileText, FolderOpen, Share2, Heart, Brain, Clock, Users, 
   CheckCircle2, Smartphone, Apple, Star,
-  Lock, Zap, Globe
+  Zap, Globe
 } from "lucide-react";
 
 const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.remiminderai.app";
@@ -21,8 +21,6 @@ const LandingPage = () => {
 
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  const [flashArmed, setFlashArmed] = useState(false);
-  const heroRef = useRef(null);
 
   useEffect(() => {
     if (location.hash === "#how-it-works") {
@@ -37,11 +35,6 @@ const LandingPage = () => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const id = window.setTimeout(() => setFlashArmed(true), 900);
-    return () => window.clearTimeout(id);
   }, []);
 
   const steps = [
@@ -119,77 +112,9 @@ const LandingPage = () => {
       {/* ── HEADER ── */}
       <MarketingHeader scrolled={scrolled} />
 
-      {/* ── HERO ── */}
-      <main className={styles.heroSection} ref={heroRef} id="home">
-        <div className={styles.hero2Bg}>
-          <div className={styles.hero2Ambient1} aria-hidden="true" />
-          <div className={styles.hero2Ambient2} aria-hidden="true" />
-          <div className={styles.hero2GridPattern} aria-hidden="true" />
-        </div>
-
-        <div className={styles.hero2Inner}>
-          <div className={styles.hero2Grid}>
-            <div className={styles.hero2CopyCol}>
-              <div className={`${styles.hero2Eyebrow} ${styles.heroAnimBadge}`}>
-                <span className={styles.hero2EyebrowDot} aria-hidden="true" />
-                <span>Now in beta</span>
-              </div>
-
-              <h1 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}>
-                Healthcare doesn&apos;t end when the{" "}
-                <span className={styles.togetherWrap}>
-                  appointment ends.
-                  <svg
-                    className={`${styles.flashSvg} ${flashArmed ? styles.flashSvgArmed : ""}`}
-                    viewBox="0 0 200 14"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                  >
-                    <path d="M4,8 Q40,3 80,7 T150,6 T196,8" />
-                  </svg>
-                </span>
-              </h1>
-
-              <p className={`${styles.hero2Sub} ${styles.heroAnimSub}`}>
-                RemiMinderAI helps you and your loved ones stay organized, informed, and connected
-                after healthcare visits.
-              </p>
-
-              <div className={`${styles.hero2CtaBlock} ${styles.heroAnimCtas}`}>
-                <div className={styles.hero2CtaRow}>
-                  <a
-                    href={ANDROID_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.hero2BtnTeal}
-                  >
-                    <Smartphone size={18} aria-hidden="true" />
-                    <span>Download Android</span>
-                  </a>
-                  <button type="button" className={styles.hero2BtnIos} disabled>
-                    <Apple size={18} aria-hidden="true" />
-                    <span>iOS Coming Soon</span>
-                  </button>
-                </div>
-              </div>
-
-              <div className={`${styles.hero2TrustRow} ${styles.heroAnimTrust}`}>
-                <div className={styles.hero2TrustItem}>
-                  <Lock size={14} strokeWidth={2.5} aria-hidden="true" />
-                  <span>Encrypted in transit and at rest</span>
-                </div>
-                <div className={styles.hero2TrustItem}>
-                  <Zap size={14} strokeWidth={2.5} aria-hidden="true" />
-                  <span>Powered by Google Cloud AI</span>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.hero2VisualCol}>
-              <HeroPhoneStage />
-            </div>
-          </div>
-        </div>
+      {/* ── HERO CAROUSEL ── */}
+      <main id="home">
+        <HeroCarousel />
       </main>
 
       <WhatRemiMinderIsSection />
