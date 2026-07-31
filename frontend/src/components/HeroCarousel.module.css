@@ -25,7 +25,6 @@
   padding: 0;
   overflow: hidden;
   background: #1b2a4a;
-  /* Prefer 16:9, but never taller than 85vh on large screens */
   aspect-ratio: 16 / 9;
   max-height: 85vh;
 }
@@ -38,7 +37,6 @@
 
 @media (min-width: 1025px) {
   .viewport {
-    /* Cap height; width stays full. Cover crop via object-fit. */
     height: min(56.25vw, 85vh);
     max-height: 85vh;
     aspect-ratio: unset;
@@ -77,37 +75,101 @@
   user-select: none;
 }
 
-.ctaGradient {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 120px;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    to top,
-    rgba(15, 22, 38, 0.72) 0%,
-    rgba(15, 22, 38, 0.35) 55%,
-    rgba(15, 22, 38, 0) 100%
-  );
+/* ── Solution slide composition ── */
+.solutionCard {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  background: #1b2a4a;
 }
 
-.ctaOverlay {
-  position: absolute;
-  left: 50%;
-  bottom: 60px;
-  transform: translateX(-50%);
-  z-index: 3;
+.solutionPhoto {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+.solutionPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+  padding: clamp(1.25rem, 3.5vw, 3rem) clamp(1.25rem, 3vw, 2.75rem);
+  background: linear-gradient(
+    90deg,
+    rgba(27, 42, 74, 0.15) 0%,
+    #1b2a4a 18%,
+    #1b2a4a 100%
+  );
+  color: #ffffff;
+}
+
+.solutionRule {
+  width: 42px;
+  height: 2px;
+  background: #e07a5f;
+  margin-bottom: 0.7rem;
+}
+
+.solutionLabel {
+  margin: 0 0 0.85rem;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e07a5f;
+}
+
+.solutionBrand {
+  margin: 0 0 1rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.55rem, 3.2vw, 2.55rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.solutionMinder {
+  color: #e07a5f;
+}
+
+.solutionBody {
+  margin: 0 0 1.15rem;
+  max-width: 28ch;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: clamp(0.85rem, 1.35vw, 1rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.solutionTagline {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ── CTAs under carousel images ── */
+.ctaRow {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  padding: 22px 16px 8px;
+  background: #fdf8f4;
   transition: transform 0.35s ease;
 }
 
-.ctaOverlayEmphasis {
-  transform: translateX(-50%) scale(1.05);
+.ctaRowEmphasis {
+  transform: scale(1.05);
 }
 
 .ctaAndroid,
@@ -119,7 +181,7 @@
   border-radius: 28px;
   padding: 14px 28px;
   font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem; /* medium */
   font-weight: 600;
   color: #ffffff;
   text-decoration: none;
@@ -154,7 +216,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 18px 16px 0;
+  padding: 14px 16px 0;
   background: #fdf8f4;
   margin: 0;
 }
@@ -187,11 +249,11 @@
   .ctaAndroid,
   .ctaIos {
     padding: 12px 22px;
-    font-size: 0.88rem;
+    font-size: 0.95rem;
   }
 
-  .ctaOverlay {
-    bottom: 48px;
+  .solutionPanel {
+    padding: 1.1rem 1.25rem;
   }
 }
 
@@ -202,15 +264,33 @@
     height: auto;
   }
 
-  .ctaOverlay {
-    bottom: 28px;
-    flex-direction: column;
-    gap: 10px;
-    width: calc(100% - 32px);
+  .solutionCard {
+    grid-template-columns: 1fr;
   }
 
-  .ctaOverlayEmphasis {
-    transform: translateX(-50%) scale(1.03);
+  .solutionPhoto {
+    min-height: 52%;
+    background-position: center top;
+  }
+
+  .solutionPanel {
+    align-items: center;
+    text-align: center;
+    padding: 1rem 1.1rem 1.2rem;
+  }
+
+  .solutionBody {
+    max-width: 34ch;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 16px 6px;
+  }
+
+  .ctaRowEmphasis {
+    transform: scale(1.03);
   }
 
   .ctaAndroid,
@@ -218,11 +298,7 @@
     width: 100%;
     max-width: 280px;
     padding: 12px 20px;
-    font-size: 0.85rem;
-  }
-
-  .ctaGradient {
-    height: 140px;
+    font-size: 0.95rem;
   }
 }
 
@@ -232,7 +308,7 @@
   }
 
   .slide,
-  .ctaOverlay {
+  .ctaRow {
     transition: none;
   }
 }
