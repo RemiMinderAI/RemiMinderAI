@@ -21,6 +21,7 @@ const SLIDES = [
   {
     src: "/carousel/slide_5_missing_layer.jpg",
     alt: "Medical records store information. Conversations preserve understanding.",
+    preserveTop: true,
   },
   {
     src: "/carousel/slide_6_solution.jpg",
@@ -100,7 +101,9 @@ export default function HeroCarousel() {
               <img
                 src={slide.src}
                 alt={slide.alt}
-                className={styles.image}
+                className={`${styles.image} ${
+                  slide.preserveTop ? styles.imageTopAligned : ""
+                }`}
                 draggable={false}
               />
             )}
