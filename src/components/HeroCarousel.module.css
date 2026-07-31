@@ -418,18 +418,17 @@
   }
 
   .solutionPanel {
-    align-items: flex-end;
-    text-align: right;
+    align-items: center;
+    text-align: center;
     padding: 0.7rem 1rem;
   }
 
-  .solutionRule {
-    margin-left: 0;
-    margin-right: 0;
+  .solutionBrand {
+    font-size: clamp(1.2rem, 3.5vw, 1.55rem);
   }
 
   .solutionBody {
-    margin: 0 0 0.7rem;
+    margin: 0 auto 0.7rem;
     max-width: 28ch;
     font-size: 0.9rem;
   }
