@@ -15,10 +15,6 @@ const SLIDES = [
     alt: "Patients leave appointments already forgetting what mattered most",
   },
   {
-    src: "/carousel/slide_3_system_problem.jpg",
-    alt: "Healthcare becomes a telephone game — every handoff loses context",
-  },
-  {
     src: "/carousel/slide_4_family_problem.jpg",
     alt: "Families are left piecing together care from incomplete memories",
   },
