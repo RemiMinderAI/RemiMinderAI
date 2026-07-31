@@ -42,14 +42,11 @@ export default function SiteFooter() {
           <div className={styles.brandCol}>
             <div className={styles.brandRow}>
               <img src={logo} alt="" className={styles.logoImg} />
-              <span className={styles.brandName}>
-                Remi<span className={styles.brandMinder}>Minder</span>AI
-              </span>
             </div>
-            <p className={styles.brandTagline}>
-              A family-centered way to organize healthcare visit information, share clear summaries,
-              and keep caregivers in sync.
-            </p>
+            <div className={styles.brandName}>
+              Remi<span className={styles.brandMinder}>Minder</span>AI
+            </div>
+            <p className={styles.brandTagline}>Remember what matters</p>
           </div>
 
           <nav className={styles.navCol} aria-label="Product">
