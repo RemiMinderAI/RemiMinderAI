@@ -25,13 +25,12 @@
 .viewport {
   position: relative;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0;
   overflow: hidden;
-  background: #1b2a4a;
+  background: #fdf8f4;
   aspect-ratio: 16 / 9;
-  max-height: min(85vh, 85dvh);
 }
 
 .slide {
@@ -51,9 +50,9 @@
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Keep left-side headline text visible when tall viewports crop sides */
+  object-fit: contain;
   object-position: left center;
+  background: #fdf8f4;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
@@ -265,22 +264,8 @@
   background: #e07a5f;
 }
 
-/* ── Desktop ── */
-@media (min-width: 1025px) {
-  .viewport {
-    height: min(56.25vw, 85vh, 85dvh);
-    max-height: min(85vh, 85dvh);
-    aspect-ratio: unset;
-  }
-}
-
 /* ── Tablet / iPad ── */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .viewport {
-    aspect-ratio: 16 / 9;
-    max-height: min(70vh, 70dvh);
-  }
-
   .solutionCard {
     grid-template-columns: 1.35fr 1fr;
   }
@@ -312,6 +297,12 @@
     aspect-ratio: 3 / 4;
     max-height: min(78vh, 78dvh, 640px);
     height: auto;
+  }
+
+  .image {
+    object-fit: cover;
+    /* Keep left-side headline text visible when mobile crops the sides */
+    object-position: left center;
   }
 
   .solutionCard {
@@ -385,11 +376,6 @@
 
 /* Very small phones */
 @media (max-width: 380px) {
-  .viewport {
-    aspect-ratio: 2 / 3;
-    max-height: min(80vh, 80dvh);
-  }
-
   .solutionBody {
     font-size: 0.9rem;
   }
@@ -406,10 +392,9 @@
 }
 
 /* Landscape phones / iPad landscape: keep content usable */
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   .viewport {
     aspect-ratio: 16 / 9;
-    max-height: min(72vh, 72dvh);
   }
 
   .solutionCard {
