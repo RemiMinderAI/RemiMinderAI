@@ -1,8 +1,10 @@
 .carouselSection {
   width: 100%;
+  margin: 0;
+  padding: 0 0 24px;
   background: #fdf8f4;
-  padding: 0 0 28px;
   animation: carouselFadeIn 0.8s ease-out both;
+  box-sizing: border-box;
 }
 
 @keyframes carouselFadeIn {
@@ -19,9 +21,37 @@
 .viewport {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   background: #1b2a4a;
+  /* Prefer 16:9, but never taller than 85vh on large screens */
+  aspect-ratio: 16 / 9;
+  max-height: 85vh;
+}
+
+@supports (height: 100dvh) {
+  .viewport {
+    max-height: 85dvh;
+  }
+}
+
+@media (min-width: 1025px) {
+  .viewport {
+    /* Cap height; width stays full. Cover crop via object-fit. */
+    height: min(56.25vw, 85vh);
+    max-height: 85vh;
+    aspect-ratio: unset;
+  }
+}
+
+@supports (height: 100dvh) {
+  @media (min-width: 1025px) {
+    .viewport {
+      height: min(56.25vw, 85dvh);
+      max-height: 85dvh;
+    }
+  }
 }
 
 .slide {
@@ -42,8 +72,81 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
   user-select: none;
+}
+
+.ctaGradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(15, 22, 38, 0.72) 0%,
+    rgba(15, 22, 38, 0.35) 55%,
+    rgba(15, 22, 38, 0) 100%
+  );
+}
+
+.ctaOverlay {
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: transform 0.35s ease;
+}
+
+.ctaOverlayEmphasis {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.ctaAndroid,
+.ctaIos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 28px;
+  padding: 14px 28px;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.ctaAndroid {
+  background: #1b2a4a;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.ctaAndroid:hover {
+  background: #152238;
+}
+
+.ctaIos {
+  background: #1e3c3a;
+  opacity: 0.72;
+  cursor: default;
+}
+
+.ctaIos:disabled {
+  opacity: 0.72;
+  cursor: default;
 }
 
 .dots {
@@ -51,23 +154,24 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 20px 16px 4px;
+  padding: 18px 16px 0;
   background: #fdf8f4;
+  margin: 0;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   border: none;
   padding: 0;
   cursor: pointer;
-  background: rgba(27, 42, 74, 0.28);
+  background: rgba(27, 42, 74, 0.25);
   transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .dot:hover {
-  background: rgba(27, 42, 74, 0.5);
+  background: rgba(27, 42, 74, 0.45);
   transform: scale(1.08);
 }
 
@@ -79,12 +183,56 @@
   background: #e07a5f;
 }
 
+@media (max-width: 1024px) {
+  .ctaAndroid,
+  .ctaIos {
+    padding: 12px 22px;
+    font-size: 0.88rem;
+  }
+
+  .ctaOverlay {
+    bottom: 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .viewport {
+    aspect-ratio: 16 / 9;
+    max-height: none;
+    height: auto;
+  }
+
+  .ctaOverlay {
+    bottom: 28px;
+    flex-direction: column;
+    gap: 10px;
+    width: calc(100% - 32px);
+  }
+
+  .ctaOverlayEmphasis {
+    transform: translateX(-50%) scale(1.03);
+  }
+
+  .ctaAndroid,
+  .ctaIos {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+
+  .ctaGradient {
+    height: 140px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carouselSection {
     animation: none;
   }
 
-  .slide {
+  .slide,
+  .ctaOverlay {
     transition: none;
   }
 }
