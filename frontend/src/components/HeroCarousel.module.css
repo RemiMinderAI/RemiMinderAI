@@ -315,6 +315,10 @@
     object-fit: cover;
     object-position: center center;
   }
+
+  .imageTopAligned {
+    object-position: center top;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
