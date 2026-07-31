@@ -52,7 +52,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  /* Keep left-side headline text visible when tall viewports crop sides */
+  object-position: left center;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
@@ -101,50 +102,37 @@
   width: 42px;
   height: 2px;
   background: #e07a5f;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.7rem;
   flex-shrink: 0;
 }
 
 .solutionLabel {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.85rem;
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(0.65rem, 1.1vw, 0.72rem);
+  font-size: clamp(0.68rem, 1.15vw, 0.78rem);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #e07a5f;
 }
 
-.solutionBrand {
-  margin: 0 0 0.85rem;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.35rem, 3vw, 2.55rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  word-break: break-word;
-}
-
-.solutionMinder {
-  color: #e07a5f;
-}
-
 .solutionBody {
-  margin: 0 0 1rem;
-  max-width: 28ch;
+  margin: 0 0 1.1rem;
+  max-width: 30ch;
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  /* Medium body copy — readable without overpowering the photo */
+  font-size: clamp(0.95rem, 1.55vw, 1.15rem);
   font-weight: 400;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .solutionTagline {
   margin: 0;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(0.85rem, 1.35vw, 1.1rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.2rem);
   font-weight: 600;
+  line-height: 1.35;
   color: #ffffff;
 }
 
@@ -336,24 +324,19 @@
   }
 
   .solutionLabel {
-    margin-bottom: 0.45rem;
-    font-size: 0.68rem;
-  }
-
-  .solutionBrand {
-    margin-bottom: 0.55rem;
-    font-size: clamp(1.35rem, 7vw, 1.75rem);
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
   }
 
   .solutionBody {
     max-width: 34ch;
-    margin: 0 auto 0.7rem;
-    font-size: 0.84rem;
-    line-height: 1.45;
+    margin: 0 auto 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   .solutionTagline {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .ctaRow {
@@ -388,7 +371,11 @@
   }
 
   .solutionBody {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .solutionTagline {
+    font-size: 0.95rem;
   }
 
   .ctaAndroid,
@@ -398,8 +385,8 @@
   }
 }
 
-/* Landscape phones: keep content usable */
-@media (max-width: 900px) and (orientation: landscape) {
+/* Landscape phones / iPad landscape: keep content usable */
+@media (max-width: 1024px) and (orientation: landscape) {
   .viewport {
     aspect-ratio: 16 / 9;
     max-height: min(72vh, 72dvh);
@@ -413,7 +400,7 @@
   .solutionPanel {
     align-items: flex-end;
     text-align: right;
-    padding: 0.75rem 1rem;
+    padding: 0.7rem 1rem;
   }
 
   .solutionRule {
@@ -422,9 +409,13 @@
   }
 
   .solutionBody {
-    margin: 0 0 0.65rem;
-    max-width: 24ch;
-    font-size: 0.78rem;
+    margin: 0 0 0.7rem;
+    max-width: 28ch;
+    font-size: 0.9rem;
+  }
+
+  .solutionTagline {
+    font-size: 0.95rem;
   }
 
   .ctaRow {
