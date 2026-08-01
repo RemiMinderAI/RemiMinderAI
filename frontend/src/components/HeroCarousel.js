@@ -7,24 +7,24 @@ const ANDROID_URL =
 
 const SLIDES = [
   {
-    src: "/carousel/hero_1.jpg",
+    src: "/carousel/hero_1_doctor_visit.jpg",
     headline: "Every healthcare journey begins with a conversation.",
     subtext:
       "But the most important details often disappear after the visit.",
   },
   {
-    src: "/carousel/hero_2.jpg",
+    src: "/carousel/hero_2_parking_lot.jpg",
     headline: "We hear. We understand. We try to remember.",
     subtext:
       "But our brains were never designed to store every medical detail.",
   },
   {
-    src: "/carousel/hero_3.jpg",
+    src: "/carousel/hero_3_family_table.jpg",
     headline:
       "Families are left piecing together care from incomplete memories.",
   },
   {
-    src: "/carousel/hero_4.jpg",
+    src: "/carousel/hero_4_missing_layer.jpg",
     headline: "Medical records store information.",
     subtext: "Conversations preserve understanding.",
     coralSubtext: true,
