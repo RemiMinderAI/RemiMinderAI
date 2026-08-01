@@ -7,26 +7,36 @@ const ANDROID_URL =
 
 const SLIDES = [
   {
-    src: "/carousel/slide_1_the_moment.jpg",
-    alt: "Every healthcare journey begins with a conversation",
+    src: "/carousel/hero_1.jpg",
+    headline: "Every healthcare journey begins with a conversation.",
+    subtext:
+      "But the most important details often disappear after the visit.",
   },
   {
-    src: "/carousel/slide_2_human_problem.jpg",
-    alt: "Patients leave appointments already forgetting what mattered most",
+    src: "/carousel/hero_2.jpg",
+    headline: "We hear. We understand. We try to remember.",
+    subtext:
+      "But our brains were never designed to store every medical detail.",
   },
   {
-    src: "/carousel/slide_4_family_problem.jpg",
-    alt: "Families are left piecing together care from incomplete memories",
+    src: "/carousel/hero_3.jpg",
+    headline:
+      "Families are left piecing together care from incomplete memories.",
   },
   {
-    src: "/carousel/slide_5_missing_layer.jpg",
-    alt: "Medical records store information. Conversations preserve understanding.",
-    preserveTop: true,
+    src: "/carousel/hero_4.jpg",
+    headline: "Medical records store information.",
+    subtext: "Conversations preserve understanding.",
+    coralSubtext: true,
   },
   {
-    src: "/carousel/slide_6_solution.jpg",
-    alt: "RemiMinderAI — Capture. Understand. Remember. Share.",
-    solution: true,
+    src: "/carousel/hero_5.jpg",
+    headline: "RemiMinderAI",
+    subtext:
+      "Turns healthcare conversations into clear, shareable memories — helping patients, caregivers, and families stay aligned.",
+    label: "The Solution",
+    branded: true,
+    extra: "Capture. Understand. Remember. Share.",
   },
 ];
 
@@ -74,39 +84,43 @@ export default function HeroCarousel() {
             }`}
             aria-hidden={index !== activeIndex}
           >
-            {slide.solution ? (
-              <div className={styles.solutionCard}>
-                <div
-                  className={styles.solutionPhoto}
-                  style={{ backgroundImage: `url(${slide.src})` }}
-                  role="img"
-                  aria-label={slide.alt}
+            <div className={styles.slideCard}>
+              <div className={styles.imageWrap}>
+                <img
+                  src={slide.src}
+                  alt=""
+                  className={styles.image}
+                  draggable={false}
                 />
-                <div className={styles.solutionPanel}>
+              </div>
+              <div className={styles.textPanel}>
+                {slide.label && (
+                  <>
                   <div className={styles.solutionRule} aria-hidden="true" />
                   <p className={styles.solutionLabel}>The Solution</p>
-                  <h2 className={styles.solutionBrand}>
+                  </>
+                )}
+                <h2 className={styles.headline}>
+                  {slide.branded ? (
+                    <>
                     Remi<span className={styles.solutionMinder}>Minder</span>AI
-                  </h2>
-                  <p className={styles.solutionBody}>
-                    Turns healthcare conversations into clear, shareable memories —
-                    helping patients, caregivers, and families stay aligned.
+                    </>
+                  ) : (
+                    slide.headline
+                  )}
+                </h2>
+                {slide.subtext && (
+                  <p
+                    className={`${styles.subtext} ${
+                      slide.coralSubtext ? styles.subtextCoral : ""
+                    }`}
+                  >
+                    {slide.subtext}
                   </p>
-                  <p className={styles.solutionTagline}>
-                    Capture. Understand. Remember. Share.
-                  </p>
-                </div>
+                )}
+                {slide.extra && <p className={styles.extraLine}>{slide.extra}</p>}
               </div>
-            ) : (
-              <img
-                src={slide.src}
-                alt={slide.alt}
-                className={`${styles.image} ${
-                  slide.preserveTop ? styles.imageTopAligned : ""
-                }`}
-                draggable={false}
-              />
-            )}
+            </div>
           </div>
         ))}
       </div>
