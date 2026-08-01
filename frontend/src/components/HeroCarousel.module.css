@@ -59,6 +59,69 @@
   touch-action: pan-y;
 }
 
+.slideCard {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  min-height: 0;
+  background: #1b2a4a;
+}
+
+.imageWrap {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.textPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(2rem, 4vw, 4.5rem);
+  text-align: center;
+  background: #1b2a4a;
+  color: #ffffff;
+}
+
+.headline {
+  max-width: 15ch;
+  margin: 0 0 1rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.subtext {
+  max-width: 32ch;
+  margin: 0;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(0.95rem, 1.55vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #e2e8f0;
+}
+
+.subtextCoral {
+  color: #e07a5f;
+}
+
+.extraLine {
+  margin: 1.1rem 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
 /* ── Solution slide composition ── */
 .solutionCard {
   width: 100%;
@@ -266,6 +329,22 @@
 
 /* ── Tablet / iPad ── */
 @media (min-width: 768px) and (max-width: 1024px) {
+  .slideCard {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .textPanel {
+    padding: 40px;
+  }
+
+  .headline {
+    font-size: 1.8rem;
+  }
+
+  .subtext {
+    font-size: 1rem;
+  }
+
   .solutionCard {
     grid-template-columns: 1.35fr 1fr;
   }
@@ -334,16 +413,56 @@
   }
 
   .viewport {
-    /* Taller than 16:9 so solution slide text + photo both fit */
-    aspect-ratio: 3 / 4;
-    max-height: min(78vh, 78dvh, 640px);
+    display: grid;
+    aspect-ratio: auto;
+    max-height: none;
     height: auto;
+  }
+
+  .slide {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+  }
+
+  .slideCard {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imageWrap {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    flex: 0 0 auto;
   }
 
   .image {
     object-fit: cover;
-    /* Keep left-side headline text visible when mobile crops the sides */
-    object-position: left center;
+    object-position: center center;
+  }
+
+  .textPanel {
+    width: 100%;
+    height: auto;
+    align-items: flex-start;
+    padding: 32px 24px;
+    text-align: left;
+  }
+
+  .headline {
+    max-width: none;
+    font-size: 1.5rem;
+  }
+
+  .subtext {
+    max-width: none;
+    font-size: 0.95rem;
+  }
+
+  .extraLine {
+    font-size: 0.95rem;
   }
 
   .solutionCard {
@@ -365,8 +484,8 @@
   }
 
   .solutionRule {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 0.5rem;
   }
 
@@ -394,8 +513,8 @@
   .ctaRow {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
-    padding: 16px max(16px, env(safe-area-inset-right, 0px)) 6px
+    gap: 12px;
+    padding: 12px max(16px, env(safe-area-inset-right, 0px)) 6px
       max(16px, env(safe-area-inset-left, 0px));
   }
 
@@ -407,11 +526,26 @@
   .ctaAndroid,
   .ctaIos {
     width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     padding: 13px 20px;
     font-size: 0.95rem;
     min-height: 48px;
+  }
+
+  .dots {
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dot::after {
+    width: 8px;
+    height: 8px;
   }
 }
 
