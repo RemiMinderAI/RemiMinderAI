@@ -379,19 +379,23 @@
   .viewport {
     width: 100%;
     max-width: none;
-    height: calc(100vh - 80px);
-    min-height: 500px;
-    max-height: 720px;
+    height: auto;
+    min-height: 0;
+    max-height: none;
     margin: 0;
     padding: 0;
-    aspect-ratio: auto;
+    aspect-ratio: 3 / 1;
     overflow: hidden;
+  }
+
+  .slideCard {
+    grid-template-columns: 1fr 1fr;
   }
 
   .image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
     background: #fdf8f4;
   }
@@ -570,7 +574,7 @@
 /* Landscape phones / iPad landscape: keep content usable */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   .viewport {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 1;
   }
 
   .solutionCard {
