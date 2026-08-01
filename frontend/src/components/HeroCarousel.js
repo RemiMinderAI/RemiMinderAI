@@ -30,7 +30,7 @@ const SLIDES = [
     coralSubtext: true,
   },
   {
-    src: "/carousel/hero_5.jpg",
+    src: "/carousel/hero_5_combined.jpg",
     headline: "RemiMinderAI",
     subtext:
       "Turns healthcare conversations into clear, shareable memories — helping patients, caregivers, and families stay aligned.",
