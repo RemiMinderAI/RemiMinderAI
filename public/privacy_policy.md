@@ -60,6 +60,17 @@ In the current version of RemiMinderAI, **Google Cloud Platform** is the sole th
 
 These services process your data only on our behalf and only for the purposes described in this policy. Google Cloud services are contractually bound to maintain confidentiality and use your data only as instructed by us. They are not permitted to use your information for advertising or unrelated purposes. If we add additional processors in the future, we will update this list and notify you of material changes to this Privacy Policy.
 
+## In-App Purchases
+
+RemiMinderAI uses RevenueCat to manage in-app purchases, subscriptions, and purchase restoration across supported platforms.
+
+When you make or restore a purchase, limited information related to your purchase (such as anonymous app user identifiers, subscription status, and transaction information) may be processed by RevenueCat to validate purchases and manage your subscription.
+
+Payment card information is processed by the Apple App Store or Google Play and is never collected, processed, or stored by RemiMinderAI.
+
+For more information, please review RevenueCat's Privacy Policy:
+[https://www.revenuecat.com/privacy](https://www.revenuecat.com/privacy)
+
 ## 6. Data Retention and Deletion
 
 **You are in control of your data.**
