@@ -161,14 +161,8 @@ const LandingPage = () => {
             </p>
 
             <div className={styles.ctaDownloadRow}>
-              <a
-                href={ANDROID_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.hero2BtnTeal}
-              >
-                <Smartphone size={18} aria-hidden="true" />
-                <span>Download for Android</span>
+              <a href={IOS_URL} target="_blank" rel="noopener noreferrer">
+                <img src="/images/app-store-badge.svg" alt="Download on the App Store" style={{ height: "48px" }} />
               </a>
               <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer">
                 <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: "48px" }} />
