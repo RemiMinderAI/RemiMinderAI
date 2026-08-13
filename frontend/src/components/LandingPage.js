@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.remiminderai.app";
+const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
@@ -169,10 +170,9 @@ const LandingPage = () => {
                 <Smartphone size={18} aria-hidden="true" />
                 <span>Download for Android</span>
               </a>
-              <button type="button" className={styles.hero2BtnIos} disabled>
-                <Apple size={18} aria-hidden="true" />
-                <span>iOS Coming Soon</span>
-              </button>
+              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer">
+                <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: "48px" }} />
+              </a>
             </div>
           </div>
         </div>

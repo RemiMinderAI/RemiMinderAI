@@ -3,6 +3,7 @@ import { Smartphone, Apple } from "lucide-react";
 import styles from "./HeroCarousel.module.css";
 
 const ANDROID_URL =
+const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
   "https://play.google.com/store/apps/details?id=com.remiminderai.app";
 
 const SLIDES = [
@@ -128,19 +129,12 @@ export default function HeroCarousel() {
       <div
         className={`${styles.ctaRow} ${isLastSlide ? styles.ctaRowEmphasis : ""}`}
       >
-        <a
-          href={ANDROID_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.ctaAndroid}
-        >
-          <Smartphone size={18} aria-hidden="true" />
-          <span>Download Android</span>
+        <a href={IOS_URL} target="_blank" rel="noopener noreferrer">
+          <img src="/images/app-store-badge.svg" alt="Download on the App Store" style={{ height: "48px" }} />
         </a>
-        <button type="button" className={styles.ctaIos} disabled>
-          <Apple size={18} aria-hidden="true" />
-          <span>iOS Coming Soon</span>
-        </button>
+        <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer">
+          <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: "48px" }} />
+        </a>
       </div>
 
       <div className={styles.dots} role="tablist" aria-label="Carousel slides">
