@@ -13,6 +13,7 @@ import {
 import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
 import { ANDROID_URL } from "../constants/site";
+const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
 import landingStyles from "./LandingPage.module.css";
 import pricingStyles from "./PricingPage.module.css";
 import styles from "./HealthcareMomentsPage.module.css";
