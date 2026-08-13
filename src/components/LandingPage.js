@@ -16,7 +16,6 @@ import {
 
 const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.remiminderai.app";
 const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
-const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
