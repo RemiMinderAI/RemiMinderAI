@@ -178,7 +178,7 @@ const LandingPage = () => {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/images/google-play-badge.svg"
+                  src="/images/google-play-badge.png"
                   alt="Get it on Google Play"
                   style={{ height: '48px' }}
                 />
