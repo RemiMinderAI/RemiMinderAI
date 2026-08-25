@@ -1,11 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Smartphone, Apple } from "lucide-react";
 import styles from "./HeroCarousel.module.css";
-
-const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
-const ANDROID_URL =
-const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
-  "https://play.google.com/store/apps/details?id=com.remiminderai.app";
+import { ANDROID_URL, IOS_URL } from "../constants/site";
 
 const SLIDES = [
   {

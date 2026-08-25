@@ -6,14 +6,11 @@ import {
   Brain,
   Languages,
   CheckCircle2,
-  Smartphone,
-  Apple,
   ArrowLeft,
 } from "lucide-react";
 import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
-import { ANDROID_URL } from "../constants/site";
-const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
+import { ANDROID_URL, IOS_URL } from "../constants/site";
 import landingStyles from "./LandingPage.module.css";
 import pricingStyles from "./PricingPage.module.css";
 import styles from "./HealthcareMomentsPage.module.css";

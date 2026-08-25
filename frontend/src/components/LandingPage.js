@@ -10,12 +10,10 @@ import HeroCarousel from "./HeroCarousel";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
   Mic, FileText, FolderOpen, Share2, Heart, Brain, Clock, Users, 
-  CheckCircle2, Smartphone, Apple, Star,
+  CheckCircle2, Star,
   Zap, Globe
 } from "lucide-react";
-
-const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.remiminderai.app";
-const IOS_URL = "https://apps.apple.com/app/remiminder-ai/id6776771952";
+import { ANDROID_URL, IOS_URL } from "../constants/site";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);

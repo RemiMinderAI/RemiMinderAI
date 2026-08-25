@@ -1667,6 +1667,7 @@ a.hero2BtnTeal {
 }
 @media (max-width: 640px) {
   .primaryButton, .androidButton { width: 100%; justify-content: center; }
+  .ctaDownloadRow { flex-direction: column; align-items: center; }
   .stepsGrid { grid-template-columns: 1fr; }
   .personaGrid { grid-template-columns: 1fr; }
   .benefitsGrid { grid-template-columns: 1fr; }
