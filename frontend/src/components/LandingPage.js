@@ -13,9 +13,7 @@ import {
   CheckCircle2, Star,
   Zap, Globe
 } from "lucide-react";
-
-const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.remiminderai.app";
-const IOS_URL = "https://apps.apple.com/us/app/remiminderai/id6776771952";
+import { ANDROID_URL, IOS_URL } from "../constants/site";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
