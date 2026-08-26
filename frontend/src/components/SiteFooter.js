@@ -97,7 +97,13 @@ export default function SiteFooter() {
             >
               <LinkedInIcon />
             </a>
-            <a href="#" className={styles.socialLink} aria-label="X / Twitter">
+            <a
+              href="https://x.com/ai_minder56313"
+              className={styles.socialLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X / Twitter"
+            >
               <XIcon />
             </a>
           </div>
