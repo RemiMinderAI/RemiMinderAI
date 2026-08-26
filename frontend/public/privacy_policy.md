@@ -26,12 +26,73 @@ We collect only what we need to help you record doctor visits, scan medical docu
 
 We do not sell your data, show ads, or track you across other apps and websites.
 
+## Voice & Audio Data (RemiVox)
+
+RemiMinderAI includes RemiVox, an optional voice companion that lets you ask questions about your health records and set reminders using your voice.
+
+**What we collect when you use RemiVox:**
+
+- **Voice audio** — captured through your device microphone only while the RemiVox button is actively pressed
+- **Text transcript** — generated from your voice audio
+- **Question or command** — as interpreted by our AI system
+- **AI-generated spoken response** — delivered back to you
+
+**RemiVox does not listen in the background.** Audio capture occurs only when you actively initiate a voice interaction by pressing the RemiVox button. A visible on-screen indicator confirms when audio capture is active.
+
+## Third-Party AI Services (RemiVox)
+
+RemiVox processes your voice through three third-party services to convert your speech into a response. Each service receives only the data it needs to perform its specific function:
+
+| Service | Provider | What it receives | Purpose |
+| --- | --- | --- | --- |
+| Speech-to-Text | Deepgram, Inc. | Your voice audio | Converts your spoken words into text |
+| AI Understanding | Google (Gemini API) | Your transcribed text and relevant health record context | Understands your question and generates an appropriate response |
+| Text-to-Speech | Smallest AI, Inc. (Lightning) | The AI-generated response text | Converts the response text into natural-sounding speech |
+
+**How your data flows:**
+
+1. Your voice audio is streamed to Deepgram, which returns a text transcript. Deepgram does not store your audio after transcription is complete.
+2. The transcript, along with relevant context from your health records (such as medication names or appointment details needed to answer your question), is sent to Google's Gemini API. Gemini processes the request and returns a text response. Per Google's API data usage policies, data sent through the Gemini API is not used to train Google's models.
+3. The response text is sent to Smallest AI's Lightning service, which returns synthesized speech audio played back to you.
+
+No third-party service listed above receives your full health record. Each service receives only the minimum data required for its function.
+
+**Third-party privacy policies:**
+
+- [Deepgram](https://deepgram.com/privacy)
+- [Google Gemini API](https://ai.google.dev/gemini-api/terms)
+- [Smallest AI](https://smallest.ai/privacy)
+
+## Doctor Visit Recordings
+
+When you use the Record feature to capture a doctor visit, your audio is processed by Deepgram's speech-to-text service to generate a transcript. The same data handling practices described above for Deepgram apply. Visit recordings are stored on your device and in your encrypted cloud account. AI-generated summaries of your visits are processed through Google's Gemini API.
+
+## Document Scanning
+
+When you scan lab results, prescriptions, or other health documents, the document image is processed on-device using optical character recognition. Extracted text may be sent to Google's Gemini API for structured interpretation. The same data handling practices described above for Google apply.
+
+## Data Retention & Deletion (RemiVox)
+
+- **Voice audio (RemiVox):** Streamed in real time and not stored by RemiMinderAI or any third-party service after the interaction completes.
+- **Transcripts & AI responses:** Stored in your account to provide conversation history. You can delete individual interactions or your entire RemiVox history from Settings > Privacy > Voice History.
+- **Visit recordings & summaries:** Stored in your account until you delete them. You can delete individual recordings from the visit detail screen.
+- **Account deletion:** You can delete your entire account and all associated data from Settings > Account > Delete Account. Deletion is permanent and completed within 30 days.
+
+## Health Data
+
+RemiMinderAI is a consumer wellness tool. It is not a medical device and is not subject to HIPAA. However, we recognize that the information you store — doctor visit recordings, lab results, medication lists — is sensitive. We protect it with:
+
+- Encryption in transit (TLS 1.2+) for all data sent to third-party services
+- Encryption at rest for all stored health records
+- No sale of your personal or health data to any third party, ever
+- No use of your data to train AI models
+
 ## 3. How We Process Your Data
 
 Here is what happens to your information after you capture it in the app:
 
-- **Audio recordings** are sent to Google Cloud (Vertex AI / Gemini) for speech-to-text transcription and to generate plain-language summaries
-- **Document images** are sent to Google Cloud (Vertex AI / Gemma) for optical character recognition (OCR) to extract text from prescriptions, lab results, and medical documents
+- **Audio recordings** are sent to Deepgram for speech-to-text transcription. The resulting transcript may be sent to Google Gemini to generate plain-language summaries
+- **Document images** are processed on-device for optical character recognition (OCR). Extracted text may be sent to Google Gemini for structured interpretation
 - **Recordings, images, and generated content** are stored in Google Cloud infrastructure (Cloud SQL, Cloud Storage, Firestore)
 - **Push notifications** (such as medication or appointment reminders) are delivered via Google Firebase Cloud Messaging
 - **Authentication** is handled by Google Firebase Authentication
@@ -52,9 +113,9 @@ No method of transmission or storage is 100% secure. If we become aware of a sec
 
 ## 5. Third-Party Processors
 
-In the current version of RemiMinderAI, **Google Cloud Platform** is the sole third-party processor we use. This includes:
+RemiMinderAI uses the third-party processors described in the RemiVox sections above, as well as Google Cloud Platform for core account, storage, notification, and AI functionality. Google Cloud includes:
 
-- **Vertex AI, Gemini, and Gemma** — for speech-to-text transcription, plain-language summaries, and optical character recognition (OCR) of medical documents
+- **Gemini and Gemma** — for plain-language summaries and structured interpretation of medical documents
 - **Firebase** — for user authentication and push notifications (medication and appointment reminders)
 - **Cloud SQL, Cloud Storage, and Firestore** — for storing and managing your recordings, documents, and account information
 
