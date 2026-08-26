@@ -6,7 +6,7 @@ import SiteFooter from "./SiteFooter";
 import logo from "../assets/RemiMinder_logo_512.png";
 
 /**
- * Parse minimal markdown (headings, paragraphs, bold, unordered lists) into React nodes.
+ * Parse minimal markdown (headings, paragraphs, bold, unordered lists, tables) into React nodes.
  * Numbered ## headings get stable ids: section-1, section-2, ...
  */
 function parsePrivacyMarkdown(mdText) {
@@ -81,6 +81,18 @@ function parsePrivacyMarkdown(mdText) {
     buf.length = 0;
   };
 
+  const tableCells = (value) =>
+    value
+      .trim()
+      .replace(/^\||\|$/g, "")
+      .split("|")
+      .map((cell) => cell.trim());
+
+  const isTableDivider = (value) => {
+    const cells = tableCells(value);
+    return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell));
+  };
+
   while (i < lines.length) {
     const line = lines[i];
     const trimmed = line.trim();
@@ -138,6 +150,59 @@ function parsePrivacyMarkdown(mdText) {
         </h3>
       );
       i += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith("|") && isTableDivider(lines[i + 1] || "")) {
+      const headers = tableCells(trimmed);
+      const rows = [];
+      i += 2;
+
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        rows.push(tableCells(lines[i]));
+        i += 1;
+      }
+
+      blocks.push(
+        <div key={`table-${key++}`} className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                {headers.map((header, headerIndex) => (
+                  <th key={`${headerIndex}-${header}`}>{renderInline(header)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, rowIndex) => (
+                <tr key={`row-${rowIndex}`}>
+                  {headers.map((_, cellIndex) => (
+                    <td key={`cell-${rowIndex}-${cellIndex}`}>
+                      {renderInline(row[cellIndex] || "")}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
+
+    if (/^\d+\.\s+/.test(trimmed)) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^\d+\.\s+/, ""));
+        i += 1;
+      }
+      blocks.push(
+        <ol key={`ol-${key++}`}>
+          {items.map((item, liIdx) => (
+            <li key={`${liIdx}-${item.slice(0, 24)}`}>{renderInline(item)}</li>
+          ))}
+        </ol>
+      );
       continue;
     }
 

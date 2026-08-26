@@ -152,7 +152,8 @@
   font-style: italic;
 }
 
-.article ul {
+.article ul,
+.article ol {
   margin: 0 0 16px 1.1rem;
   padding: 0;
   color: var(--ink-light, #5a6a7a);
@@ -161,6 +162,44 @@
 
 .article li {
   margin-bottom: 8px;
+}
+
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 0 20px;
+  border: 1px solid var(--border, rgba(27, 42, 74, 0.15));
+  border-radius: 12px;
+}
+
+.table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.table th,
+.table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border, rgba(27, 42, 74, 0.15));
+}
+
+.table th {
+  background: var(--cream, #f7f3ec);
+  color: var(--ink, #1a2332);
+  font-weight: 700;
+}
+
+.table td {
+  color: var(--ink-light, #5a6a7a);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .article strong {
