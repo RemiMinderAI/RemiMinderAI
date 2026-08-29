@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import MarketingHeader from "./MarketingHeader";
 import SiteFooter from "./SiteFooter";
-import { ANDROID_URL, IOS_URL } from "../constants/site";
+import { ANDROID_URL, IOS_URL, trackDownloadClick } from "../constants/site";
 import landingStyles from "./LandingPage.module.css";
 import pricingStyles from "./PricingPage.module.css";
 import styles from "./HealthcareMomentsPage.module.css";
@@ -218,10 +218,10 @@ const HealthcareMomentsPage = () => {
                 information from your visits.
               </p>
               <div className={styles.heroActions}>
-                <a href={IOS_URL} target="_blank" rel="noopener noreferrer">
+                <a href={IOS_URL} target="_blank" rel="noopener noreferrer" onClick={trackDownloadClick}>
                   <img src="/images/app-store-badge.svg" alt="Download on the App Store" style={{ height: "48px" }} />
                 </a>
-                <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer">
+                <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" onClick={trackDownloadClick}>
                   <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: "48px" }} />
                 </a>
               </div>
