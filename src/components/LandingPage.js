@@ -13,7 +13,7 @@ import {
   CheckCircle2, Star,
   Zap, Globe
 } from "lucide-react";
-import { ANDROID_URL, IOS_URL } from "../constants/site";
+import { ANDROID_URL, IOS_URL, trackDownloadClick } from "../constants/site";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
@@ -163,6 +163,7 @@ const LandingPage = () => {
                 href={IOS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={trackDownloadClick}
               >
                 <img
                   src="/images/app-store-badge.svg"
@@ -174,6 +175,7 @@ const LandingPage = () => {
                 href={ANDROID_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={trackDownloadClick}
               >
                 <img
                   src="/images/google-play-badge.png"

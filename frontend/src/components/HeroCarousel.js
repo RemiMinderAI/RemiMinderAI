@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./HeroCarousel.module.css";
-import { ANDROID_URL, IOS_URL } from "../constants/site";
+import { ANDROID_URL, IOS_URL, trackDownloadClick } from "../constants/site";
 
 const SLIDES = [
   {
@@ -125,10 +125,10 @@ export default function HeroCarousel() {
       <div
         className={`${styles.ctaRow} ${isLastSlide ? styles.ctaRowEmphasis : ""}`}
       >
-        <a href={IOS_URL} target="_blank" rel="noopener noreferrer">
+        <a href={IOS_URL} target="_blank" rel="noopener noreferrer" onClick={trackDownloadClick}>
           <img src="/images/app-store-badge.svg" alt="Download on the App Store" style={{ height: "48px" }} />
         </a>
-        <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer">
+        <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" onClick={trackDownloadClick}>
           <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: "48px" }} />
         </a>
       </div>

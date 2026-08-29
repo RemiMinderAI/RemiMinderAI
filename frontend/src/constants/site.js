@@ -6,4 +6,8 @@ export const ANDROID_URL =
 
 export const IOS_URL = "https://apps.apple.com/us/app/remiminderai/id6776771952";
 
+export const trackDownloadClick = () => {
+  window.ttq?.track("ClickButton");
+};
+
 export const CONTACT_EMAIL = "team@remiminderai.com";
