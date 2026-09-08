@@ -1007,10 +1007,28 @@ a.hero2BtnTeal {
 }
 .remiVoxDescription {
   max-width: 540px;
-  margin: 0 0 28px;
+  margin: 0 0 18px;
   color: rgba(255,255,255,0.76);
   font-size: 1.05rem;
   line-height: 1.7;
+}
+.remiVoxOffer {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 24px;
+  padding: 10px 14px;
+  border: 1px solid rgba(232, 198, 111, 0.45);
+  border-radius: 12px;
+  background: rgba(232, 198, 111, 0.12);
+  color: #f5df9e;
+  font-size: 0.95rem;
+  animation: remiVoxOfferGlow 2.4s ease-in-out infinite;
+}
+.remiVoxOffer svg {
+  flex-shrink: 0;
+  color: #e8c66f;
 }
 .remiVoxCta {
   display: inline-flex;
@@ -1162,6 +1180,10 @@ a.hero2BtnTeal {
   0%, 100% { transform: translateY(0); box-shadow: 0 8px 24px rgba(5, 15, 28, 0.18); }
   50% { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(5, 15, 28, 0.28); }
 }
+@keyframes remiVoxOfferGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(232, 198, 111, 0); }
+  50% { box-shadow: 0 0 24px rgba(232, 198, 111, 0.16); }
+}
 @media (max-width: 820px) {
   .remiVoxInner {
     grid-template-columns: 1fr;
@@ -1172,6 +1194,10 @@ a.hero2BtnTeal {
   }
   .remiVoxTitle,
   .remiVoxDescription {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .remiVoxOffer {
     margin-left: auto;
     margin-right: auto;
   }
@@ -1194,7 +1220,8 @@ a.hero2BtnTeal {
   .voiceOrb,
   .voiceRing,
   .voiceWave span,
-  .voiceConfirmation {
+  .voiceConfirmation,
+  .remiVoxOffer {
     animation: none !important;
     transform: none !important;
   }

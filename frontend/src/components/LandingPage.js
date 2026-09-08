@@ -127,14 +127,18 @@ const LandingPage = () => {
               New in the app
             </div>
             <h2 id="remivox-heading" className={styles.remiVoxTitle}>
-              Meet <span>RemiVox</span>, your voice companion
+              Say it once. <span>RemiVox</span> helps you remember.
             </h2>
             <p className={styles.remiVoxDescription}>
-              Press, speak, and get help in the moment. Ask questions about your health records or
-              set a reminder using your voice&mdash;without typing.
+              Turn spoken words into reminders and ask questions about your health
+              records&mdash;all without typing.
             </p>
+            <div className={styles.remiVoxOffer}>
+              <CheckCircle2 size={20} aria-hidden="true" />
+              <span><strong>Try RemiVox free for 14 days</strong></span>
+            </div>
             <a className={styles.remiVoxCta} href="#get-started">
-              Try RemiVox in the app
+              Download the app now
               <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
