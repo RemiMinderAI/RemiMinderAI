@@ -10,7 +10,7 @@ import HeroCarousel from "./HeroCarousel";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
   Mic, FileText, FolderOpen, Share2, Heart, Brain, Clock, Users, 
-  CheckCircle2, Star,
+  CheckCircle2, Star, Bell, Sparkles,
   Zap, Globe
 } from "lucide-react";
 import { ANDROID_URL, IOS_URL, trackDownloadClick } from "../constants/site";
@@ -117,6 +117,60 @@ const LandingPage = () => {
       </main>
 
       <WhatRemiMinderIsSection />
+
+      {/* ── REMIVOX FEATURE ── */}
+      <section className={styles.remiVoxSection} aria-labelledby="remivox-heading">
+        <div className={styles.remiVoxInner}>
+          <div className={styles.remiVoxCopy}>
+            <div className={styles.remiVoxBadge}>
+              <Sparkles size={15} aria-hidden="true" />
+              New in the app
+            </div>
+            <h2 id="remivox-heading" className={styles.remiVoxTitle}>
+              Meet <span>RemiVox</span>, your voice companion
+            </h2>
+            <p className={styles.remiVoxDescription}>
+              Press, speak, and get help in the moment. Ask questions about your health records or
+              set a reminder using your voice&mdash;without typing.
+            </p>
+            <a className={styles.remiVoxCta} href="#get-started">
+              Try RemiVox in the app
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+
+          <div
+            className={styles.remiVoxDemo}
+            role="img"
+            aria-label="RemiVox setting a medication reminder from a voice request"
+          >
+            <div className={styles.voiceOrb} aria-hidden="true">
+              <span className={styles.voiceRing} />
+              <span className={styles.voiceRing} />
+              <span className={styles.voiceRing} />
+              <Mic size={34} strokeWidth={2} />
+            </div>
+            <div className={styles.voiceWave} aria-hidden="true">
+              {[18, 30, 44, 26, 52, 36, 22, 42, 28].map((height, index) => (
+                <span key={index} style={{ "--wave-height": `${height}px` }} />
+              ))}
+            </div>
+            <p className={styles.voicePrompt}>
+              &ldquo;Remind me to take my medication at 8 PM.&rdquo;
+            </p>
+            <div className={styles.voiceConfirmation}>
+              <span className={styles.voiceConfirmationIcon}>
+                <Bell size={18} aria-hidden="true" />
+              </span>
+              <span>
+                <strong>Reminder set</strong>
+                Today at 8:00 PM
+              </span>
+              <CheckCircle2 size={21} aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── SOCIAL PROOF BAR ── */}
       <div className={styles.socialProofBar}>
