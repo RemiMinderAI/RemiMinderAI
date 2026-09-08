@@ -79,7 +79,6 @@ Healthcare data is the most sensitive information a person shares. We treat it t
 
 ## What's Next (roadmap)
 
-- In-app voice reminder setup with RemiVox
 - Provider documentation pilot and care team collaboration
 - Healthcare organization integrations and API platform
 - Multilingual voice support
