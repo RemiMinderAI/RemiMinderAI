@@ -79,10 +79,10 @@ Healthcare data is the most sensitive information a person shares. We treat it t
 
 ## What's Next (roadmap)
 
-- Q2 2026 — External beta opens to waitlist (Android first)
-- Q3 2026 — iOS release and caregiver web dashboard
-- Q4 2026 — Care team collaboration features, provider integrations
-- 2027 — Expanded clinical partnerships and multi-language support
+- In-app voice reminder setup with RemiVox
+- Provider documentation pilot and care team collaboration
+- Healthcare organization integrations and API platform
+- Multilingual voice support
 
 ## Company Information
 
