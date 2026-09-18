@@ -54,6 +54,7 @@ export default function SiteFooter() {
             <a href="/#how-it-works">How It Works</a>
             <a href="/#get-started">Get Started</a>
             <Link to="/healthcare-moments">Use Cases</Link>
+            <Link to="/blog">Blog</Link>
             <Link to="/future-vision">Future Vision</Link>
             <Link to="/support">Support</Link>
           </nav>

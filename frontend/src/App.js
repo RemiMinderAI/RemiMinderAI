@@ -8,6 +8,8 @@ import LandingPage from './components/LandingPage';
 import AboutPage from "./components/AboutPage";
 import HealthcareMomentsPage from "./components/HealthcareMomentsPage";
 import FutureVisionPage from "./components/FutureVisionPage";
+import BlogIndexPage from "./components/BlogIndexPage";
+import BlogArticlePage from "./components/BlogArticlePage";
 import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
 import DeleteAccountPage from "./components/DeleteAccountPage";
 import SupportPage from "./components/SupportPage";
@@ -46,6 +48,7 @@ import VisitHistory from './patient/VisitHistory';
 import ScrollToTop from "./components/ScrollToTop";
 import AnnouncementBar from "./components/AnnouncementBar";
 import ContactModal from "./components/ContactModal";
+import MailingListModal from "./components/MailingListModal";
 import FeedbackWidget from "./components/FeedbackWidget";
 import { MailingListProvider } from "./context/MailingListContext";
 import StripeCheckoutClaim from "./components/StripeCheckoutClaim";
@@ -58,6 +61,7 @@ function App() {
         <StripeCheckoutClaim />
         <ScrollToTop />
         <ContactModal />
+        <MailingListModal />
         <FeedbackWidget />
         <div className="App">
         <Routes>
@@ -65,6 +69,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/healthcare-moments" element={<HealthcareMomentsPage />} />
+          <Route path="/blog/:slug" element={<BlogArticlePage />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/future-vision" element={<FutureVisionPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/delete-account" element={<DeleteAccountPage />} />
