@@ -8,6 +8,18 @@
   text-align: left;
 }
 
+:global(.App) .page,
+:global(.App) .main,
+:global(.App) .article,
+:global(.App) .articleBody,
+:global(.App) .articleTitle,
+:global(.App) .articleMeta,
+:global(.App) .lead,
+:global(.App) .card,
+:global(.App) .indexHeader {
+  text-align: left;
+}
+
 .main {
   flex: 1;
   padding: 48px 20px 80px;
