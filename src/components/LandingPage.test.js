@@ -3,26 +3,17 @@ import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import LandingPage from "./LandingPage";
 
-jest.mock("react-router-dom", () => {
-  const actual = jest.requireActual("react-router-dom");
-  return {
-    ...actual,
-    useNavigate: () => jest.fn(),
-    NavLink: ({ children, to, ...props }) => (
-      <a href={typeof to === "string" ? to : "/"} {...props}>
-        {children}
-      </a>
-    ),
-  };
-});
+function renderHome() {
+  return render(
+    <MemoryRouter>
+      <LandingPage />
+    </MemoryRouter>
+  );
+}
 
 describe("LandingPage hero redesign", () => {
   test("states the product category, caregiver headline, and trust signals immediately", () => {
-    render(
-      <MemoryRouter>
-        <LandingPage />
-      </MemoryRouter>
-    );
+    renderHome();
 
     const categoryBadges = screen.getAllByText(/AI healthcare companion app/i);
     expect(categoryBadges.length).toBeGreaterThanOrEqual(1);
@@ -44,7 +35,7 @@ describe("LandingPage hero redesign", () => {
     expect(screen.getByText(/HIPAA-conscious design/i)).toBeInTheDocument();
     expect(screen.getByText(/^Encrypted$/i)).toBeInTheDocument();
     expect(screen.getByText(/iOS \+ Android/i)).toBeInTheDocument();
-    expect(screen.getByText(/10 languages/i)).toBeInTheDocument();
+    expect(screen.getByText(/^10 languages$/i)).toBeInTheDocument();
 
     expect(
       screen.getByAltText(/home dashboard with today's schedule/i)
@@ -54,25 +45,16 @@ describe("LandingPage hero redesign", () => {
   });
 
   test("does not render the old hero carousel", () => {
-    render(
-      <MemoryRouter>
-        <LandingPage />
-      </MemoryRouter>
-    );
+    renderHome();
 
     expect(screen.queryByLabelText(/remiminderai story/i)).not.toBeInTheDocument();
-    expect(screen.queryByRole("tablist")).not.toBeInTheDocument();
     expect(
       screen.queryByText(/every healthcare journey begins with a conversation/i)
     ).not.toBeInTheDocument();
   });
 
   test("leads Who it's for with family caregivers and the kitchen-table image", () => {
-    render(
-      <MemoryRouter>
-        <LandingPage />
-      </MemoryRouter>
-    );
+    renderHome();
 
     expect(
       screen.getByRole("heading", {

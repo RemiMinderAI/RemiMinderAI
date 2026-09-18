@@ -10,7 +10,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 28px 8px 36px;
+  padding: 36px 24px 48px;
+  overflow: visible;
 }
 
 .ambient {
@@ -34,6 +35,7 @@
   position: relative;
   margin: 0;
   z-index: 1;
+  overflow: visible;
 }
 
 .phoneFront {
@@ -87,14 +89,25 @@
 }
 
 .caption {
-  margin: 14px 0 0;
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 14px;
+  z-index: 6;
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(27, 58, 92, 0.92);
+  box-shadow: 0 6px 16px rgba(27, 58, 92, 0.18);
+  white-space: nowrap;
   text-align: center;
   font-family: "DM Sans", sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--hero-navy);
+  color: #ffffff;
+  pointer-events: none;
 }
 
 .phoneBack .caption {

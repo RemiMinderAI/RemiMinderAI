@@ -378,6 +378,7 @@
   }
   .hero2VisualCol {
     width: 100%;
+    overflow: visible;
   }
   .hero2CtaBlock {
     align-items: center;

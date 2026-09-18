@@ -108,8 +108,8 @@ const HeroPhoneStage = () => {
         <div className={styles.bezel}>
           <div className={styles.notch} aria-hidden="true" />
           <SpanishVisitSummary />
+          <span className={styles.caption}>Visit Summary · Español</span>
         </div>
-        <figcaption className={styles.caption}>Visit Summary · Español</figcaption>
       </figure>
 
       <figure className={`${styles.phone} ${styles.phoneFront}`}>
@@ -124,8 +124,8 @@ const HeroPhoneStage = () => {
             loading="eager"
             decoding="async"
           />
+          <span className={styles.caption}>Home dashboard</span>
         </div>
-        <figcaption className={styles.caption}>Home dashboard</figcaption>
       </figure>
     </div>
   );
