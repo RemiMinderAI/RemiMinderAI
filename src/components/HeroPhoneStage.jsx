@@ -1,26 +1,56 @@
 import React from "react";
 import styles from "./HeroPhoneStage.module.css";
-import heroComposite from "../assets/hero-phones-composite.png";
 
-/**
- * Single composite artwork (layered phone mockups + pills); replaces separate device frames.
- */
+const PHONES = [
+  {
+    className: "phoneLeft",
+    src: "/images/hero-patient-overview.jpg",
+    alt: "RemiMinderAI patient overview with medication reminders and upcoming checkup",
+    caption: "Patient Overview",
+    width: 390,
+    height: 844,
+  },
+  {
+    className: "phoneRight",
+    src: "/images/hero-home-dashboard.jpg",
+    alt: "RemiMinderAI home dashboard with today's schedule, tasks, and care progress",
+    caption: "Home dashboard",
+    width: 390,
+    height: 844,
+  },
+  {
+    className: "phoneFront",
+    src: "/images/hero-visit-details.png",
+    alt: "RemiMinderAI visit details with AI visit summary, medications, and next steps",
+    caption: "Visit Summary",
+    width: 390,
+    height: 844,
+  },
+];
+
 const HeroPhoneStage = () => {
   return (
-    <div className={styles.stage}>
-      <div className={styles.ambientRadial} aria-hidden="true" />
-      <div className={styles.ambientBlob} aria-hidden="true" />
-      <div className={styles.compositeWrap}>
-        <img
-          className={styles.compositeImg}
-          src={heroComposite}
-          alt="RemiMinderAI on three phone screens: visit recording, health overview, and care plan with prescriptions and appointments"
-          width={1200}
-          height={900}
-          loading="eager"
-          decoding="async"
-        />
-      </div>
+    <div className={styles.stage} aria-hidden="false">
+      <div className={styles.ambient} aria-hidden="true" />
+      {PHONES.map((phone) => (
+        <figure
+          key={phone.caption}
+          className={`${styles.phone} ${styles[phone.className]}`}
+        >
+          <div className={styles.bezel}>
+            <img
+              className={styles.shot}
+              src={phone.src}
+              alt={phone.alt}
+              width={phone.width}
+              height={phone.height}
+              loading="eager"
+              decoding="async"
+            />
+            <span className={styles.caption}>{phone.caption}</span>
+          </div>
+        </figure>
+      ))}
     </div>
   );
 };

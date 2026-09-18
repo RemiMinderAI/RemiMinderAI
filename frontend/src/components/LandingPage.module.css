@@ -13,9 +13,11 @@
   --navy:        #1B2A4A;
   --navy-light:  #E8EBF2;
   --coral:       #D4614A;
-  --gold:        #c9a84c;
+  --gold:        #D4A843;
   --gold-light:  #f5e9c8;
   --cream:       #f7f3ec;
+  --brand-navy:  #1B3A5C;
+  --brand-gold:  #D4A843;
   --cream-dark:  #ede8df;
   --ink:         #1a2332;
   --ink-mid:     #2d3f52;
@@ -376,11 +378,15 @@
   }
   .hero2VisualCol {
     width: 100%;
+    overflow: visible;
   }
   .hero2CtaBlock {
     align-items: center;
   }
   .hero2CtaRow {
+    justify-content: center;
+  }
+  .heroDownloadRow {
     justify-content: center;
   }
   .hero2MailingBtn {
@@ -407,6 +413,103 @@
 @media (min-width: 900px) {
   .hero2TrustRow {
     flex-wrap: nowrap;
+  }
+}
+.heroCategoryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--brand-navy, #1B3A5C);
+  background: #ffffff;
+  border: 1px solid rgba(212, 168, 67, 0.5);
+  border-radius: 999px;
+  padding: 7px 14px 7px 12px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+.heroCategoryDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-gold, #D4A843);
+  flex-shrink: 0;
+}
+.heroDownloadRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+.heroDownloadRow img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+.heroTrialLine {
+  margin: 4px 0 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-light);
+  letter-spacing: 0.01em;
+}
+.trustBar {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-top: 1px solid rgba(27, 58, 92, 0.08);
+  border-bottom: 1px solid rgba(27, 58, 92, 0.08);
+}
+.trustBarInner {
+  list-style: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 20px;
+}
+.trustBarItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--brand-navy, #1B3A5C);
+  text-align: left;
+}
+.trustBarIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(212, 168, 67, 0.14);
+  color: var(--brand-gold, #D4A843);
+  flex-shrink: 0;
+}
+@media (max-width: 799px) {
+  .trustBarInner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 18px 20px;
+  }
+  .trustBarItem {
+    justify-content: flex-start;
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 480px) {
+  .trustBarInner {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 .hero2Eyebrow {
@@ -447,13 +550,13 @@
 }
 .hero2Title {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(28px, 3.2vw, 44px);
+  font-size: clamp(30px, 3.6vw, 48px);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.18;
   letter-spacing: -0.02em;
-  color: var(--teal-900);
+  color: var(--brand-navy, #1B3A5C);
   margin: 0 0 18px;
-  max-width: 18ch;
+  max-width: 16em;
   text-wrap: balance;
 }
 .togetherWrap {
@@ -1623,7 +1726,67 @@ a.hero2BtnTeal {
 
 /* ── WHO IT'S FOR ── */
 .whoItsFor { padding: 80px 5%; background: var(--cream); text-align: center; }
-.whoItsFor .sectionSubtitle { margin: 0 auto 48px; }
+.whoItsFor .sectionSubtitle { margin: 0 auto 48px; max-width: 720px; }
+.whoFeatured {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0 36px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  text-align: left;
+  align-items: stretch;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.whoFeaturedImageWrap {
+  min-height: 280px;
+  overflow: hidden;
+}
+.whoFeaturedImage {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+.whoFeaturedCopy {
+  padding: 32px 36px 32px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.whoFeaturedCopy h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--brand-navy, #1B3A5C);
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+.whoFeaturedCopy p {
+  font-size: 1rem;
+  color: var(--ink-light);
+  line-height: 1.65;
+  margin: 0 0 12px;
+}
+.whoFeaturedClose {
+  font-weight: 600 !important;
+  color: var(--brand-navy, #1B3A5C) !important;
+}
+@media (max-width: 860px) {
+  .whoFeatured {
+    grid-template-columns: 1fr;
+  }
+  .whoFeaturedCopy {
+    padding: 24px 24px 28px;
+  }
+  .whoFeaturedImage {
+    min-height: 220px;
+    max-height: 280px;
+  }
+}
 .personaGrid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 28px; max-width: 1000px; margin: 0 auto;

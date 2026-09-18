@@ -1,102 +1,189 @@
-/* Single hero composite: phones read as floating on hero cream, no card panel */
+/* Three overlapping device mockups for the static homepage hero. */
 .stage {
-  --teal-900: #1B2A4A;
+  --hero-navy: #1b3a5c;
+  --hero-gold: #d4a843;
+  --hero-cream: #f6f1e8;
   position: relative;
   color-scheme: light;
   width: 100%;
-  min-height: 320px;
+  min-height: 540px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 28px 8px 36px;
   overflow: visible;
-  background: transparent;
-  border: none;
-  box-shadow: none;
 }
 
-.ambientRadial {
-  position: absolute;
-  inset: 5% 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at 50% 45%,
-    rgba(59, 134, 128, 0.2) 0%,
-    rgba(201, 169, 97, 0.1) 48%,
-    transparent 68%
-  );
-}
-
-.ambientBlob {
+.ambient {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 420px;
-  height: 420px;
-  margin-left: -210px;
-  margin-top: -210px;
+  width: 480px;
+  height: 480px;
+  margin: -240px 0 0 -240px;
   border-radius: 50%;
-  background: #3A4F6F;
-  opacity: 0.06;
-  filter: blur(48px);
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 67, 0.16) 0%,
+    rgba(27, 58, 92, 0.06) 46%,
+    transparent 70%
+  );
   pointer-events: none;
-  z-index: 0;
 }
 
-.compositeWrap {
-  position: relative;
+.phone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
   z-index: 1;
-  width: 100%;
-  max-width: 680px;
-  margin: 0 auto;
-  line-height: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
 }
 
-.compositeImg {
-  width: 100%;
-  height: auto;
+.phoneLeft {
+  z-index: 1;
+  transform: translate(-50%, -50%) rotate(-11deg) translate(-118px, 22px) scale(0.86);
+}
+
+.phoneRight {
+  z-index: 2;
+  transform: translate(-50%, -50%) rotate(10deg) translate(118px, 28px) scale(0.86);
+}
+
+.phoneFront {
+  z-index: 3;
+  transform: translate(-50%, -50%) rotate(-3deg);
+}
+
+.bezel {
+  position: relative;
+  width: 210px;
+  height: 430px;
+  padding: 8px;
+  background: linear-gradient(165deg, #243b58 0%, #122536 100%);
+  border-radius: 32px;
+  box-shadow:
+    0 24px 50px rgba(27, 58, 92, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  overflow: hidden;
+}
+
+.phoneFront .bezel {
+  width: 236px;
+  height: 484px;
+}
+
+.shot {
   display: block;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 24px;
+  background: var(--hero-cream);
+}
+
+.caption {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 12px;
+  z-index: 6;
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(27, 58, 92, 0.92);
+  box-shadow: 0 6px 16px rgba(27, 58, 92, 0.18);
+  white-space: nowrap;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+.phoneLeft .caption,
+.phoneRight .caption {
+  display: none;
+}
+
+.phoneFront .caption {
+  color: var(--hero-gold);
 }
 
 @media (max-width: 899px) {
   .stage {
-    min-height: 240px;
-    max-width: none;
+    min-height: 460px;
+    padding: 12px 0 28px;
   }
-  .ambientRadial {
-    inset: 0;
-    /* Match hero cream + grid: soften edge where PNG meets viewport */
-    background: radial-gradient(
-      ellipse 120% 80% at 50% 45%,
-      rgba(59, 134, 128, 0.18) 0%,
-      rgba(201, 169, 97, 0.08) 50%,
-      rgba(250, 247, 239, 0) 72%
-    );
+
+  .phoneLeft {
+    transform: translate(-50%, -50%) rotate(-8deg) translate(-78px, 18px) scale(0.82);
   }
-  .ambientBlob {
-    width: min(90vw, 500px);
-    height: min(90vw, 500px);
-    margin-left: calc(min(90vw, 500px) / -2);
-    margin-top: calc(min(90vw, 500px) / -2);
+
+  .phoneRight {
+    transform: translate(-50%, -50%) rotate(8deg) translate(78px, 22px) scale(0.82);
   }
-  .compositeWrap {
-    max-width: none;
-    width: 100%;
+
+  .bezel {
+    width: 176px;
+    height: 360px;
+  }
+
+  .phoneFront .bezel {
+    width: 198px;
+    height: 406px;
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 520px) {
   .stage {
-    min-height: 200px;
+    min-height: 400px;
+  }
+
+  .phoneLeft {
+    transform: translate(-50%, -50%) rotate(-7deg) translate(-56px, 16px) scale(0.78);
+  }
+
+  .phoneRight {
+    transform: translate(-50%, -50%) rotate(7deg) translate(56px, 20px) scale(0.78);
+  }
+
+  .bezel {
+    width: 150px;
+    height: 308px;
+    padding: 6px;
+    border-radius: 26px;
+  }
+
+  .phoneFront .bezel {
+    width: 168px;
+    height: 344px;
+  }
+
+  .shot {
+    border-radius: 20px;
+  }
+
+  .caption {
+    font-size: 0.52rem;
+    padding: 5px 6px;
+    bottom: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phoneLeft {
+    transform: translate(-50%, -50%) translate(-96px, 8px) scale(0.9);
+  }
+
+  .phoneRight {
+    transform: translate(-50%, -50%) translate(96px, 8px) scale(0.9);
+  }
+
+  .phoneFront {
+    transform: translate(-50%, -50%);
   }
 }
