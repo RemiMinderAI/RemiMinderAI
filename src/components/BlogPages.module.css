@@ -220,6 +220,39 @@
   margin: 2em 0;
 }
 
+.articleBody blockquote {
+  margin: 0 0 1.4em;
+  padding: 14px 18px;
+  border-left: 4px solid #D4A843;
+  background: rgba(212, 168, 67, 0.12);
+  font-size: 1rem;
+  color: #152238;
+}
+
+.articleBody :global(.blogTableWrap) {
+  overflow-x: auto;
+  margin: 0 0 1.4em;
+}
+
+.articleBody table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.articleBody th,
+.articleBody td {
+  border: 1px solid rgba(26, 43, 60, 0.12);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.articleBody th {
+  background: #efe8d8;
+  font-weight: 700;
+}
+
 .cta {
   margin-top: 48px;
   padding: 32px 28px;

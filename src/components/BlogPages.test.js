@@ -39,6 +39,23 @@ describe("Blog", () => {
     ).toBeInTheDocument();
     expect(within(card).getByText(/september 18, 2026/i)).toBeInTheDocument();
     expect(within(card).getByText(/min read/i)).toBeInTheDocument();
+
+    expect(
+      screen.getByRole("link", {
+        name: /how to share medical information with family members who live far away/i,
+      })
+    ).toHaveAttribute(
+      "href",
+      "/blog/how-to-share-medical-information-with-family-members-who-live-far-away"
+    );
+    expect(
+      screen.getByRole("link", {
+        name: /best apps for managing elderly parents' medical care in 2026/i,
+      })
+    ).toHaveAttribute(
+      "href",
+      "/blog/best-apps-managing-elderly-parents-medical-care-2026"
+    );
   });
 
   test("renders the article with H1, meta, H2 sections, and download CTA", () => {
@@ -85,6 +102,46 @@ describe("Blog", () => {
       "href",
       "https://remiminderai.com/blog/how-to-remember-what-doctor-said"
     );
+  });
+
+  test("renders the long-distance caregiving article", () => {
+    renderAt(
+      "/blog/how-to-share-medical-information-with-family-members-who-live-far-away"
+    );
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: /how to share medical information with family members who live far away/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: /why long-distance caregiving can be so difficult/i,
+      })
+    ).toBeInTheDocument();
+    expect(document.title).toMatch(/how to share medical information/i);
+    expect(
+      document.head.querySelector('meta[property="og:type"]')
+    ).toHaveAttribute("content", "article");
+  });
+
+  test("renders the elderly parent apps article with sections and table", () => {
+    renderAt("/blog/best-apps-managing-elderly-parents-medical-care-2026");
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: /best apps for managing elderly parents' medical care in 2026/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /medication reminder apps/i,
+      })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("table")).toBeInTheDocument();
+    expect(screen.getByText(/if your biggest problem is/i)).toBeInTheDocument();
+    expect(document.title).toMatch(/best apps for managing elderly parents/i);
   });
 
   test("unknown slug shows a not-found state", () => {

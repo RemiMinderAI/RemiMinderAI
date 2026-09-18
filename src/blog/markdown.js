@@ -54,6 +54,8 @@ export function markdownToPlainText(md) {
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/\*([^*]+)\*/g, "$1")
     .replace(/^[-*]\s+/gm, "")
+    .replace(/^>\s?/gm, "")
+    .replace(/\|/g, " ")
     .replace(/^---$/gm, "")
     .replace(/\s+/g, " ")
     .trim();
@@ -70,11 +72,26 @@ export function readingMinutes(text) {
   return Math.max(1, Math.round(words / 200));
 }
 
+function tableCells(value) {
+  return value
+    .trim()
+    .replace(/^\||\|$/g, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function isTableDivider(value) {
+  if (!value || !value.trim().startsWith("|")) return false;
+  const cells = tableCells(value);
+  return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell));
+}
+
 export function markdownToReact(md, { leadClassName } = {}) {
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   const blocks = [];
   let i = 0;
   let key = 0;
+  let skippedTitle = false;
 
   while (i < lines.length) {
     const trimmed = lines[i].trim();
@@ -90,7 +107,19 @@ export function markdownToReact(md, { leadClassName } = {}) {
       continue;
     }
 
+    if (trimmed.startsWith("# ") && !skippedTitle) {
+      skippedTitle = true;
+      i += 1;
+      continue;
+    }
+
     if (trimmed.startsWith("# ")) {
+      const title = trimmed.slice(2).trim();
+      blocks.push(
+        <h2 key={`h1as2-${key++}`} id={slugify(title)}>
+          {renderInline(title, `h1-${key}`)}
+        </h2>
+      );
       i += 1;
       continue;
     }
@@ -133,6 +162,57 @@ export function markdownToReact(md, { leadClassName } = {}) {
       continue;
     }
 
+    if (trimmed.startsWith(">")) {
+      const quote = [];
+      while (i < lines.length && lines[i].trim().startsWith(">")) {
+        quote.push(lines[i].trim().replace(/^>\s?/, ""));
+        i += 1;
+      }
+      blocks.push(
+        <blockquote key={`bq-${key++}`}>
+          {renderInline(quote.join(" "), `bq-${key}`)}
+        </blockquote>
+      );
+      continue;
+    }
+
+    if (trimmed.startsWith("|") && isTableDivider(lines[i + 1] || "")) {
+      const headers = tableCells(trimmed);
+      const rows = [];
+      i += 2;
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        rows.push(tableCells(lines[i]));
+        i += 1;
+      }
+      blocks.push(
+        <div key={`table-${key++}`} className="blogTableWrap">
+          <table>
+            <thead>
+              <tr>
+                {headers.map((header, headerIndex) => (
+                  <th key={`${headerIndex}-${header}`}>
+                    {renderInline(header, `th-${headerIndex}`)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, rowIndex) => (
+                <tr key={`row-${rowIndex}`}>
+                  {headers.map((_, cellIndex) => (
+                    <td key={`cell-${rowIndex}-${cellIndex}`}>
+                      {renderInline(row[cellIndex] || "", `td-${rowIndex}-${cellIndex}`)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
+
     const para = [];
     while (i < lines.length) {
       const next = lines[i].trim();
@@ -142,7 +222,9 @@ export function markdownToReact(md, { leadClassName } = {}) {
         next.startsWith("# ") ||
         next.startsWith("## ") ||
         next.startsWith("### ") ||
-        next.startsWith("- ")
+        next.startsWith("- ") ||
+        next.startsWith(">") ||
+        next.startsWith("|")
       ) {
         break;
       }

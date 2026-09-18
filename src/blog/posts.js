@@ -3,6 +3,8 @@ import {
   markdownToPlainText,
   readingMinutes,
 } from "./markdown";
+import { BEST_APPS_MARKDOWN } from "./bestAppsMarkdown";
+import { SHARE_FAMILY_MARKDOWN } from "./shareFamilyMarkdown";
 
 const HOW_TO_REMEMBER_MARKDOWN = `*You walked out of the appointment confident you'd remember everything. By dinner, half of it was gone.*
 
@@ -92,7 +94,7 @@ function enrichPost(post) {
     ...post,
     plain,
     preview: firstLinePreview(post.markdown),
-    description: firstChars(plain, 155),
+    description: post.description || firstChars(plain, 155),
     readMinutes: readingMinutes(plain),
     path: `/blog/${post.slug}`,
   };
@@ -102,7 +104,7 @@ function firstLinePreview(markdown) {
   const line = markdown
     .split("\n")
     .map((row) => row.trim())
-    .find((row) => row && !row.startsWith("#"));
+    .find((row) => row && !row.startsWith("#") && row !== "---" && !row.startsWith(">"));
   if (!line) return "";
   return markdownToPlainText(line);
 }
@@ -113,6 +115,22 @@ const RAW_POSTS = [
     title: "How to Remember What the Doctor Said After Your Appointment",
     date: "2026-09-18",
     markdown: HOW_TO_REMEMBER_MARKDOWN,
+  },
+  {
+    slug: "how-to-share-medical-information-with-family-members-who-live-far-away",
+    title: "How to Share Medical Information With Family Members Who Live Far Away",
+    date: "2026-09-18",
+    description:
+      "Learn practical ways to share doctor's appointment information, coordinate long-distance caregiving, and keep family members informed about an aging parent's healthcare.",
+    markdown: SHARE_FAMILY_MARKDOWN,
+  },
+  {
+    slug: "best-apps-managing-elderly-parents-medical-care-2026",
+    title: "Best Apps for Managing Elderly Parents' Medical Care in 2026",
+    date: "2026-09-18",
+    description:
+      "Compare the best types of apps for managing an elderly parent's medical care in 2026, including medication reminders, patient portals, family caregiving, appointment summaries, and care coordination.",
+    markdown: BEST_APPS_MARKDOWN,
   },
 ];
 
