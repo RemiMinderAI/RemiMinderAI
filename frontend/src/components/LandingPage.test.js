@@ -12,11 +12,12 @@ function renderHome() {
 }
 
 describe("LandingPage hero redesign", () => {
-  test("states the product category, caregiver headline, and trust signals immediately", () => {
+  test("states the product, workflow, and two readable app screenshots immediately", () => {
     renderHome();
 
-    const categoryBadges = screen.getAllByText(/AI healthcare companion app/i);
-    expect(categoryBadges.length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getAllByText(/AI healthcare companion app/i).length
+    ).toBeGreaterThanOrEqual(1);
 
     expect(
       screen.getByRole("heading", {
@@ -26,28 +27,39 @@ describe("LandingPage hero redesign", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(/records medical appointments, generates AI summaries/i)
+      screen.getByText(/record the visit, get an AI summary, scan lab results/i)
     ).toBeInTheDocument();
-
-    expect(screen.getByText(/free 14-day trial/i)).toBeInTheDocument();
-    expect(screen.getByText(/no credit card required/i)).toBeInTheDocument();
-
-    expect(screen.getByText(/HIPAA-conscious design/i)).toBeInTheDocument();
-    expect(screen.getByText(/^Encrypted$/i)).toBeInTheDocument();
-    expect(screen.getByText(/iOS \+ Android/i)).toBeInTheDocument();
-    expect(screen.getByText(/^10 languages$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^Record$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^Summarize$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^Scan$/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/voice reminders/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/share live/i)).toBeInTheDocument();
 
     expect(
       screen.getByAltText(/home dashboard with today's schedule/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByAltText(/patient overview with medication reminders/i)
+      screen.getByAltText(/visit summary with medications and next steps/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByAltText(/visit details with AI visit summary/i)
+      screen.queryByAltText(/patient overview with medication reminders/i)
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.getByRole("heading", { name: /record the conversation/i })
     ).toBeInTheDocument();
-    expect(screen.getByText(/^visit summary$/i)).toBeInTheDocument();
-    expect(screen.getByText(/^patient overview$/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /get an AI summary/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /scan documents/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /set reminders by voice/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /share with family in real time/i })
+    ).toBeInTheDocument();
   });
 
   test("does not render the old hero carousel", () => {
@@ -67,9 +79,6 @@ describe("LandingPage hero redesign", () => {
         level: 2,
         name: /built for family caregivers/i,
       })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/supporting loved ones with medical appointments/i)
     ).toBeInTheDocument();
     expect(
       screen.getByAltText(/kitchen table with prescriptions/i)

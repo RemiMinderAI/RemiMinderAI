@@ -1,5 +1,15 @@
 import React from "react";
-import { Globe, Lock, ShieldCheck, Smartphone } from "lucide-react";
+import {
+  Bell,
+  FileText,
+  Globe,
+  Lock,
+  Mic,
+  ScanLine,
+  Share2,
+  ShieldCheck,
+  Smartphone,
+} from "lucide-react";
 import styles from "./LandingPage.module.css";
 import HeroPhoneStage from "./HeroPhoneStage";
 import { ANDROID_URL, IOS_URL, trackDownloadClick } from "../constants/site";
@@ -9,6 +19,14 @@ const TRUST_ITEMS = [
   { icon: Lock, label: "Encrypted" },
   { icon: Smartphone, label: "iOS + Android" },
   { icon: Globe, label: "10 languages" },
+];
+
+const HERO_ACTIONS = [
+  { icon: Mic, label: "Record" },
+  { icon: FileText, label: "Summarize" },
+  { icon: ScanLine, label: "Scan" },
+  { icon: Bell, label: "Voice reminders" },
+  { icon: Share2, label: "Share live" },
 ];
 
 export default function HeroSection() {
@@ -38,10 +56,26 @@ export default function HeroSection() {
               </h1>
 
               <p className={`${styles.hero2Sub} ${styles.heroAnimSub}`}>
-                RemiMinderAI records medical appointments, generates AI summaries,
-                scans lab results, and keeps your whole family aligned on care —
-                in 10 languages.
+                Record the visit, get an AI summary, scan lab results, set
+                reminders by voice, and share with family in real time — in 10
+                languages.
               </p>
+
+              <ul className={`${styles.heroActionList} ${styles.heroAnimSub}`}>
+                {HERO_ACTIONS.map(({ icon: Icon, label }, index) => (
+                  <li key={label} className={styles.heroActionItem}>
+                    <span className={styles.heroActionIcon} aria-hidden="true">
+                      <Icon size={14} strokeWidth={2.3} />
+                    </span>
+                    {label}
+                    {index < HERO_ACTIONS.length - 1 ? (
+                      <span className={styles.heroActionArrow} aria-hidden="true">
+                        →
+                      </span>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
 
               <div className={`${styles.hero2CtaBlock} ${styles.heroAnimCtas}`}>
                 <div className={styles.heroDownloadRow}>

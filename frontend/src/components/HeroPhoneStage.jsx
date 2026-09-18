@@ -3,25 +3,17 @@ import styles from "./HeroPhoneStage.module.css";
 
 const PHONES = [
   {
-    className: "phoneLeft",
-    src: "/images/hero-patient-overview.jpg",
-    alt: "RemiMinderAI patient overview with medication reminders and upcoming checkup",
-    caption: "Patient Overview",
-    width: 390,
-    height: 844,
-  },
-  {
-    className: "phoneRight",
+    className: "phoneHome",
     src: "/images/hero-home-dashboard.jpg",
-    alt: "RemiMinderAI home dashboard with today's schedule, tasks, and care progress",
-    caption: "Home dashboard",
+    alt: "RemiMinderAI home dashboard with today's schedule, tasks, and voice assistant",
+    caption: "Home",
     width: 390,
     height: 844,
   },
   {
-    className: "phoneFront",
+    className: "phoneVisit",
     src: "/images/hero-visit-details.png",
-    alt: "RemiMinderAI visit details with AI visit summary, medications, and next steps",
+    alt: "RemiMinderAI visit summary with medications and next steps",
     caption: "Visit Summary",
     width: 390,
     height: 844,
@@ -30,7 +22,7 @@ const PHONES = [
 
 const HeroPhoneStage = () => {
   return (
-    <div className={styles.stage} aria-hidden="false">
+    <div className={styles.stage}>
       <div className={styles.ambient} aria-hidden="true" />
       {PHONES.map((phone) => (
         <figure
@@ -47,8 +39,8 @@ const HeroPhoneStage = () => {
               loading="eager"
               decoding="async"
             />
-            <span className={styles.caption}>{phone.caption}</span>
           </div>
+          <figcaption className={styles.caption}>{phone.caption}</figcaption>
         </figure>
       ))}
     </div>
