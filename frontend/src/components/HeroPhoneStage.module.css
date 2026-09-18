@@ -1,102 +1,362 @@
-/* Single hero composite: phones read as floating on hero cream, no card panel */
+/* Two overlapping device mockups for the static homepage hero. */
 .stage {
-  --teal-900: #1B2A4A;
+  --hero-navy: #1b3a5c;
+  --hero-gold: #d4a843;
+  --hero-cream: #f6f1e8;
   position: relative;
   color-scheme: light;
   width: 100%;
-  min-height: 320px;
+  min-height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  overflow: visible;
-  background: transparent;
-  border: none;
-  box-shadow: none;
+  padding: 28px 8px 36px;
 }
 
-.ambientRadial {
-  position: absolute;
-  inset: 5% 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at 50% 45%,
-    rgba(59, 134, 128, 0.2) 0%,
-    rgba(201, 169, 97, 0.1) 48%,
-    transparent 68%
-  );
-}
-
-.ambientBlob {
+.ambient {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 420px;
   height: 420px;
-  margin-left: -210px;
-  margin-top: -210px;
+  margin: -210px 0 0 -210px;
   border-radius: 50%;
-  background: #3A4F6F;
-  opacity: 0.06;
-  filter: blur(48px);
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 67, 0.16) 0%,
+    rgba(27, 58, 92, 0.06) 46%,
+    transparent 70%
+  );
   pointer-events: none;
-  z-index: 0;
 }
 
-.compositeWrap {
+.phone {
   position: relative;
+  margin: 0;
   z-index: 1;
-  width: 100%;
-  max-width: 680px;
-  margin: 0 auto;
-  line-height: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
 }
 
-.compositeImg {
-  width: 100%;
-  height: auto;
+.phoneFront {
+  z-index: 3;
+  transform: rotate(-7deg) translate(18px, 8px);
+}
+
+.phoneBack {
+  z-index: 2;
+  transform: rotate(8deg) translate(-42px, 28px);
+}
+
+.bezel {
+  position: relative;
+  width: 228px;
+  height: 470px;
+  padding: 10px 9px 12px;
+  background: linear-gradient(165deg, #243b58 0%, #122536 100%);
+  border-radius: 34px;
+  box-shadow:
+    0 24px 50px rgba(27, 58, 92, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  overflow: hidden;
+}
+
+.phoneFront .bezel {
+  width: 242px;
+  height: 498px;
+}
+
+.notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  z-index: 4;
+  width: 72px;
+  height: 14px;
+  margin-left: -36px;
+  border-radius: 999px;
+  background: #0c1828;
+}
+
+.homeShot {
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  border-radius: 26px;
+  background: var(--hero-cream);
+}
+
+.caption {
+  margin: 14px 0 0;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hero-navy);
+}
+
+.phoneBack .caption {
+  color: var(--hero-gold);
+}
+
+/* ── Spanish visit summary (matches native app chrome) ── */
+.summaryScreen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--hero-cream);
+  color: var(--hero-navy);
+  font-family: "DM Sans", -apple-system, sans-serif;
+}
+
+.summaryHeader {
+  background: linear-gradient(180deg, #1b3a5c 0%, #16324f 100%);
+  color: #ffffff;
+  padding: 28px 14px 16px;
+}
+
+.summaryTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.summaryIconBtn {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.summaryKicker {
+  margin: 0;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.langChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--hero-gold);
+  color: var(--hero-gold);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.summaryTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.summaryMeta {
+  margin: 4px 0 0;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.summaryBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 10px 8px;
+  min-height: 0;
+}
+
+.summaryCard {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 11px;
+  box-shadow: 0 6px 16px rgba(27, 58, 92, 0.06);
+}
+
+.summaryCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.aiBadge,
+.planLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hero-navy);
+}
+
+.aiBadge {
+  color: #8a6a1e;
+}
+
+.statusPill {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8a6a1e;
+  background: #f7edd2;
+  border: 1px solid rgba(212, 168, 67, 0.45);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
+
+.summaryText {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: #3a4a5c;
+}
+
+.planList {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.planList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.64rem;
+  line-height: 1.35;
+  color: var(--hero-navy);
+}
+
+.planList li svg {
+  color: var(--hero-gold);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.shareBtn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 32px;
   border: none;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
+  border-radius: 12px;
+  background: var(--hero-navy);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: default;
+  pointer-events: none;
+}
+
+.summaryNav {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: var(--hero-navy);
+  color: rgba(255, 255, 255, 0.55);
+  padding: 8px 4px 10px;
+  font-size: 0.42rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.summaryNav span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.navActive {
+  color: var(--hero-gold) !important;
 }
 
 @media (max-width: 899px) {
   .stage {
-    min-height: 240px;
-    max-width: none;
+    min-height: 430px;
+    padding: 8px 0 20px;
   }
-  .ambientRadial {
-    inset: 0;
-    /* Match hero cream + grid: soften edge where PNG meets viewport */
-    background: radial-gradient(
-      ellipse 120% 80% at 50% 45%,
-      rgba(59, 134, 128, 0.18) 0%,
-      rgba(201, 169, 97, 0.08) 50%,
-      rgba(250, 247, 239, 0) 72%
-    );
+
+  .phoneFront {
+    transform: rotate(-5deg) translate(10px, 4px);
   }
-  .ambientBlob {
-    width: min(90vw, 500px);
-    height: min(90vw, 500px);
-    margin-left: calc(min(90vw, 500px) / -2);
-    margin-top: calc(min(90vw, 500px) / -2);
+
+  .phoneBack {
+    transform: rotate(6deg) translate(-28px, 22px);
   }
-  .compositeWrap {
-    max-width: none;
-    width: 100%;
+
+  .bezel {
+    width: 196px;
+    height: 404px;
+  }
+
+  .phoneFront .bezel {
+    width: 208px;
+    height: 428px;
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 520px) {
   .stage {
-    min-height: 200px;
+    min-height: 380px;
+  }
+
+  .bezel {
+    width: 168px;
+    height: 346px;
+    padding: 8px 7px 10px;
+    border-radius: 28px;
+  }
+
+  .phoneFront .bezel {
+    width: 178px;
+    height: 366px;
+  }
+
+  .homeShot,
+  .summaryScreen {
+    border-radius: 22px;
+  }
+
+  .caption {
+    font-size: 0.64rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phoneFront,
+  .phoneBack {
+    transform: none;
+  }
+
+  .phoneBack {
+    margin-right: -28px;
   }
 }

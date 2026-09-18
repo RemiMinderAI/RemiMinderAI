@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './LandingPage.module.css';
 import elderlyImage from '../assets/user-elderly-caregiver.jpg';
-import familyImage from '../assets/user-family.jpg';
 import { useLocation } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
 import TestimonialsSection from "./TestimonialsSection";
 import SiteFooter from "./SiteFooter";
-import HeroCarousel from "./HeroCarousel";
+import HeroSection from "./HeroSection";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
   Mic, FileText, FolderOpen, Share2, Heart, Brain, Clock, Users, 
@@ -111,9 +110,9 @@ const LandingPage = () => {
       {/* ── HEADER ── */}
       <MarketingHeader scrolled={scrolled} />
 
-      {/* ── HERO CAROUSEL ── */}
+      {/* ── HERO ── */}
       <main id="home">
-        <HeroCarousel />
+        <HeroSection />
       </main>
 
       <WhatRemiMinderIsSection />
@@ -216,12 +215,30 @@ const LandingPage = () => {
               Download RemiMinderAI today and bring clarity to every healthcare journey.
             </p>
 
-            <div className={styles.ctaDownloadRow}>
-              <a href={IOS_URL} target="_blank" rel="noopener noreferrer" onClick={trackDownloadClick}>
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" style={{ height: "48px" }} />
+            <div className={styles.ctaDownloadRow} style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center' }}>
+              <a
+                href={IOS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={trackDownloadClick}
+              >
+                <img
+                  src="/images/app-store-badge.svg"
+                  alt="Download on the App Store"
+                  style={{ height: '48px' }}
+                />
               </a>
-              <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" onClick={trackDownloadClick}>
-                <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: "48px" }} />
+              <a
+                href={ANDROID_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={trackDownloadClick}
+              >
+                <img
+                  src="/images/google-play-badge.png"
+                  alt="Get it on Google Play"
+                  style={{ height: '48px' }}
+                />
               </a>
             </div>
           </div>
@@ -291,37 +308,61 @@ const LandingPage = () => {
 
       {/* ── WHO IT'S FOR ── */}
       <section id="who-its-for" className={styles.whoItsFor}>
-        <div className={styles.sectionLabel}>WHO IT'S FOR</div>
+        <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
         <h2 className={styles.sectionTitle}>
-          Built for real <span className={styles.tealText}>caregiving challenges</span>
+          Built for <span className={styles.tealText}>family caregivers</span>
         </h2>
         <p className={styles.sectionSubtitle}>
-          Missed medications, unclear instructions, and fragmented care communication 
-          create real stress for families. RemiMinder fixes that.
+          For family caregivers supporting loved ones with medical appointments.
+          RemiMinderAI helps everyone stay aligned on care plans — even if you
+          weren&apos;t in the room.
         </p>
+
+        <div className={styles.whoFeatured}>
+          <div className={styles.whoFeaturedImageWrap}>
+            <img
+              src="/images/who-its-for-family-table.jpg"
+              alt="Adult children and a parent sitting at the kitchen table with prescriptions and appointment notes"
+              className={styles.whoFeaturedImage}
+            />
+          </div>
+          <div className={styles.whoFeaturedCopy}>
+            <div className={styles.personaTag}>Family caregivers</div>
+            <h3>The appointment lasted 12 minutes. The questions last for weeks.</h3>
+            <p>
+              After the visit, families are left piecing together medications,
+              instructions, and follow-ups from incomplete memories. RemiMinderAI
+              turns that conversation into a shared care plan the whole family can
+              revisit from anywhere.
+            </p>
+            <p className={styles.whoFeaturedClose}>
+              Help families stay aligned on care plans from anywhere.
+            </p>
+          </div>
+        </div>
 
         <div className={styles.personaGrid}>
           <div className={styles.personaCard}>
-            <div className={styles.personaImageWrapper}>
-              <img src={elderlyImage} alt="For Seniors and Patients" className={styles.personaImage} />
-              <div className={styles.personaImageOverlay} />
-            </div>
             <div className={styles.personaContent}>
-              <div className={styles.personaTag}>Patients</div>
-              <h3>For Seniors &amp; Patients</h3>
-              <p>Stay on top of your health with clear visit summaries, medication reminders, and easy access to your medical history.</p>
+              <div className={styles.personaTag}>Primary</div>
+              <h3>For the daughter, son, or spouse coordinating care</h3>
+              <p>
+                Capture what the doctor said, share it with siblings, and keep
+                medications, labs, and follow-ups in one place — whether you live
+                nearby or a time zone away.
+              </p>
             </div>
           </div>
 
           <div className={styles.personaCard}>
             <div className={styles.personaImageWrapper}>
-              <img src={familyImage} alt="For Families and Caregivers" className={styles.personaImage} />
+              <img src={elderlyImage} alt="An older adult reviewing care information with a family member" className={styles.personaImage} />
               <div className={styles.personaImageOverlay} />
             </div>
             <div className={styles.personaContent}>
-              <div className={styles.personaTag}>Caregivers</div>
-              <h3>For Families &amp; Caregivers</h3>
-              <p>Support your loved ones with shared health insights, appointment tracking, and real-time updates on their care journey.</p>
+              <div className={styles.personaTag}>Also for patients</div>
+              <h3>For seniors &amp; patients</h3>
+              <p>Stay on top of your health with clear visit summaries, medication reminders, and easy access to your medical history.</p>
             </div>
           </div>
         </div>
@@ -350,7 +391,7 @@ const LandingPage = () => {
             <br />
             Loved ones need to stay informed.
           </p>
-          <p>This is where caregivers quietly become care coordinators.</p>
+          <p>This is where family caregivers quietly become care coordinators.</p>
           <p className={styles.benefitsIntroClose}>
             RemiMinderAI helps patients and families stay organized, revisit what was discussed, and
             move forward with confidence.

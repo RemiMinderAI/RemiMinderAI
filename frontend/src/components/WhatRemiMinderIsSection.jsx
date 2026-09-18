@@ -12,26 +12,28 @@ const WhatRemiMinderIsSection = () => {
       <div className={styles.cornerBracket} data-pos="tl" aria-hidden="true" />
       <div className={styles.cornerBracket} data-pos="br" aria-hidden="true" />
       <div className={styles.inner}>
+        <p className={styles.categoryLabel}>AI healthcare companion app</p>
         <h2 className={styles.eyebrow} id="what-rmia-heading">
-          What RemiMinderAI Is
+          What RemiMinderAI is
         </h2>
 
         <p className={styles.lead}>
-          Healthcare technology is often built for clinicians and healthcare systems.
+          RemiMinderAI is an AI app that records healthcare conversations.
         </p>
         <p className={styles.leadContrast}>
-          RemiMinderAI is built for patients, caregivers, and families.
+          It converts doctor visits into summaries, reminders, and shareable care
+          plans.
         </p>
 
         <div className={styles.punchlineBlock}>
           <div className={styles.goldBar} aria-hidden="true" />
           <p className={styles.supporting}>
-            After every appointment, important details can be forgotten, instructions become
-            confusing, and loved ones are left trying to piece everything together.
+            After every appointment, family caregivers are left trying to remember
+            medications, instructions, and follow-ups — often from another city.
           </p>
           <p className={styles.punchline}>
-            RemiMinderAI helps families understand what happened, organize what comes next, and
-            stay connected throughout the care journey.
+            RemiMinderAI helps families understand what happened, organize what
+            comes next, and stay connected throughout the care journey.
           </p>
         </div>
 
@@ -40,14 +42,14 @@ const WhatRemiMinderIsSection = () => {
             <div className={styles.audienceIconTeal} aria-hidden="true">
               <Users size={26} strokeWidth={1.8} />
             </div>
-            <p className={styles.audienceLabel}>For Families</p>
+            <p className={styles.audienceLabel}>For family caregivers</p>
             <h3 className={styles.audienceHeading}>
               Being there for someone doesn&apos;t always mean being in the room.
             </h3>
             <p className={styles.audienceBody}>
-              Whether you&apos;re helping an aging parent, supporting a spouse, or coordinating care
-              from another city, RemiMinderAI keeps everyone informed with one shared
-              understanding of the care plan.
+              Whether you&apos;re helping an aging parent, supporting a spouse, or
+              coordinating care from another city, RemiMinderAI keeps everyone
+              informed with one shared understanding of the care plan.
             </p>
           </div>
           <div className={styles.audienceDivider} aria-hidden="true" />
@@ -55,13 +57,14 @@ const WhatRemiMinderIsSection = () => {
             <div className={styles.audienceIconGold} aria-hidden="true">
               <MessagesSquare size={26} strokeWidth={1.8} />
             </div>
-            <p className={styles.audienceLabel}>For Healthcare Conversations</p>
+            <p className={styles.audienceLabel}>For healthcare conversations</p>
             <h3 className={styles.audienceHeading}>
               Every appointment contains important decisions.
             </h3>
             <p className={styles.audienceBody}>
-              RemiMinderAI helps preserve those conversations so patients and families can
-              revisit instructions, medications, and follow-up plans whenever they need them.
+              RemiMinderAI helps preserve those conversations so patients and
+              families can revisit instructions, medications, and follow-up plans
+              whenever they need them.
             </p>
           </div>
         </div>
