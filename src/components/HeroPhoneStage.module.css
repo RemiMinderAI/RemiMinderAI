@@ -104,6 +104,11 @@
   pointer-events: none;
 }
 
+.phoneLeft .caption,
+.phoneRight .caption {
+  display: none;
+}
+
 .phoneFront .caption {
   color: var(--hero-gold);
 }
