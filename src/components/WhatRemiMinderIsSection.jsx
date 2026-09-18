@@ -21,8 +21,8 @@ const WhatRemiMinderIsSection = () => {
           RemiMinderAI is an AI app that records healthcare conversations.
         </p>
         <p className={styles.leadContrast}>
-          It converts doctor visits into summaries, reminders, and shareable care
-          plans.
+          Then it summarizes the visit, files your documents, sets reminders,
+          and shares the plan with family in real time.
         </p>
 
         <div className={styles.punchlineBlock}>
@@ -32,8 +32,8 @@ const WhatRemiMinderIsSection = () => {
             medications, instructions, and follow-ups — often from another city.
           </p>
           <p className={styles.punchline}>
-            RemiMinderAI helps families understand what happened, organize what
-            comes next, and stay connected throughout the care journey.
+            Record. Summarize. Scan. Remind. Share. That is the whole workflow,
+            in one place.
           </p>
         </div>
 
