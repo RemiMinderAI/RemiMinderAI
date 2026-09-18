@@ -1,4 +1,4 @@
-/* Three overlapping device mockups for the static homepage hero. */
+/* Two large, readable device mockups. */
 .stage {
   --hero-navy: #1b3a5c;
   --hero-gold: #d4a843;
@@ -6,11 +6,12 @@
   position: relative;
   color-scheme: light;
   width: 100%;
-  min-height: 540px;
+  min-height: 560px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 28px 8px 36px;
+  gap: 18px;
+  padding: 12px 0 8px;
   overflow: visible;
 }
 
@@ -18,9 +19,9 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 480px;
-  height: 480px;
-  margin: -240px 0 0 -240px;
+  width: 460px;
+  height: 460px;
+  margin: -230px 0 0 -230px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
@@ -32,44 +33,35 @@
 }
 
 .phone {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative;
+  z-index: 1;
   margin: 0;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.phoneLeft {
-  z-index: 1;
-  transform: translate(-50%, -50%) rotate(-11deg) translate(-118px, 22px) scale(0.86);
-}
-
-.phoneRight {
+.phoneHome {
   z-index: 2;
-  transform: translate(-50%, -50%) rotate(10deg) translate(118px, 28px) scale(0.86);
+  transform: rotate(-4deg) translateY(-8px);
 }
 
-.phoneFront {
-  z-index: 3;
-  transform: translate(-50%, -50%) rotate(-3deg);
+.phoneVisit {
+  z-index: 1;
+  transform: rotate(4deg) translateY(16px);
 }
 
 .bezel {
   position: relative;
-  width: 210px;
-  height: 430px;
-  padding: 8px;
+  width: 250px;
+  height: 512px;
+  padding: 9px;
   background: linear-gradient(165deg, #243b58 0%, #122536 100%);
-  border-radius: 32px;
+  border-radius: 34px;
   box-shadow:
-    0 24px 50px rgba(27, 58, 92, 0.28),
+    0 24px 50px rgba(27, 58, 92, 0.26),
     0 0 0 1px rgba(255, 255, 255, 0.12) inset;
   overflow: hidden;
-}
-
-.phoneFront .bezel {
-  width: 236px;
-  height: 484px;
 }
 
 .shot {
@@ -78,89 +70,64 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  border-radius: 24px;
+  border-radius: 26px;
   background: var(--hero-cream);
 }
 
 .caption {
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 12px;
-  z-index: 6;
-  margin: 0;
-  padding: 6px 8px;
-  border-radius: 999px;
-  background: rgba(27, 58, 92, 0.92);
-  box-shadow: 0 6px 16px rgba(27, 58, 92, 0.18);
-  white-space: nowrap;
-  text-align: center;
+  margin: 12px 0 0;
+  padding: 0;
   font-family: "DM Sans", sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #ffffff;
-  pointer-events: none;
+  color: var(--hero-navy);
 }
 
-.phoneLeft .caption,
-.phoneRight .caption {
-  display: none;
+.phoneVisit .caption {
+  color: #8a6a1e;
 }
 
-.phoneFront .caption {
-  color: var(--hero-gold);
+@media (max-width: 1100px) {
+  .bezel {
+    width: 220px;
+    height: 450px;
+  }
 }
 
 @media (max-width: 899px) {
   .stage {
-    min-height: 460px;
-    padding: 12px 0 28px;
-  }
-
-  .phoneLeft {
-    transform: translate(-50%, -50%) rotate(-8deg) translate(-78px, 18px) scale(0.82);
-  }
-
-  .phoneRight {
-    transform: translate(-50%, -50%) rotate(8deg) translate(78px, 22px) scale(0.82);
+    min-height: 480px;
+    gap: 12px;
+    padding-top: 8px;
   }
 
   .bezel {
-    width: 176px;
-    height: 360px;
+    width: 200px;
+    height: 410px;
   }
 
-  .phoneFront .bezel {
-    width: 198px;
-    height: 406px;
+  .phoneHome {
+    transform: rotate(-3deg) translateY(-4px);
+  }
+
+  .phoneVisit {
+    transform: rotate(3deg) translateY(10px);
   }
 }
 
 @media (max-width: 520px) {
   .stage {
     min-height: 400px;
-  }
-
-  .phoneLeft {
-    transform: translate(-50%, -50%) rotate(-7deg) translate(-56px, 16px) scale(0.78);
-  }
-
-  .phoneRight {
-    transform: translate(-50%, -50%) rotate(7deg) translate(56px, 20px) scale(0.78);
+    gap: 8px;
   }
 
   .bezel {
-    width: 150px;
-    height: 308px;
+    width: 158px;
+    height: 324px;
     padding: 6px;
     border-radius: 26px;
-  }
-
-  .phoneFront .bezel {
-    width: 168px;
-    height: 344px;
   }
 
   .shot {
@@ -168,22 +135,14 @@
   }
 
   .caption {
-    font-size: 0.52rem;
-    padding: 5px 6px;
-    bottom: 8px;
+    font-size: 0.62rem;
+    margin-top: 8px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .phoneLeft {
-    transform: translate(-50%, -50%) translate(-96px, 8px) scale(0.9);
-  }
-
-  .phoneRight {
-    transform: translate(-50%, -50%) translate(96px, 8px) scale(0.9);
-  }
-
-  .phoneFront {
-    transform: translate(-50%, -50%);
+  .phoneHome,
+  .phoneVisit {
+    transform: none;
   }
 }

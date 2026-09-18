@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styles from './LandingPage.module.css';
-import elderlyImage from '../assets/user-elderly-caregiver.jpg';
 import { useLocation } from "react-router-dom";
 import MarketingHeader from "./MarketingHeader";
 import TestimonialsSection from "./TestimonialsSection";
 import SiteFooter from "./SiteFooter";
 import HeroSection from "./HeroSection";
+import ProductWorkflow from "./ProductWorkflow";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import { 
-  Mic, FileText, FolderOpen, Share2, Heart, Brain, Clock, Users, 
-  CheckCircle2, Star, Bell, Sparkles,
+  Mic, CheckCircle2, Star, Bell, Sparkles,
   Zap, Globe
 } from "lucide-react";
 import { ANDROID_URL, IOS_URL, trackDownloadClick } from "../constants/site";
@@ -35,75 +34,6 @@ const LandingPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const steps = [
-    {
-      icon: <Mic className={styles.stepIcon} />,
-      title: "Remember",
-      description: "Capture conversations and important healthcare information.",
-      number: "01",
-      highlight: false
-    },
-    {
-      icon: <FileText className={styles.stepIcon} />,
-      title: "Understand",
-      description: "Turn complex medical language into clear, everyday explanations.",
-      number: "02",
-      highlight: true
-    },
-    {
-      icon: <FolderOpen className={styles.stepIcon} />,
-      title: "Stay Organized",
-      description: "Keep documents, medications, and reminders together.",
-      number: "03",
-      highlight: false
-    },
-    {
-      icon: <Share2 className={styles.stepIcon} />,
-      title: "Share",
-      description: "Keep family and caregivers informed—wherever they are.",
-      number: "04",
-      highlight: false
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: Heart,
-      title: "Built for Peace of Mind",
-      description:
-        "Capture important healthcare conversations and keep everything organized in one place, so nothing important gets lost.",
-      footnote: null,
-    },
-    {
-      icon: Brain,
-      title: "Designed for Better Follow-Through",
-      description:
-        "Turn conversations into clear next steps, reminders, and care plans that help families stay on track.",
-      footnote: null,
-    },
-    {
-      icon: Clock,
-      title: "Less Mental Load",
-      description:
-        "Stop relying on memory. Give patients and caregivers a shared understanding of what comes next.",
-      footnote: null,
-    },
-    {
-      icon: Users,
-      title: "Keeping Families Connected",
-      description:
-        "Whether you're together or miles apart, everyone can stay informed and aligned around care.",
-      footnote: null,
-    },
-  ];
-
-  const clinicQuestions = [
-    "What medication changed?",
-    "What did the doctor recommend?",
-    "When is the next appointment?",
-    "Did everyone understand the plan?",
-  ];
-
   return (
     <div className={styles.container}>
 
@@ -113,6 +43,7 @@ const LandingPage = () => {
       {/* ── HERO ── */}
       <main id="home">
         <HeroSection />
+        <ProductWorkflow />
       </main>
 
       <WhatRemiMinderIsSection />
@@ -175,6 +106,42 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* ── WHO IT'S FOR ── */}
+      <section id="who-its-for" className={styles.whoItsFor}>
+        <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
+        <h2 className={styles.sectionTitle}>
+          Built for <span className={styles.tealText}>family caregivers</span>
+        </h2>
+        <p className={styles.sectionSubtitle}>
+          For family caregivers supporting loved ones with medical appointments.
+          RemiMinderAI helps everyone stay aligned on care plans — even if you
+          weren&apos;t in the room.
+        </p>
+
+        <div className={styles.whoFeatured}>
+          <div className={styles.whoFeaturedImageWrap}>
+            <img
+              src="/images/who-its-for-family-table.jpg"
+              alt="Adult children and a parent sitting at the kitchen table with prescriptions and appointment notes"
+              className={styles.whoFeaturedImage}
+            />
+          </div>
+          <div className={styles.whoFeaturedCopy}>
+            <div className={styles.personaTag}>Family caregivers</div>
+            <h3>The appointment lasted 12 minutes. The questions last for weeks.</h3>
+            <p>
+              After the visit, families are left piecing together medications,
+              instructions, and follow-ups from incomplete memories. RemiMinderAI
+              turns that conversation into a shared care plan the whole family can
+              revisit from anywhere.
+            </p>
+            <p className={styles.whoFeaturedClose}>
+              Help families stay aligned on care plans from anywhere.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── SOCIAL PROOF BAR ── */}
       <div className={styles.socialProofBar}>
         <div className={styles.socialProofInner}>
@@ -200,9 +167,9 @@ const LandingPage = () => {
 
             <div className={styles.ctaFeaturesCard}>
               {[
-                { text: "Remember what matters.", icon: <CheckCircle2 size={18} /> },
-                { text: "Stay organized.", icon: <CheckCircle2 size={18} /> },
-                { text: "Support the people you love.", icon: <CheckCircle2 size={18} /> },
+                { text: "Record visits and get AI summaries.", icon: <CheckCircle2 size={18} /> },
+                { text: "Scan labs and set voice reminders.", icon: <CheckCircle2 size={18} /> },
+                { text: "Share the care plan with family in real time.", icon: <CheckCircle2 size={18} /> },
               ].map((f, i) => (
                 <div key={i} className={styles.ctaFeaturesCardItem}>
                   <span className={styles.ctaFeaturesCardIcon}>{f.icon}</span>
@@ -243,205 +210,6 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className={styles.howItWorks}>
-        <div className={styles.sectionLabel}>AFTER EVERY APPOINTMENT</div>
-        <h2 className={styles.sectionTitle}>
-          After Every <span className={styles.tealText}>Appointment</span>
-        </h2>
-
-        {/* Before / After Transformation Block */}
-        <div className={styles.transformBlock}>
-          <div className={styles.transformTitle}>What changes with RemiMinder</div>
-          <div className={styles.transformGrid}>
-            <div className={styles.transformBefore}>
-              <div className={styles.transformLabel}>
-                <span className={styles.transformLabelDot} style={{background:'#e05c5c'}} />
-                Before
-              </div>
-              <ul className={styles.transformList}>
-                <li>"Did the doctor say twice a day or once daily?"</li>
-                <li>Confusing notes and missed instructions</li>
-                <li>Scattered information across texts and memory</li>
-                <li>Caregiver stress and repeated phone calls</li>
-              </ul>
-            </div>
-            <div className={styles.transformArrow}>→</div>
-            <div className={styles.transformAfter}>
-              <div className={styles.transformLabel}>
-                <span className={styles.transformLabelDot} style={{background:'var(--teal)'}} />
-                After
-              </div>
-              <ul className={styles.transformList}>
-                <li>Clear medication schedule, every time</li>
-                <li>Structured care plan ready instantly</li>
-                <li>Shared understanding across all caregivers</li>
-                <li>Peace of mind for the whole family</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Steps */}
-        <div className={styles.stepsGrid}>
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className={`${styles.stepCard} ${step.highlight ? styles.stepCardHighlight : ''}`}
-            >
-              {step.highlight && (
-                <div className={styles.stepHighlightBadge}>✦ AI Magic Moment</div>
-              )}
-              <div className={styles.stepNumber}>{step.number}</div>
-              <div className={`${styles.stepIconWrapper} ${step.highlight ? styles.stepIconHighlight : ''}`}>
-                {step.icon}
-              </div>
-              <h3>{step.title}</h3>
-              <p className={styles.stepDescription}>{step.description}</p>
-              {step.emotion ? <p className={styles.stepEmotion}>{step.emotion}</p> : null}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── WHO IT'S FOR ── */}
-      <section id="who-its-for" className={styles.whoItsFor}>
-        <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
-        <h2 className={styles.sectionTitle}>
-          Built for <span className={styles.tealText}>family caregivers</span>
-        </h2>
-        <p className={styles.sectionSubtitle}>
-          For family caregivers supporting loved ones with medical appointments.
-          RemiMinderAI helps everyone stay aligned on care plans — even if you
-          weren&apos;t in the room.
-        </p>
-
-        <div className={styles.whoFeatured}>
-          <div className={styles.whoFeaturedImageWrap}>
-            <img
-              src="/images/who-its-for-family-table.jpg"
-              alt="Adult children and a parent sitting at the kitchen table with prescriptions and appointment notes"
-              className={styles.whoFeaturedImage}
-            />
-          </div>
-          <div className={styles.whoFeaturedCopy}>
-            <div className={styles.personaTag}>Family caregivers</div>
-            <h3>The appointment lasted 12 minutes. The questions last for weeks.</h3>
-            <p>
-              After the visit, families are left piecing together medications,
-              instructions, and follow-ups from incomplete memories. RemiMinderAI
-              turns that conversation into a shared care plan the whole family can
-              revisit from anywhere.
-            </p>
-            <p className={styles.whoFeaturedClose}>
-              Help families stay aligned on care plans from anywhere.
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.personaGrid}>
-          <div className={styles.personaCard}>
-            <div className={styles.personaContent}>
-              <div className={styles.personaTag}>Primary</div>
-              <h3>For the daughter, son, or spouse coordinating care</h3>
-              <p>
-                Capture what the doctor said, share it with siblings, and keep
-                medications, labs, and follow-ups in one place — whether you live
-                nearby or a time zone away.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.personaCard}>
-            <div className={styles.personaImageWrapper}>
-              <img src={elderlyImage} alt="An older adult reviewing care information with a family member" className={styles.personaImage} />
-              <div className={styles.personaImageOverlay} />
-            </div>
-            <div className={styles.personaContent}>
-              <div className={styles.personaTag}>Also for patients</div>
-              <h3>For seniors &amp; patients</h3>
-              <p>Stay on top of your health with clear visit summaries, medication reminders, and easy access to your medical history.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── BENEFITS ── */}
-      <section id="benefits" className={styles.benefitsSection}>
-        <div className={styles.sectionLabel}>WHY IT MATTERS</div>
-        <h2 className={styles.sectionTitle}>
-          Why <span className={styles.tealText}>RemiMinderAI</span> Matters
-        </h2>
-        <p className={styles.sectionSubtitle}>
-          Healthcare is built around appointments.
-          <br />
-          Life happens between them.
-        </p>
-
-        <div className={styles.benefitsIntro}>
-          <p>After every doctor visit, families are left with important questions.</p>
-          <p>
-            Medications need to be remembered.
-            <br />
-            Instructions need to be understood.
-            <br />
-            Follow-up appointments need to be scheduled.
-            <br />
-            Loved ones need to stay informed.
-          </p>
-          <p>This is where family caregivers quietly become care coordinators.</p>
-          <p className={styles.benefitsIntroClose}>
-            RemiMinderAI helps patients and families stay organized, revisit what was discussed, and
-            move forward with confidence.
-          </p>
-        </div>
-
-        <div className={styles.benefitsGrid}>
-          {benefits.map((benefit, index) => (
-            <div key={index} className={styles.benefitCard} style={{ animationDelay: `${index * 0.1}s` }}>
-              <div className={styles.benefitTop}>
-                <div className={styles.benefitIconWrapper}><benefit.icon size={24} /></div>
-              </div>
-              <h3 className={styles.benefitTitle}>{benefit.title}</h3>
-              <p className={styles.benefitDesc}>{benefit.description}</p>
-              {benefit.footnote && (
-                <p className={styles.benefitFootnote}>{benefit.footnote}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── HEALTHCARE DOESN'T STOP AT THE CLINIC ── */}
-      <section id="beyond-the-clinic" className={styles.whoItsFor}>
-        <div className={styles.sectionLabel}>BETWEEN APPOINTMENTS</div>
-        <h2 className={styles.sectionTitle}>
-          Healthcare Doesn&apos;t Stop at the <span className={styles.tealText}>Clinic</span>
-        </h2>
-        <p className={styles.sectionSubtitle}>
-          The appointment may last 20 minutes.
-          <br />
-          The questions last for weeks.
-        </p>
-
-        <div className={styles.stepsGrid}>
-          {clinicQuestions.map((question, index) => (
-            <div key={index} className={styles.stepCard}>
-              <div className={styles.stepNumber}>{String(index + 1).padStart(2, "0")}</div>
-              <div className={styles.stepIconWrapper}>
-                <CheckCircle2 className={styles.stepIcon} />
-              </div>
-              <h3>{question}</h3>
-            </div>
-          ))}
-        </div>
-
-        <p className={styles.clinicClosing}>
-          RemiMinderAI helps patients and families answer those questions together by turning
-          conversations into clear summaries, organized care plans, and timely reminders.
-        </p>
       </section>
 
       <TestimonialsSection />

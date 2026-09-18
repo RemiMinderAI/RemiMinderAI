@@ -332,9 +332,9 @@
 }
 .hero2Grid {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: 0.92fr 1.18fr;
   align-items: center;
-  gap: 40px 32px;
+  gap: 32px 24px;
 }
 .hero2CopyCol {
   min-width: 0;
@@ -457,6 +457,44 @@
   font-weight: 500;
   color: var(--ink-light);
   letter-spacing: 0.01em;
+}
+.heroActionList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 4px;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.heroActionItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-navy, #1B3A5C);
+}
+.heroActionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: rgba(212, 168, 67, 0.16);
+  color: #8a6a1e;
+}
+.heroActionArrow {
+  margin-left: 6px;
+  color: var(--brand-gold, #D4A843);
+  font-weight: 700;
+}
+@media (max-width: 899px) {
+  .heroActionList {
+    justify-content: center;
+  }
 }
 .trustBar {
   position: relative;
