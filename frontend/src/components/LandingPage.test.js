@@ -48,6 +48,7 @@ describe("LandingPage hero redesign", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/^visit summary$/i)).toBeInTheDocument();
     expect(screen.getByText(/^patient overview$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^home dashboard$/i)).toBeInTheDocument();
   });
 
   test("does not render the old hero carousel", () => {
