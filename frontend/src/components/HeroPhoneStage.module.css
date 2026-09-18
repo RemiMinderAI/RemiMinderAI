@@ -1,4 +1,4 @@
-/* Two overlapping device mockups for the static homepage hero. */
+/* Three overlapping device mockups for the static homepage hero. */
 .stage {
   --hero-navy: #1b3a5c;
   --hero-gold: #d4a843;
@@ -6,11 +6,11 @@
   position: relative;
   color-scheme: light;
   width: 100%;
-  min-height: 520px;
+  min-height: 540px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 36px 24px 48px;
+  padding: 28px 8px 36px;
   overflow: visible;
 }
 
@@ -18,9 +18,9 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 420px;
-  height: 420px;
-  margin: -210px 0 0 -210px;
+  width: 480px;
+  height: 480px;
+  margin: -240px 0 0 -240px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
@@ -32,29 +32,35 @@
 }
 
 .phone {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   margin: 0;
   z-index: 1;
-  overflow: visible;
+}
+
+.phoneLeft {
+  z-index: 1;
+  transform: translate(-50%, -50%) rotate(-11deg) translate(-118px, 22px) scale(0.86);
+}
+
+.phoneRight {
+  z-index: 2;
+  transform: translate(-50%, -50%) rotate(10deg) translate(118px, 28px) scale(0.86);
 }
 
 .phoneFront {
   z-index: 3;
-  transform: rotate(-7deg) translate(18px, 8px);
-}
-
-.phoneBack {
-  z-index: 2;
-  transform: rotate(8deg) translate(-42px, 28px);
+  transform: translate(-50%, -50%) rotate(-3deg);
 }
 
 .bezel {
   position: relative;
-  width: 228px;
-  height: 470px;
-  padding: 10px 9px 12px;
+  width: 210px;
+  height: 430px;
+  padding: 8px;
   background: linear-gradient(165deg, #243b58 0%, #122536 100%);
-  border-radius: 34px;
+  border-radius: 32px;
   box-shadow:
     0 24px 50px rgba(27, 58, 92, 0.28),
     0 0 0 1px rgba(255, 255, 255, 0.12) inset;
@@ -62,37 +68,25 @@
 }
 
 .phoneFront .bezel {
-  width: 242px;
-  height: 498px;
+  width: 236px;
+  height: 484px;
 }
 
-.notch {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  z-index: 4;
-  width: 72px;
-  height: 14px;
-  margin-left: -36px;
-  border-radius: 999px;
-  background: #0c1828;
-}
-
-.homeShot {
+.shot {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
-  border-radius: 26px;
+  object-position: center top;
+  border-radius: 24px;
   background: var(--hero-cream);
 }
 
 .caption {
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 14px;
+  left: 10px;
+  right: 10px;
+  bottom: 12px;
   z-index: 6;
   margin: 0;
   padding: 6px 8px;
@@ -102,7 +96,7 @@
   white-space: nowrap;
   text-align: center;
   font-family: "DM Sans", sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -110,266 +104,81 @@
   pointer-events: none;
 }
 
-.phoneBack .caption {
+.phoneFront .caption {
   color: var(--hero-gold);
-}
-
-/* ── Spanish visit summary (matches native app chrome) ── */
-.summaryScreen {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-radius: 26px;
-  overflow: hidden;
-  background: var(--hero-cream);
-  color: var(--hero-navy);
-  font-family: "DM Sans", -apple-system, sans-serif;
-}
-
-.summaryHeader {
-  background: linear-gradient(180deg, #1b3a5c 0%, #16324f 100%);
-  color: #ffffff;
-  padding: 28px 14px 16px;
-}
-
-.summaryTopRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.summaryIconBtn {
-  display: inline-flex;
-  width: 22px;
-  height: 22px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.summaryKicker {
-  margin: 0;
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.langChip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 26px;
-  height: 18px;
-  padding: 0 6px;
-  border-radius: 999px;
-  border: 1px solid var(--hero-gold);
-  color: var(--hero-gold);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.summaryTitle {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.summaryMeta {
-  margin: 4px 0 0;
-  font-size: 0.62rem;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.summaryBody {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 10px 10px 8px;
-  min-height: 0;
-}
-
-.summaryCard {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 10px 11px;
-  box-shadow: 0 6px 16px rgba(27, 58, 92, 0.06);
-}
-
-.summaryCardHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.aiBadge,
-.planLabel {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--hero-navy);
-}
-
-.aiBadge {
-  color: #8a6a1e;
-}
-
-.statusPill {
-  font-size: 0.52rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #8a6a1e;
-  background: #f7edd2;
-  border: 1px solid rgba(212, 168, 67, 0.45);
-  border-radius: 999px;
-  padding: 2px 7px;
-}
-
-.summaryText {
-  margin: 0;
-  font-size: 0.68rem;
-  line-height: 1.45;
-  color: #3a4a5c;
-}
-
-.planList {
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.planList li {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  font-size: 0.64rem;
-  line-height: 1.35;
-  color: var(--hero-navy);
-}
-
-.planList li svg {
-  color: var(--hero-gold);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.shareBtn {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 100%;
-  min-height: 32px;
-  border: none;
-  border-radius: 12px;
-  background: var(--hero-navy);
-  color: #ffffff;
-  font-size: 0.68rem;
-  font-weight: 600;
-  cursor: default;
-  pointer-events: none;
-}
-
-.summaryNav {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background: var(--hero-navy);
-  color: rgba(255, 255, 255, 0.55);
-  padding: 8px 4px 10px;
-  font-size: 0.42rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-align: center;
-}
-
-.summaryNav span {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-}
-
-.navActive {
-  color: var(--hero-gold) !important;
 }
 
 @media (max-width: 899px) {
   .stage {
-    min-height: 430px;
-    padding: 8px 0 20px;
+    min-height: 460px;
+    padding: 12px 0 28px;
   }
 
-  .phoneFront {
-    transform: rotate(-5deg) translate(10px, 4px);
+  .phoneLeft {
+    transform: translate(-50%, -50%) rotate(-8deg) translate(-78px, 18px) scale(0.82);
   }
 
-  .phoneBack {
-    transform: rotate(6deg) translate(-28px, 22px);
+  .phoneRight {
+    transform: translate(-50%, -50%) rotate(8deg) translate(78px, 22px) scale(0.82);
   }
 
   .bezel {
-    width: 196px;
-    height: 404px;
+    width: 176px;
+    height: 360px;
   }
 
   .phoneFront .bezel {
-    width: 208px;
-    height: 428px;
+    width: 198px;
+    height: 406px;
   }
 }
 
 @media (max-width: 520px) {
   .stage {
-    min-height: 380px;
+    min-height: 400px;
+  }
+
+  .phoneLeft {
+    transform: translate(-50%, -50%) rotate(-7deg) translate(-56px, 16px) scale(0.78);
+  }
+
+  .phoneRight {
+    transform: translate(-50%, -50%) rotate(7deg) translate(56px, 20px) scale(0.78);
   }
 
   .bezel {
-    width: 168px;
-    height: 346px;
-    padding: 8px 7px 10px;
-    border-radius: 28px;
+    width: 150px;
+    height: 308px;
+    padding: 6px;
+    border-radius: 26px;
   }
 
   .phoneFront .bezel {
-    width: 178px;
-    height: 366px;
+    width: 168px;
+    height: 344px;
   }
 
-  .homeShot,
-  .summaryScreen {
-    border-radius: 22px;
+  .shot {
+    border-radius: 20px;
   }
 
   .caption {
-    font-size: 0.64rem;
+    font-size: 0.52rem;
+    padding: 5px 6px;
+    bottom: 8px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .phoneFront,
-  .phoneBack {
-    transform: none;
+  .phoneLeft {
+    transform: translate(-50%, -50%) translate(-96px, 8px) scale(0.9);
   }
 
-  .phoneBack {
-    margin-right: -28px;
+  .phoneRight {
+    transform: translate(-50%, -50%) translate(96px, 8px) scale(0.9);
+  }
+
+  .phoneFront {
+    transform: translate(-50%, -50%);
   }
 }

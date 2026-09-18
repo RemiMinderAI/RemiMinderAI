@@ -40,8 +40,14 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByAltText(/home dashboard with today's schedule/i)
     ).toBeInTheDocument();
-    expect(screen.getByText(/visit summary · español/i)).toBeInTheDocument();
-    expect(screen.getByText(/resumen de visita/i)).toBeInTheDocument();
+    expect(
+      screen.getByAltText(/patient overview with medication reminders/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByAltText(/visit details with AI visit summary/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/^visit summary$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^patient overview$/i)).toBeInTheDocument();
   });
 
   test("does not render the old hero carousel", () => {
