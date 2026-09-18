@@ -84,4 +84,20 @@ describe("LandingPage hero redesign", () => {
       screen.getByAltText(/kitchen table with prescriptions/i)
     ).toBeInTheDocument();
   });
+
+  test("drops the bottom Get Started Today CTA and adds PT beta feedback", () => {
+    renderHome();
+
+    expect(screen.queryByText(/get started today/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: /start caring with confidence/i })
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/zero to beta in 7 weeks/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText(/free 14-day trial/i).length).toBeGreaterThanOrEqual(2);
+
+    expect(screen.getByText(/physical therapist/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/without really understanding their follow-up instructions/i)
+    ).toBeInTheDocument();
+  });
 });

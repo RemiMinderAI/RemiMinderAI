@@ -77,7 +77,10 @@ export default function HeroSection() {
                 ))}
               </ul>
 
-              <div className={`${styles.hero2CtaBlock} ${styles.heroAnimCtas}`}>
+              <div
+                id="get-started"
+                className={`${styles.hero2CtaBlock} ${styles.heroAnimCtas}`}
+              >
                 <div className={styles.heroDownloadRow}>
                   <a
                     href={IOS_URL}
