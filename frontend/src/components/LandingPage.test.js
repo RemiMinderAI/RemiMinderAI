@@ -84,4 +84,13 @@ describe("LandingPage hero redesign", () => {
       screen.getByAltText(/kitchen table with prescriptions/i)
     ).toBeInTheDocument();
   });
+
+  test("does not render the Get Started Today section", () => {
+    renderHome();
+
+    expect(screen.queryByText(/get started today/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: /start caring with confidence/i })
+    ).not.toBeInTheDocument();
+  });
 });
