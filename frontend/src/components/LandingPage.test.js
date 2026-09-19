@@ -85,7 +85,7 @@ describe("LandingPage hero redesign", () => {
     ).toBeInTheDocument();
   });
 
-  test("drops the bottom Get Started Today CTA and adds PT beta feedback", () => {
+  test("drops the bottom Get Started Today CTA and keeps the trial proof line", () => {
     renderHome();
 
     expect(screen.queryByText(/get started today/i)).not.toBeInTheDocument();
@@ -94,10 +94,41 @@ describe("LandingPage hero redesign", () => {
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/zero to beta in 7 weeks/i)).not.toBeInTheDocument();
     expect(screen.getAllByText(/free 14-day trial/i).length).toBeGreaterThanOrEqual(2);
+  });
 
+  test("shows real-user testimonials and a featured Instagram video review", () => {
+    renderHome();
+
+    expect(screen.getByText(/what users are saying/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /real people\. real appointments\. real clarity\./i,
+      })
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/beta program feedback/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/private beta in progress/i)
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/beta user perspective/i)).not.toBeInTheDocument();
+
+    expect(screen.getByText(/lee ann/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/even just seeing them on the Overview screen/i)
+    ).toBeInTheDocument();
     expect(screen.getByText(/physical therapist/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/without really understanding their follow-up instructions/i)
+      screen.getByText(/hazel hawkins medical center, hollister/i)
     ).toBeInTheDocument();
+    expect(
+      screen.getByText(/patrick flynn uses remiminderai to take care of his mom/i)
+    ).toBeInTheDocument();
+    expect(screen.getAllByText(/soumendranath/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/video review/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /soumendranath's review on instagram/i })
+    ).toHaveAttribute(
+      "href",
+      "https://www.instagram.com/p/DdZ3xNxx9Et/?hl=en"
+    );
   });
 });
