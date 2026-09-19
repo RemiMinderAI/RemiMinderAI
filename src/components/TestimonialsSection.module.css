@@ -8,12 +8,12 @@
 }
 
 .inner {
-  max-width: 1100px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
 .header {
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
   text-align: center;
 }
@@ -66,14 +66,6 @@
   color: #1a2b3c;
   line-height: 1.15;
   letter-spacing: -0.7px;
-  margin: 0 0 16px;
-}
-
-.subtitle {
-  font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: 17px;
-  color: #1a2b3c;
-  line-height: 1.5;
   margin: 0;
 }
 
@@ -98,6 +90,32 @@
   text-align: left;
 }
 
+.pendingCard {
+  justify-content: center;
+}
+
+.featuredCard {
+  border: 3px solid #D4A843;
+  box-shadow: 0 10px 28px rgba(212, 168, 67, 0.18);
+  padding-top: 48px;
+}
+
+.videoBadge {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  background: #D4A843;
+  color: #1a2b3c;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  line-height: 1;
+}
+
 .quoteMark {
   position: absolute;
   top: 22px;
@@ -120,14 +138,23 @@
   min-height: 0;
 }
 
-.quoteText {
+.quoteText,
+.pendingText {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 17px;
   color: #1a2b3c;
   line-height: 1.65;
-  font-style: italic;
   margin: 8px 0 24px;
   flex-grow: 1;
+}
+
+.quoteText {
+  font-style: italic;
+}
+
+.pendingText {
+  font-style: normal;
+  margin-bottom: 0;
 }
 
 .attribution {
@@ -160,26 +187,97 @@
   color: #0f6e56;
 }
 
-.location {
+.meta {
   font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 13px;
   color: #1a2b3c;
-  opacity: 0.6;
+  opacity: 0.7;
   font-weight: 500;
 }
 
-.betaLine {
+.videoFrame {
+  position: relative;
+  margin-top: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #1B2A4A;
+  min-height: 196px;
+}
+
+.instagramEmbed {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+  background: #fff;
+}
+
+.videoFallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 196px;
+  padding: 28px 16px;
+  text-decoration: none;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(212, 168, 67, 0.22), transparent 58%),
+    #1B2A4A;
+}
+
+.videoFallback[hidden] {
+  display: none;
+}
+
+.playButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #D4A843;
+  color: #1B2A4A;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.videoFallbackLabel {
   font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: 12px;
-  font-style: italic;
-  color: #5a6a7a;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #faf5eb;
 }
 
-@media (min-width: 900px) {
+.watchLink {
+  margin-top: 12px;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1B2A4A;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.watchLink:hover {
+  color: #D4A843;
+}
+
+@media (min-width: 760px) {
   .grid {
     grid-template-columns: 1fr 1fr;
-    gap: 26px;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .title {
+    font-size: 40px;
+  }
+
+  .instagramEmbed {
+    height: 360px;
   }
 }
 
@@ -192,12 +290,12 @@
     font-size: 30px;
   }
 
-  .subtitle {
-    font-size: 16px;
-  }
-
   .card {
     padding: 28px;
+  }
+
+  .featuredCard {
+    padding-top: 46px;
   }
 
   .quoteMark {

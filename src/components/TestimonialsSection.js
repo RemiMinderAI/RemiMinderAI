@@ -1,32 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
+import { Play } from "lucide-react";
 import styles from "./TestimonialsSection.module.css";
+
+const VIDEO_REVIEW_URL = "https://www.instagram.com/p/DdZ3xNxx9Et/?hl=en";
+const VIDEO_EMBED_URL = "https://www.instagram.com/p/DdZ3xNxx9Et/embed";
 
 const TESTIMONIALS = [
   {
     quote:
-      "I live far from my dad, who has early-stage dementia and Parkinson's. I never know what his doctor tells him, and he forgets his medications, which is making his health worse. With RemiMinderAI, I can finally see what his doctor said and remind him to take his meds on time.",
-    role: "Daughter caring for her father, long-distance",
-    location: "California",
-  },
-  {
-    quote:
       "I need reminders for my medications so I don't forget to take them. Even just seeing them on the Overview screen in RemiMinderAI helps me stay on track.",
-    role: "Patient and caregiver for her parents",
-    location: "California",
-  },
-  {
-    quote:
-      "I need to see my upcoming appointments and new medications right on my screen. It's too overwhelming to hunt through different sections to find what my doctor said. And sometimes I'm left wondering if he even heard something I told him.",
-    role: "Patient using RemiMinderAI",
-    location: "California",
+    attribution: ["Lee Ann", "Patient", "California"],
   },
   {
     quote:
       "After every session, my patients leave without really understanding their follow-up instructions. By the next visit, the home program is forgotten or mixed up. RemiMinderAI can give them a clear record they can revisit and share with family, so the plan actually sticks.",
-    role: "Physical Therapist",
-    location: "Outpatient clinic",
+    attribution: ["Physical Therapist", "Hazel Hawkins Medical Center, Hollister"],
+  },
+  {
+    body: "Patrick Flynn uses RemiMinderAI to take care of his mom. Feedback coming soon.....",
+    pending: true,
   },
 ];
+
+function Attribution({ parts }) {
+  return (
+    <cite className={styles.attribution}>
+      <div className={styles.attributionLine}>
+        {parts.map((part, index) => (
+          <React.Fragment key={`${part}-${index}`}>
+            {index > 0 ? (
+              <span className={styles.locationDot} aria-hidden="true">
+                ·
+              </span>
+            ) : null}
+            <span className={index === 0 ? styles.role : styles.meta}>{part}</span>
+          </React.Fragment>
+        ))}
+      </div>
+    </cite>
+  );
+}
+
+function FeaturedVideoCard() {
+  const [embedBlocked, setEmbedBlocked] = useState(false);
+
+  return (
+    <article className={`${styles.card} ${styles.featuredCard}`}>
+      <span className={styles.videoBadge}>Video review</span>
+      <blockquote className={styles.blockquote}>
+        <p className={styles.quoteText}>
+          RemiMinderAI is very helpful for me to keep track of my medication and
+          appointments. I&apos;m using it every day and have asked my friends and
+          family to use it too.
+        </p>
+        <Attribution
+          parts={["Soumendranath", "English teacher", "Kolkata, India"]}
+        />
+      </blockquote>
+      <div className={styles.videoFrame}>
+        {!embedBlocked ? (
+          <iframe
+            className={styles.instagramEmbed}
+            src={VIDEO_EMBED_URL}
+            title="Soumendranath video review on Instagram"
+            loading="lazy"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            onError={() => setEmbedBlocked(true)}
+          />
+        ) : null}
+        <a
+          className={styles.videoFallback}
+          href={VIDEO_REVIEW_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          hidden={!embedBlocked}
+        >
+          <span className={styles.playButton} aria-hidden="true">
+            <Play size={22} fill="currentColor" />
+          </span>
+          <span className={styles.videoFallbackLabel}>Watch on Instagram</span>
+        </a>
+      </div>
+      <a
+        className={styles.watchLink}
+        href={VIDEO_REVIEW_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Watch Soumendranath&apos;s review on Instagram
+      </a>
+    </article>
+  );
+}
 
 export default function TestimonialsSection() {
   return (
@@ -38,40 +103,35 @@ export default function TestimonialsSection() {
         <header className={styles.header}>
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} aria-hidden="true" />
-            <span className={styles.eyebrowText}>
-              Beta program feedback
-            </span>
+            <span className={styles.eyebrowText}>What users are saying</span>
           </div>
           <h2 id="testimonials-heading" className={styles.title}>
-            People already building habits with RemiMinderAI
+            Real people. Real appointments. Real clarity.
           </h2>
-          <p className={styles.subtitle}>
-            Private beta in progress. Here are perspectives shaping what we
-            build next.
-          </p>
         </header>
 
         <div className={styles.grid}>
           {TESTIMONIALS.map((item, index) => (
-            <article key={index} className={styles.card}>
-              <span className={styles.quoteMark} aria-hidden="true">
-                &ldquo;
-              </span>
-              <blockquote className={styles.blockquote}>
-                <p className={styles.quoteText}>{item.quote}</p>
-                <cite className={styles.attribution}>
-                  <div className={styles.attributionLine}>
-                    <span className={styles.role}>{item.role}</span>
-                    <span className={styles.locationDot} aria-hidden="true">
-                      ·
-                    </span>
-                    <span className={styles.location}>{item.location}</span>
-                  </div>
-                  <span className={styles.betaLine}>Beta user perspective</span>
-                </cite>
-              </blockquote>
+            <article
+              key={index}
+              className={`${styles.card} ${item.pending ? styles.pendingCard : ""}`}
+            >
+              {item.pending ? (
+                <p className={styles.pendingText}>{item.body}</p>
+              ) : (
+                <>
+                  <span className={styles.quoteMark} aria-hidden="true">
+                    &ldquo;
+                  </span>
+                  <blockquote className={styles.blockquote}>
+                    <p className={styles.quoteText}>{item.quote}</p>
+                    <Attribution parts={item.attribution} />
+                  </blockquote>
+                </>
+              )}
             </article>
           ))}
+          <FeaturedVideoCard />
         </div>
       </div>
     </section>
