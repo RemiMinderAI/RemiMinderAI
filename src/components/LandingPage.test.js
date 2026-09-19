@@ -1,6 +1,6 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import LandingPage from "./LandingPage";
 
 function renderHome() {
@@ -99,5 +99,13 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByText(/without really understanding their follow-up instructions/i)
     ).toBeInTheDocument();
+  });
+
+  test("does not show Get Started in the home nav bar", () => {
+    renderHome();
+
+    const nav = screen.getByRole("navigation", { name: "Main" });
+    expect(within(nav).queryByRole("link", { name: /^get started$/i })).not.toBeInTheDocument();
+    expect(within(nav).getByRole("link", { name: /^home$/i })).toBeInTheDocument();
   });
 });
