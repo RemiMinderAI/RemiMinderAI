@@ -11,7 +11,6 @@ import {
   Mic, CheckCircle2, Star, Bell, Sparkles,
   Zap, Globe
 } from "lucide-react";
-import { ANDROID_URL, IOS_URL, trackDownloadClick } from "../constants/site";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
@@ -152,65 +151,9 @@ const LandingPage = () => {
           <div className={styles.proofDivider} />
           <div className={styles.proofItem}><Globe size={14} /><span>Built for families &amp; caregivers</span></div>
           <div className={styles.proofDivider} />
-          <div className={styles.proofItem}><Zap size={14} /><span>Zero to beta in 7 weeks</span></div>
+          <div className={styles.proofItem}><Zap size={14} /><span>Free 14-day trial</span></div>
         </div>
       </div>
-
-      {/* ── FINAL CTA ── */}
-      <section className={styles.demoCTASection} id="get-started">
-        <div className={styles.demoCTAContainer}>
-          <div className={styles.ctaContent}>
-            <div className={styles.sectionLabelLight}>GET STARTED TODAY</div>
-            <h2 className={styles.ctaTitleDark}>
-              Start Caring with Confidence
-            </h2>
-
-            <div className={styles.ctaFeaturesCard}>
-              {[
-                { text: "Record visits and get AI summaries.", icon: <CheckCircle2 size={18} /> },
-                { text: "Scan labs and set voice reminders.", icon: <CheckCircle2 size={18} /> },
-                { text: "Share the care plan with family in real time.", icon: <CheckCircle2 size={18} /> },
-              ].map((f, i) => (
-                <div key={i} className={styles.ctaFeaturesCardItem}>
-                  <span className={styles.ctaFeaturesCardIcon}>{f.icon}</span>
-                  <span>{f.text}</span>
-                </div>
-              ))}
-            </div>
-
-            <p className={styles.ctaSupportText}>
-              Download RemiMinderAI today and bring clarity to every healthcare journey.
-            </p>
-
-            <div className={styles.ctaDownloadRow} style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center' }}>
-              <a
-                href={IOS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={trackDownloadClick}
-              >
-                <img
-                  src="/images/app-store-badge.svg"
-                  alt="Download on the App Store"
-                  style={{ height: '48px' }}
-                />
-              </a>
-              <a
-                href={ANDROID_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={trackDownloadClick}
-              >
-                <img
-                  src="/images/google-play-badge.png"
-                  alt="Get it on Google Play"
-                  style={{ height: '48px' }}
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <TestimonialsSection />
       <p className={styles.medicalDisclaimer}>

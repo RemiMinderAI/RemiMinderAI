@@ -20,6 +20,12 @@ const TESTIMONIALS = [
     role: "Patient using RemiMinderAI",
     location: "California",
   },
+  {
+    quote:
+      "After every session, my patients leave without really understanding their follow-up instructions. By the next visit, the home program is forgotten or mixed up. RemiMinderAI can give them a clear record they can revisit and share with family, so the plan actually sticks.",
+    role: "Physical Therapist",
+    location: "Outpatient clinic",
+  },
 ];
 
 export default function TestimonialsSection() {
