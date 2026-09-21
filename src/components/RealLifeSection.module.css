@@ -2,7 +2,7 @@
   color-scheme: dark;
   background: #111318;
   color: #f7f3ec;
-  padding: 48px 5% 52px;
+  padding: 48px 5% 28px;
   text-align: left;
 }
 
@@ -390,7 +390,7 @@
 
 @media (max-width: 800px) {
   .section {
-    padding: 40px 20px 44px;
+    padding: 40px 20px 24px;
   }
 
   .header {

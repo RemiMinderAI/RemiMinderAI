@@ -219,7 +219,7 @@ describe("LandingPage hero redesign", () => {
     expect(screen.getByText(/^español$/i)).toBeInTheDocument();
     expect(screen.getByText("हिन्दी")).toBeInTheDocument();
     expect(
-      screen.getByText(/english, bengali, portuguese, french, german, mandarin, arabic/i)
+      screen.getByText(/\+ english, bengali, portuguese, french, german and more/i)
     ).toBeInTheDocument();
   });
 

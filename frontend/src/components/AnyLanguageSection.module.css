@@ -2,7 +2,7 @@
   color-scheme: light;
   background: #f7f3ec;
   color: #1b2a4a;
-  padding: 88px 5% 8px;
+  padding: 36px 5% 4px;
   text-align: center;
 }
 
@@ -91,7 +91,7 @@
 
 @media (max-width: 700px) {
   .section {
-    padding: 64px 20px 8px;
+    padding: 28px 20px 4px;
   }
 
   .phones {
