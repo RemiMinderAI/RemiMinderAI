@@ -7,6 +7,8 @@
   border-bottom: 1px solid #e5e0d3;
   color: #1a2332;
   padding: 80px 20px 88px;
+  /* Override global .App { text-align: center } so vignettes read as prose. */
+  text-align: left;
 }
 
 .inner {
@@ -34,6 +36,7 @@
 
 .scene {
   margin: 0;
+  text-align: left;
 }
 
 .kicker {
