@@ -6,7 +6,7 @@ import './App.css';
 // 2. Import pages and components
 import LandingPage from './components/LandingPage';
 import AboutPage from "./components/AboutPage";
-import HealthcareMomentsPage from "./components/HealthcareMomentsPage";
+import YourStartGuidePage from "./components/YourStartGuidePage";
 import FutureVisionPage from "./components/FutureVisionPage";
 import BlogIndexPage from "./components/BlogIndexPage";
 import BlogArticlePage from "./components/BlogArticlePage";
@@ -68,7 +68,7 @@ function App() {
           {/* Main Routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/healthcare-moments" element={<HealthcareMomentsPage />} />
+          <Route path="/your-start-guide" element={<YourStartGuidePage />} />
           <Route path="/blog/:slug" element={<BlogArticlePage />} />
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/future-vision" element={<FutureVisionPage />} />

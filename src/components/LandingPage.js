@@ -6,7 +6,6 @@ import TestimonialsSection from "./TestimonialsSection";
 import SiteFooter from "./SiteFooter";
 import HeroSection from "./HeroSection";
 import ProductWorkflow from "./ProductWorkflow";
-import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import RealLifeSection from "./RealLifeSection";
 import WhyNotGroupTextSection from "./WhyNotGroupTextSection";
 
@@ -40,8 +39,6 @@ const LandingPage = () => {
         <HeroSection />
         <ProductWorkflow />
       </main>
-
-      <WhatRemiMinderIsSection />
 
       <section id="who-its-for" className={styles.whoItsFor}>
         <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
