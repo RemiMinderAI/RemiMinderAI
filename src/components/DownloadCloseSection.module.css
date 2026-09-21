@@ -1,86 +1,98 @@
 .section {
   color-scheme: dark;
-  background: #10182c;
+  background: #10182b;
   color: #ffffff;
-  padding: 56px 5% 48px;
+  padding: 52px 5% 36px;
   text-align: center;
 }
 
 .wordmark {
   margin: 0;
   font-family: "DM Sans", sans-serif;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2.3rem, 4.5vw, 3.1rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.05;
   color: #ffffff;
 }
 
 .tagline {
   margin: 10px 0 0;
   font-family: "DM Sans", sans-serif;
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-size: 1.05rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.downloadNow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 280px;
+  margin-top: 22px;
+  padding: 13px 36px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #f6e3a6 0%, #e6c56a 42%, #d4a843 100%);
+  color: #1c160c;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 3px 0 #9a7424, 0 10px 18px rgba(0, 0, 0, 0.28);
+}
+
+.downloadNow:hover {
+  filter: brightness(1.04);
 }
 
 .stores {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
-  margin-top: 26px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
 }
 
-.storeButton {
-  display: inline-flex;
-  align-items: center;
+.stores img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+.dots {
+  display: flex;
   justify-content: center;
   gap: 8px;
-  min-width: 168px;
-  padding: 12px 22px;
-  border-radius: 12px;
-  background: linear-gradient(180deg, #f3dc9a 0%, #d4a843 48%, #c4962e 100%);
-  color: #1b1408;
+  margin-top: 18px;
+}
+
+.dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d4a843;
+}
+
+.copyright {
+  margin: 14px 0 0;
   font-family: "DM Sans", sans-serif;
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  box-shadow: 0 8px 18px rgba(212, 168, 67, 0.28);
-}
-
-.storeButton svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-.storeButton:hover {
-  filter: brightness(1.05);
-}
-
-.trial {
-  margin: 16px 0 0;
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 @media (max-width: 640px) {
   .section {
-    padding: 44px 20px 36px;
+    padding: 44px 20px 32px;
   }
 
-  .stores {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .storeButton {
-    width: min(100%, 240px);
+  .downloadNow {
+    min-width: 0;
+    width: min(100%, 300px);
   }
 }
