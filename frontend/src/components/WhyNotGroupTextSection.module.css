@@ -1,113 +1,159 @@
 .section {
-  color-scheme: dark;
-  background: #111318;
-  color: #f7f3ec;
-  padding: 88px 5% 96px;
-  text-align: center;
-}
-
-.inner {
-  max-width: 1120px;
-  margin: 0 auto;
-}
-
-.title {
-  margin: 0 auto 12px;
-  max-width: 16ch;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: #ffffff;
-}
-
-.subtitle {
-  max-width: 38rem;
-  margin: 0 auto 48px;
-  font-family: "DM Sans", sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: rgba(247, 243, 236, 0.7);
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  color-scheme: light;
+  background: #f7f3ec;
+  color: #1a2332;
+  padding: 0 5% 88px;
   text-align: left;
 }
 
-.card {
-  padding: 22px 20px 8px;
-  border: 0.5px solid rgba(26, 35, 50, 0.28);
-  border-radius: 18px;
-  background: #eceae6;
-  color: #1a2332;
+.panel {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1.55fr);
+  gap: 28px 40px;
+  align-items: start;
+  padding: 36px 36px 20px;
+  background: #ffffff;
+  border: 1px solid rgba(27, 42, 74, 0.15);
+  border-radius: 24px;
 }
 
-.featured {
-  border: 2px solid #d4a843;
-  background: #f8f1df;
-  box-shadow: 0 0 0 1px rgba(212, 168, 67, 0.25);
+.intro {
+  position: sticky;
+  top: 96px;
 }
 
-.card h3 {
-  margin: 0 0 8px;
+.title {
+  margin: 0 0 14px;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.35rem;
+  font-size: clamp(1.7rem, 2.5vw, 2.2rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
   line-height: 1.2;
-  color: #1a2332;
-}
-
-.featured h3 {
+  letter-spacing: -0.02em;
   color: #1b2a4a;
 }
 
-.card dl {
+.subtitle {
   margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #5c6570;
 }
 
-.card dl > div {
-  padding: 14px 0;
-  border-top: 1px solid rgba(26, 35, 50, 0.12);
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 0 8px;
 }
 
-.card dt {
-  margin: 0 0 4px;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 1rem;
+.columns h3 {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
   font-weight: 700;
-  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8175;
+}
+
+.featuredLabel {
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 700;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+  color: #1b2a4a !important;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 12px;
+  padding: 16px 0 18px;
+  border-top: 1px solid rgba(27, 42, 74, 0.1);
+}
+
+.row h4 {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
   color: #1a2332;
 }
 
-.card dd {
+.plain,
+.remi {
   margin: 0;
   font-family: "DM Sans", sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.45;
+}
+
+.plain {
+  padding: 8px 2px 0;
   color: #6b7280;
 }
 
-.featured dd {
+.remi {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border-left: 3px solid #d4a843;
+  background: #f8f1df;
   font-weight: 700;
   color: #1b2a4a;
 }
 
+.toolLabel {
+  display: none;
+}
+
 @media (max-width: 900px) {
-  .cards {
+  .panel {
     grid-template-columns: 1fr;
+    padding: 24px 20px 12px;
   }
 
-  .title {
-    max-width: none;
+  .intro {
+    position: static;
+  }
+
+  .columns {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .toolLabel {
+    display: block;
+    margin-bottom: 2px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a8175;
+  }
+
+  .remi .toolLabel {
+    color: #8a6a2f;
   }
 }
 
 @media (max-width: 640px) {
   .section {
-    padding: 64px 20px 72px;
+    padding: 0 20px 72px;
   }
 }

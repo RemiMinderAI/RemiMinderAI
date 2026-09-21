@@ -10,7 +10,7 @@ const QUESTIONS = [
   "What if your family speaks Hindi or Spanish?",
 ];
 
-const CARDS = [
+const COLUMNS = [
   {
     title: "Family chat",
     featured: false,
@@ -56,32 +56,42 @@ export default function WhyNotGroupTextSection() {
       id="why-not-group-text"
       aria-labelledby="why-not-heading"
     >
-      <div className={styles.inner}>
-        <h2 id="why-not-heading" className={styles.title}>
-          The tools you&apos;re already using weren&apos;t built for this.
-        </h2>
-        <p className={styles.subtitle}>
-          Family chats, shared notes, and spreadsheets get you halfway.
-          Here&apos;s where they stop.
-        </p>
+      <div className={styles.panel}>
+        <div className={styles.intro}>
+          <h2 id="why-not-heading" className={styles.title}>
+            The tools you&apos;re already using weren&apos;t built for this.
+          </h2>
+          <p className={styles.subtitle}>
+            Family chats, shared notes, and spreadsheets get you halfway.
+            Here&apos;s where they stop.
+          </p>
+        </div>
 
-        <div className={styles.cards}>
-          {CARDS.map((card) => (
-            <article
-              key={card.title}
-              className={`${styles.card} ${card.featured ? styles.featured : ""}`}
-            >
-              <h3>{card.title}</h3>
-              <dl>
-                {QUESTIONS.map((question, index) => (
-                  <div key={`${card.title}-${question}`}>
-                    <dt>{question}</dt>
-                    <dd>{card.answers[index]}</dd>
-                  </div>
+        <div className={styles.compare}>
+          <div className={styles.columns}>
+            {COLUMNS.map((column) => (
+              <h3 key={column.title} className={column.featured ? styles.featuredLabel : ""}>
+                {column.title}
+              </h3>
+            ))}
+          </div>
+
+          <div className={styles.rows}>
+            {QUESTIONS.map((question, index) => (
+              <article key={question} className={styles.row}>
+                <h4>{question}</h4>
+                {COLUMNS.map((column) => (
+                  <p
+                    key={column.title}
+                    className={column.featured ? styles.remi : styles.plain}
+                  >
+                    <span className={styles.toolLabel}>{column.title}</span>
+                    {column.answers[index]}
+                  </p>
                 ))}
-              </dl>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
