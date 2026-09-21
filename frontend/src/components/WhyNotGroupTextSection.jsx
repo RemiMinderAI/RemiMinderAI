@@ -70,7 +70,6 @@ export default function WhyNotGroupTextSection() {
         </p>
 
         <div className={styles.tableWrap}>
-          <p className={styles.swipeHint}>Swipe to compare →</p>
           <table className={styles.table}>
             <caption className={styles.caption}>
               How RemiMinderAI compares to group texts and shared spreadsheets
@@ -90,7 +89,11 @@ export default function WhyNotGroupTextSection() {
                         : styles.colHead
                     }
                   >
-                    {column}
+                    {index === COLUMNS.length - 1 ? (
+                      column
+                    ) : (
+                      <span className={styles.colTag}>{column}</span>
+                    )}
                   </th>
                 ))}
               </tr>
@@ -119,6 +122,10 @@ export default function WhyNotGroupTextSection() {
             </tbody>
           </table>
         </div>
+
+        <a className={styles.cta} href="#get-started">
+          Try it free — no credit card needed
+        </a>
       </div>
     </section>
   );

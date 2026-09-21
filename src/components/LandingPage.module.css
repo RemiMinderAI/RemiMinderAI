@@ -1764,14 +1764,14 @@ a.hero2BtnTeal {
 .stepCard p { font-size: 0.9rem; color: var(--ink-light); line-height: 1.6; }
 
 /* ── WHO IT'S FOR ── */
-.whoItsFor { padding: 80px 5%; background: var(--cream); text-align: center; }
+.whoItsFor { padding: 80px 5% 8px; background: var(--cream); text-align: center; }
 .whoItsFor .sectionSubtitle { margin: 0 auto 48px; max-width: 720px; }
 .whoFeatured {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 0 36px;
   max-width: 1100px;
-  margin: 0 auto 40px;
+  margin: 0 auto;
   text-align: left;
   align-items: stretch;
   background: var(--white);

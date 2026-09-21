@@ -71,23 +71,34 @@ describe("LandingPage hero redesign", () => {
     ).not.toBeInTheDocument();
   });
 
-  test("does not repeat overlapping Who it's for, RemiVox, or social-proof-bar sections", () => {
+  test("leads Who it's for with family caregivers and the kitchen-table image", () => {
     renderHome();
 
     expect(
-      screen.queryByRole("heading", {
+      screen.getByRole("heading", {
         level: 2,
         name: /built for family caregivers/i,
       })
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
     expect(
-      screen.queryByAltText(/kitchen table with prescriptions/i)
-    ).not.toBeInTheDocument();
+      screen.getByAltText(/kitchen table with prescriptions/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /the appointment lasted 12 minutes/i,
+      })
+    ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: /say it once/i })
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/new in the app/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/being there for someone doesn't always mean being in the room/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/every appointment contains important decisions/i)
+    ).not.toBeInTheDocument();
   });
 
   test("drops the bottom Get Started Today CTA and keeps the trial proof line", () => {
@@ -207,6 +218,9 @@ describe("LandingPage hero redesign", () => {
       screen.getByText(/ocr scans it, stores it clearly/i)
     ).toBeInTheDocument();
     expect(screen.getByText(/summaries in 10 languages/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /try it free — no credit card needed/i })
+    ).toHaveAttribute("href", "#get-started");
   });
 
   test("does not show Get Started in the home nav bar", () => {

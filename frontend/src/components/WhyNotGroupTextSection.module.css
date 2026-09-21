@@ -1,8 +1,8 @@
 .section {
-  color-scheme: dark;
-  background: #152238;
-  color: #f7f3ec;
-  padding: 88px 20px 96px;
+  color-scheme: light;
+  background: var(--cream, #f7f3ec);
+  color: var(--ink, #1a2332);
+  padding: 72px 5% 88px;
   text-align: center;
 }
 
@@ -13,48 +13,33 @@
 
 .title {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.85rem, 4vw, 2.5rem);
-  font-weight: 600;
-  line-height: 1.2;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.25;
   letter-spacing: -0.02em;
-  color: #f7f3ec;
+  color: var(--ink, #1a2332);
   margin: 0 0 12px;
 }
 
 .subtitle {
   font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: clamp(1.02rem, 1.8vw, 1.15rem);
-  line-height: 1.55;
-  color: rgba(247, 243, 236, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink-light, #5a6a7a);
   margin: 0 auto 48px;
   max-width: 36rem;
 }
 
 .tableWrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
   margin: 0 auto;
-  border: 1px solid rgba(247, 243, 236, 0.18);
-  border-radius: 18px;
-  background: rgba(12, 20, 36, 0.45);
-}
-
-.swipeHint {
-  display: none;
-  margin: 0;
-  padding: 10px 16px 0;
-  font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(247, 243, 236, 0.55);
-  text-align: left;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(27, 42, 74, 0.08);
 }
 
 .table {
   width: 100%;
-  min-width: 720px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -78,68 +63,94 @@
 .question,
 .cell,
 .oursCell {
-  padding: 18px 20px;
+  padding: 20px 22px;
   vertical-align: top;
 }
 
-.colHead,
-.oursHead {
+.colHead {
+  font-weight: 400;
+}
+
+.colTag {
+  display: inline-block;
   font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(247, 243, 236, 0.55);
-  border-bottom: 1px solid rgba(247, 243, 236, 0.16);
+  color: #7a8585;
+  background: #ebe6dc;
+  padding: 3px 10px;
+  border-radius: 10px;
 }
 
 .oursHead {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
   letter-spacing: -0.01em;
-  text-transform: none;
-  color: #d4a843;
+  color: #1b3a5c;
 }
 
 .question {
-  font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: 0.98rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.4;
-  color: #ffffff;
-  width: 22%;
-  border-top: 1px solid rgba(247, 243, 236, 0.1);
+  line-height: 1.35;
+  color: #1b3a5c;
+  width: 24%;
 }
 
 .cell,
 .oursCell {
   font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 0.95rem;
-  line-height: 1.5;
-  width: 26%;
-  border-top: 1px solid rgba(247, 243, 236, 0.1);
+  line-height: 1.55;
+  width: 25.3%;
 }
 
 .cell {
-  color: rgba(247, 243, 236, 0.68);
+  color: #7a8585;
+  font-weight: 400;
 }
 
 .oursCell {
+  color: #1b3a5c;
+  font-weight: 600;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #faf8f5;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  min-height: 48px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
   color: #ffffff;
-  font-weight: 500;
-  background: rgba(212, 168, 67, 0.08);
+  background: #1b2a4a;
+  box-shadow: 0 4px 0 0 #243556;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-tbody tr:last-child .question,
-tbody tr:last-child .cell,
-tbody tr:last-child .oursCell {
-  border-bottom: none;
+.cta:hover {
+  background: #243556;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 0 #1b2a4a;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 767px) {
   .section {
-    padding: 64px 16px 72px;
+    padding: 56px 20px 72px;
     text-align: left;
   }
 
@@ -152,12 +163,10 @@ tbody tr:last-child .oursCell {
     margin-bottom: 28px;
   }
 
-  .swipeHint {
-    display: none;
-  }
-
   .tableWrap {
-    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
   }
 
   .table {
@@ -171,13 +180,16 @@ tbody tr:last-child .oursCell {
   .table tbody tr {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 18px 16px 20px;
-    border-bottom: 1px solid rgba(247, 243, 236, 0.12);
+    gap: 12px;
+    padding: 20px 18px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(27, 42, 74, 0.06);
   }
 
-  .table tbody tr:last-child {
-    border-bottom: none;
+  .table tbody tr:nth-child(even) {
+    background: #ffffff;
   }
 
   .question,
@@ -185,46 +197,46 @@ tbody tr:last-child .oursCell {
   .oursCell {
     display: block;
     width: 100%;
-    border: none;
     padding: 0;
   }
 
   .question {
-    order: 0;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     padding-bottom: 4px;
-  }
-
-  .oursCell {
-    order: 1;
-    background: rgba(212, 168, 67, 0.12);
-    border-radius: 12px;
-    padding: 12px 14px;
-    margin: 4px 0 2px;
-  }
-
-  .cell {
-    order: 2;
   }
 
   .cell::before,
   .oursCell::before {
     display: block;
     content: attr(data-label);
+    font-family: "DM Sans", -apple-system, sans-serif;
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 4px;
-    color: rgba(247, 243, 236, 0.5);
+    color: #7a8585;
+  }
+
+  .oursCell {
+    background: #e8ebf2;
+    border-radius: 12px;
+    padding: 12px 14px;
   }
 
   .oursCell::before {
-    color: #d4a843;
+    color: #1b3a5c;
     text-transform: none;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     font-family: "Playfair Display", Georgia, serif;
-    font-size: 0.82rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .cta {
+    display: flex;
+    width: 100%;
+    margin-top: 28px;
+    box-sizing: border-box;
   }
 }
