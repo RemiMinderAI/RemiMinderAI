@@ -140,6 +140,12 @@ tbody tr:last-child .oursCell {
 @media (max-width: 800px) {
   .section {
     padding: 64px 16px 72px;
+    text-align: left;
+  }
+
+  .title,
+  .subtitle {
+    text-align: center;
   }
 
   .subtitle {
@@ -147,15 +153,73 @@ tbody tr:last-child .oursCell {
   }
 
   .swipeHint {
-    display: block;
+    display: none;
   }
 
-  .corner,
-  .colHead,
-  .oursHead,
+  .tableWrap {
+    overflow: visible;
+  }
+
+  .table {
+    min-width: 0;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody tr {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px 16px 20px;
+    border-bottom: 1px solid rgba(247, 243, 236, 0.12);
+  }
+
+  .table tbody tr:last-child {
+    border-bottom: none;
+  }
+
   .question,
   .cell,
   .oursCell {
-    padding: 14px 16px;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0;
+  }
+
+  .question {
+    order: 0;
+    font-size: 1.05rem;
+    padding-bottom: 4px;
+  }
+
+  .oursCell {
+    order: 1;
+    background: rgba(212, 168, 67, 0.12);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 4px 0 2px;
+  }
+
+  .cell {
+    order: 2;
+  }
+
+  .cell::before,
+  .oursCell::before {
+    display: block;
+    content: attr(data-label);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: rgba(247, 243, 236, 0.5);
+  }
+
+  .oursCell::before {
+    color: #d4a843;
   }
 }

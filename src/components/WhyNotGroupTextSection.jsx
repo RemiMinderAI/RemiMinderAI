@@ -104,6 +104,7 @@ export default function WhyNotGroupTextSection() {
                   {row.answers.map((answer, index) => (
                     <td
                       key={`${row.question}-${COLUMNS[index]}`}
+                      data-label={COLUMNS[index]}
                       className={
                         index === COLUMNS.length - 1
                           ? styles.oursCell
