@@ -43,6 +43,60 @@ const LandingPage = () => {
         <ProductWorkflow />
       </main>
 
+      <section className={styles.remiVoxSection} aria-labelledby="remivox-heading">
+        <div className={styles.remiVoxInner}>
+          <div className={styles.remiVoxCopy}>
+            <div className={styles.remiVoxBadge}>
+              <Sparkles size={15} aria-hidden="true" />
+              New in the app
+            </div>
+            <h2 id="remivox-heading" className={styles.remiVoxTitle}>
+              Say it once.<br />
+              <span>RemiVox</span> helps you remember.
+            </h2>
+            <p className={styles.remiVoxDescription}>
+              Turn spoken words into reminders and ask questions about your health
+              records&mdash;all without typing.
+            </p>
+            <div className={styles.remiVoxOffer}>
+              <CheckCircle2 size={16} aria-hidden="true" />
+              <span><strong>Try RemiVox free for 14 days</strong></span>
+            </div>
+          </div>
+
+          <div
+            className={styles.remiVoxDemo}
+            role="img"
+            aria-label="RemiVox setting a medication reminder from a voice request"
+          >
+            <div className={styles.voiceOrb} aria-hidden="true">
+              <span className={styles.voiceRing} />
+              <span className={styles.voiceRing} />
+              <span className={styles.voiceRing} />
+              <Mic size={34} strokeWidth={2} />
+            </div>
+            <div className={styles.voiceWave} aria-hidden="true">
+              {[18, 30, 44, 26, 52, 36, 22, 42, 28].map((height, index) => (
+                <span key={index} style={{ "--wave-height": `${height}px` }} />
+              ))}
+            </div>
+            <p className={styles.voicePrompt}>
+              &ldquo;Remind me to take my medication at 8 PM.&rdquo;
+            </p>
+            <div className={styles.voiceConfirmation}>
+              <span className={styles.voiceConfirmationIcon}>
+                <Bell size={18} aria-hidden="true" />
+              </span>
+              <span>
+                <strong>Reminder set</strong>
+                Today at 8:00 PM
+              </span>
+              <CheckCircle2 size={21} aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="who-its-for" className={styles.whoItsFor}>
         <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
         <h2 className={styles.sectionTitle}>
@@ -82,63 +136,6 @@ const LandingPage = () => {
       <RealLifeSection />
       <AnyLanguageSection />
       <TestimonialsSection />
-
-      <section className={styles.remiVoxSection} aria-labelledby="remivox-heading">
-        <div className={styles.remiVoxInner}>
-          <div className={styles.remiVoxCopy}>
-            <div className={styles.remiVoxBadge}>
-              <Sparkles size={15} aria-hidden="true" />
-              New in the app
-            </div>
-            <h2 id="remivox-heading" className={styles.remiVoxTitle}>
-              Say it once. <span>RemiVox</span> helps you remember.
-            </h2>
-            <p className={styles.remiVoxDescription}>
-              Turn spoken words into reminders and ask questions about your health
-              records&mdash;all without typing.
-            </p>
-            <div className={styles.remiVoxOffer}>
-              <CheckCircle2 size={20} aria-hidden="true" />
-              <span><strong>Try RemiVox free for 14 days</strong></span>
-            </div>
-            <a className={styles.remiVoxCta} href="#get-started">
-              Download the app now
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-
-          <div
-            className={styles.remiVoxDemo}
-            role="img"
-            aria-label="RemiVox setting a medication reminder from a voice request"
-          >
-            <div className={styles.voiceOrb} aria-hidden="true">
-              <span className={styles.voiceRing} />
-              <span className={styles.voiceRing} />
-              <span className={styles.voiceRing} />
-              <Mic size={34} strokeWidth={2} />
-            </div>
-            <div className={styles.voiceWave} aria-hidden="true">
-              {[18, 30, 44, 26, 52, 36, 22, 42, 28].map((height, index) => (
-                <span key={index} style={{ "--wave-height": `${height}px` }} />
-              ))}
-            </div>
-            <p className={styles.voicePrompt}>
-              &ldquo;Remind me to take my medication at 8 PM.&rdquo;
-            </p>
-            <div className={styles.voiceConfirmation}>
-              <span className={styles.voiceConfirmationIcon}>
-                <Bell size={18} aria-hidden="true" />
-              </span>
-              <span>
-                <strong>Reminder set</strong>
-                Today at 8:00 PM
-              </span>
-              <CheckCircle2 size={21} aria-hidden="true" />
-            </div>
-          </div>
-        </div>
-      </section>
 
       <p className={styles.medicalDisclaimer}>
         RemiMinderAI is not a medical device and does not provide medical advice, diagnosis, or

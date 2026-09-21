@@ -106,6 +106,8 @@ describe("LandingPage hero redesign", () => {
     expect(sectionOrder.every((index) => index >= 0)).toBe(true);
     expect(sectionOrder).toEqual([...sectionOrder].sort((a, b) => a - b));
     expect(at(/the tools you're already using/i)).toBe(at(/built for family caregivers/i) + 1);
+    expect(at(/say it once/i)).toBe(at(/one visit\. a shared plan/i) + 1);
+    expect(screen.queryByRole("link", { name: /download the app now/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/being there for someone doesn't always mean being in the room/i)
