@@ -3,10 +3,9 @@
   position: relative;
   color-scheme: light;
   width: 100%;
-  padding: 96px 24px;
+  padding: 96px 24px 48px;
   box-sizing: border-box;
   border-top: 1px solid #e5e0d3;
-  border-bottom: 1px solid #e5e0d3;
   background: linear-gradient(180deg, #faf7ef 0%, #f5f1e8 100%);
   color: #1a2929;
 }
@@ -127,7 +126,7 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 64px 20px 72px;
+    padding: 64px 20px 36px;
   }
   .cornerBracket[data-pos="tl"] {
     top: 16px;
