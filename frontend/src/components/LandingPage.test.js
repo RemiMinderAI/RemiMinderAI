@@ -71,18 +71,23 @@ describe("LandingPage hero redesign", () => {
     ).not.toBeInTheDocument();
   });
 
-  test("leads Who it's for with family caregivers and the kitchen-table image", () => {
+  test("does not repeat overlapping Who it's for, RemiVox, or social-proof-bar sections", () => {
     renderHome();
 
     expect(
-      screen.getByRole("heading", {
+      screen.queryByRole("heading", {
         level: 2,
         name: /built for family caregivers/i,
       })
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
     expect(
-      screen.getByAltText(/kitchen table with prescriptions/i)
-    ).toBeInTheDocument();
+      screen.queryByAltText(/kitchen table with prescriptions/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: /say it once/i })
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/new in the app/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
   });
 
   test("drops the bottom Get Started Today CTA and keeps the trial proof line", () => {
@@ -93,7 +98,7 @@ describe("LandingPage hero redesign", () => {
       screen.queryByRole("heading", { name: /start caring with confidence/i })
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/zero to beta in 7 weeks/i)).not.toBeInTheDocument();
-    expect(screen.getAllByText(/free 14-day trial/i).length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText(/free 14-day trial/i)).toBeInTheDocument();
   });
 
   test("shows real-user testimonials and a featured Instagram video review", () => {
@@ -169,6 +174,39 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByText(/hindi, bengali, spanish, german, portuguese/i)
     ).toBeInTheDocument();
+  });
+
+  test("compares RemiMinderAI to group texts and spreadsheets", () => {
+    renderHome();
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: /why not just a group text/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/we tried the group-text route too/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /group texts/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /shared spreadsheet/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /remiminderai/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("rowheader", { name: /what did the doctor actually say/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/recorded and ai-summarized, word for word/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/ocr scans it, stores it clearly/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/summaries in 10 languages/i)).toBeInTheDocument();
   });
 
   test("does not show Get Started in the home nav bar", () => {

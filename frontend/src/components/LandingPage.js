@@ -8,10 +8,7 @@ import HeroSection from "./HeroSection";
 import ProductWorkflow from "./ProductWorkflow";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
 import RealLifeSection from "./RealLifeSection";
-import { 
-  Mic, CheckCircle2, Star, Bell, Sparkles,
-  Zap, Globe
-} from "lucide-react";
+import WhyNotGroupTextSection from "./WhyNotGroupTextSection";
 
 const LandingPage = () => {
   localStorage.setItem("onboarding_complete", true);
@@ -37,128 +34,18 @@ const LandingPage = () => {
   return (
     <div className={styles.container}>
 
-      {/* ── HEADER ── */}
       <MarketingHeader scrolled={scrolled} />
 
-      {/* ── HERO ── */}
       <main id="home">
         <HeroSection />
         <ProductWorkflow />
       </main>
 
       <WhatRemiMinderIsSection />
-
-      {/* ── REMIVOX FEATURE ── */}
-      <section className={styles.remiVoxSection} aria-labelledby="remivox-heading">
-        <div className={styles.remiVoxInner}>
-          <div className={styles.remiVoxCopy}>
-            <div className={styles.remiVoxBadge}>
-              <Sparkles size={15} aria-hidden="true" />
-              New in the app
-            </div>
-            <h2 id="remivox-heading" className={styles.remiVoxTitle}>
-              Say it once. <span>RemiVox</span> helps you remember.
-            </h2>
-            <p className={styles.remiVoxDescription}>
-              Turn spoken words into reminders and ask questions about your health
-              records&mdash;all without typing.
-            </p>
-            <div className={styles.remiVoxOffer}>
-              <CheckCircle2 size={20} aria-hidden="true" />
-              <span><strong>Try RemiVox free for 14 days</strong></span>
-            </div>
-            <a className={styles.remiVoxCta} href="#get-started">
-              Download the app now
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-
-          <div
-            className={styles.remiVoxDemo}
-            role="img"
-            aria-label="RemiVox setting a medication reminder from a voice request"
-          >
-            <div className={styles.voiceOrb} aria-hidden="true">
-              <span className={styles.voiceRing} />
-              <span className={styles.voiceRing} />
-              <span className={styles.voiceRing} />
-              <Mic size={34} strokeWidth={2} />
-            </div>
-            <div className={styles.voiceWave} aria-hidden="true">
-              {[18, 30, 44, 26, 52, 36, 22, 42, 28].map((height, index) => (
-                <span key={index} style={{ "--wave-height": `${height}px` }} />
-              ))}
-            </div>
-            <p className={styles.voicePrompt}>
-              &ldquo;Remind me to take my medication at 8 PM.&rdquo;
-            </p>
-            <div className={styles.voiceConfirmation}>
-              <span className={styles.voiceConfirmationIcon}>
-                <Bell size={18} aria-hidden="true" />
-              </span>
-              <span>
-                <strong>Reminder set</strong>
-                Today at 8:00 PM
-              </span>
-              <CheckCircle2 size={21} aria-hidden="true" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── WHO IT'S FOR ── */}
-      <section id="who-its-for" className={styles.whoItsFor}>
-        <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
-        <h2 className={styles.sectionTitle}>
-          Built for <span className={styles.tealText}>family caregivers</span>
-        </h2>
-        <p className={styles.sectionSubtitle}>
-          For family caregivers supporting loved ones with medical appointments.
-          RemiMinderAI helps everyone stay aligned on care plans — even if you
-          weren&apos;t in the room.
-        </p>
-
-        <div className={styles.whoFeatured}>
-          <div className={styles.whoFeaturedImageWrap}>
-            <img
-              src="/images/who-its-for-family-table.jpg"
-              alt="Adult children and a parent sitting at the kitchen table with prescriptions and appointment notes"
-              className={styles.whoFeaturedImage}
-            />
-          </div>
-          <div className={styles.whoFeaturedCopy}>
-            <div className={styles.personaTag}>Family caregivers</div>
-            <h3>The appointment lasted 12 minutes. The questions last for weeks.</h3>
-            <p>
-              After the visit, families are left piecing together medications,
-              instructions, and follow-ups from incomplete memories. RemiMinderAI
-              turns that conversation into a shared care plan the whole family can
-              revisit from anywhere.
-            </p>
-            <p className={styles.whoFeaturedClose}>
-              Help families stay aligned on care plans from anywhere.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <RealLifeSection />
-
-      {/* ── SOCIAL PROOF BAR ── */}
-      <div className={styles.socialProofBar}>
-        <div className={styles.socialProofInner}>
-          <div className={styles.proofItem}>
-            <div className={styles.stars}>{[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}</div>
-            <span>Loved by early beta users</span>
-          </div>
-          <div className={styles.proofDivider} />
-          <div className={styles.proofItem}><Globe size={14} /><span>Built for families &amp; caregivers</span></div>
-          <div className={styles.proofDivider} />
-          <div className={styles.proofItem}><Zap size={14} /><span>Free 14-day trial</span></div>
-        </div>
-      </div>
-
+      <WhyNotGroupTextSection />
       <TestimonialsSection />
+
       <p className={styles.medicalDisclaimer}>
         RemiMinderAI is not a medical device and does not provide medical advice, diagnosis, or
         treatment. Always follow your healthcare provider&apos;s instructions.

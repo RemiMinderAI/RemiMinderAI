@@ -1,0 +1,161 @@
+.section {
+  color-scheme: dark;
+  background: #152238;
+  color: #f7f3ec;
+  padding: 88px 20px 96px;
+  text-align: center;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #f7f3ec;
+  margin: 0 0 12px;
+}
+
+.subtitle {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: clamp(1.02rem, 1.8vw, 1.15rem);
+  line-height: 1.55;
+  color: rgba(247, 243, 236, 0.72);
+  margin: 0 auto 48px;
+  max-width: 36rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 auto;
+  border: 1px solid rgba(247, 243, 236, 0.18);
+  border-radius: 18px;
+  background: rgba(12, 20, 36, 0.45);
+}
+
+.swipeHint {
+  display: none;
+  margin: 0;
+  padding: 10px 16px 0;
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.55);
+  text-align: left;
+}
+
+.table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.caption,
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.corner,
+.colHead,
+.oursHead,
+.question,
+.cell,
+.oursCell {
+  padding: 18px 20px;
+  vertical-align: top;
+}
+
+.colHead,
+.oursHead {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.55);
+  border-bottom: 1px solid rgba(247, 243, 236, 0.16);
+}
+
+.oursHead {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #d4a843;
+}
+
+.question {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff;
+  width: 22%;
+  border-top: 1px solid rgba(247, 243, 236, 0.1);
+}
+
+.cell,
+.oursCell {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  width: 26%;
+  border-top: 1px solid rgba(247, 243, 236, 0.1);
+}
+
+.cell {
+  color: rgba(247, 243, 236, 0.68);
+}
+
+.oursCell {
+  color: #ffffff;
+  font-weight: 500;
+  background: rgba(212, 168, 67, 0.08);
+}
+
+tbody tr:last-child .question,
+tbody tr:last-child .cell,
+tbody tr:last-child .oursCell {
+  border-bottom: none;
+}
+
+@media (max-width: 800px) {
+  .section {
+    padding: 64px 16px 72px;
+  }
+
+  .subtitle {
+    margin-bottom: 28px;
+  }
+
+  .swipeHint {
+    display: block;
+  }
+
+  .corner,
+  .colHead,
+  .oursHead,
+  .question,
+  .cell,
+  .oursCell {
+    padding: 14px 16px;
+  }
+}
