@@ -221,5 +221,10 @@ tbody tr:last-child .oursCell {
 
   .oursCell::before {
     color: #d4a843;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 0.82rem;
+    font-weight: 600;
   }
 }
