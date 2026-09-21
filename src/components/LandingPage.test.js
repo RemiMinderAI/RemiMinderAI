@@ -123,7 +123,18 @@ describe("LandingPage hero redesign", () => {
       screen.queryByRole("heading", { name: /start caring with confidence/i })
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/zero to beta in 7 weeks/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/free 14-day trial/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/free 14-day trial/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/remembers so you don't have to/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /^app store$/i })).toHaveAttribute(
+      "href",
+      "https://apps.apple.com/us/app/remiminderai/id6776771952"
+    );
+    expect(screen.getByRole("link", { name: /^google play$/i })).toHaveAttribute(
+      "href",
+      "https://play.google.com/store/apps/details?id=com.remiminderai.app"
+    );
+    expect(screen.queryByRole("link", { name: /download now/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/^download now$/i)).not.toBeInTheDocument();
   });
 
   test("shows real-user testimonials and a featured Instagram video review", () => {

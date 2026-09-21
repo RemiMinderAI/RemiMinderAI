@@ -1,0 +1,86 @@
+.section {
+  color-scheme: dark;
+  background: #10182c;
+  color: #ffffff;
+  padding: 56px 5% 48px;
+  text-align: center;
+}
+
+.wordmark {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.tagline {
+  margin: 10px 0 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.stores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.storeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 168px;
+  padding: 12px 22px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f3dc9a 0%, #d4a843 48%, #c4962e 100%);
+  color: #1b1408;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(212, 168, 67, 0.28);
+}
+
+.storeButton svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.storeButton:hover {
+  filter: brightness(1.05);
+}
+
+.trial {
+  margin: 16px 0 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 44px 20px 36px;
+  }
+
+  .stores {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .storeButton {
+    width: min(100%, 240px);
+  }
+}

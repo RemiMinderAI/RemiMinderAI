@@ -9,6 +9,7 @@ import ProductWorkflow from "./ProductWorkflow";
 import RealLifeSection from "./RealLifeSection";
 import AnyLanguageSection from "./AnyLanguageSection";
 import WhyNotGroupTextSection from "./WhyNotGroupTextSection";
+import DownloadCloseSection from "./DownloadCloseSection";
 import { Mic, CheckCircle2, Bell, Sparkles } from "lucide-react";
 
 const LandingPage = () => {
@@ -143,6 +144,7 @@ const LandingPage = () => {
         RemiMinderAI is not a medical device and does not provide medical advice, diagnosis, or
         treatment. Always follow your healthcare provider&apos;s instructions.
       </p>
+      <DownloadCloseSection />
       <SiteFooter />
 
     </div>
