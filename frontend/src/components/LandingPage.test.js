@@ -235,11 +235,9 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByText(/family chats, shared notes, and spreadsheets get you halfway/i)
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /family chat/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: /shared spreadsheet/i })
-    ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /^remiminderai$/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/^family chat$/i).length).toBe(6);
+    expect(screen.getAllByText(/^shared spreadsheet$/i).length).toBe(6);
+    expect(screen.getAllByText(/^remiminderai$/i).length).toBeGreaterThanOrEqual(6);
     expect(
       screen.getByText(/recap from whoever was in the room, half-remembered/i)
     ).toBeInTheDocument();
