@@ -154,9 +154,16 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: /what it looks like in real life/i,
+        name: /from the waiting room to your phone/i,
       })
     ).toBeInTheDocument();
+    expect(screen.getByText(/how it works in practice/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/a real appointment\. a real summary\. a real reminder\./i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/^step 1$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^step 2$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^step 3$/i)).toBeInTheDocument();
     expect(screen.getByText(/9:45 AM\. Monday\. San Jose, CA\./i)).toBeInTheDocument();
     expect(screen.getByText(/10:32 AM\. You're at work\./i)).toBeInTheDocument();
     expect(
@@ -166,7 +173,7 @@ describe("LandingPage hero redesign", () => {
     expect(screen.queryByText(/in zurich/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/in lisbon/i)).not.toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: /recording a doctor visit/i })
+      screen.getByRole("img", { name: /record visit screen with consent checkboxes/i })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: /conditions discussed, medication, and next to do/i })
