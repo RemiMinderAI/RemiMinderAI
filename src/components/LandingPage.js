@@ -7,6 +7,7 @@ import SiteFooter from "./SiteFooter";
 import HeroSection from "./HeroSection";
 import ProductWorkflow from "./ProductWorkflow";
 import WhatRemiMinderIsSection from "./WhatRemiMinderIsSection";
+import RealLifeSection from "./RealLifeSection";
 import { 
   Mic, CheckCircle2, Star, Bell, Sparkles,
   Zap, Globe
@@ -140,6 +141,8 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+      <RealLifeSection />
 
       {/* ── SOCIAL PROOF BAR ── */}
       <div className={styles.socialProofBar}>
