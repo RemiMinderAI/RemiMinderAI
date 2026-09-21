@@ -92,6 +92,20 @@ describe("LandingPage hero redesign", () => {
       screen.getByRole("heading", { name: /say it once/i })
     ).toBeInTheDocument();
     expect(screen.getByText(/new in the app/i)).toBeInTheDocument();
+
+    const headings = screen.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent);
+    const at = (pattern) => headings.findIndex((text) => pattern.test(text));
+    const sectionOrder = [
+      /one visit\. a shared plan/i,
+      /built for family caregivers/i,
+      /the tools you're already using/i,
+      /from the waiting room to your phone/i,
+      /one visit\. any language/i,
+      /real people\. real appointments/i,
+    ].map(at);
+    expect(sectionOrder.every((index) => index >= 0)).toBe(true);
+    expect(sectionOrder).toEqual([...sectionOrder].sort((a, b) => a - b));
+    expect(at(/the tools you're already using/i)).toBe(at(/built for family caregivers/i) + 1);
     expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/being there for someone doesn't always mean being in the room/i)
@@ -154,9 +168,16 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: /what it looks like in real life/i,
+        name: /from the waiting room to your phone/i,
       })
     ).toBeInTheDocument();
+    expect(screen.getByText(/how it works in practice/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/a real appointment\. a real summary\. a real reminder\./i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/^step 1$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^step 2$/i)).toBeInTheDocument();
+    expect(screen.getByText(/^step 3$/i)).toBeInTheDocument();
     expect(screen.getByText(/9:45 AM\. Monday\. San Jose, CA\./i)).toBeInTheDocument();
     expect(screen.getByText(/10:32 AM\. You're at work\./i)).toBeInTheDocument();
     expect(
@@ -166,7 +187,7 @@ describe("LandingPage hero redesign", () => {
     expect(screen.queryByText(/in zurich/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/in lisbon/i)).not.toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: /recording a doctor visit/i })
+      screen.getByRole("img", { name: /record visit screen with consent checkboxes/i })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: /conditions discussed, medication, and next to do/i })
