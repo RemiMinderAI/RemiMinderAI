@@ -92,6 +92,20 @@ describe("LandingPage hero redesign", () => {
       screen.getByRole("heading", { name: /say it once/i })
     ).toBeInTheDocument();
     expect(screen.getByText(/new in the app/i)).toBeInTheDocument();
+
+    const headings = screen.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent);
+    const at = (pattern) => headings.findIndex((text) => pattern.test(text));
+    const sectionOrder = [
+      /one visit\. a shared plan/i,
+      /built for family caregivers/i,
+      /the tools you're already using/i,
+      /from the waiting room to your phone/i,
+      /one visit\. any language/i,
+      /real people\. real appointments/i,
+    ].map(at);
+    expect(sectionOrder.every((index) => index >= 0)).toBe(true);
+    expect(sectionOrder).toEqual([...sectionOrder].sort((a, b) => a - b));
+    expect(at(/the tools you're already using/i)).toBe(at(/built for family caregivers/i) + 1);
     expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/being there for someone doesn't always mean being in the room/i)

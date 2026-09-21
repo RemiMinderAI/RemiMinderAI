@@ -42,6 +42,46 @@ const LandingPage = () => {
         <ProductWorkflow />
       </main>
 
+      <section id="who-its-for" className={styles.whoItsFor}>
+        <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
+        <h2 className={styles.sectionTitle}>
+          Built for <span className={styles.tealText}>family caregivers</span>
+        </h2>
+        <p className={styles.sectionSubtitle}>
+          For family caregivers supporting loved ones with medical appointments.
+          RemiMinderAI helps everyone stay aligned on care plans — even if you
+          weren&apos;t in the room.
+        </p>
+
+        <div className={styles.whoFeatured}>
+          <div className={styles.whoFeaturedImageWrap}>
+            <img
+              src="/images/who-its-for-family-table.jpg"
+              alt="Adult children and a parent sitting at the kitchen table with prescriptions and appointment notes"
+              className={styles.whoFeaturedImage}
+            />
+          </div>
+          <div className={styles.whoFeaturedCopy}>
+            <div className={styles.personaTag}>Family caregivers</div>
+            <h3>The appointment lasted 12 minutes. The questions last for weeks.</h3>
+            <p>
+              After the visit, families are left piecing together medications,
+              instructions, and follow-ups from incomplete memories. RemiMinderAI
+              turns that conversation into a shared care plan the whole family can
+              revisit from anywhere.
+            </p>
+            <p className={styles.whoFeaturedClose}>
+              Help families stay aligned on care plans from anywhere.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <WhyNotGroupTextSection />
+      <RealLifeSection />
+      <AnyLanguageSection />
+      <TestimonialsSection />
+
       <section className={styles.remiVoxSection} aria-labelledby="remivox-heading">
         <div className={styles.remiVoxInner}>
           <div className={styles.remiVoxCopy}>
@@ -95,46 +135,6 @@ const LandingPage = () => {
               </span>
               <CheckCircle2 size={21} aria-hidden="true" />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <RealLifeSection />
-      <AnyLanguageSection />
-      <WhyNotGroupTextSection />
-      <TestimonialsSection />
-
-      <section id="who-its-for" className={styles.whoItsFor}>
-        <div className={styles.sectionLabel}>WHO IT&apos;S FOR</div>
-        <h2 className={styles.sectionTitle}>
-          Built for <span className={styles.tealText}>family caregivers</span>
-        </h2>
-        <p className={styles.sectionSubtitle}>
-          For family caregivers supporting loved ones with medical appointments.
-          RemiMinderAI helps everyone stay aligned on care plans — even if you
-          weren&apos;t in the room.
-        </p>
-
-        <div className={styles.whoFeatured}>
-          <div className={styles.whoFeaturedImageWrap}>
-            <img
-              src="/images/who-its-for-family-table.jpg"
-              alt="Adult children and a parent sitting at the kitchen table with prescriptions and appointment notes"
-              className={styles.whoFeaturedImage}
-            />
-          </div>
-          <div className={styles.whoFeaturedCopy}>
-            <div className={styles.personaTag}>Family caregivers</div>
-            <h3>The appointment lasted 12 minutes. The questions last for weeks.</h3>
-            <p>
-              After the visit, families are left piecing together medications,
-              instructions, and follow-ups from incomplete memories. RemiMinderAI
-              turns that conversation into a shared care plan the whole family can
-              revisit from anywhere.
-            </p>
-            <p className={styles.whoFeaturedClose}>
-              Help families stay aligned on care plans from anywhere.
-            </p>
           </div>
         </div>
       </section>

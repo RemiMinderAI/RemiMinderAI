@@ -1764,7 +1764,7 @@ a.hero2BtnTeal {
 .stepCard p { font-size: 0.9rem; color: var(--ink-light); line-height: 1.6; }
 
 /* ── WHO IT'S FOR ── */
-.whoItsFor { padding: 48px 5% 8px; background: var(--cream); text-align: center; }
+.whoItsFor { padding: 72px 5% 80px; background: var(--cream); text-align: center; }
 .whoItsFor .sectionSubtitle { margin: 0 auto 48px; max-width: 720px; }
 .whoFeatured {
   display: grid;
