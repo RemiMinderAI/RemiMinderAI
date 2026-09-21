@@ -1,102 +1,174 @@
-/* Editorial vignettes — modeled on Elderoak's "What it looks like in real life." */
-
 .section {
-  color-scheme: light;
-  background: #ffffff;
-  border-top: 1px solid #e5e0d3;
-  border-bottom: 1px solid #e5e0d3;
-  color: #1a2332;
-  padding: 80px 20px 88px;
-  /* Override global .App { text-align: center } so vignettes read as prose. */
+  color-scheme: dark;
+  background: #111318;
+  color: #f7f3ec;
+  padding: 88px 5% 96px;
   text-align: left;
 }
 
 .inner {
-  max-width: 48rem;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 .title {
+  margin: 0 0 64px;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.85rem, 4vw, 2.5rem);
-  font-weight: 600;
-  color: #1a2332;
-  line-height: 1.2;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   text-align: center;
-  margin: 0;
+  color: #ffffff;
 }
 
-.scenes {
+.moments {
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
-  margin-top: 3.5rem;
+  gap: 72px;
 }
 
-.scene {
-  margin: 0;
-  text-align: left;
+.moment {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(220px, 320px);
+  gap: 48px 64px;
+  align-items: center;
+}
+
+.imageLeft .copy {
+  order: 2;
+}
+
+.copy {
+  min-width: 0;
 }
 
 .kicker {
-  font-family: "Playfair Display", Georgia, serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  margin: 0 0 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 700;
   line-height: 1.35;
-  color: #d4614a;
-  margin: 0 0 0.75rem;
+  color: #e07a45;
 }
 
 .body {
-  font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: clamp(1.05rem, 1.8vw, 1.1875rem);
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
   line-height: 1.7;
-  color: #1a2332;
-  margin: 0 0 1rem;
+  color: rgba(247, 243, 236, 0.88);
 }
 
-.body:last-child {
-  margin-bottom: 0;
+.phone {
+  margin: 0 auto;
+  width: min(100%, 280px);
 }
 
-.close {
-  margin-top: 3.75rem;
-  padding-top: 2.25rem;
-  border-top: 1px solid #e5e0d3;
+.bezel {
+  padding: 10px;
+  border-radius: 36px;
+  background: #1c2430;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
+}
+
+.shot,
+.recordScreen {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 19.2;
+  border-radius: 28px;
+  background: #f5f0e6;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.recordScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 28px 18px;
+  box-sizing: border-box;
+}
+
+.recordCard {
+  width: 78%;
+  padding: 28px 16px 22px;
+  border-radius: 22px;
+  background: #1b2430;
   text-align: center;
 }
 
-.closeLine {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.3rem, 2.6vw, 1.65rem);
+.recordTime {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 2.4rem;
   font-weight: 600;
-  line-height: 1.35;
-  color: #1b2a4a;
-  margin: 0 0 1rem;
+  letter-spacing: -0.03em;
+  color: #7dcea0;
 }
 
-.languages {
-  font-family: "DM Sans", -apple-system, sans-serif;
-  font-size: 1.02rem;
-  line-height: 1.65;
-  color: #5a6a7a;
-  margin: 0 auto;
-  max-width: 38rem;
+.recordStatus {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #7dcea0;
 }
 
-@media (max-width: 640px) {
+.stopButton {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: #e24b4b;
+  box-shadow: 0 8px 18px rgba(226, 75, 75, 0.35);
+  position: relative;
+}
+
+.stopButton::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+}
+
+.recordHint {
+  margin: 0;
+  color: #6d6458;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
   .section {
     padding: 64px 20px 72px;
   }
 
-  .scenes {
-    gap: 2.75rem;
-    margin-top: 2.75rem;
+  .title {
+    margin-bottom: 40px;
   }
 
-  .close {
-    margin-top: 2.75rem;
+  .moment,
+  .imageLeft .copy {
+    order: 0;
+  }
+
+  .moment {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .imageLeft .copy {
+    order: 0;
+  }
+
+  .moments {
+    gap: 56px;
   }
 }
