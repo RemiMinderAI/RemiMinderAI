@@ -254,5 +254,9 @@ describe("LandingPage hero redesign", () => {
     const nav = screen.getByRole("navigation", { name: "Main" });
     expect(within(nav).queryByRole("link", { name: /^get started$/i })).not.toBeInTheDocument();
     expect(within(nav).getByRole("link", { name: /^home$/i })).toBeInTheDocument();
+
+    const product = screen.getByRole("navigation", { name: "Product" });
+    expect(within(product).queryByRole("link", { name: /^get started$/i })).not.toBeInTheDocument();
+    expect(within(product).getByRole("link", { name: /your start guide/i })).toBeInTheDocument();
   });
 });
