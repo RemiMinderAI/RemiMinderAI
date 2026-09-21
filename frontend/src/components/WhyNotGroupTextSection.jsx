@@ -1,4 +1,5 @@
 import React from "react";
+import { Check, X } from "lucide-react";
 import styles from "./WhyNotGroupTextSection.module.css";
 
 const QUESTIONS = [
@@ -10,43 +11,31 @@ const QUESTIONS = [
   "What if your family speaks Hindi or Spanish?",
 ];
 
-const CARDS = [
-  {
-    title: "Family chat",
-    featured: false,
-    answers: [
-      "Recap from whoever was in the room, half-remembered",
-      "Whoever texts back first guesses",
-      "Buried 200 messages back",
-      "Someone snaps a blurry photo",
-      "Family chats can overwhelm her",
-      "Everyone struggles in English",
-    ],
-  },
-  {
-    title: "Shared spreadsheet",
-    featured: false,
-    answers: [
-      "Notes from whoever drove that day",
-      "Spreadsheet — if anyone remembered to update it",
-      "On a tab no one opens",
-      "Manually typed, often wrong",
-      "Spreadsheets need a laptop",
-      "English-only columns",
-    ],
-  },
-  {
-    title: "RemiMinderAI",
-    featured: true,
-    answers: [
-      "Recorded and AI-summarized, word for word",
-      "Set a voice reminder once, she gets notified on time",
-      "Set it as a reminder — she won't miss it",
-      "OCR scans it, stores it clearly",
-      "Big buttons, voice input, works on her phone",
-      "Summaries in 10 languages",
-    ],
-  },
+const FAMILY_CHAT = [
+  "Recap from whoever was in the room, half-remembered",
+  "Whoever texts back first guesses",
+  "Buried 200 messages back",
+  "Someone snaps a blurry photo",
+  "Family chats can overwhelm her",
+  "Everyone struggles in English",
+];
+
+const SPREADSHEET = [
+  "Notes from whoever drove that day",
+  "Spreadsheet — if anyone remembered to update it",
+  "On a tab no one opens",
+  "Manually typed, often wrong",
+  "Spreadsheets need a laptop",
+  "English-only columns",
+];
+
+const REMI = [
+  "Recorded and AI-summarized, word for word",
+  "Set a voice reminder once, she gets notified on time",
+  "Set it as a reminder — she won't miss it",
+  "OCR scans it, stores it clearly",
+  "Big buttons, voice input, works on her phone",
+  "Summaries in 10 languages",
 ];
 
 export default function WhyNotGroupTextSection() {
@@ -65,21 +54,35 @@ export default function WhyNotGroupTextSection() {
           Here&apos;s where they stop.
         </p>
 
-        <div className={styles.cards}>
-          {CARDS.map((card) => (
-            <article
-              key={card.title}
-              className={`${styles.card} ${card.featured ? styles.featured : ""}`}
-            >
-              <h3>{card.title}</h3>
-              <dl>
-                {QUESTIONS.map((question, index) => (
-                  <div key={`${card.title}-${question}`}>
-                    <dt>{question}</dt>
-                    <dd>{card.answers[index]}</dd>
-                  </div>
-                ))}
-              </dl>
+        <div className={styles.grid}>
+          {QUESTIONS.map((question, index) => (
+            <article key={question} className={styles.card}>
+              <h3>{question}</h3>
+              <div className={styles.misses}>
+                <p>
+                  <X size={15} strokeWidth={2.6} aria-hidden="true" />
+                  <span>
+                    <span className={styles.source}>Family chat</span>
+                    {FAMILY_CHAT[index]}
+                  </span>
+                </p>
+                <p>
+                  <X size={15} strokeWidth={2.6} aria-hidden="true" />
+                  <span>
+                    <span className={styles.source}>Shared spreadsheet</span>
+                    {SPREADSHEET[index]}
+                  </span>
+                </p>
+              </div>
+              <div className={styles.hit}>
+                <p>
+                  <Check size={15} strokeWidth={2.8} aria-hidden="true" />
+                  <span>
+                    <span className={styles.source}>RemiMinderAI</span>
+                    {REMI[index]}
+                  </span>
+                </p>
+              </div>
             </article>
           ))}
         </div>

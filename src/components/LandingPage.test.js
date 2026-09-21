@@ -106,6 +106,8 @@ describe("LandingPage hero redesign", () => {
     expect(sectionOrder.every((index) => index >= 0)).toBe(true);
     expect(sectionOrder).toEqual([...sectionOrder].sort((a, b) => a - b));
     expect(at(/the tools you're already using/i)).toBe(at(/built for family caregivers/i) + 1);
+    expect(at(/say it once/i)).toBe(at(/one visit\. a shared plan/i) + 1);
+    expect(screen.queryByRole("link", { name: /download the app now/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/being there for someone doesn't always mean being in the room/i)
@@ -123,7 +125,22 @@ describe("LandingPage hero redesign", () => {
       screen.queryByRole("heading", { name: /start caring with confidence/i })
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/zero to beta in 7 weeks/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/free 14-day trial/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/free 14-day trial/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/remembers so you don't have to/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /download now/i })).toHaveAttribute(
+      "href",
+      "#get-started"
+    );
+    expect(
+      screen.getAllByRole("link", { name: /get it on google play/i }).some((link) =>
+        link.getAttribute("href")?.includes("play.google.com")
+      )
+    ).toBe(true);
+    expect(
+      screen.getAllByRole("link", { name: /download on the app store/i }).some((link) =>
+        link.getAttribute("href")?.includes("apps.apple.com")
+      )
+    ).toBe(true);
   });
 
   test("shows real-user testimonials and a featured Instagram video review", () => {
@@ -202,7 +219,7 @@ describe("LandingPage hero redesign", () => {
     expect(screen.getByText(/^español$/i)).toBeInTheDocument();
     expect(screen.getByText("हिन्दी")).toBeInTheDocument();
     expect(
-      screen.getByText(/english, bengali, portuguese, french, german, mandarin, arabic/i)
+      screen.getByText(/\+ english, bengali, portuguese, french, german and more/i)
     ).toBeInTheDocument();
   });
 
@@ -218,11 +235,9 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByText(/family chats, shared notes, and spreadsheets get you halfway/i)
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /family chat/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: /shared spreadsheet/i })
-    ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /^remiminderai$/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/^family chat$/i).length).toBe(6);
+    expect(screen.getAllByText(/^shared spreadsheet$/i).length).toBe(6);
+    expect(screen.getAllByText(/^remiminderai$/i).length).toBeGreaterThanOrEqual(6);
     expect(
       screen.getByText(/recap from whoever was in the room, half-remembered/i)
     ).toBeInTheDocument();
@@ -239,5 +254,9 @@ describe("LandingPage hero redesign", () => {
     const nav = screen.getByRole("navigation", { name: "Main" });
     expect(within(nav).queryByRole("link", { name: /^get started$/i })).not.toBeInTheDocument();
     expect(within(nav).getByRole("link", { name: /^home$/i })).toBeInTheDocument();
+
+    const product = screen.getByRole("navigation", { name: "Product" });
+    expect(within(product).queryByRole("link", { name: /^get started$/i })).not.toBeInTheDocument();
+    expect(within(product).getByRole("link", { name: /your start guide/i })).toBeInTheDocument();
   });
 });

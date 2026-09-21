@@ -39,8 +39,7 @@ export default function AnyLanguageSection() {
         </div>
 
         <p className={styles.more}>
-          + English, Bengali, Portuguese, French, German, Mandarin, Arabic, and
-          more
+          + English, Bengali, Portuguese, French, German and more
         </p>
       </div>
     </section>

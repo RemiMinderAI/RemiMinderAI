@@ -1138,9 +1138,9 @@ a.hero2BtnTeal {
   margin: 0 0 20px;
   color: var(--white);
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.25rem, 4.5vw, 3.8rem);
-  font-weight: 600;
-  line-height: 1.08;
+  font-size: clamp(1.7rem, 2.4vw, 2.05rem);
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: -0.025em;
 }
 .remiVoxTitle span {
@@ -1151,21 +1151,21 @@ a.hero2BtnTeal {
   max-width: 540px;
   margin: 0 0 18px;
   color: rgba(255,255,255,0.76);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 .remiVoxOffer {
   width: fit-content;
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin: 0 0 24px;
-  padding: 10px 14px;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 14px;
   border: 1px solid rgba(232, 198, 111, 0.45);
   border-radius: 12px;
   background: rgba(232, 198, 111, 0.12);
   color: #f5df9e;
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   animation: remiVoxOfferGlow 2.4s ease-in-out infinite;
 }
 .remiVoxOffer svg {
@@ -1764,7 +1764,7 @@ a.hero2BtnTeal {
 .stepCard p { font-size: 0.9rem; color: var(--ink-light); line-height: 1.6; }
 
 /* ── WHO IT'S FOR ── */
-.whoItsFor { padding: 72px 5% 80px; background: var(--cream); text-align: center; }
+.whoItsFor { padding: 72px 5% 28px; background: var(--cream); text-align: center; }
 .whoItsFor .sectionSubtitle { margin: 0 auto 48px; max-width: 720px; }
 .whoFeatured {
   display: grid;
