@@ -1,0 +1,102 @@
+/* Editorial vignettes — modeled on Elderoak's "What it looks like in real life." */
+
+.section {
+  color-scheme: light;
+  background: #ffffff;
+  border-top: 1px solid #e5e0d3;
+  border-bottom: 1px solid #e5e0d3;
+  color: #1a2332;
+  padding: 80px 20px 88px;
+  /* Override global .App { text-align: center } so vignettes read as prose. */
+  text-align: left;
+}
+
+.inner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #1a2332;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 0;
+}
+
+.scenes {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  margin-top: 3.5rem;
+}
+
+.scene {
+  margin: 0;
+  text-align: left;
+}
+
+.kicker {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  line-height: 1.35;
+  color: #d4614a;
+  margin: 0 0 0.75rem;
+}
+
+.body {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.1875rem);
+  line-height: 1.7;
+  color: #1a2332;
+  margin: 0 0 1rem;
+}
+
+.body:last-child {
+  margin-bottom: 0;
+}
+
+.close {
+  margin-top: 3.75rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid #e5e0d3;
+  text-align: center;
+}
+
+.closeLine {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.3rem, 2.6vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1b2a4a;
+  margin: 0 0 1rem;
+}
+
+.languages {
+  font-family: "DM Sans", -apple-system, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #5a6a7a;
+  margin: 0 auto;
+  max-width: 38rem;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 20px 72px;
+  }
+
+  .scenes {
+    gap: 2.75rem;
+    margin-top: 2.75rem;
+  }
+
+  .close {
+    margin-top: 2.75rem;
+  }
+}

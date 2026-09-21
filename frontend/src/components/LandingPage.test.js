@@ -132,6 +132,45 @@ describe("LandingPage hero redesign", () => {
     );
   });
 
+  test("tells real-life caregiving stories across cities", () => {
+    renderHome();
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: /what it looks like in real life/i,
+      })
+    ).toBeInTheDocument();
+    expect(screen.getByText(/9:45 AM, Monday\. San Jose, CA\./i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/she opens remiminderai and taps record/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/you didn't have to call\. you didn't have to guess/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/in delhi, a son finally gets the full picture/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/now anish knows what ["“]fine["”] really means/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/in zurich, a grandson worries less/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/in lisbon, a daughter stays informed/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/thursday, 8:00 PM\. back in san jose/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/caregiving doesn't stop at borders/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/hindi, bengali, spanish, german, portuguese/i)
+    ).toBeInTheDocument();
+  });
+
   test("does not show Get Started in the home nav bar", () => {
     renderHome();
 
