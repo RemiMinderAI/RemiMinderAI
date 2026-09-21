@@ -89,9 +89,9 @@ describe("LandingPage hero redesign", () => {
       })
     ).toBeInTheDocument();
     expect(
-      screen.queryByRole("heading", { name: /say it once/i })
-    ).not.toBeInTheDocument();
-    expect(screen.queryByText(/new in the app/i)).not.toBeInTheDocument();
+      screen.getByRole("heading", { name: /say it once/i })
+    ).toBeInTheDocument();
+    expect(screen.getByText(/new in the app/i)).toBeInTheDocument();
     expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/being there for someone doesn't always mean being in the room/i)
@@ -148,7 +148,7 @@ describe("LandingPage hero redesign", () => {
     );
   });
 
-  test("tells real-life caregiving stories across cities", () => {
+  test("shows the San Jose story with app screenshots and language summaries", () => {
     renderHome();
 
     expect(
@@ -157,70 +157,59 @@ describe("LandingPage hero redesign", () => {
         name: /what it looks like in real life/i,
       })
     ).toBeInTheDocument();
-    expect(screen.getByText(/9:45 AM, Monday\. San Jose, CA\./i)).toBeInTheDocument();
-    expect(
-      screen.getByText(/she opens remiminderai and taps record/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/you didn't have to call\. you didn't have to guess/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/in delhi, a son finally gets the full picture/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/now anish knows what ["“]fine["”] really means/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/in zurich, a grandson worries less/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/in lisbon, a daughter stays informed/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/9:45 AM\. Monday\. San Jose, CA\./i)).toBeInTheDocument();
+    expect(screen.getByText(/10:32 AM\. You're at work\./i)).toBeInTheDocument();
     expect(
       screen.getByText(/thursday, 8:00 PM\. back in san jose/i)
     ).toBeInTheDocument();
+    expect(screen.queryByText(/in delhi/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/in zurich/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/in lisbon/i)).not.toBeInTheDocument();
     expect(
-      screen.getByText(/caregiving doesn't stop at borders/i)
+      screen.getByRole("img", { name: /recording a doctor visit/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/hindi, bengali, spanish, german, portuguese/i)
+      screen.getByRole("img", { name: /conditions discussed, medication, and next to do/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /atorvastatin, metoprolol/i })
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByRole("heading", { name: /one visit\. any language/i })
+    ).toBeInTheDocument();
+    expect(screen.getByText(/^español$/i)).toBeInTheDocument();
+    expect(screen.getByText("हिन्दी")).toBeInTheDocument();
+    expect(
+      screen.getByText(/english, bengali, portuguese, french, german, mandarin, arabic/i)
     ).toBeInTheDocument();
   });
 
-  test("compares RemiMinderAI to group texts and spreadsheets", () => {
+  test("compares family chat, spreadsheets, and RemiMinderAI in cards", () => {
     renderHome();
 
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: /why not just a group text/i,
+        name: /the tools you're already using weren't built for this/i,
       })
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/we tried the group-text route too/i)
+      screen.getByText(/family chats, shared notes, and spreadsheets get you halfway/i)
     ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /family chat/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("columnheader", { name: /group texts/i })
+      screen.getByRole("heading", { name: /shared spreadsheet/i })
     ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /^remiminderai$/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("columnheader", { name: /shared spreadsheet/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("columnheader", { name: /remiminderai/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("rowheader", { name: /what did the doctor actually say/i })
+      screen.getByText(/recap from whoever was in the room, half-remembered/i)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/recorded and ai-summarized, word for word/i)
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(/ocr scans it, stores it clearly/i)
-    ).toBeInTheDocument();
     expect(screen.getByText(/summaries in 10 languages/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /try it free — no credit card needed/i })
-    ).toHaveAttribute("href", "#get-started");
+    expect(screen.queryByRole("table")).not.toBeInTheDocument();
   });
 
   test("does not show Get Started in the home nav bar", () => {
