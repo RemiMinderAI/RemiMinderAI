@@ -83,6 +83,22 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByAltText(/kitchen table with prescriptions/i)
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /the appointment lasted 12 minutes/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: /say it once/i })
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/new in the app/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/loved by early beta users/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/being there for someone doesn't always mean being in the room/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/every appointment contains important decisions/i)
+    ).not.toBeInTheDocument();
   });
 
   test("drops the bottom Get Started Today CTA and keeps the trial proof line", () => {
@@ -93,7 +109,7 @@ describe("LandingPage hero redesign", () => {
       screen.queryByRole("heading", { name: /start caring with confidence/i })
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/zero to beta in 7 weeks/i)).not.toBeInTheDocument();
-    expect(screen.getAllByText(/free 14-day trial/i).length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText(/free 14-day trial/i)).toBeInTheDocument();
   });
 
   test("shows real-user testimonials and a featured Instagram video review", () => {
@@ -169,6 +185,42 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByText(/hindi, bengali, spanish, german, portuguese/i)
     ).toBeInTheDocument();
+  });
+
+  test("compares RemiMinderAI to group texts and spreadsheets", () => {
+    renderHome();
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: /why not just a group text/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/we tried the group-text route too/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /group texts/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /shared spreadsheet/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /remiminderai/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("rowheader", { name: /what did the doctor actually say/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/recorded and ai-summarized, word for word/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/ocr scans it, stores it clearly/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/summaries in 10 languages/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /try it free — no credit card needed/i })
+    ).toHaveAttribute("href", "#get-started");
   });
 
   test("does not show Get Started in the home nav bar", () => {
