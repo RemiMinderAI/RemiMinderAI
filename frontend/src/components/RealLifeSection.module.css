@@ -2,7 +2,7 @@
   color-scheme: dark;
   background: #111318;
   color: #f7f3ec;
-  padding: 88px 5% 96px;
+  padding: 48px 5% 52px;
   text-align: left;
 }
 
@@ -12,14 +12,14 @@
 }
 
 .header {
-  margin: 0 auto 72px;
+  margin: 0 auto 28px;
   max-width: 760px;
   text-align: center;
 }
 
 .badge {
   display: inline-block;
-  margin: 0 0 18px;
+  margin: 0 0 10px;
   padding: 7px 14px;
   border-radius: 999px;
   background: #f3e6c8;
@@ -32,7 +32,7 @@
 }
 
 .title {
-  margin: 0 auto 14px;
+  margin: 0 auto 8px;
   max-width: 16em;
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(2rem, 4vw, 2.85rem);
@@ -51,20 +51,21 @@
 }
 
 .moments {
-  display: flex;
-  flex-direction: column;
-  gap: 88px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
 }
 
 .moment {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(240px, 300px);
-  gap: 48px 72px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
 }
 
 .imageLeft .copy {
-  order: 2;
+  order: 0;
 }
 
 .copy {
@@ -73,7 +74,7 @@
 
 .step {
   display: inline-block;
-  margin: 0 0 14px;
+  margin: 0 0 8px;
   padding: 5px 12px;
   border-radius: 999px;
   background: #e7eef6;
@@ -85,7 +86,7 @@
 }
 
 .kicker {
-  margin: 0 0 16px;
+  margin: 0 0 8px;
   font-family: "DM Sans", sans-serif;
   font-size: clamp(1.15rem, 2vw, 1.35rem);
   font-weight: 700;
@@ -98,12 +99,12 @@
   margin: 0;
   font-family: "DM Sans", sans-serif;
   font-size: clamp(1.02rem, 1.6vw, 1.12rem);
-  line-height: 1.65;
+  line-height: 1.5;
   color: rgba(247, 243, 236, 0.88);
 }
 
 .body p + p {
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .body strong {
@@ -113,7 +114,7 @@
 
 .phone {
   margin: 0 auto;
-  width: min(100%, 292px);
+  width: min(100%, 220px);
   border-radius: 28px;
   background: #f4efe6;
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
@@ -123,27 +124,27 @@
 .recordScreen,
 .visitScreen,
 .remindersScreen {
-  padding: 18px 16px 16px;
+  padding: 12px 12px 10px;
 }
 
 .recordHeader {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-family: "DM Sans", sans-serif;
-  font-size: 1rem;
+  font-size: 0.86rem;
   font-weight: 700;
 }
 
 .timerCard {
   margin: 0 6px;
-  padding: 14px 8px 10px;
-  border-radius: 18px;
+  padding: 10px 8px 8px;
+  border-radius: 14px;
   background: #ffffff;
   text-align: center;
   font-family: "DM Sans", sans-serif;
-  font-size: 2.7rem;
+  font-size: 2.1rem;
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -152,7 +153,7 @@
 
 .readyPill {
   width: fit-content;
-  margin: 12px auto 14px;
+  margin: 8px auto 8px;
   padding: 7px 14px;
   border-radius: 999px;
   background: #e6e2dc;
@@ -163,15 +164,15 @@
 }
 
 .consentCard {
-  padding: 14px 12px 8px;
+  padding: 10px 10px 4px;
   border-radius: 16px;
   background: #ffffff;
 }
 
 .consentTitle {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   font-family: "DM Sans", sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
@@ -179,9 +180,9 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-family: "DM Sans", sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   line-height: 1.35;
   color: #3d4a5c;
 }
@@ -201,9 +202,9 @@
 .micButton {
   display: grid;
   place-items: center;
-  width: 74px;
-  height: 74px;
-  margin: 18px auto 8px;
+  width: 56px;
+  height: 56px;
+  margin: 10px auto 4px;
   border-radius: 50%;
   background: #3a6ea5;
   color: #ffffff;
@@ -220,7 +221,7 @@
 }
 
 .visitTitle {
-  margin: 4px 0 14px;
+  margin: 2px 0 8px;
   text-align: center;
   font-family: "DM Sans", sans-serif;
   font-size: 1.05rem;
@@ -228,8 +229,8 @@
 }
 
 .visitCard {
-  margin-bottom: 10px;
-  padding: 12px 12px 10px;
+  margin-bottom: 6px;
+  padding: 8px 10px 7px;
   border-radius: 16px;
   background: #ffffff;
   box-shadow: 0 1px 2px rgba(27, 42, 74, 0.05);
@@ -289,7 +290,7 @@
   display: flex;
   justify-content: center;
   gap: 28px;
-  margin: 2px 0 12px;
+  margin: 0 0 8px;
   font-family: "DM Sans", sans-serif;
   font-size: 0.86rem;
   font-weight: 600;
@@ -305,15 +306,15 @@
 .reminderList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 
 .reminderRow {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
-  padding: 8px 8px;
+  padding: 6px 6px;
   border-radius: 12px;
   background: #ffffff;
 }
@@ -364,7 +365,7 @@
 .tabBar {
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
+  margin-top: 8px;
   padding: 8px 8px 7px;
   border-radius: 16px;
   background: #1b2a4a;
@@ -389,23 +390,23 @@
 
 @media (max-width: 800px) {
   .section {
-    padding: 64px 20px 72px;
+    padding: 40px 20px 44px;
   }
 
   .header {
-    margin-bottom: 40px;
-  }
-
-  .moment {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .imageLeft .copy {
-    order: 0;
+    margin-bottom: 20px;
   }
 
   .moments {
-    gap: 56px;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .moment {
+    gap: 12px;
+  }
+
+  .phone {
+    width: min(100%, 230px);
   }
 }

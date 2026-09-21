@@ -78,7 +78,7 @@ function RecordPhone() {
           </div>
         </div>
         <span className={styles.micButton} aria-hidden="true">
-          <Mic size={28} strokeWidth={2.2} />
+          <Mic size={22} strokeWidth={2.2} />
         </span>
         <p className={styles.micHint}>Tap to start recording</p>
       </div>
