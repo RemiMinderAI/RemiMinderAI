@@ -1,8 +1,8 @@
 .section {
-  color-scheme: dark;
-  background: #111318;
-  color: #f7f3ec;
-  padding: 24px 5% 96px;
+  color-scheme: light;
+  background: #f7f3ec;
+  color: #1b2a4a;
+  padding: 88px 5% 96px;
   text-align: center;
 }
 
@@ -31,7 +31,7 @@
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   line-height: 1.15;
-  color: #ffffff;
+  color: #1b2a4a;
 }
 
 .subtitle {
@@ -40,7 +40,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 1.08rem;
   line-height: 1.6;
-  color: rgba(247, 243, 236, 0.72);
+  color: #5c5348;
 }
 
 .phones {
@@ -59,8 +59,9 @@
 .bezel {
   padding: 10px;
   border-radius: 36px;
-  background: #1c2430;
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
+  background: #f5f0e6;
+  border: 1px solid rgba(27, 42, 74, 0.08);
+  box-shadow: 0 18px 40px rgba(27, 42, 74, 0.12);
 }
 
 .bezel img {
@@ -78,22 +79,40 @@
   font-family: "DM Sans", sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
-  color: #f7f3ec;
+  color: #1b2a4a;
 }
 
 .more {
   margin: 36px 0 0;
   font-family: "DM Sans", sans-serif;
   font-size: 1rem;
-  color: rgba(247, 243, 236, 0.62);
+  color: #6d6458;
 }
 
 @media (max-width: 700px) {
   .section {
-    padding: 8px 20px 72px;
+    padding: 64px 20px 72px;
   }
 
   .phones {
-    gap: 28px;
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .phone {
+    width: calc(50% - 6px);
+  }
+
+  .bezel {
+    padding: 6px;
+    border-radius: 24px;
+  }
+
+  .bezel img {
+    border-radius: 18px;
+  }
+
+  .phone figcaption {
+    font-size: 0.95rem;
   }
 }

@@ -53,20 +53,15 @@
 
 .card h3 {
   margin: 0 0 8px;
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #6b7280;
-}
-
-.featured h3 {
   font-family: "Playfair Display", Georgia, serif;
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  text-transform: none;
+  line-height: 1.2;
+  color: #1a2332;
+}
+
+.featured h3 {
   color: #1b2a4a;
 }
 
@@ -81,8 +76,8 @@
 
 .card dt {
   margin: 0 0 4px;
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.92rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.35;
   color: #1a2332;
