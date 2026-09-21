@@ -151,7 +151,7 @@ describe("Blog", () => {
     ).toBeInTheDocument();
   });
 
-  test("puts Blog in the site nav between Use Cases and About", () => {
+  test("puts Blog in the site nav between Your Start Guide and About", () => {
     render(
       <MemoryRouter>
         <MarketingHeader scrolled={false} />
@@ -163,11 +163,12 @@ describe("Blog", () => {
       .getAllByRole("link")
       .map((el) => el.textContent);
 
-    const useCases = links.indexOf("Use Cases");
+    const startGuide = links.indexOf("Your Start Guide");
     const blog = links.indexOf("Blog");
     const about = links.indexOf("About");
-    expect(useCases).toBeGreaterThanOrEqual(0);
-    expect(blog).toBe(useCases + 1);
+    expect(startGuide).toBeGreaterThanOrEqual(0);
+    expect(blog).toBe(startGuide + 1);
     expect(about).toBeGreaterThan(blog);
+    expect(links).not.toContain("Use Cases");
   });
 });
