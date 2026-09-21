@@ -1,86 +1,97 @@
 import React from "react";
 import styles from "./RealLifeSection.module.css";
 
-const SCENES = [
+const MOMENTS = [
   {
-    kicker: "9:45 AM, Monday. San Jose, CA.",
-    paragraphs: [
-      "Your mom walks into Dr. Patel's office right on time. She opens RemiMinderAI and taps Record.",
-      "For the next 40 minutes, the doctor talks about her bloodwork, adjusts her thyroid medication, and recommends a follow-up in six weeks.",
-      "Your mom nods along. She doesn't take notes. She doesn't have to.",
-    ],
+    kicker: "9:45 AM. Monday. San Jose, CA.",
+    body: "Your mom walks into Dr. Patel's office right on time. She opens RemiMinderAI and taps Record. For the next 40 minutes, the doctor talks about her bloodwork, adjusts her thyroid medication, and recommends a follow-up in six weeks. Your mom nods along. She doesn't take notes. She doesn't have to.",
+    visual: "record",
+    imageSide: "right",
   },
   {
-    kicker: "10:32 AM.",
-    paragraphs: [
-      "You're at work. You open RemiMinderAI and the summary is right there — the medication change, the follow-up date, the doctor's exact recommendations. Clear and simple, in English.",
-      "You exhale. You didn't have to call. You didn't have to guess. You know.",
-    ],
-  },
-  {
-    kicker: "In Delhi, a son finally gets the full picture.",
-    paragraphs: [
-      "Anish lives in Chicago. His father sees his cardiologist alone in Delhi and always says the visit went “fine.”",
-      "This time, his father used RemiMinderAI to record the conversation. Anish opens the app and reads the summary. The doctor increased his father's dosage and ordered a blood test in two weeks. His father hadn't mentioned any of it.",
-      "Now Anish knows what “fine” really means.",
-    ],
-  },
-  {
-    kicker: "In Zurich, a grandson worries less.",
-    paragraphs: [
-      "Markus lives in Berlin. His grandmother sees her doctor in Zurich. After her appointment, Markus opens RemiMinderAI and reads the visit summary. The doctor recommended physical therapy and flagged a bone density concern.",
-      "He calls that evening — not to hover, just to help.",
-    ],
-  },
-  {
-    kicker: "In Lisbon, a daughter stays informed.",
-    paragraphs: [
-      "Sofia moved to London three years ago. Her father manages his diabetes alone in Lisbon. After his appointment, Sofia checks RemiMinderAI. The doctor adjusted his insulin and flagged his A1C.",
-      "She didn't have to wait for a crisis to find out.",
-    ],
+    kicker: "10:32 AM. You're at work.",
+    body: "You open RemiMinderAI and the summary is right there — the medication change, the follow-up date, the doctor's exact recommendations. Clear and simple, in English. You didn't have to call. You didn't have to guess. You know.",
+    visual: "summary",
+    imageSide: "left",
   },
   {
     kicker: "Thursday, 8:00 PM. Back in San Jose.",
-    paragraphs: [
-      "Your mom forgets her evening dose. She's done it before. But tonight, RemiMinderAI reminds her — because you set it up, once, by voice.",
-    ],
+    body: "Your mom forgets her evening dose. She's done it before. But tonight, RemiMinderAI reminds her — because you set it up, once, by voice.",
+    visual: "reminders",
+    imageSide: "right",
   },
 ];
 
+function Phone({ children, label }) {
+  return (
+    <div className={styles.phone} role="img" aria-label={label}>
+      <div className={styles.bezel}>{children}</div>
+    </div>
+  );
+}
+
+function RecordPhone() {
+  return (
+    <Phone label="RemiMinderAI recording a doctor visit, with the timer running and a stop control">
+      <div className={styles.recordScreen} aria-hidden="true">
+        <div className={styles.recordCard}>
+          <p className={styles.recordTime}>12:34</p>
+          <p className={styles.recordStatus}>Recording</p>
+        </div>
+        <span className={styles.stopButton} aria-hidden="true" />
+        <p className={styles.recordHint}>Tap to stop</p>
+      </div>
+    </Phone>
+  );
+}
+
+function ScreenshotPhone({ src, alt }) {
+  return (
+    <Phone label={alt}>
+      <img className={styles.shot} src={src} alt="" />
+    </Phone>
+  );
+}
+
 export default function RealLifeSection() {
   return (
-    <section
-      className={styles.section}
-      id="real-life"
-      aria-labelledby="real-life-heading"
-    >
+    <section className={styles.section} id="real-life" aria-labelledby="real-life-heading">
       <div className={styles.inner}>
         <h2 id="real-life-heading" className={styles.title}>
           What it looks like in real life.
         </h2>
+        <div className={styles.moments}>
+          {MOMENTS.map((moment) => {
+            const visual =
+              moment.visual === "record" ? (
+                <RecordPhone />
+              ) : moment.visual === "summary" ? (
+                <ScreenshotPhone
+                  src="/images/visit-care-plan.jpg"
+                  alt="Visit summary with conditions discussed, medication, and next to do"
+                />
+              ) : (
+                <ScreenshotPhone
+                  src="/images/reminders-list.png"
+                  alt="Reminders for Atorvastatin, Metoprolol, physical therapy, and an imaging CT scan"
+                />
+              );
 
-        <div className={styles.scenes}>
-          {SCENES.map((scene) => (
-            <article key={scene.kicker} className={styles.scene}>
-              <p className={styles.kicker}>{scene.kicker}</p>
-              {scene.paragraphs.map((paragraph) => (
-                <p key={paragraph} className={styles.body}>
-                  {paragraph}
-                </p>
-              ))}
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.close}>
-          <p className={styles.closeLine}>
-            Caregiving doesn&apos;t stop at borders. Neither does RemiMinderAI.
-          </p>
-          <p className={styles.languages}>
-            Summaries default in English. Need them in Hindi, Bengali, Spanish,
-            German, Portuguese, or any of 10 supported languages? Just change
-            the setting.
-          </p>
+            return (
+              <article
+                key={moment.kicker}
+                className={`${styles.moment} ${
+                  moment.imageSide === "left" ? styles.imageLeft : ""
+                }`}
+              >
+                <div className={styles.copy}>
+                  <p className={styles.kicker}>{moment.kicker}</p>
+                  <p className={styles.body}>{moment.body}</p>
+                </div>
+                {visual}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
