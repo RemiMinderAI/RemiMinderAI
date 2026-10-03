@@ -11,7 +11,7 @@ By using the Services, you agree to the practices described here. If you don't a
 
 ### Note on HIPAA Compliance
 
-RemiMinderAI is designed with privacy best practices aligned to HIPAA principles (encryption, access controls, no sale of data). However, RemiMinderAI is not a HIPAA-covered entity and does not operate under a Business Associate Agreement (BAA). If you require HIPAA-covered services for your healthcare practice, please consult with qualified legal counsel. For individual users, our encryption and privacy practices provide strong data protection.
+RemiMinderAI is designed with privacy best practices aligned to HIPAA principles (encryption, access controls, no sale of data). However, RemiMinderAI is not a HIPAA-covered entity and does not enter business associate agreements with healthcare providers. If you require HIPAA-covered services for your healthcare practice, please consult with qualified legal counsel. For individual users, our encryption and privacy practices provide strong data protection.
 
 ## 2. Information We Collect
 
@@ -32,12 +32,12 @@ RemiMinderAI includes RemiVox, an optional voice companion that lets you ask que
 
 **What we collect when you use RemiVox:**
 
-- **Voice audio** — captured through your device microphone only while the RemiVox button is actively pressed
+- **Voice audio** — captured through your device microphone only after you tap the RemiVox button
 - **Text transcript** — generated from your voice audio
 - **Question or command** — as interpreted by our AI system
 - **AI-generated spoken response** — delivered back to you
 
-**RemiVox does not listen in the background.** Audio capture occurs only when you actively initiate a voice interaction by pressing the RemiVox button. A visible on-screen indicator confirms when audio capture is active.
+**RemiVox does not listen in the background.** Audio capture starts only when you tap the RemiVox button. A visible on-screen indicator confirms when audio capture is active.
 
 ## Third-Party AI Services (RemiVox)
 
@@ -51,7 +51,7 @@ RemiVox processes your voice through three third-party services to convert your 
 
 **How your data flows:**
 
-1. Your voice audio is streamed to Deepgram, which returns a text transcript. Deepgram does not store your audio after transcription is complete.
+1. Your voice audio is streamed to Deepgram, which returns a text transcript.
 2. The transcript, along with relevant context from your health records (such as medication names or appointment details needed to answer your question), is sent to Google's Gemini API. Gemini processes the request and returns a text response. Per Google's API data usage policies, data sent through the Gemini API is not used to train Google's models.
 3. The response text is sent to Smallest AI's Lightning service, which returns synthesized speech audio played back to you.
 
@@ -65,18 +65,18 @@ No third-party service listed above receives your full health record. Each servi
 
 ## Doctor Visit Recordings
 
-When you use the Record feature to capture a doctor visit, your audio is processed by Deepgram's speech-to-text service to generate a transcript. The same data handling practices described above for Deepgram apply. Visit recordings are stored on your device and in your encrypted cloud account. AI-generated summaries of your visits are processed through Google's Gemini API.
+When you record a doctor visit, the audio is uploaded securely and transcribed and summarized using Google Cloud AI services (Gemini on Vertex AI). Visit recordings and summaries are stored in your encrypted cloud account until you delete them.
 
 ## Document Scanning
 
-When you scan lab results, prescriptions, or other health documents, the document image is processed on-device using optical character recognition. Extracted text may be sent to Google's Gemini API for structured interpretation. The same data handling practices described above for Google apply.
+When you scan a document, the image is uploaded securely and processed in the cloud using Google Cloud AI services (Gemini on Vertex AI) to read and structure the text.
 
 ## Data Retention & Deletion (RemiVox)
 
-- **Voice audio (RemiVox):** Streamed in real time and not stored by RemiMinderAI or any third-party service after the interaction completes.
-- **Transcripts & AI responses:** Stored in your account to provide conversation history. You can delete individual interactions or your entire RemiVox history from Settings > Privacy > Voice History.
+- Voice audio (RemiVox): We do not keep RemiVox voice audio after your request is answered. Our providers' handling of audio is described in their privacy policies.
+- **Transcripts & AI responses:** Stored in your account to provide conversation history.
 - **Visit recordings & summaries:** Stored in your account until you delete them. You can delete individual recordings from the visit detail screen.
-- **Account deletion:** You can delete your entire account and all associated data from Settings > Account > Delete Account. Deletion is permanent and completed within 30 days.
+- **Account deletion:** You can delete your entire account and all associated data from Profile → Delete Account. Deletion is permanent and completed within 30 days.
 
 ## Health Data
 
@@ -108,7 +108,7 @@ Your health information deserves protection. Here's how we keep it secure:
 - **Encryption at Rest:** Your data is encrypted when stored in Google Cloud infrastructure
 - **Access Controls:** Firebase security rules prevent unauthorized access to your data—only you and our system can access your recordings and documents
 - **No Third-Party Selling:** Your health data is never sold to advertisers, data brokers, or insurance companies
-- **Limited Processing:** Your data is processed only by Google Cloud services for transcription, summarization, and OCR—never for any other purpose
+- Limited Processing: Visit recordings and scanned documents are processed only by Google Cloud services for transcription, summarization, and text recognition. RemiVox voice conversations also use the providers listed in the RemiVox section.
 
 No method of transmission or storage is 100% secure. If we become aware of a security incident that affects your data, we will notify you as required by applicable law.
 
