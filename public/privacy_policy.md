@@ -1,7 +1,7 @@
 ﻿# Privacy Policy
 
 **Effective Date:** July 14, 2026
-**Last Updated:** July 14, 2026
+**Last Updated:** October 2026
 
 ## 1. Introduction
 
@@ -91,9 +91,10 @@ RemiMinderAI is a consumer wellness tool. It is not a medical device and is not 
 
 Here is what happens to your information after you capture it in the app:
 
-- **Audio recordings** are sent to Deepgram for speech-to-text transcription. The resulting transcript may be sent to Google Gemini to generate plain-language summaries
-- **Document images** are processed on-device for optical character recognition (OCR). Extracted text may be sent to Google Gemini for structured interpretation
-- **Recordings, images, and generated content** are stored in Google Cloud infrastructure (Cloud SQL, Cloud Storage, Firestore)
+- Visit recordings are uploaded securely and transcribed and summarized using Google Cloud AI services (Gemini on Vertex AI).
+- Document images are uploaded securely and processed in the cloud using Google Cloud AI services (Gemini on Vertex AI) to read and structure the text.
+- RemiVox voice conversations use Deepgram for speech-to-text, Google Gemini to understand your request, and Smallest.ai to generate the spoken reply.
+- Recordings, images, and generated content are stored in Google Cloud infrastructure (Cloud SQL, Cloud Storage, Firestore) in the United States.
 - **Push notifications** (such as medication or appointment reminders) are delivered via Google Firebase Cloud Messaging
 - **Authentication** is handled by Google Firebase Authentication
 
@@ -118,6 +119,8 @@ RemiMinderAI uses the third-party processors described in the RemiVox sections a
 - **Gemini and Gemma** — for plain-language summaries and structured interpretation of medical documents
 - **Firebase** — for user authentication and push notifications (medication and appointment reminders)
 - **Cloud SQL, Cloud Storage, and Firestore** — for storing and managing your recordings, documents, and account information
+
+We also use **Brevo** to send caregiver invitation emails.
 
 These services process your data only on our behalf and only for the purposes described in this policy. Google Cloud services are contractually bound to maintain confidentiality and use your data only as instructed by us. They are not permitted to use your information for advertising or unrelated purposes. If we add additional processors in the future, we will update this list and notify you of material changes to this Privacy Policy.
 
@@ -155,6 +158,8 @@ You can delete your account and all associated data in two ways:
 - **In the app:** Go to Profile → Delete Account and confirm
 - **By email:** Contact **team@remiminderai.com** using the email address associated with your account
 
+Deletion requests are completed within 30 days.
+
 For detailed steps and options, see our [Delete Account](/delete-account) page.
 
 ### Data Retention
@@ -163,6 +168,7 @@ For detailed steps and options, see our [Delete Account](/delete-account) page.
 - Recordings, summaries, documents, and account information are retained for as long as your account is active
 - When you delete individual content or your account, we remove it from our active systems
 - Backup copies may remain for up to 30 days as part of our standard backup retention schedule before permanent removal
+- We keep a record of your consent (version and date) after account deletion to show that consent was given.
 
 ## 7. No Sale of Data
 
