@@ -17,8 +17,9 @@ const TESTIMONIALS = [
     attribution: ["Physical Therapist", "Hazel Hawkins Medical Center, Hollister"],
   },
   {
-    body: "Patrick Flynn uses RemiMinderAI to take care of his mom. Feedback coming soon.....",
-    pending: true,
+    quote:
+      "I linked my caregiver account to my mom's and can see her reminders from my own phone. I tried the visit recording and it was clear and easy, and sharing the summary with me took just a couple of taps. Works awesomely.",
+    attribution: ["Patrick Flynn", "Caregiver", "Early user"],
   },
 ];
 
