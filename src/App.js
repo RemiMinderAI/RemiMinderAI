@@ -11,6 +11,7 @@ import FutureVisionPage from "./components/FutureVisionPage";
 import BlogIndexPage from "./components/BlogIndexPage";
 import BlogArticlePage from "./components/BlogArticlePage";
 import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
+import TermsOfServicePage from "./components/TermsOfServicePage";
 import DeleteAccountPage from "./components/DeleteAccountPage";
 import SupportPage from "./components/SupportPage";
 // Corrected path based on your file structure screenshot
@@ -69,6 +70,7 @@ function App() {
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/future-vision" element={<FutureVisionPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsOfServicePage />} />
           <Route path="/delete-account" element={<DeleteAccountPage />} />
           <Route path="/pricing" element={<Navigate to="/" replace />} />
           <Route path="/support" element={<SupportPage />} />
