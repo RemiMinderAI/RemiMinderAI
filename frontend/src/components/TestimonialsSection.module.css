@@ -90,8 +90,17 @@
   text-align: left;
 }
 
-.pendingCard {
-  justify-content: center;
+.sideStack {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+.sideStack .blockquote {
+  flex: 0 0 auto;
+}
+.sideStack .quoteText {
+  flex-grow: 0;
 }
 
 .featuredCard {
@@ -138,23 +147,14 @@
   min-height: 0;
 }
 
-.quoteText,
-.pendingText {
+.quoteText {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 17px;
   color: #1a2b3c;
   line-height: 1.65;
   margin: 8px 0 24px;
   flex-grow: 1;
-}
-
-.quoteText {
   font-style: italic;
-}
-
-.pendingText {
-  font-style: normal;
-  margin-bottom: 0;
 }
 
 .attribution {
@@ -270,9 +270,17 @@
     gap: 24px;
   }
 
+  .sideStack {
+    grid-column: 1;
+    grid-row: 2;
+    gap: 24px;
+    align-self: start;
+  }
+
   .featuredCard {
     grid-column: 2;
-    grid-row: 2 / span 2;
+    grid-row: 2;
+    align-self: start;
   }
 }
 
