@@ -361,8 +361,7 @@ const PricingPage = () => {
           the same email you use at checkout so we can link your plan. You can also{" "}
           <a href={START_FREE_MAILTO} className={styles.inlineLink}>
             start free
-          </a>{" "}
-          or join the list.
+          </a>.
         </p>
 
         <section className={styles.trustSection} aria-label="Trust and guarantees">

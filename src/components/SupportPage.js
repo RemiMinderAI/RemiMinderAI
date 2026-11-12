@@ -11,7 +11,7 @@ const FAQ_ITEMS = [
     id: "account",
     question: "How do I create an account or sign in?",
     answer:
-      "Download the RemiMinderAI app from the Google Play Store (Android) or join our mailing list to be notified when iOS is available. You can sign in with Google or Apple — no separate password required. If you already have an account, tap Sign In on the welcome screen and choose the same method you used when you signed up.",
+      "RemiMinderAI is available on the App Store and Google Play. You can sign in with Google or Apple — no separate password required. If you already have an account, tap Sign In on the welcome screen and choose the same method you used when you signed up.",
   },
   {
     id: "recording",
