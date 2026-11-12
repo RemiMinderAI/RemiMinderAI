@@ -13,7 +13,7 @@ const TESTIMONIALS = [
   },
   {
     quote: "[QUOTE]",
-    attribution: ["Dermatologist"],
+    attribution: ["Alexandra Dimoski, PA-C", "Dermatology"],
   },
   {
     quote:

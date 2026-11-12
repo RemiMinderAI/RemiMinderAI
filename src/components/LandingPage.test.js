@@ -169,7 +169,8 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.queryByText(/hazel hawkins medical center, hollister/i)
     ).not.toBeInTheDocument();
-    expect(screen.getByText(/^dermatologist$/i)).toBeInTheDocument();
+    expect(screen.getByText(/alexandra dimoski, pa-c/i)).toBeInTheDocument();
+    expect(screen.getByText(/^dermatology$/i)).toBeInTheDocument();
     expect(screen.getByText("[QUOTE]")).toBeInTheDocument();
     expect(
       screen.getByText(/i linked my caregiver account to my mom's/i)
