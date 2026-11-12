@@ -74,7 +74,7 @@
   grid-template-columns: 1fr;
   gap: 22px;
   margin-top: 56px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .card {
@@ -90,16 +90,16 @@
   text-align: left;
 }
 
-.sideStack {
+.column {
   display: flex;
   flex-direction: column;
   gap: 22px;
   min-width: 0;
 }
-.sideStack .blockquote {
+.column .blockquote {
   flex: 0 0 auto;
 }
-.sideStack .quoteText {
+.column .quoteText {
   flex-grow: 0;
 }
 
@@ -270,17 +270,8 @@
     gap: 24px;
   }
 
-  .sideStack {
-    grid-column: 1;
-    grid-row: 2;
+  .column {
     gap: 24px;
-    align-self: start;
-  }
-
-  .featuredCard {
-    grid-column: 2;
-    grid-row: 2;
-    align-self: start;
   }
 }
 

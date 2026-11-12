@@ -131,15 +131,15 @@ export default function TestimonialsSection() {
         </header>
 
         <div className={styles.grid}>
-          {TESTIMONIALS.slice(0, 2).map((item) => (
-            <QuoteCard key={item.attribution[0]} item={item} />
-          ))}
-          <div className={styles.sideStack}>
-            {TESTIMONIALS.slice(2).map((item) => (
-              <QuoteCard key={item.attribution[0]} item={item} />
-            ))}
+          <div className={styles.column}>
+            <QuoteCard item={TESTIMONIALS[2]} />
+            <QuoteCard item={TESTIMONIALS[3]} />
+            <QuoteCard item={TESTIMONIALS[0]} />
           </div>
-          <FeaturedVideoCard />
+          <div className={styles.column}>
+            <QuoteCard item={TESTIMONIALS[1]} />
+            <FeaturedVideoCard />
+          </div>
         </div>
       </div>
     </section>
