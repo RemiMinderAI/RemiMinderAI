@@ -1,7 +1,7 @@
 ﻿# Privacy Policy
 
 **Effective Date:** July 14, 2026
-**Last Updated:** July 14, 2026
+**Last Updated:** November 12, 2026
 
 ## 1. Introduction
 
@@ -99,15 +99,19 @@ Here is what happens to your information after you capture it in the app:
 
 Your information is used only to provide the features you use in the app. We do not use your health information for advertising.
 
+### Sharing with Family Caregivers
+
+If you choose to share a summary or reminder with a family caregiver, that caregiver can view what you share in their RemiMinderAI account. Caregivers can see only what you share, and you can stop sharing at any time from the app.
+
 ## 4. Data Security
 
 Your health information deserves protection. Here's how we keep it secure:
 
 - **Encryption in Transit:** All data transmitted between your device and our servers uses HTTPS/TLS encryption
 - **Encryption at Rest:** Your data is encrypted when stored in Google Cloud infrastructure
-- **Access Controls:** Firebase security rules prevent unauthorized access to your data—only you and our system can access your recordings and documents
+- **Access Controls:** Firebase security rules prevent unauthorized access to your data. Only you, the family caregivers you choose to share with, and our system can access your recordings, summaries, and documents.
 - **No Third-Party Selling:** Your health data is never sold to advertisers, data brokers, or insurance companies
-- **Limited Processing:** Your data is processed only by Google Cloud services for transcription, summarization, and OCR—never for any other purpose
+- **Limited Processing:** Your data is processed only by the service providers listed in this policy, and only to provide the features you use, never for advertising or any other purpose.
 
 No method of transmission or storage is 100% secure. If we become aware of a security incident that affects your data, we will notify you as required by applicable law.
 
