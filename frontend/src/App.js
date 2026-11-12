@@ -48,22 +48,18 @@ import VisitHistory from './patient/VisitHistory';
 import ScrollToTop from "./components/ScrollToTop";
 import AnnouncementBar from "./components/AnnouncementBar";
 import ContactModal from "./components/ContactModal";
-import MailingListModal from "./components/MailingListModal";
 import FeedbackWidget from "./components/FeedbackWidget";
-import { MailingListProvider } from "./context/MailingListContext";
 import StripeCheckoutClaim from "./components/StripeCheckoutClaim";
 
 function App() {
   return (
     <Router>
       <AnnouncementBar />
-      <MailingListProvider>
-        <StripeCheckoutClaim />
-        <ScrollToTop />
-        <ContactModal />
-        <MailingListModal />
-        <FeedbackWidget />
-        <div className="App">
+      <StripeCheckoutClaim />
+      <ScrollToTop />
+      <ContactModal />
+      <FeedbackWidget />
+      <div className="App">
         <Routes>
           {/* Main Routes */}
           <Route path="/" element={<LandingPage />} />
@@ -110,8 +106,7 @@ function App() {
           <Route path="/visit-history" element={<VisitHistory onBack={() => window.history.back()} role="patient" />} />
 
         </Routes>
-        </div>
-      </MailingListProvider>
+      </div>
     </Router>
   );
 }

@@ -130,25 +130,6 @@
   border-color: var(--coral);
   background: transparent;
 }
-.mailingListButton {
-  text-decoration: none;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: var(--white);
-  background: var(--teal);
-  padding: 9px 20px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-.mailingListButton:hover {
-  background: var(--teal-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(27,42,74,0.3);
-}
 
 .hamburgerButton {
   display: none;
@@ -222,30 +203,6 @@
   border-radius: 8px;
 }
 
-.mobileNavCta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 52px;
-  padding: 14px 20px;
-  box-sizing: border-box;
-  text-align: center;
-  text-decoration: none;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--white);
-  background: var(--teal);
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.mobileNavCta:hover {
-  background: var(--teal-dark);
-}
-
 @media (min-width: 900px) {
   .hamburgerButton {
     display: none !important;
@@ -258,9 +215,6 @@
 
 @media (max-width: 899px) {
   .navDesktop {
-    display: none !important;
-  }
-  .mailingListDesktop {
     display: none !important;
   }
   .hamburgerButton {
