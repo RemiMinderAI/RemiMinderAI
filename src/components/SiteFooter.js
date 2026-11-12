@@ -73,7 +73,7 @@ export default function SiteFooter() {
             <div className={styles.colHeading}>Legal</div>
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/delete-account">Delete Account</Link>
-            <a href="#">Terms of Service</a>
+            <Link to="/terms">Terms of Service</Link>
           </nav>
         </div>
 

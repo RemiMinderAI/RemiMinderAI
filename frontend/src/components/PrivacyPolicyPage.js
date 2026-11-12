@@ -9,7 +9,7 @@ import logo from "../assets/RemiMinder_logo_512.png";
  * Parse minimal markdown (headings, paragraphs, bold, unordered lists, tables) into React nodes.
  * Numbered ## headings get stable ids: section-1, section-2, ...
  */
-function parsePrivacyMarkdown(mdText) {
+export function parsePrivacyMarkdown(mdText, headingId = "privacy-top") {
   const lines = mdText.replace(/\r\n/g, "\n").split("\n");
   const blocks = [];
   let i = 0;
@@ -105,7 +105,7 @@ function parsePrivacyMarkdown(mdText) {
     if (trimmed.startsWith("# ")) {
       const title = trimmed.slice(2).trim();
       blocks.push(
-        <h1 key={`h1-${key++}`} id="privacy-top">
+        <h1 key={`h1-${key++}`} id={headingId}>
           {title}
         </h1>
       );
@@ -265,7 +265,7 @@ function parsePrivacyMarkdown(mdText) {
   return blocks;
 }
 
-function buildToc(mdText) {
+export function buildToc(mdText) {
   const lines = mdText.split(/\n/);
   const items = [];
   for (const line of lines) {
