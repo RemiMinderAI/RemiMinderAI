@@ -11,7 +11,7 @@ By using the Services, you agree to the practices described here. If you don't a
 
 ### Note on HIPAA Compliance
 
-RemiMinderAI is designed with privacy best practices aligned to HIPAA principles (encryption, access controls, no sale of data). However, RemiMinderAI is not a HIPAA-covered entity and does not operate under a Business Associate Agreement (BAA). If you require HIPAA-covered services for your healthcare practice, please consult with qualified legal counsel. For individual users, our encryption and privacy practices provide strong data protection.
+RemiMinderAI is not a HIPAA-covered entity and does not offer HIPAA-covered services to practices. Our primary cloud and AI provider, Google Cloud, processes data under a signed Business Associate Agreement, and we apply the safeguards that agreement requires, including encryption and restricted access.
 
 ## 2. Information We Collect
 
