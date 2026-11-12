@@ -16,8 +16,8 @@ describe("LandingPage hero redesign", () => {
     renderHome();
 
     expect(
-      screen.getAllByText(/AI healthcare companion app/i).length
-    ).toBeGreaterThanOrEqual(1);
+      screen.getByText(/for families caring for a parent/i)
+    ).toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", {
