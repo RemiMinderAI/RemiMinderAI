@@ -20,6 +20,11 @@ const TESTIMONIALS = [
     body: "Patrick Flynn uses RemiMinderAI to take care of his mom. Feedback coming soon.....",
     pending: true,
   },
+  {
+    quote:
+      "Thank you for the invite! I tried the app today for my appointment; it worked perfectly! The conversation was recorded and I received a summary after I loaded it to Overview.",
+    attribution: ["Krystal Johnson", "Caregiver", "Caring Our Way community"],
+  },
 ];
 
 function Attribution({ parts }) {
