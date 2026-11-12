@@ -96,9 +96,11 @@
   gap: 22px;
   min-width: 0;
 }
+.card:not(.featuredCard) .blockquote,
 .column .blockquote {
   flex: 0 0 auto;
 }
+.card:not(.featuredCard) .quoteText,
 .column .quoteText {
   flex-grow: 0;
 }
