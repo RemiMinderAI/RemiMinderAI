@@ -102,4 +102,4 @@ These Terms and the Privacy Policy are the entire agreement between you and us a
 
 REMIMINDERAI LLC
 Hollister, California
-Email: [SUPPORT EMAIL]
+Email: team@remiminderai.com
