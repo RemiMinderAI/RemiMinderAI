@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Play } from "lucide-react";
 import styles from "./TestimonialsSection.module.css";
 
-const VIDEO_REVIEW_URL = "https://www.instagram.com/p/DdZ3xNxx9Et/?hl=en";
-const VIDEO_EMBED_URL = "https://www.instagram.com/p/DdZ3xNxx9Et/embed";
+const VIDEO_REVIEW_URL = "https://www.instagram.com/reel/Dfp5yL9yz-y/";
+const VIDEO_EMBED_URL = "https://www.instagram.com/reel/Dfp5yL9yz-y/embed";
 
 const TESTIMONIALS = [
   {
