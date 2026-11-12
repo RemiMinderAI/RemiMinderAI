@@ -17,8 +17,9 @@ const TESTIMONIALS = [
     attribution: ["Physical Therapist", "Hazel Hawkins Medical Center, Hollister"],
   },
   {
-    body: "Patrick Flynn uses RemiMinderAI to take care of his mom. Feedback coming soon.....",
-    pending: true,
+    quote:
+      "I linked my caregiver account to my mom's and can see her reminders from my own phone. I tried the visit recording and it was clear and easy, and sharing the summary with me took just a couple of taps. Works awesomely.",
+    attribution: ["Patrick Flynn", "Caregiver", "Early user"],
   },
   {
     quote:
@@ -43,6 +44,20 @@ function Attribution({ parts }) {
         ))}
       </div>
     </cite>
+  );
+}
+
+function QuoteCard({ item }) {
+  return (
+    <article className={styles.card}>
+      <span className={styles.quoteMark} aria-hidden="true">
+        &ldquo;
+      </span>
+      <blockquote className={styles.blockquote}>
+        <p className={styles.quoteText}>{item.quote}</p>
+        <Attribution parts={item.attribution} />
+      </blockquote>
+    </article>
   );
 }
 
@@ -116,26 +131,14 @@ export default function TestimonialsSection() {
         </header>
 
         <div className={styles.grid}>
-          {TESTIMONIALS.map((item, index) => (
-            <article
-              key={index}
-              className={`${styles.card} ${item.pending ? styles.pendingCard : ""}`}
-            >
-              {item.pending ? (
-                <p className={styles.pendingText}>{item.body}</p>
-              ) : (
-                <>
-                  <span className={styles.quoteMark} aria-hidden="true">
-                    &ldquo;
-                  </span>
-                  <blockquote className={styles.blockquote}>
-                    <p className={styles.quoteText}>{item.quote}</p>
-                    <Attribution parts={item.attribution} />
-                  </blockquote>
-                </>
-              )}
-            </article>
+          {TESTIMONIALS.slice(0, 2).map((item) => (
+            <QuoteCard key={item.attribution[0]} item={item} />
           ))}
+          <div className={styles.sideStack}>
+            {TESTIMONIALS.slice(2).map((item) => (
+              <QuoteCard key={item.attribution[0]} item={item} />
+            ))}
+          </div>
           <FeaturedVideoCard />
         </div>
       </div>
