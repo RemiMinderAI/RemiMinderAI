@@ -269,6 +269,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
+
+  .featuredCard {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+  }
 }
 
 @media (min-width: 1180px) {

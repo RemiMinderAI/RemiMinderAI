@@ -175,7 +175,7 @@ describe("LandingPage hero redesign", () => {
       screen.getByRole("link", { name: /soumendranath's review on instagram/i })
     ).toHaveAttribute(
       "href",
-      "https://www.instagram.com/p/DdZ3xNxx9Et/?hl=en"
+      "https://www.instagram.com/reel/Dfp5yL9yz-y/"
     );
   });
 
