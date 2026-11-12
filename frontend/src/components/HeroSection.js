@@ -51,9 +51,15 @@ export default function HeroSection() {
                 id="hero-heading"
                 className={`${styles.hero2Title} ${styles.heroAnimHeadline}`}
               >
-                Your mom&apos;s doctor said something important. Do you remember
-                what?
+                For the week caregiving starts.
               </h1>
+
+              <p className={`${styles.hero2Proof} ${styles.heroAnimSub}`}>
+                When a parent comes home from the hospital or gets a diagnosis,
+                RemiMinderAI records the doctor visit, writes down what was said
+                in plain language, and lets you share the summary and reminders
+                with your family.
+              </p>
 
               <p className={`${styles.hero2Sub} ${styles.heroAnimSub}`}>
                 Record the visit, get an AI summary, scan lab results, set

@@ -22,10 +22,13 @@ describe("LandingPage hero redesign", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /your mom's doctor said something important/i,
+        name: /for the week caregiving starts/i,
       })
     ).toBeInTheDocument();
 
+    expect(
+      screen.getByText(/when a parent comes home from the hospital or gets a diagnosis/i)
+    ).toBeInTheDocument();
     expect(
       screen.getByText(/record the visit, get an AI summary, scan lab results/i)
     ).toBeInTheDocument();
