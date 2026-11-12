@@ -167,8 +167,14 @@ describe("LandingPage hero redesign", () => {
       screen.getByText(/hazel hawkins medical center, hollister/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/patrick flynn uses remiminderai to take care of his mom/i)
+      screen.getByText(/i linked my caregiver account to my mom's/i)
     ).toBeInTheDocument();
+    expect(screen.getByText(/patrick flynn/i)).toBeInTheDocument();
+    expect(screen.getByText(/^caregiver$/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/early user, free access during testing/i)
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/feedback coming soon/i)).not.toBeInTheDocument();
     expect(screen.getAllByText(/soumendranath/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText(/video review/i)).toBeInTheDocument();
     expect(
