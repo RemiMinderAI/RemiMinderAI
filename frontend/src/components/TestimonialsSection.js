@@ -12,10 +12,6 @@ const TESTIMONIALS = [
     attribution: ["Physical Therapist"],
   },
   {
-    quote: "[QUOTE]",
-    attribution: ["Alexandra Dimoski, PA-C", "Dermatology"],
-  },
-  {
     quote:
       "I linked my caregiver account to my mom's and can see her reminders from my own phone. I tried the visit recording and it was clear and easy, and sharing the summary with me took just a couple of taps. Works awesomely.",
     attribution: ["Patrick Flynn", "Caregiver", "Early user"],
@@ -135,12 +131,11 @@ export default function TestimonialsSection() {
         </header>
 
         <div className={styles.grid}>
-          <QuoteCard item={TESTIMONIALS[0]} />
-          <QuoteCard item={TESTIMONIALS[1]} />
           <div className={styles.column}>
+            <QuoteCard item={TESTIMONIALS[0]} />
+            <QuoteCard item={TESTIMONIALS[1]} />
             <QuoteCard item={TESTIMONIALS[2]} />
             <QuoteCard item={TESTIMONIALS[3]} />
-            <QuoteCard item={TESTIMONIALS[4]} />
           </div>
           <FeaturedVideoCard />
         </div>
