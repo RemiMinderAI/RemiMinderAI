@@ -8,13 +8,12 @@ const VIDEO_EMBED_URL = "https://www.instagram.com/reel/Dfp5yL9yz-y/embed";
 const TESTIMONIALS = [
   {
     quote:
-      "I need reminders for my medications so I don't forget to take them. Even just seeing them on the Overview screen in RemiMinderAI helps me stay on track.",
-    attribution: ["Lee Ann", "Patient", "California"],
+      "After every session, my patients leave without really understanding their follow-up instructions. By the next visit, the home program is forgotten or mixed up. RemiMinderAI can give them a clear record they can revisit and share with family, so the plan actually sticks.",
+    attribution: ["Physical Therapist"],
   },
   {
-    quote:
-      "After every session, my patients leave without really understanding their follow-up instructions. By the next visit, the home program is forgotten or mixed up. RemiMinderAI can give them a clear record they can revisit and share with family, so the plan actually sticks.",
-    attribution: ["Physical Therapist", "Hazel Hawkins Medical Center, Hollister"],
+    quote: "[QUOTE]",
+    attribution: ["Alexandra Dimoski, PA-C", "Dermatology"],
   },
   {
     quote:
@@ -25,6 +24,11 @@ const TESTIMONIALS = [
     quote:
       "Thank you for the invite! I tried the app today for my appointment; it worked perfectly! The conversation was recorded and I received a summary after I loaded it to Overview.",
     attribution: ["Krystal Johnson", "Caregiver", "Caring Our Way community"],
+  },
+  {
+    quote:
+      "I need reminders for my medications so I don't forget to take them. Even just seeing them on the Overview screen in RemiMinderAI helps me stay on track.",
+    attribution: ["Lee Ann", "Patient", "California"],
   },
 ];
 
@@ -131,15 +135,14 @@ export default function TestimonialsSection() {
         </header>
 
         <div className={styles.grid}>
+          <QuoteCard item={TESTIMONIALS[0]} />
+          <QuoteCard item={TESTIMONIALS[1]} />
           <div className={styles.column}>
             <QuoteCard item={TESTIMONIALS[2]} />
             <QuoteCard item={TESTIMONIALS[3]} />
-            <QuoteCard item={TESTIMONIALS[0]} />
+            <QuoteCard item={TESTIMONIALS[4]} />
           </div>
-          <div className={styles.column}>
-            <QuoteCard item={TESTIMONIALS[1]} />
-            <FeaturedVideoCard />
-          </div>
+          <FeaturedVideoCard />
         </div>
       </div>
     </section>
