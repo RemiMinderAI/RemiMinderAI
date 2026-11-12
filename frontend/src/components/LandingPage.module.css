@@ -395,6 +395,7 @@
   .hero2TrustRow {
     justify-content: center;
   }
+  .hero2Proof,
   .hero2Sub {
     margin-left: auto;
     margin-right: auto;
@@ -646,6 +647,15 @@
   50% {
     transform: translateY(-1px) rotate(-0.3deg);
   }
+}
+.hero2Proof {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--brand-navy, #1B3A5C);
+  max-width: 540px;
+  margin: 0 0 18px;
 }
 .hero2Sub {
   font-family: "DM Sans", sans-serif;
