@@ -44,7 +44,7 @@ export default function HeroSection() {
             <div className={styles.hero2CopyCol}>
               <p className={`${styles.heroCategoryBadge} ${styles.heroAnimBadge}`}>
                 <span className={styles.heroCategoryDot} aria-hidden="true" />
-                AI healthcare companion app
+                For families caring for a parent
               </p>
 
               <h1

@@ -109,9 +109,6 @@ export default function MarketingHeader({
           <NavLink to="/support" className={navClass}>
             Support
           </NavLink>
-          <NavLink to="/delete-account" className={navClass}>
-            Delete Account
-          </NavLink>
         </nav>
 
         <button
@@ -170,13 +167,6 @@ export default function MarketingHeader({
             </NavLink>
             <NavLink to="/support" className={navClass} onClick={closeMenu}>
               Support
-            </NavLink>
-            <NavLink
-              to="/delete-account"
-              className={navClass}
-              onClick={closeMenu}
-            >
-              Delete Account
             </NavLink>
           </div>
         </div>
