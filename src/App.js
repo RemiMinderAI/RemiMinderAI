@@ -14,6 +14,7 @@ import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
 import TermsOfServicePage from "./components/TermsOfServicePage";
 import DeleteAccountPage from "./components/DeleteAccountPage";
 import SupportPage from "./components/SupportPage";
+import PilotPage from "./components/PilotPage";
 // Corrected path based on your file structure screenshot
 import RecordVisitPage from './components/AudioRecorder';
 import CaregiverInvite from './caregiver/Invitation';
@@ -74,6 +75,7 @@ function App() {
           <Route path="/delete-account" element={<DeleteAccountPage />} />
           <Route path="/pricing" element={<Navigate to="/" replace />} />
           <Route path="/support" element={<SupportPage />} />
+          <Route path="/pilot" element={<PilotPage />} />
           <Route path="/record" element={<RecordVisitPage />} />
 
           {/* Caregiver Flow Routes */}
