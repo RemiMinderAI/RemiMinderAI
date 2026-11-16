@@ -1,15 +1,30 @@
 const { Resend } = require("resend");
+const {
+  validatePilotInquiry,
+  pilotInquiryEmail,
+} = require("../src/pilotInquiry");
 
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
 /**
- * Vercel serverless: notify via Resend for mailing list + feedback.
+ * Vercel serverless: notify via Resend for mailing list, feedback, and
+ * pilot partnership inquiries. Pilot inquiries are emailed only — nothing
+ * is written to a database.
  */
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  const { type, data } = req.body || {};
+  if (!type || !data || typeof data !== "object") {
+    return res.status(400).json({ error: "Missing fields" });
+  }
+
+  if (type === "pilot_inquiry") {
+    return sendPilotInquiry(res, data);
   }
 
   if (!resend) {
@@ -20,11 +35,6 @@ module.exports = async function handler(req, res) {
   if (!process.env.NOTIFICATION_EMAIL) {
     console.error("NOTIFICATION_EMAIL is not set");
     return res.status(500).json({ error: "Email failed" });
-  }
-
-  const { type, data } = req.body || {};
-  if (!type || !data) {
-    return res.status(400).json({ error: "Missing fields" });
   }
 
   const subject =
@@ -88,6 +98,43 @@ module.exports = async function handler(req, res) {
 
   return res.status(200).json({ ok: true });
 };
+
+async function sendPilotInquiry(res, data) {
+  const result = validatePilotInquiry(data);
+  if (result.dropped) {
+    return res.status(200).json({ ok: true });
+  }
+  if (!result.ok) {
+    return res.status(400).json({
+      error: "Please check the form.",
+      fields: result.errors,
+    });
+  }
+
+  if (!resend) {
+    console.error("Resend: RESEND_API_KEY is not set");
+    return res.status(500).json({ error: "Email failed" });
+  }
+
+  const from =
+    process.env.RESEND_FROM || "RemiMinderAI <onboarding@resend.dev>";
+  const message = pilotInquiryEmail(result.inquiry);
+
+  try {
+    await resend.emails.send({
+      from,
+      to: message.to,
+      replyTo: message.replyTo,
+      subject: message.subject,
+      html: message.html,
+    });
+  } catch (err) {
+    console.error("Resend error (pilot inquiry):", err);
+    return res.status(500).json({ error: "Email failed" });
+  }
+
+  return res.status(200).json({ ok: true });
+}
 
 function escape(str) {
   return String(str || "").replace(

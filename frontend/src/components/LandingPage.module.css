@@ -88,6 +88,7 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 .logoImg {
   width: 40px;
@@ -107,14 +108,21 @@
 .nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 4px;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 .navLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   text-decoration: none;
   color: #1B2A4A;
   font-weight: 600;
   font-size: 14px;
-  padding: 6px 14px;
+  padding: 6px 10px;
   border: 1.5px solid transparent;
   border-radius: 8px;
   background: transparent;
@@ -125,10 +133,37 @@
   background: transparent;
   border-color: transparent;
 }
+.navLink:focus-visible,
+.partnerCta:focus-visible,
+.hamburgerButton:focus-visible {
+  outline: 3px solid #1B2A4A;
+  outline-offset: 2px;
+}
 .navLinkActive {
   color: var(--coral);
   border-color: var(--coral);
   background: transparent;
+}
+.partnerCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-left: 6px;
+  padding: 0 14px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  background: #D4A843;
+  color: #1B2A4A;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.partnerCta:hover {
+  background: #c9972e;
+  color: #1B2A4A;
 }
 
 .hamburgerButton {
@@ -201,6 +236,10 @@
   box-sizing: border-box;
   text-align: left;
   border-radius: 8px;
+}
+.mobileNavStack .partnerCta {
+  width: 100%;
+  margin: 8px 0 0;
 }
 
 @media (min-width: 900px) {

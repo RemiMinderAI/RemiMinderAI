@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import { useNavigate, useLocation, NavLink, Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import styles from "./LandingPage.module.css";
 import logo from "../assets/RemiMinder_logo_512.png";
@@ -106,9 +106,15 @@ export default function MarketingHeader({
           <NavLink to="/about" className={navClass}>
             About
           </NavLink>
+          <NavLink to="/pilot" className={navClass}>
+            For Partners
+          </NavLink>
           <NavLink to="/support" className={navClass}>
             Support
           </NavLink>
+          <Link to="/pilot#inquiry" className={styles.partnerCta} onClick={closeMenu}>
+            Partner with Us
+          </Link>
         </nav>
 
         <button
@@ -165,9 +171,15 @@ export default function MarketingHeader({
             <NavLink to="/about" className={navClass} onClick={closeMenu}>
               About
             </NavLink>
+            <NavLink to="/pilot" className={navClass} onClick={closeMenu}>
+              For Partners
+            </NavLink>
             <NavLink to="/support" className={navClass} onClick={closeMenu}>
               Support
             </NavLink>
+            <Link to="/pilot#inquiry" className={styles.partnerCta} onClick={closeMenu}>
+              Partner with Us
+            </Link>
           </div>
         </div>
       )}
