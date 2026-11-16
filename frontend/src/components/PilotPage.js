@@ -278,10 +278,7 @@ export default function PilotPage() {
               </p>
               <ul className={styles.checks}>
                 <CheckItem>2 months free for each pilot family</CheckItem>
-                <CheckItem>
-                  {/* TODO: replace [UP TO N] when the family cap is confirmed */}
-                  <span data-todo="family-cap">[UP TO N] families per partner</span>
-                </CheckItem>
+                <CheckItem>3 to 5 families per partner</CheckItem>
                 <CheckItem>
                   We handle setup and support, so no extra work for your staff
                 </CheckItem>

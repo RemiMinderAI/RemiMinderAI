@@ -89,7 +89,7 @@ describe("Pilot page", () => {
       screen.getByText(/sample screens: record the visit/i)
     ).toBeInTheDocument();
 
-    expect(screen.getByText("[UP TO N] families per partner")).toBeInTheDocument();
+    expect(screen.getByText("3 to 5 families per partner")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /a simple pilot\. real feedback/i })
     ).toBeInTheDocument();
