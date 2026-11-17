@@ -172,14 +172,18 @@
 
 .socialRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
+  max-width: 100%;
 }
 
 .socialLink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
   min-width: 32px;
@@ -219,5 +223,12 @@
 
   .socialRow {
     justify-content: center;
+  }
+
+  .socialLink {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
